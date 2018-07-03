@@ -33,13 +33,18 @@ namespace ProjectBj.BLL.BusinessModels
         private int GetHandTotal(List<Card> cards)
         {
             int totalValue = 0;
-            int aceDelta = 0;
+            bool hasAce = false;
 
-            foreach(var card in cards)
+            foreach (var card in cards)
             {
-                if (card.Rank == Values.ACE && totalValue > 21)
-                    aceDelta = -10;
-                totalValue += aceDelta;
+                if(card.Rank == Values.ACE)
+                {
+                    if (!hasAce)
+                        hasAce = true;
+                    if (hasAce && totalValue > 21)
+                        totalValue -= 10;
+                    totalValue += card.Value;
+                }
             }
 
             return totalValue;

@@ -4,18 +4,33 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ProjectBj.Entities;
+using ProjectBj.DAL.Repositories;
 
 namespace ProjectBj.BLL.BusinessModels
 {
     public class Deck
     {
         public List<Card> Cards { get; set; }
+        private EFUnitOfWork _unitOfWork;
+
+        public Deck()
+        {
+            _unitOfWork = new EFUnitOfWork();
+            FillDeck();
+        }
+
+        private void FillDeck()
+        {
+            Cards = _unitOfWork.Cards.GetAll().ToList();
+        }
+
 
         public Card DealCard(Player player)
         {
             Shuffle();
             return Cards[0];
         }
+
 
         private List<Card> Shuffle(List<Card> deck)
         {

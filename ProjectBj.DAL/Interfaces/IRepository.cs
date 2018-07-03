@@ -9,8 +9,8 @@ namespace ProjectBj.DAL.Interfaces
     public interface IRepository <T> where T : class
     {
         T Get(int id);
-        IEnumerable<T> GetAll();
-        IEnumerable<T> Find(Func<T, Boolean> predicate);
+        ICollection<T> GetAll();
+        ICollection<T> Find(Func<T, Boolean> predicate);
         void Create(T item);
         void Update(T item);
         void Delete(int id);

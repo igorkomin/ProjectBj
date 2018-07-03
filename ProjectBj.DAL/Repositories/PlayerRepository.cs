@@ -31,7 +31,7 @@ namespace ProjectBj.DAL.Repositories
                 db.Players.Remove(player); 
         }
 
-        public IEnumerable<Player> Find(Func<Player, bool> predicate)
+        public ICollection<Player> Find(Func<Player, bool> predicate)
         {
             return db.Players.Include(x => x.Cards).Where(predicate).ToList();
         }
@@ -41,9 +41,9 @@ namespace ProjectBj.DAL.Repositories
             return db.Players.Find(id);
         }
 
-        public IEnumerable<Player> GetAll()
+        public ICollection<Player> GetAll()
         {
-            return db.Players.Include(x => x.Cards);
+            return db.Players.Include(x => x.Cards).ToList();
         }
 
         public void Update(Player player)
