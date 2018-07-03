@@ -38,7 +38,7 @@ namespace ProjectBj.DAL.Repositories
 
         public Card Get(int id)
         {
-            return db.Cards.Find(id);
+            return db.Cards.Find(id); 
         }
 
         public IEnumerable<Card> GetAll()
@@ -49,16 +49,6 @@ namespace ProjectBj.DAL.Repositories
         public void Update(Card card)
         {
             db.Entry(card).State = EntityState.Modified;
-        }
-
-        public int GetTotal(Player player)
-        {
-            int totalValue = 0;
-            foreach (var card in player.Cards)
-            {
-                totalValue += card.Value;
-            }
-            return totalValue;
         }
     }
 }
