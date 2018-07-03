@@ -43,8 +43,8 @@ namespace ProjectBj.BLL.BusinessModels
                         hasAce = true;
                     if (hasAce && totalValue > 21)
                         totalValue -= 10;
-                    totalValue += card.Value;
                 }
+                    totalValue += card.Value;
             }
 
             return totalValue;

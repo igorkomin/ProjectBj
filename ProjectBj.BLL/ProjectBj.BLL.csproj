@@ -41,7 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessModels\Deck.cs" />
-    <Compile Include="BusinessModels\Game.cs" />
+    <Compile Include="BusinessModels\GameSession.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
