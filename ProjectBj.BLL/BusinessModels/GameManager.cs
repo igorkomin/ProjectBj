@@ -7,7 +7,7 @@ using ProjectBj.Entities;
 
 namespace ProjectBj.BLL.BusinessModels
 {
-    public class GameSession
+    public class GameManager
     {
         private Deck deck = new Deck();
         private List<Player> players = new List<Player>();
@@ -44,7 +44,7 @@ namespace ProjectBj.BLL.BusinessModels
                     if (hasAce && totalValue > 21)
                         totalValue -= 10;
                 }
-                    totalValue += card.Value;
+                totalValue += card.Value;
             }
 
             return totalValue;

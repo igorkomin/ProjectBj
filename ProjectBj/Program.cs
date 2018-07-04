@@ -14,7 +14,7 @@ namespace ProjectBj
     {
         static void Main(string[] args)
         {
-            GameSession session = new GameSession();
+            GameManager session = new GameManager();
             Console.ReadKey();
         }
     }
