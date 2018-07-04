@@ -5,30 +5,40 @@ using System.Text;
 using System.Threading.Tasks;
 using ProjectBj.Entities;
 using ProjectBj.DAL.Repositories;
+using System.Diagnostics;
 
 namespace ProjectBj.BLL.BusinessModels
 {
     public class Deck
     {
         public List<Card> Cards { get; set; }
-        private EFUnitOfWork _unitOfWork;
+        private EFUnitOfWork _database;
 
         public Deck()
         {
-            _unitOfWork = new EFUnitOfWork();
+            _database = new EFUnitOfWork();
             FillDeck();
         }
 
         private void FillDeck()
         {
-            Cards = _unitOfWork.Cards.GetAll().ToList();
+            Cards = _database.Cards.GetAll().ToList();
         }
 
-
-        public Card DealCard(Player player)
+        public void DealCard(Player player, bool dealer)
         {
             Shuffle();
-            return Cards[0];
+            Card card = Cards[0];
+            if (!dealer)
+            {
+                _database.Players.Attach(player);
+                player.Cards.Add(card);
+                _database.Save();
+                _database.Players.Detach(player);
+            }
+            else
+                player.Cards.Add(card);
+            //Debug.WriteLine($"{player.Id} <- {card.Rank} {card.Suit} ({card.Id})");
         }
 
 

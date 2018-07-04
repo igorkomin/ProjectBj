@@ -22,13 +22,25 @@ namespace ProjectBj.DAL.Repositories
         public void Create(Player player)
         {
             db.Players.Add(player);
+            db.SaveChanges();
+        }
+
+        public void Attach(Player player)
+        {
+            db.Players.Attach(player);
+        }
+
+        public void Detach(Player player)
+        {
+            db.Entry<Player>(player).State = EntityState.Detached;
         }
 
         public void Delete(int id)
         {
             Player player = db.Players.Find(id);
             if (player != null)
-                db.Players.Remove(player); 
+                db.Players.Remove(player);
+            db.SaveChanges();
         }
 
         public ICollection<Player> Find(Func<Player, bool> predicate)

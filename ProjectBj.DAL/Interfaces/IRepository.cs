@@ -12,6 +12,8 @@ namespace ProjectBj.DAL.Interfaces
         ICollection<T> GetAll();
         ICollection<T> Find(Func<T, Boolean> predicate);
         void Create(T item);
+        void Attach(T item);
+        void Detach(T item);
         void Update(T item);
         void Delete(int id);
     }

@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DatabaseManager.cs" />
     <Compile Include="EF\BjContext.cs" />
     <Compile Include="EF\BjDbInitializer.cs" />
     <Compile Include="Interfaces\IRepository.cs" />

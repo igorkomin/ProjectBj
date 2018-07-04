@@ -4,33 +4,46 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ProjectBj.Entities;
+using ProjectBj.DAL.Repositories;
+using System.Diagnostics;
 
 namespace ProjectBj.BLL.BusinessModels
 {
     public class GameManager
     {
-        private Deck deck = new Deck();
-        private List<Player> players = new List<Player>();
-        private Player dealer = new Player();
+        private Deck _deck;
+        private Player _dealer;
+        private List<Player> _players;
+        private EFUnitOfWork _database;
+
+        public GameManager()
+        {
+            _database = new EFUnitOfWork();
+            _deck = new Deck();
+            _dealer = new Player("Dealer", false);
+            _players = new List<Player>();
+        }
 
         public void AddPlayer(Player newPlayer)
         {
-            players.Add(newPlayer);
+            _database.Players.Create(newPlayer);
+            _players.Add(newPlayer);
         }
 
         public void DealFirstTwoCards()
         {
-            deck.DealCard(dealer);
-            deck.DealCard(dealer);
+            //_deck.DealCard(_dealer, true);
+            //_deck.DealCard(_dealer, true);
 
-            for(int i = 0; i < players.Count; i++)
+            foreach(var player in _players)
             {
-                deck.DealCard(players[i]);
-                deck.DealCard(players[i]);
+                _deck.DealCard(player, false);
+                _deck.DealCard(player, false);
             }
+            _database.Save();
         }
 
-        private int GetHandTotal(List<Card> cards)
+        public int GetHandTotal(List<Card> cards)
         {
             int totalValue = 0;
             bool hasAce = false;
@@ -48,6 +61,44 @@ namespace ProjectBj.BLL.BusinessModels
             }
 
             return totalValue;
+        }
+
+        public List<Player> GetPlayers()
+        {
+            return _players;
+        }
+
+        public List<Card> GetCards(Player player)
+        {
+            return player.Cards.ToList();
+        }
+
+        public bool IsBlackjack(List <Card> cards)
+        {
+            return GetHandTotal(cards) == 21 ? true : false;
+        }
+
+        public bool IsBust(List <Card> cards)
+        {
+            return GetHandTotal(cards) > 21 ? true : false;
+        }
+
+        public void FillDealerHand()
+        {
+            while(GetHandTotal(GetCards(_dealer)) < 17)
+            {
+                _deck.DealCard(_dealer, true);
+            }
+        }
+
+        public void Hit(Player player)
+        {
+            _deck.DealCard(player, false);
+        }
+
+        public void Stay(Player player)
+        {
+            player.InGame = false;
         }
     }
 }

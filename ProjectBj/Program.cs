@@ -14,7 +14,17 @@ namespace ProjectBj
     {
         static void Main(string[] args)
         {
-            GameManager session = new GameManager();
+            GameManager manager = new GameManager();
+
+            Player player = new Player("Player1", true);
+
+            manager.AddPlayer(player);
+            manager.DealFirstTwoCards();
+
+            
+
+
+
             Console.ReadKey();
         }
     }

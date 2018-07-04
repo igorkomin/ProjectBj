@@ -24,6 +24,16 @@ namespace ProjectBj.DAL.Repositories
             db.Cards.Add(card);
         }
 
+        public void Attach(Card card)
+        {
+            db.Cards.Attach(card);
+        }
+
+        public void Detach(Card card)
+        {
+            db.Entry<Card>(card).State = EntityState.Detached;
+        }
+
         public void Delete(int id)
         {
             Card card = db.Cards.Find(id);
