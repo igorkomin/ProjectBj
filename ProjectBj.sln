@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectBj.Entities", "Proje
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectBj.BLL", "ProjectBj.BLL\ProjectBj.BLL.csproj", "{5E63D45F-828B-4F5A-A13C-58B3EAB98500}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectBj.Logger", "ProjectBj.Logger\ProjectBj.Logger.csproj", "{B0F07411-1B51-4415-B5C5-095171B1D067}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{5E63D45F-828B-4F5A-A13C-58B3EAB98500}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5E63D45F-828B-4F5A-A13C-58B3EAB98500}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5E63D45F-828B-4F5A-A13C-58B3EAB98500}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0F07411-1B51-4415-B5C5-095171B1D067}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0F07411-1B51-4415-B5C5-095171B1D067}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0F07411-1B51-4415-B5C5-095171B1D067}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0F07411-1B51-4415-B5C5-095171B1D067}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

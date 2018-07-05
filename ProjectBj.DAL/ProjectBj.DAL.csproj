@@ -47,7 +47,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DatabaseManager.cs" />
     <Compile Include="EF\BjContext.cs" />
     <Compile Include="EF\BjDbInitializer.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
@@ -56,6 +55,7 @@
     <Compile Include="Repositories\CardRepository.cs" />
     <Compile Include="Repositories\EFUnitOfWork.cs" />
     <Compile Include="Repositories\PlayerRepository.cs" />
+    <Compile Include="Utility\DatabaseHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
