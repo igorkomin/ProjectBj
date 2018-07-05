@@ -12,53 +12,53 @@ namespace ProjectBj.DAL.Repositories
 {
     class CardRepository : IRepository<Card>
     {
-        private BjContext db;
+        private BjContext _db;
 
         public CardRepository(BjContext context)
         {
-            this.db = context;
+            _db = context;
         }
 
         public void Create(Card card)
         {
-            db.Cards.Add(card);
+            _db.Cards.Add(card);
         }
 
         public void Attach(Card card)
         {
-            db.Cards.Attach(card);
+            _db.Cards.Attach(card);
         }
 
         public void Detach(Card card)
         {
-            db.Entry<Card>(card).State = EntityState.Detached;
+            _db.Entry<Card>(card).State = EntityState.Detached;
         }
 
         public void Delete(int id)
         {
-            Card card = db.Cards.Find(id);
+            Card card = _db.Cards.Find(id);
             if (card != null)
-                db.Cards.Remove(card);
+                _db.Cards.Remove(card);
         }
 
         public ICollection<Card> Find(Func<Card, bool> predicate)
         {
-            return db.Cards.Include(x => x.Players).Where(predicate).ToList();
+            return _db.Cards.Include(x => x.Players).Where(predicate).ToList();
         }
 
         public Card Get(int id)
         {
-            return db.Cards.Find(id); 
+            return _db.Cards.Find(id); 
         }
 
         public ICollection<Card> GetAll()
         {
-            return db.Cards.Include(x => x.Players).ToList();
+            return _db.Cards.Include(x => x.Players).ToList();
         }
 
         public void Update(Card card)
         {
-            db.Entry(card).State = EntityState.Modified;
+            _db.Entry(card).State = EntityState.Modified;
         }
     }
 }
