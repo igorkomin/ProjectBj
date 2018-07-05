@@ -16,7 +16,7 @@ namespace ProjectBj.DAL.Repositories
 
         public PlayerRepository(BjContext context)
         {
-            this.db = context;
+            db = context;
         }
 
         public void Create(Player player)
@@ -50,7 +50,7 @@ namespace ProjectBj.DAL.Repositories
 
         public Player Get(int id)
         {
-            return db.Players.Find(id);
+            return db.Players.Include(x => x.Cards).Where(x => x.Id == id).SingleOrDefault();
         }
 
         public ICollection<Player> GetAll()
