@@ -5,7 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using ProjectBj.Entities;
 using ProjectBj.DAL.Repositories;
-using System.Diagnostics;
+using ProjectBj.DAL.Utility;
+using ProjectBj.Logger;
 
 namespace ProjectBj.BLL.BusinessModels
 {
@@ -31,14 +32,14 @@ namespace ProjectBj.BLL.BusinessModels
             Card card = Cards[0];
             if (!dealer)
             {
-                _database.Players.Attach(player);
-                player.Cards.Add(card);
-                _database.Save();
-                _database.Players.Detach(player);
+                DatabaseHelper.GivePlayerCard(player, card);
+                Log.ToDebug($"Player {player.Name} takes {card.Rank} of {card.Suit}");
             }
             else
+            {
                 player.Cards.Add(card);
-            //Debug.WriteLine($"{player.Id} <- {card.Rank} {card.Suit} ({card.Id})");
+                Log.ToDebug($"Dealer takes {card.Rank} of {card.Suit}");
+            }
         }
 
 
