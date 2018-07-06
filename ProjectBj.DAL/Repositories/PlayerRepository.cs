@@ -32,14 +32,16 @@ namespace ProjectBj.DAL.Repositories
 
         public void Detach(Player player)
         {
-            db.Entry<Player>(player).State = EntityState.Detached;
+            db.Entry(player).State = EntityState.Detached;
         }
 
         public void Delete(int id)
         {
             Player player = db.Players.Find(id);
             if (player != null)
+            {
                 db.Players.Remove(player);
+            }
             db.SaveChanges();
         }
 

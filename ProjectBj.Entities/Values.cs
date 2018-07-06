@@ -11,7 +11,7 @@ namespace ProjectBj
     {
         public enum Suits
         {
-            Clubs,
+            Clubs = 1,
             Spades,
             Hearts,
             Diamonds
@@ -19,7 +19,7 @@ namespace ProjectBj
 
         public enum Faces
         {
-            Jack,
+            Jack = 1,
             Queen,
             King,
             Ace

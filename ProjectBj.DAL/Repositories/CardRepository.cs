@@ -31,7 +31,7 @@ namespace ProjectBj.DAL.Repositories
 
         public void Detach(Card card)
         {
-            _db.Entry<Card>(card).State = EntityState.Detached;
+            _db.Entry(card).State = EntityState.Detached;
         }
 
         public void Delete(int id)
@@ -45,7 +45,7 @@ namespace ProjectBj.DAL.Repositories
 
         public ICollection<Card> Find(Func<Card, bool> predicate)
         {
-            List<Card> foundCards = _db.Cards/*.Include(x => x.Players)*/.Where(predicate).ToList();
+            List<Card> foundCards = _db.Cards.Where(predicate).ToList();
             return foundCards;
         }
 

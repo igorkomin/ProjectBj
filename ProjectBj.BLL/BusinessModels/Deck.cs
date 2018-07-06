@@ -13,7 +13,7 @@ namespace ProjectBj.BLL.BusinessModels
 {
     public class Deck
     {
-        public List<Card> Cards { get; set; }
+        public List<Card> _cards { get; set; }
         private EFUnitOfWork _database;
 
         public Deck()
@@ -24,25 +24,23 @@ namespace ProjectBj.BLL.BusinessModels
 
         private void FillDeck()
         {
-            Cards = _database.Cards.GetAll().ToList();
+            _cards = _database.Cards.GetAll().ToList();
         }
 
         public void DealCard(Player player, bool dealer)
         {
             Shuffle();
-            Card card = Cards[0];
+            Card card = _cards[0];
             if (!dealer)
             {
                 DatabaseHelper.GivePlayerCard(player, card);
                 Log.ToDebug(Strings.PlayerTakesCard(player.Name, card.Rank));
+                return;
             }
-            else
-            {
-                player.Cards.Add(card);
-                Log.ToDebug(Strings.DealerTakesCard(card.Rank));
-            }
-        }
+            player.Cards.Add(card);
+            Log.ToDebug(Strings.DealerTakesCard(card.Rank));
 
+        }
 
         private List<Card> Shuffle(List<Card> deck)
         {
@@ -63,7 +61,7 @@ namespace ProjectBj.BLL.BusinessModels
 
         public void Shuffle()
         {
-            Cards = Shuffle(Cards);
+            _cards = Shuffle(_cards);
         }
     }
 }

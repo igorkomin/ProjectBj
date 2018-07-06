@@ -14,6 +14,7 @@ namespace ProjectBj.DAL.Repositories
         private BjContext _db;
         private PlayerRepository _playerRepository;
         private CardRepository _cardRepository;
+        private bool _disposed = false;
 
         public EFUnitOfWork()
         {
@@ -49,11 +50,10 @@ namespace ProjectBj.DAL.Repositories
             _db.SaveChanges();
         }
 
-        private bool disposed = false;
 
         public virtual void Dispose(bool disposing)
         {
-            if(!this.disposed)
+            if(!this._disposed)
             {
                 if(disposing)
                 {
