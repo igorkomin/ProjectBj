@@ -57,6 +57,10 @@
       <Project>{b0f07411-1b51-4415-b5c5-095171b1d067}</Project>
       <Name>ProjectBj.Logger</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ProjectBj.StringHelper\ProjectBj.StringHelper.csproj">
+      <Project>{0caccdec-6e67-4e71-a8f1-7f6a3c76d4e3}</Project>
+      <Name>ProjectBj.StringHelper</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

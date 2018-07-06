@@ -13,14 +13,19 @@ namespace ProjectBj.DAL.EF
         protected override void Seed(BjContext db)
         {
             List<Card> cards = new List<Card>();
+            int minCardValue = 2;
+            int maxCardValue = 11;
 
-            foreach (var suit in Values.SUITS)
+            foreach (var suit in Enum.GetValues(typeof(Values.Suits)))
             {
-                for (int i = 2; i < 11; i++)
-                    db.Cards.Add(new Card(i.ToString(), suit));
-                foreach (var face in Values.FACES)
-                    db.Cards.Add(new Card(face, suit));
-                db.Cards.Add(new Card(Values.ACE, suit));
+                for (int i = minCardValue; i < maxCardValue; i++)
+                {
+                    db.Cards.Add(new Card(i.ToString(), suit.ToString()));
+                }
+                foreach(var face in Enum.GetValues(typeof(Values.Faces)))
+                {
+                    db.Cards.Add(new Card(face.ToString(), suit.ToString()));
+                }
             }
         }
     }

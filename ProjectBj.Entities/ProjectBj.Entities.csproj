@@ -45,5 +45,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Values.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ProjectBj.StringHelper\ProjectBj.StringHelper.csproj">
+      <Project>{0caccdec-6e67-4e71-a8f1-7f6a3c76d4e3}</Project>
+      <Name>ProjectBj.StringHelper</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

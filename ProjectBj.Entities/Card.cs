@@ -12,7 +12,10 @@ namespace ProjectBj.Entities
         public string Suit { get; set; }
         public string Rank { get; set; }
         public int Value { get; set; }
-        public ICollection<Player> Players { get; set; }
+
+        public Card()
+        {
+        }
 
         public Card(string rank, string suit)
         {
@@ -21,19 +24,10 @@ namespace ProjectBj.Entities
             RankToValue();
         }
 
-        public Card()
-        {
-
-        }
 
         public void RankToValue()
         {
-            if (Values.FACES.Contains(Rank))
-                Value = 10;
-            else if (Rank == Values.ACE)
-                Value = 11;
-            else
-                Value = int.Parse(Rank);
+            Value = Values.cardValues[Rank];
         }
     }
     

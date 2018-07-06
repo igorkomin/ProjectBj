@@ -25,7 +25,9 @@ namespace ProjectBj.DAL.Repositories
             get
             {
                 if (_playerRepository == null)
+                {
                     _playerRepository = new PlayerRepository(_db);
+                }
                 return _playerRepository;
             }
         }
@@ -35,7 +37,9 @@ namespace ProjectBj.DAL.Repositories
             get
             {
                 if (_cardRepository == null)
+                {
                     _cardRepository = new CardRepository(_db);
+                }
                 return _cardRepository;
             }
         }

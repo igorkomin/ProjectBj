@@ -38,22 +38,28 @@ namespace ProjectBj.DAL.Repositories
         {
             Card card = _db.Cards.Find(id);
             if (card != null)
+            {
                 _db.Cards.Remove(card);
+            }
         }
 
         public ICollection<Card> Find(Func<Card, bool> predicate)
         {
-            return _db.Cards.Include(x => x.Players).Where(predicate).ToList();
+            List<Card> foundCards = _db.Cards/*.Include(x => x.Players)*/.Where(predicate).ToList();
+            return foundCards;
         }
 
         public Card Get(int id)
         {
-            return _db.Cards.Find(id); 
+            Card card = _db.Cards.Find(id);
+            return card;
         }
 
         public ICollection<Card> GetAll()
         {
-            return _db.Cards.Include(x => x.Players).ToList();
+            List<Card> allCards = _db.Cards.ToList();
+
+            return allCards;
         }
 
         public void Update(Card card)

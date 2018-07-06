@@ -19,12 +19,14 @@ namespace ProjectBj.DAL.Utility
 
         public static Player GetPlayerById(int id)
         {
-            return _database.Players.Get(id);
+            Player player = _database.Players.Get(id);
+            return player;
         }
 
         public static Player GetPlayerByName(string name)
         {
-            return _database.Players.Find(x => x.Name == name).FirstOrDefault();
+            Player player = _database.Players.Find(x => x.Name == name).FirstOrDefault();
+            return player;
         }
 
         public static void RegisterPlayer(Player newPlayer)

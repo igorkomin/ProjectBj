@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectBj.BLL", "ProjectBj.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectBj.Logger", "ProjectBj.Logger\ProjectBj.Logger.csproj", "{B0F07411-1B51-4415-B5C5-095171B1D067}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectBj.StringHelper", "ProjectBj.StringHelper\ProjectBj.StringHelper.csproj", "{0CACCDEC-6E67-4E71-A8F1-7F6A3C76D4E3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{B0F07411-1B51-4415-B5C5-095171B1D067}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B0F07411-1B51-4415-B5C5-095171B1D067}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B0F07411-1B51-4415-B5C5-095171B1D067}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0CACCDEC-6E67-4E71-A8F1-7F6A3C76D4E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CACCDEC-6E67-4E71-A8F1-7F6A3C76D4E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CACCDEC-6E67-4E71-A8F1-7F6A3C76D4E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CACCDEC-6E67-4E71-A8F1-7F6A3C76D4E3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

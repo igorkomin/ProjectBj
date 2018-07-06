@@ -26,6 +26,7 @@ namespace ProjectBj.StringHelper
         #region Names
         public static string dealerName = "Dealer";
         #endregion
+        #region Messages
         public static string PlayerTakesCard(string playerName, string cardValue)
         {
             return $"Player {playerName} gets {cardValue}";
@@ -34,5 +35,6 @@ namespace ProjectBj.StringHelper
         {
             return $"{dealerName} takes {cardValue}";
         }
+        #endregion
     }
 }

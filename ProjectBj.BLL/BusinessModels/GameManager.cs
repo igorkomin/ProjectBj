@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using ProjectBj.Entities;
 using ProjectBj.DAL.Repositories;
 using ProjectBj.DAL.Utility;
-using System.Diagnostics;
+using ProjectBj.StringHelper;
 
 namespace ProjectBj.BLL.BusinessModels
 {
@@ -17,11 +17,16 @@ namespace ProjectBj.BLL.BusinessModels
         private List<Player> _players;
         private EFUnitOfWork _database;
 
+        private int blackjackValue = 21;
+        private int aceDelta = 10;
+        private int minDealerHandValue = 17;
+
+
         public GameManager()
         {
             _database = new EFUnitOfWork();
             _deck = new Deck();
-            _dealer = new Player("Dealer", false);
+            _dealer = new Player(Strings.dealerName, false);
             _players = new List<Player>();
         }
 
@@ -56,14 +61,14 @@ namespace ProjectBj.BLL.BusinessModels
 
             foreach (var card in cards)
             {
-                if(card.Rank == Values.ACE)
+                if(card.Rank == Strings.ace)
                 {
                     aceCount++;
                 }
                 totalValue += card.Value;
             }
 
-            return totalValue > 21 ? totalValue - aceCount * 10 : totalValue;
+            return totalValue > blackjackValue ? totalValue - aceCount * aceDelta : totalValue;
         }
 
         public List<Player> GetPlayers()
@@ -78,17 +83,17 @@ namespace ProjectBj.BLL.BusinessModels
 
         public bool IsBlackjack(int handTotal)
         {
-            return handTotal == 21 ? true : false;
+            return handTotal == blackjackValue ? true : false;
         }
 
         public bool IsBust(int handTotal)
         {
-            return handTotal > 21 ? true : false;
+            return handTotal > blackjackValue ? true : false;
         }
 
         public void FillDealerHand()
         {
-            while(GetHandTotal(_dealer.Cards.ToList()) < 17)
+            while(GetHandTotal(_dealer.Cards.ToList()) < minDealerHandValue)
             {
                 _deck.DealCard(_dealer, true);
             }

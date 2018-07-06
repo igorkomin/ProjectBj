@@ -45,17 +45,20 @@ namespace ProjectBj.DAL.Repositories
 
         public ICollection<Player> Find(Func<Player, bool> predicate)
         {
-            return db.Players.Include(x => x.Cards).Where(predicate).ToList();
+            List<Player> foundPlayers = db.Players.Include(x => x.Cards).Where(predicate).ToList();
+            return foundPlayers;
         }
 
         public Player Get(int id)
         {
-            return db.Players.Include(x => x.Cards).Where(x => x.Id == id).SingleOrDefault();
+            Player player = db.Players.Include(x => x.Cards).Where(x => x.Id == id).SingleOrDefault();
+            return player;
         }
 
         public ICollection<Player> GetAll()
         {
-            return db.Players.Include(x => x.Cards).ToList();
+            List<Player> allPlayers = db.Players.Include(x => x.Cards).ToList();
+            return allPlayers;
         }
 
         public void Update(Player player)

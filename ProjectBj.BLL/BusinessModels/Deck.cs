@@ -7,6 +7,7 @@ using ProjectBj.Entities;
 using ProjectBj.DAL.Repositories;
 using ProjectBj.DAL.Utility;
 using ProjectBj.Logger;
+using ProjectBj.StringHelper;
 
 namespace ProjectBj.BLL.BusinessModels
 {
@@ -33,12 +34,12 @@ namespace ProjectBj.BLL.BusinessModels
             if (!dealer)
             {
                 DatabaseHelper.GivePlayerCard(player, card);
-                Log.ToDebug($"Player {player.Name} takes {card.Rank} of {card.Suit}");
+                Log.ToDebug(Strings.PlayerTakesCard(player.Name, card.Rank));
             }
             else
             {
                 player.Cards.Add(card);
-                Log.ToDebug($"Dealer takes {card.Rank} of {card.Suit}");
+                Log.ToDebug(Strings.DealerTakesCard(card.Rank));
             }
         }
 
