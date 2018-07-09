@@ -43,7 +43,6 @@
     <Compile Include="Card.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Values.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ProjectBj.StringHelper\ProjectBj.StringHelper.csproj">
