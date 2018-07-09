@@ -25,6 +25,7 @@ namespace ProjectBj.StringHelper
         #endregion
         #region Names
         public static string dealerName = "Dealer";
+        public static string botName = "Bot";
         #endregion
         #region Messages
         public static string PlayerTakesCard(string playerName, string cardValue)
