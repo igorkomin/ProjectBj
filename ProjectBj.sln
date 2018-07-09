@@ -15,6 +15,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectBj.Logger", "Project
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectBj.StringHelper", "ProjectBj.StringHelper\ProjectBj.StringHelper.csproj", "{0CACCDEC-6E67-4E71-A8F1-7F6A3C76D4E3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectBj.Service", "ProjectBj.Service\ProjectBj.Service.csproj", "{D8587967-8E91-44ED-851B-2FA11E44CC0A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectBj.ConstantHelper", "ProjectBj.ConstantHelper\ProjectBj.ConstantHelper.csproj", "{BACA162F-CC40-43CE-BDB6-4F9B3C357D19}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +49,14 @@ Global
 		{0CACCDEC-6E67-4E71-A8F1-7F6A3C76D4E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0CACCDEC-6E67-4E71-A8F1-7F6A3C76D4E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0CACCDEC-6E67-4E71-A8F1-7F6A3C76D4E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8587967-8E91-44ED-851B-2FA11E44CC0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8587967-8E91-44ED-851B-2FA11E44CC0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8587967-8E91-44ED-851B-2FA11E44CC0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8587967-8E91-44ED-851B-2FA11E44CC0A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BACA162F-CC40-43CE-BDB6-4F9B3C357D19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BACA162F-CC40-43CE-BDB6-4F9B3C357D19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BACA162F-CC40-43CE-BDB6-4F9B3C357D19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BACA162F-CC40-43CE-BDB6-4F9B3C357D19}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
