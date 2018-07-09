@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D8587967-8E91-44ED-851B-2FA11E44CC0A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ProjectBj.Service</RootNamespace>
+    <AssemblyName>ProjectBj.Service</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CardService.cs" />
+    <Compile Include="DeckService.cs" />
+    <Compile Include="GameService.cs" />
+    <Compile Include="PlayerService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ProjectBj.ConstantHelper\ProjectBj.ConstantHelper.csproj">
+      <Project>{baca162f-cc40-43ce-bdb6-4f9b3c357d19}</Project>
+      <Name>ProjectBj.ConstantHelper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ProjectBj.DAL\ProjectBj.DAL.csproj">
+      <Project>{f39b0a1a-cf4f-416d-b5ab-232a5479fccd}</Project>
+      <Name>ProjectBj.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ProjectBj.Entities\ProjectBj.Entities.csproj">
+      <Project>{fe68c0ab-c49b-4ad7-8675-493223b5f50c}</Project>
+      <Name>ProjectBj.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ProjectBj.StringHelper\ProjectBj.StringHelper.csproj">
+      <Project>{0caccdec-6e67-4e71-a8f1-7f6a3c76d4e3}</Project>
+      <Name>ProjectBj.StringHelper</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
