@@ -9,23 +9,23 @@ namespace ProjectBj.StringHelper
     public static class Strings
     {
         #region Card values
-        public static string two = "2";
-        public static string three = "3";
-        public static string four = "4";
-        public static string five = "5";
-        public static string six = "6";
-        public static string seven = "7";
-        public static string eight = "8";
-        public static string nine = "9";
-        public static string ten = "10";
-        public static string jack = "Jack";
-        public static string queen = "Queen";
-        public static string king = "King";
-        public static string ace = "Ace";
+        public const string two = "2";
+        public const string three = "3";
+        public const string four = "4";
+        public const string five = "5";
+        public const string six = "6";
+        public const string seven = "7";
+        public const string eight = "8";
+        public const string nine = "9";
+        public const string ten = "10";
+        public const string jack = "Jack";
+        public const string queen = "Queen";
+        public const string king = "King";
+        public const string ace = "Ace";
         #endregion
         #region Names
-        public static string dealerName = "Dealer";
-        public static string botName = "Bot";
+        public const string dealerName = "Dealer";
+        public const string botName = "Bot";
         #endregion
         #region Messages
         public static string PlayerTakesCard(string playerName, string cardValue)
