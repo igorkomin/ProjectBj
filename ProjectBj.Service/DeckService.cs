@@ -88,6 +88,29 @@ namespace ProjectBj.Service
             return shuffledDeck;
         }
 
+        public static void GivePlayerCard(Player player, Card card)
+        {
+            _database.Players.Attach(player);
+            _database.Cards.Attach(card);
 
+            player.Cards.Add(card);
+            _database.Save();
+
+            _database.Players.Detach(player);
+            _database.Cards.Detach(card);
+        }
+
+        public static void FillDealerHand(Player dealer)
+        {
+            List<Card> deck = Shuffle(GetDeck());
+            foreach(var card in deck)
+            {
+                if(dealer.Cards.Count > 17)
+                {
+                    break;
+                }
+                dealer.Cards.Add(card);
+            }
+        }
     }
 }

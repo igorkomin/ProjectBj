@@ -9,6 +9,10 @@ namespace ProjectBj.ConstantHelper
 {
     public static class Values
     {
+        public static int blackjackValue = 21;
+        public static int aceDelta = 10;
+        public static int minDealerHandValue = 17;
+
         public static Dictionary<string, int> cardValues = new Dictionary<string, int>()
         {
             [Strings.two] = 2,

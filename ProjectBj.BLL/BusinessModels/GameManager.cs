@@ -5,11 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using ProjectBj.Entities;
 using ProjectBj.DAL.Repositories;
-using ProjectBj.DAL.Utility;
+using ProjectBj.Service;
 using ProjectBj.StringHelper;
 
 namespace ProjectBj.BLL.BusinessModels
 {
+    // TO DELETE
     public class GameManager
     {
         private Deck _deck;
@@ -20,7 +21,6 @@ namespace ProjectBj.BLL.BusinessModels
         private int blackjackValue = 21;
         private int aceDelta = 10;
         private int minDealerHandValue = 17;
-
 
         public GameManager()
         {
@@ -71,14 +71,9 @@ namespace ProjectBj.BLL.BusinessModels
             return totalValue > blackjackValue ? totalValue - aceCount * aceDelta : totalValue;
         }
 
-        public List<Player> GetPlayers()
-        {
-            return DatabaseHelper.SyncPlayers(_players);
-        }
-
         public List<Card> GetCards(Player player)
         { 
-            return DatabaseHelper.GetPlayerById(player.Id).Cards.ToList();
+            return PlayerService.GetPlayerById(player.Id).Cards.ToList();
         }
 
         public bool IsBlackjack(int handTotal)

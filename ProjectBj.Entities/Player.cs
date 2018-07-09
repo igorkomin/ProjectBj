@@ -17,6 +17,12 @@ namespace ProjectBj.Entities
 
         public Player()
         {
+        }
+
+        public Player(string name)
+        {
+            Name = name;
+            IsHuman = false;
             Cards = new List<Card>();
         }
 
@@ -24,6 +30,7 @@ namespace ProjectBj.Entities
         {
             Name = name;
             IsHuman = isHuman;
+            Balance = 1000;
             Cards = new List<Card>();
         }
     }

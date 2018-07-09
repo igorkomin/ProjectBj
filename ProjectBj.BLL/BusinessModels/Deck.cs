@@ -5,12 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using ProjectBj.Entities;
 using ProjectBj.DAL.Repositories;
-using ProjectBj.DAL.Utility;
+using ProjectBj.Service;
 using ProjectBj.Logger;
 using ProjectBj.StringHelper;
 
 namespace ProjectBj.BLL.BusinessModels
 {
+    // TO DELETE
     public class Deck
     {
         public List<Card> _cards { get; set; }
@@ -33,13 +34,12 @@ namespace ProjectBj.BLL.BusinessModels
             Card card = _cards[0];
             if (!dealer)
             {
-                DatabaseHelper.GivePlayerCard(player, card);
+                DeckService.GivePlayerCard(player, card);
                 Log.ToDebug(Strings.PlayerTakesCard(player.Name, card.Rank));
                 return;
             }
             player.Cards.Add(card);
             Log.ToDebug(Strings.DealerTakesCard(card.Rank));
-
         }
 
         private List<Card> Shuffle(List<Card> deck)

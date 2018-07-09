@@ -12,22 +12,17 @@ namespace ProjectBj.Entities
         public string Suit { get; set; }
         public string Rank { get; set; }
         public int Value { get; set; }
+        public ICollection<Player> Players { get; set; }
 
         public Card()
         {
         }
 
-        public Card(string rank, string suit)
+        public Card(string rank, string suit, int value)
         {
             Suit = suit;
             Rank = rank;
-            RankToValue();
-        }
-
-
-        public void RankToValue()
-        {
-            Value = Values.cardValues[Rank];
+            Value = value;
         }
     }
     
