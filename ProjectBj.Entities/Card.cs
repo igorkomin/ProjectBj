@@ -10,7 +10,7 @@ namespace ProjectBj.Entities
     {
         public int Id { get; set; }
         public string Suit { get; set; }
-        public string Rank { get; set; }
+        public int Rank { get; set; }
         public int Value { get; set; }
         public ICollection<Player> Players { get; set; }
 
@@ -18,7 +18,7 @@ namespace ProjectBj.Entities
         {
         }
 
-        public Card(string rank, string suit, int value)
+        public Card(int rank, string suit, int value)
         {
             Suit = suit;
             Rank = rank;

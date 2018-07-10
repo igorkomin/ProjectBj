@@ -13,21 +13,23 @@ namespace ProjectBj.ConstantHelper
         public static int aceDelta = 10;
         public static int minDealerHandValue = 17;
 
-        public static Dictionary<string, int> cardValues = new Dictionary<string, int>()
+        public static string[] suits = { };
+
+        public static Dictionary<int, int> cardValues = new Dictionary<int, int>()
         {
-            [Strings.two] = 2,
-            [Strings.three] = 3,
-            [Strings.four] = 4,
-            [Strings.five] = 5,
-            [Strings.six] = 6,
-            [Strings.seven] = 7,
-            [Strings.eight] = 8,
-            [Strings.nine] = 9,
-            [Strings.ten] = 10,
-            [Strings.jack] = 10,
-            [Strings.queen] = 10,
-            [Strings.king] = 10,
-            [Strings.ace] = 11
+            [0] = 2,
+            [1] = 3,
+            [2] = 4,
+            [3] = 5,
+            [4] = 6,
+            [5] = 7,
+            [6] = 8,
+            [7] = 9,
+            [8] = 10,
+            [9] = 10,
+            [10] = 10,
+            [11] = 10,
+            [12] = 11
         };
     }
 }

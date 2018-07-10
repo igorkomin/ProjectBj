@@ -29,7 +29,7 @@ namespace ProjectBj.Service
 
             foreach(var card in cards)
             {
-                if(card.Rank == Strings.ace)
+                if(card.Rank == Values.cardValues[12])
                 {
                     aceCount++;
                 }
@@ -58,7 +58,7 @@ namespace ProjectBj.Service
             foreach (var card in deck)
             {
                 int dealerTotal = GetHandTotal(dealer);
-                if (dealerTotal > 17)
+                if (dealerTotal > Values.minDealerHandValue)
                 {
                     break;
                 }
@@ -68,12 +68,14 @@ namespace ProjectBj.Service
 
         public static bool IsBlackjack(int handTotal)
         {
-            return handTotal == Values.blackjackValue ? true : false;
+            bool isBlackJack = handTotal == Values.blackjackValue ? true : false;
+            return isBlackJack;
         }
 
         public static bool IsBust(int handTotal)
         {
-            return handTotal > Values.blackjackValue ? true : false;
+            bool isBust = handTotal > Values.blackjackValue ? true : false;
+            return isBust;
         }
 
         public static void Stay(Player player)

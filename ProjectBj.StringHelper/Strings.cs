@@ -8,6 +8,9 @@ namespace ProjectBj.StringHelper
 {
     public static class Strings
     {
+        #region Card suits
+        public static string[] suits = { "Spades", "Clubs", "Hearts", "Diamonds" };
+        #endregion
         #region Card values
         public static string two = "2";
         public static string three = "3";
@@ -28,13 +31,13 @@ namespace ProjectBj.StringHelper
         public static string botName = "Bot";
         #endregion
         #region Messages
-        public static string PlayerTakesCard(string playerName, string cardValue)
+        public static string PlayerTakesCard(string playerName, int cardRank)
         {
-            return $"Player {playerName} gets {cardValue}";
+            return $"Player {playerName} gets {cardRank}";
         }
-        public static string DealerTakesCard(string cardValue)
+        public static string DealerTakesCard(int cardRank)
         {
-            return $"{dealerName} takes {cardValue}";
+            return $"{dealerName} takes {cardRank}";
         }
         #endregion
     }

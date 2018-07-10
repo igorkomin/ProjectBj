@@ -19,7 +19,7 @@ namespace ProjectBj.Service
             _database = new EFUnitOfWork();
         }
 
-        public static int GetCardValue(string cardRank)
+        public static int GetCardValue(int cardRank)
         {
             int cardValue = Values.cardValues[cardRank];
             return cardValue;

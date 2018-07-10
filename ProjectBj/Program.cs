@@ -8,6 +8,7 @@ using ProjectBj.DAL.Repositories;
 using ProjectBj.DAL.EF;
 using ProjectBj.Service;
 using ProjectBj.StringHelper;
+using ProjectBj.ConstantHelper.Enums;
 
 namespace ProjectBj
 {
