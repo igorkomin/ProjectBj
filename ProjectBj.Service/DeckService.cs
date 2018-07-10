@@ -33,6 +33,15 @@ namespace ProjectBj.Service
             return _deck;
         }
 
+        private static void AddSuit(string suit)
+        {
+            foreach (var rank in Values.cardValues)
+            {
+                int value = CardService.GetCardValue(rank.Key);
+                _deck.Add(new Card(rank.Key, suit, value));
+            }
+        }
+
         public static List<Card> PullDeck()
         {
             List<Card> deckFromDb = _database.Cards.GetAll().ToList();
@@ -65,15 +74,6 @@ namespace ProjectBj.Service
             }
 
             return deck;
-        }
-
-        private static void AddSuit(string suit)
-        {
-            foreach (var rank in Values.cardValues)
-            {
-                int value = CardService.GetCardValue(rank.Key);
-                _deck.Add(new Card(rank.Key, suit, value));
-            }
         }
 
         public static List<Card> Shuffle(List<Card> deck)
