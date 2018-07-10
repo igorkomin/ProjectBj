@@ -98,7 +98,7 @@ namespace ProjectBj.Service
 
         public static void DealCard(Player player, bool dealer)
         {
-            List<Card> deck = Shuffle(GetDeck());
+            List<Card> deck = GetShuffledDeck();
             Card card = deck[0];
             if (!dealer)
             {
