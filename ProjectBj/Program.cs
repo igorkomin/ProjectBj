@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using ProjectBj.Entities;
 using ProjectBj.DAL.Repositories;
 using ProjectBj.DAL.EF;
-using ProjectBj.BLL.BusinessModels;
 using ProjectBj.Service;
 using ProjectBj.StringHelper;
 

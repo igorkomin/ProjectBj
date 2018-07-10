@@ -8,6 +8,8 @@ using ProjectBj.DAL;
 using ProjectBj.DAL.Repositories;
 using ProjectBj.ConstantHelper;
 using ProjectBj.ConstantHelper.Enums;
+using ProjectBj.StringHelper;
+using ProjectBj.Logger;
 
 namespace ProjectBj.Service
 {
@@ -88,6 +90,26 @@ namespace ProjectBj.Service
             return shuffledDeck;
         }
 
+        public static List<Card> GetShuffledDeck()
+        {
+            List<Card> shuffledDeck = Shuffle(GetDeck());
+            return shuffledDeck;
+        }
+
+        public static void DealCard(Player player, bool dealer)
+        {
+            List<Card> deck = Shuffle(GetDeck());
+            Card card = deck[0];
+            if (!dealer)
+            {
+                GivePlayerCard(player, card);
+                Log.ToDebug(Strings.PlayerTakesCard(player.Name, card.Rank));
+                return;
+            }
+            player.Cards.Add(card);
+            Log.ToDebug(Strings.DealerTakesCard(card.Rank));
+        }
+
         public static void GivePlayerCard(Player player, Card card)
         {
             _database.Players.Attach(player);
@@ -98,19 +120,6 @@ namespace ProjectBj.Service
 
             _database.Players.Detach(player);
             _database.Cards.Detach(card);
-        }
-
-        public static void FillDealerHand(Player dealer)
-        {
-            List<Card> deck = Shuffle(GetDeck());
-            foreach(var card in deck)
-            {
-                if(dealer.Cards.Count > 17)
-                {
-                    break;
-                }
-                dealer.Cards.Add(card);
-            }
         }
     }
 }

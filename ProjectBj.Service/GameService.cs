@@ -39,6 +39,33 @@ namespace ProjectBj.Service
             return totalValue > Values.blackjackValue ? totalValue - aceCount * Values.aceDelta : totalValue;
         }
 
+        public static void DealFirstTwoCards(Player dealer, List<Player> players)
+        {
+            DeckService.DealCard(dealer, true);
+            DeckService.DealCard(dealer, true);
+
+            foreach (var player in players)
+            {
+                DeckService.DealCard(player, false);
+                DeckService.DealCard(player, false);
+            }
+            _database.Save();
+        }
+
+        public static void FillDealerHand(Player dealer)
+        {
+            List<Card> deck = DeckService.GetShuffledDeck();
+            foreach (var card in deck)
+            {
+                int dealerTotal = GetHandTotal(dealer);
+                if (dealerTotal > 17)
+                {
+                    break;
+                }
+                dealer.Cards.Add(card);
+            }
+        }
+
         public static bool IsBlackjack(int handTotal)
         {
             return handTotal == Values.blackjackValue ? true : false;
@@ -56,9 +83,7 @@ namespace ProjectBj.Service
 
         public static void Hit(Player player)
         {
-            throw new NotImplementedException();
+            DeckService.DealCard(player, false);
         }
-
-
     }
 }
