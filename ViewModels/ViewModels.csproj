@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5E63D45F-828B-4F5A-A13C-58B3EAB98500}</ProjectGuid>
+    <ProjectGuid>{8872B4D7-EDB1-405C-95D0-1D1D7F151B43}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ProjectBj.BLL</RootNamespace>
-    <AssemblyName>ProjectBj.BLL</AssemblyName>
+    <RootNamespace>ViewModels</RootNamespace>
+    <AssemblyName>ViewModels</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -43,27 +43,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ProjectBj.DAL\ProjectBj.DAL.csproj">
-      <Project>{f39b0a1a-cf4f-416d-b5ab-232a5479fccd}</Project>
-      <Name>ProjectBj.DAL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ProjectBj.Entities\ProjectBj.Entities.csproj">
-      <Project>{fe68c0ab-c49b-4ad7-8675-493223b5f50c}</Project>
-      <Name>ProjectBj.Entities</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ProjectBj.Logger\ProjectBj.Logger.csproj">
-      <Project>{b0f07411-1b51-4415-b5c5-095171b1d067}</Project>
-      <Name>ProjectBj.Logger</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ProjectBj.Service\ProjectBj.Service.csproj">
-      <Project>{d8587967-8e91-44ed-851b-2fa11e44cc0a}</Project>
-      <Name>ProjectBj.Service</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ProjectBj.StringHelper\ProjectBj.StringHelper.csproj">
-      <Project>{0caccdec-6e67-4e71-a8f1-7f6a3c76d4e3}</Project>
-      <Name>ProjectBj.StringHelper</Name>
-    </ProjectReference>
+    <Folder Include="Models\" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

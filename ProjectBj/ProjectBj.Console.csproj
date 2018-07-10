@@ -57,9 +57,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ProjectBj.BLL\ProjectBj.BLL.csproj">
-      <Project>{5e63d45f-828b-4f5a-a13c-58b3eab98500}</Project>
-      <Name>ProjectBj.BLL</Name>
+    <ProjectReference Include="..\ProjectBj.ConstantHelper\ProjectBj.ConstantHelper.csproj">
+      <Project>{BACA162F-CC40-43CE-BDB6-4F9B3C357D19}</Project>
+      <Name>ProjectBj.ConstantHelper</Name>
     </ProjectReference>
     <ProjectReference Include="..\ProjectBj.DAL\ProjectBj.DAL.csproj">
       <Project>{f39b0a1a-cf4f-416d-b5ab-232a5479fccd}</Project>
