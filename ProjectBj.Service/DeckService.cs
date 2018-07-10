@@ -26,20 +26,15 @@ namespace ProjectBj.Service
         public static List<Card> NewDeck()
         {
             _deck = new List<Card>();
-            foreach (var suit in Enum.GetValues(typeof(SuitEnum.Suit)))
-            {
-                AddSuit(suit.ToString());
-            }
+            _deck = Strings.suits.SelectMany(
+                suit => Enumerable.Range(0, 13), 
+                (suit, rank) => new Card()
+                {
+                    Suit = suit,
+                    Rank = rank,
+                    Value = CardService.GetCardValue(rank)
+                }).ToList();
             return _deck;
-        }
-
-        private static void AddSuit(string suit)
-        {
-            foreach (var rank in Values.cardValues)
-            {
-                int value = CardService.GetCardValue(rank.Key);
-                _deck.Add(new Card(rank.Key, suit, value));
-            }
         }
 
         public static List<Card> PullDeck()
