@@ -15,11 +15,9 @@ namespace ProjectBj.DAL.Repositories
 {
     public class CardRepository : ICardRepository
     {
-        string _connectionString = ConfigurationManager.ConnectionStrings["DBConnection"].ConnectionString;
-
         public Card Create(Card card)
         {
-            using (IDbConnection db = new SqlConnection(_connectionString))
+            using (IDbConnection db = new SqlConnection(Strings.connectionString))
             {
                 var sqlQuery = SqlQueries.Cards.insert;
                 int? userId = db.Query<int>(sqlQuery, card).FirstOrDefault();
@@ -29,7 +27,7 @@ namespace ProjectBj.DAL.Repositories
 
         public void Delete(int id)
         {
-            using (IDbConnection db = new SqlConnection(_connectionString))
+            using (IDbConnection db = new SqlConnection(Strings.connectionString))
             {
                 var sqlQuery = SqlQueries.Cards.delete;
                 db.Execute(sqlQuery, new { id });
@@ -39,7 +37,7 @@ namespace ProjectBj.DAL.Repositories
         public Card Get(int id)
         {
             Card card;
-            using (IDbConnection db = new SqlConnection(_connectionString))
+            using (IDbConnection db = new SqlConnection(Strings.connectionString))
             {
                 var sqlQuery = SqlQueries.Cards.select;
                 card = db.Query<Card>(sqlQuery, new { id }).FirstOrDefault();
@@ -50,7 +48,7 @@ namespace ProjectBj.DAL.Repositories
         public ICollection<Card> GetAllCards()
         {
             List<Card> cards;
-            using(IDbConnection db = new SqlConnection(_connectionString))
+            using(IDbConnection db = new SqlConnection(Strings.connectionString))
             {
                 var sqlQuery = SqlQueries.Cards.getAll;
                 cards = db.Query<Card>(sqlQuery).ToList();
@@ -60,7 +58,7 @@ namespace ProjectBj.DAL.Repositories
 
         public void Update(Card card)
         {
-            using (IDbConnection db = new SqlConnection(_connectionString))
+            using (IDbConnection db = new SqlConnection(Strings.connectionString))
             {
                 var sqlQuery = SqlQueries.Cards.update;
                 db.Execute(sqlQuery, card);
