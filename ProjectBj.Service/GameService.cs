@@ -7,7 +7,6 @@ using ProjectBj.DAL;
 using ProjectBj.DAL.Repositories;
 using ProjectBj.Entities;
 using ProjectBj.Configuration;
-using ProjectBj.ConstantHelper;
 
 namespace ProjectBj.Service
 {
