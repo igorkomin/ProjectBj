@@ -1,70 +1,70 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data.Entity;
+using System.Data;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Configuration;
+using Dapper;
 using ProjectBj.Entities;
-using ProjectBj.DAL.EF;
 using ProjectBj.DAL.Interfaces;
+using ProjectBj.Configuration;
 
 namespace ProjectBj.DAL.Repositories
 {
-    class CardRepository : IRepository<Card>
+    public class CardRepository : ICardRepository
     {
-        private BjContext _db;
+        string _connectionString = ConfigurationManager.ConnectionStrings["DBConnection"].ConnectionString;
 
-        public CardRepository(BjContext context)
+        public Card Create(Card card)
         {
-            _db = context;
-        }
-
-        public void Create(Card card)
-        {
-            _db.Cards.Add(card);
-        }
-
-        public void Attach(Card card)
-        {
-            _db.Cards.Attach(card);
-        }
-
-        public void Detach(Card card)
-        {
-            _db.Entry(card).State = EntityState.Detached;
+            using (IDbConnection db = new SqlConnection(_connectionString))
+            {
+                var sqlQuery = SqlQueries.Cards.insert;
+                int? userId = db.Query<int>(sqlQuery, card).FirstOrDefault();
+            }
+            return card;
         }
 
         public void Delete(int id)
         {
-            Card card = _db.Cards.Find(id);
-            if (card != null)
+            using (IDbConnection db = new SqlConnection(_connectionString))
             {
-                _db.Cards.Remove(card);
+                var sqlQuery = SqlQueries.Cards.delete;
+                db.Execute(sqlQuery, new { id });
             }
-        }
-
-        public ICollection<Card> Find(Func<Card, bool> predicate)
-        {
-            List<Card> foundCards = _db.Cards.Where(predicate).ToList();
-            return foundCards;
         }
 
         public Card Get(int id)
         {
-            Card card = _db.Cards.Find(id);
+            Card card;
+            using (IDbConnection db = new SqlConnection(_connectionString))
+            {
+                var sqlQuery = SqlQueries.Cards.select;
+                card = db.Query<Card>(sqlQuery, new { id }).FirstOrDefault();
+            }
             return card;
         }
 
-        public ICollection<Card> GetAll()
+        public ICollection<Card> GetAllCards()
         {
-            List<Card> allCards = _db.Cards.ToList();
-
-            return allCards;
+            List<Card> cards;
+            using(IDbConnection db = new SqlConnection(_connectionString))
+            {
+                var sqlQuery = SqlQueries.Cards.getAll;
+                cards = db.Query<Card>(sqlQuery).ToList();
+            }
+            return cards;
         }
 
         public void Update(Card card)
         {
-            _db.Entry(card).State = EntityState.Modified;
+            using (IDbConnection db = new SqlConnection(_connectionString))
+            {
+                var sqlQuery = SqlQueries.Cards.update;
+                db.Execute(sqlQuery, card);
+            }
         }
     }
 }

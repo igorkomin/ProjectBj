@@ -4,43 +4,62 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ProjectBj.DAL;
+using ProjectBj.Configuration;
+using ProjectBj.ConstantHelper;
 using ProjectBj.DAL.Repositories;
 using ProjectBj.Entities;
-using ProjectBj.StringHelper;
 
 namespace ProjectBj.Service
 {
     public static class PlayerService
     {
-        private static EFUnitOfWork _database;
+        private static PlayerRepository _playerRepo;
+        private static CardRepository _cardRepo;
 
         static PlayerService()
         {
-            _database = new EFUnitOfWork();
+            _playerRepo = new PlayerRepository();
+            _cardRepo = new CardRepository();
         }
 
         public static Player NewPlayer(string name)
         {
-            Player player = new Player(name, true);
+            Player player = new Player() { Name = name, Balance = Values.startBalance, InGame = false, IsHuman = true };
+            _playerRepo.Create(player);
+            player = _playerRepo.Get(player);
             return player;
         }
 
         public static Player NewBot()
         {
-            Player newBot = new Player(Strings.botName);
+            Player newBot = new Player() { Name = Strings.botName, Balance = Values.startBalance, IsHuman = false, InGame = false };
+            _playerRepo.Create(newBot);
+            newBot = _playerRepo.Get(newBot);
             return newBot;
+        }
+
+        public static Player NewDealer()
+        {
+            Player dealer = new Player() { Name = Strings.dealerName, InGame = true, IsHuman = false };
+            _playerRepo.Create(dealer);
+            dealer = _playerRepo.Get(dealer);
+            return dealer;
+        }
+
+        public static Player GetDealer()
+        {
+            Player dealer = PullPlayer(Strings.dealerName);
+            if(dealer == null)
+            {
+                dealer = NewDealer();
+            }
+            return dealer;
         }
 
         public static Player PullPlayer(string name)
         {
-            Player player = _database.Players.Find(x => x.Name == name).FirstOrDefault();
+            Player player = _playerRepo.FindPlayers(name).FirstOrDefault();
             return player;
-        }
-
-        public static void PushPlayer(Player localPlayer)
-        {
-            _database.Players.Create(localPlayer);
-            _database.Save();
         }
 
         public static Player GetPlayer(string name)
@@ -49,15 +68,20 @@ namespace ProjectBj.Service
             if(player == null)
             {
                 player = NewPlayer(name);
-                PushPlayer(player);
             }
             return player;
         }
 
         public static Player GetPlayerById(int playerId)
         {
-            Player player = _database.Players.Get(playerId);
+            Player player = _playerRepo.Get(playerId);
             return player;
+        }
+
+        public static List<Card> GetCards(Player player)
+        {
+            List<Card> cards = _playerRepo.GetCards(player).ToList();
+            return cards;
         }
     }
 }

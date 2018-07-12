@@ -6,12 +6,10 @@ using System.Threading.Tasks;
 
 namespace ProjectBj.Entities
 {
-    public class Card
+    public class PlayerHand
     {
         public int Id { get; set; }
-        public string Suit { get; set; }
-        public int Rank { get; set; }
-        public int Value { get; set; }
+        public int PlayerId { get; set; }
+        public int CardId { get; set; }
     }
-    
 }

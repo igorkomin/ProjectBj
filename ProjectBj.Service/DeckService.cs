@@ -6,21 +6,23 @@ using System.Threading.Tasks;
 using ProjectBj.Entities;
 using ProjectBj.DAL;
 using ProjectBj.DAL.Repositories;
+using ProjectBj.Configuration;
 using ProjectBj.ConstantHelper;
 using ProjectBj.ConstantHelper.Enums;
-using ProjectBj.StringHelper;
 using ProjectBj.Logger;
 
 namespace ProjectBj.Service
 {
     public static class DeckService
     {
-        public static List<Card> _deck;
-        private static EFUnitOfWork _database;
-
+        private static List<Card> _deck;
+        private static CardRepository _cardRepo;
+        private static PlayerRepository _playerRepo;
+        
         static DeckService()
         {
-            _database = new EFUnitOfWork();
+            _cardRepo = new CardRepository();
+            _playerRepo = new PlayerRepository();
         }
 
         public static List<Card> NewDeck()
@@ -39,7 +41,7 @@ namespace ProjectBj.Service
 
         public static List<Card> PullDeck()
         {
-            List<Card> deckFromDb = _database.Cards.GetAll().ToList();
+            List<Card> deckFromDb = _cardRepo.GetAllCards().ToList();
 
             if (deckFromDb.Count == 0)
             {
@@ -53,9 +55,8 @@ namespace ProjectBj.Service
         {
             foreach(var card in localDeck)
             {
-                _database.Cards.Create(card);
+                _cardRepo.Create(card);
             }
-            _database.Save();
         }
 
         public static List<Card> GetDeck()
@@ -95,26 +96,13 @@ namespace ProjectBj.Service
         {
             List<Card> deck = GetShuffledDeck();
             Card card = deck[0];
-            if (!dealer)
-            {
-                GivePlayerCard(player, card);
-                Log.ToDebug(Strings.PlayerTakesCard(player.Name, card.Rank));
-                return;
-            }
-            player.Cards.Add(card);
-            Log.ToDebug(Strings.DealerTakesCard(card.Rank));
+            GivePlayerCard(player, card);
+            Log.ToDebug(Strings.PlayerTakesCard(player.Name, card.Rank));            
         }
 
         public static void GivePlayerCard(Player player, Card card)
         {
-            _database.Players.Attach(player);
-            _database.Cards.Attach(card);
-
-            player.Cards.Add(card);
-            _database.Save();
-
-            _database.Players.Detach(player);
-            _database.Cards.Detach(card);
+            _playerRepo.AddCard(player, card);
         }
     }
 }

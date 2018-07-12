@@ -1,71 +1,112 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Configuration;
+using Dapper;
 using ProjectBj.Entities;
-using ProjectBj.DAL.EF;
 using ProjectBj.DAL.Interfaces;
-using System.Data.Entity;
+using ProjectBj.Configuration;
 
 namespace ProjectBj.DAL.Repositories
 {
-    public class PlayerRepository : IRepository<Player>
+    public class PlayerRepository : IPlayerRepository
     {
-        private BjContext _db;
+        string _connectionString = ConfigurationManager.ConnectionStrings["DBConnection"].ConnectionString;
 
-        public PlayerRepository(BjContext context)
+        public Player Create(Player player)
         {
-            _db = context;
-        }
-
-        public void Create(Player player)
-        {
-            _db.Players.Add(player);
-            _db.SaveChanges();
-        }
-
-        public void Attach(Player player)
-        {
-            _db.Players.Attach(player);
-        }
-
-        public void Detach(Player player)
-        {
-            _db.Entry(player).State = EntityState.Detached;
+            using (IDbConnection db = new SqlConnection(_connectionString))
+            {
+                var sqlQuery = SqlQueries.Players.insert;
+                int? userId = db.Query<int>(sqlQuery, player).FirstOrDefault();
+            }
+            return player;
         }
 
         public void Delete(int id)
         {
-            Player player = _db.Players.Find(id);
-            if (player != null)
+            using(IDbConnection db = new SqlConnection(_connectionString))
             {
-                _db.Players.Remove(player);
+                var sqlQuery = SqlQueries.Players.delete;
+                db.Execute(sqlQuery, new { id });
             }
-            _db.SaveChanges();
         }
 
-        public ICollection<Player> Find(Func<Player, bool> predicate)
+        public ICollection<Player> FindPlayers(string name)
         {
-            List<Player> foundPlayers = _db.Players.Include(x => x.Cards).Where(predicate).ToList();
-            return foundPlayers;
+            List<Player> players;
+            using (IDbConnection db = new SqlConnection(_connectionString))
+            {
+                var sqlQuery = SqlQueries.Players.find;
+                players = db.Query<Player>(sqlQuery, new { name }).ToList();
+            }
+            return players;
         }
 
         public Player Get(int id)
         {
-            Player player = _db.Players.Include(x => x.Cards).Where(x => x.Id == id).SingleOrDefault();
+            Player player;
+            using (IDbConnection db = new SqlConnection(_connectionString))
+            {
+                var sqlQuery = SqlQueries.Players.select;
+                player = db.Query<Player>(sqlQuery, new { id }).FirstOrDefault();
+            }
             return player;
         }
 
-        public ICollection<Player> GetAll()
+        public Player Get(Player player)
         {
-            List<Player> allPlayers = _db.Players.Include(x => x.Cards).ToList();
-            return allPlayers;
+            using (IDbConnection db = new SqlConnection(_connectionString))
+            {
+                var sqlQuery = SqlQueries.Players.get;
+                player = db.Query<Player>(sqlQuery, player).FirstOrDefault();
+            }
+            return player;
+        }
+
+        public ICollection<Player> GetAllPlayers()
+        {
+            List<Player> players;
+            using (IDbConnection db = new SqlConnection(_connectionString))
+            {
+                var sqlQuery = SqlQueries.Players.getAll;
+                players = db.Query<Player>(sqlQuery).ToList();
+            }
+            return players;
         }
 
         public void Update(Player player)
         {
-            _db.Entry(player).State = EntityState.Modified;
+            using (IDbConnection db = new SqlConnection(_connectionString))
+            {
+                var sqlQuery = SqlQueries.Players.update;
+                db.Execute(sqlQuery, player);
+            }
+        }
+
+        public void AddCard(Player player, Card card)
+        {
+            PlayerHand playerHand = new PlayerHand() { PlayerId = player.Id, CardId = card.Id };
+            using (IDbConnection db = new SqlConnection(_connectionString))
+            {
+                var sqlQuery = SqlQueries.Players.addCard;
+                db.Execute(sqlQuery, playerHand);
+            }
+        }
+
+        public ICollection<Card> GetCards(Player player)
+        {
+            List<Card> cards = new List<Card>();
+            using (IDbConnection db = new SqlConnection(_connectionString))
+            {
+                var sqlQuery = SqlQueries.Players.getCards;
+                cards = db.Query<Card>(sqlQuery, player).ToList();
+            }
+            return cards;
         }
     }
 }

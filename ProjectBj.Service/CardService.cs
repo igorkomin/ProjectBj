@@ -12,13 +12,6 @@ namespace ProjectBj.Service
 {
     public static class CardService
     {
-        private static EFUnitOfWork _database;
-
-        static CardService()
-        {
-            _database = new EFUnitOfWork();
-        }
-
         public static int GetCardValue(int cardRank)
         {
             int cardValue = Values.cardValues[cardRank];

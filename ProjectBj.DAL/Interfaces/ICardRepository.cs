@@ -7,10 +7,12 @@ using ProjectBj.Entities;
 
 namespace ProjectBj.DAL.Interfaces
 {
-    interface IUnitOfWork : IDisposable
+    interface ICardRepository
     {
-        IRepository<Player> Players { get; }
-        IRepository<Card> Cards { get; }
-        void Save();
+        Card Get(int id);
+        ICollection<Card> GetAllCards();
+        Card Create(Card card);
+        void Update(Card card);
+        void Delete(int id);
     }
 }
