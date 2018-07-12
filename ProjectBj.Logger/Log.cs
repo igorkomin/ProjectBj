@@ -9,11 +9,6 @@ namespace ProjectBj.Logger
 {
     public static class Log
     {
-        public static void ToConsole(string message)
-        {
-            Console.WriteLine(message);
-        }
-
         public static void ToDebug(string message)
         {
             Debug.WriteLine(message);
