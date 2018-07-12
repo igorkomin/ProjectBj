@@ -15,8 +15,6 @@ namespace ProjectBj.DAL.Repositories
 {
     public class PlayerRepository : IPlayerRepository
     {
-        //string _connectionString = ConfigurationManager.ConnectionStrings["DBConnection"].ConnectionString;
-
         public Player Create(Player player)
         {
             using (IDbConnection db = new SqlConnection(Strings.connectionString))
