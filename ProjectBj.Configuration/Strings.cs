@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,6 +36,9 @@ namespace ProjectBj.Configuration
         {
             return $"{playerName} takes {cardRank}";
         }
+        #endregion
+        #region Database
+        public static readonly string connectionString = ConfigurationManager.ConnectionStrings["DBConnection"].ConnectionString;
         #endregion
     }
 }
