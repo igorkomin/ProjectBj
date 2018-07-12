@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using ProjectBj.Entities;
 using ProjectBj.DAL;
 using ProjectBj.DAL.Repositories;
-using ProjectBj.ConstantHelper;
+using ProjectBj.Configuration;
 
 namespace ProjectBj.Service
 {
