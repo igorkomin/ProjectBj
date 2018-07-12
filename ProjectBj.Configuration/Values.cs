@@ -8,11 +8,11 @@ namespace ProjectBj.Configuration
 {
     public static class Values
     {
-        public static int blackjackValue = 21;
-        public static int aceCardIndex = 12;
-        public static int aceDelta = 10;
-        public static int minDealerHandValue = 17;
-        public static int startBalance = 1000;
+        public static readonly int blackjackValue = 21;
+        public static readonly int aceCardIndex = 12;
+        public static readonly int aceDelta = 10;
+        public static readonly int minDealerHandValue = 17;
+        public static readonly int startBalance = 1000;
 
         public static Dictionary<int, int> cardValues = new Dictionary<int, int>()
         {
