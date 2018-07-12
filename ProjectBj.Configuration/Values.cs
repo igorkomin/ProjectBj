@@ -14,7 +14,7 @@ namespace ProjectBj.Configuration
         public static readonly int minDealerHandValue = 17;
         public static readonly int startBalance = 1000;
 
-        public static Dictionary<int, int> cardValues = new Dictionary<int, int>()
+        public static readonly Dictionary<int, int> cardValues = new Dictionary<int, int>()
         {
             [2] = 2,
             [3] = 3,
