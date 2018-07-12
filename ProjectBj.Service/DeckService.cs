@@ -28,7 +28,7 @@ namespace ProjectBj.Service
             _deck = new List<Card>();
             _deck = Strings.suits.SelectMany(
                 suit => Enumerable.Range(0, 13), 
-                (suit, rank) => new Card()
+                (suit, rank) => new Card
                 {
                     Suit = suit,
                     Rank = rank,
