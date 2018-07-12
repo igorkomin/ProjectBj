@@ -57,10 +57,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ProjectBj.ConstantHelper\ProjectBj.ConstantHelper.csproj">
-      <Project>{BACA162F-CC40-43CE-BDB6-4F9B3C357D19}</Project>
-      <Name>ProjectBj.ConstantHelper</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ProjectBj.DAL\ProjectBj.DAL.csproj">
       <Project>{f39b0a1a-cf4f-416d-b5ab-232a5479fccd}</Project>
       <Name>ProjectBj.DAL</Name>
@@ -76,10 +72,6 @@
     <ProjectReference Include="..\ProjectBj.Service\ProjectBj.Service.csproj">
       <Project>{d8587967-8e91-44ed-851b-2fa11e44cc0a}</Project>
       <Name>ProjectBj.Service</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ProjectBj.StringHelper\ProjectBj.StringHelper.csproj">
-      <Project>{0caccdec-6e67-4e71-a8f1-7f6a3c76d4e3}</Project>
-      <Name>ProjectBj.StringHelper</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

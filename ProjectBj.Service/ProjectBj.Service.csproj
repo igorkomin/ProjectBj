@@ -51,10 +51,6 @@
       <Project>{a0734a99-02a7-43f9-966a-bcc4a992d8a6}</Project>
       <Name>ProjectBj.Configuration</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ProjectBj.ConstantHelper\ProjectBj.ConstantHelper.csproj">
-      <Project>{baca162f-cc40-43ce-bdb6-4f9b3c357d19}</Project>
-      <Name>ProjectBj.ConstantHelper</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ProjectBj.DAL\ProjectBj.DAL.csproj">
       <Project>{f39b0a1a-cf4f-416d-b5ab-232a5479fccd}</Project>
       <Name>ProjectBj.DAL</Name>
