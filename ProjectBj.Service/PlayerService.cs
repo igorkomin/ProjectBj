@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using ProjectBj.DAL;
 using ProjectBj.Configuration;
-using ProjectBj.ConstantHelper;
 using ProjectBj.DAL.Repositories;
 using ProjectBj.Entities;
 
@@ -82,6 +81,11 @@ namespace ProjectBj.Service
         {
             List<Card> cards = _playerRepo.GetCards(player).ToList();
             return cards;
+        }
+
+        public static void DeletePlayer(Player player)
+        {
+            _playerRepo.Delete(player.Id);
         }
     }
 }
