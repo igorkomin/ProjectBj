@@ -7,8 +7,6 @@ using ProjectBj.Entities;
 using ProjectBj.DAL;
 using ProjectBj.DAL.Repositories;
 using ProjectBj.Configuration;
-using ProjectBj.ConstantHelper;
-using ProjectBj.ConstantHelper.Enums;
 using ProjectBj.Logger;
 
 namespace ProjectBj.Service
