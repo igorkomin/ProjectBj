@@ -23,7 +23,7 @@ namespace ProjectBj.Service
 
         public static Player NewPlayer(string name)
         {
-            Player player = new Player() { Name = name, Balance = Values.startBalance, InGame = false, IsHuman = true };
+            Player player = new Player { Name = name, Balance = Values.startBalance, InGame = false, IsHuman = true };
             _playerRepo.Create(player);
             player = _playerRepo.Get(player);
             return player;
@@ -31,7 +31,7 @@ namespace ProjectBj.Service
 
         public static Player NewBot()
         {
-            Player newBot = new Player() { Name = Strings.botName, Balance = Values.startBalance, IsHuman = false, InGame = false };
+            Player newBot = new Player { Name = Strings.botName, Balance = Values.startBalance, IsHuman = false, InGame = false };
             _playerRepo.Create(newBot);
             newBot = _playerRepo.Get(newBot);
             return newBot;
@@ -39,7 +39,7 @@ namespace ProjectBj.Service
 
         public static Player NewDealer()
         {
-            Player dealer = new Player() { Name = Strings.dealerName, InGame = true, IsHuman = false };
+            Player dealer = new Player { Name = Strings.dealerName, InGame = true, IsHuman = false };
             _playerRepo.Create(dealer);
             dealer = _playerRepo.Get(dealer);
             return dealer;
