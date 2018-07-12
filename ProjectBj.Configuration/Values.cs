@@ -14,8 +14,6 @@ namespace ProjectBj.Configuration
         public static int minDealerHandValue = 17;
         public static int startBalance = 1000;
 
-        public static string[] suits = { };
-
         public static Dictionary<int, int> cardValues = new Dictionary<int, int>()
         {
             [2] = 2,
