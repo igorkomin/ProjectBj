@@ -11,13 +11,9 @@ namespace ProjectBj.Service.Enums
     {
         public enum Suit
         {
-            [Description("&spades;")]
             Spades = 1,
-            [Description("&clubs;")]
             Clubs = 2,
-            [Description("&hearts;")]
             Hearts = 3,
-            [Description("&diams;")]
             Diamonds = 4
         }
     }
