@@ -18,7 +18,7 @@ namespace ProjectBj.DAL.Repositories
         {
             using (IDbConnection db = new SqlConnection(AppStrings.connectionString))
             {
-                var sqlQuery = SqlQueries.Players.insert;
+                var sqlQuery = "INSERT INTO Players (Name, Balance, IsHuman, InGame) VALUES(@Name, @Balance, @IsHuman, @InGame); SELECT CAST(SCOPE_IDENTITY() as int)";
                 int userId = db.Query<int>(sqlQuery, player).FirstOrDefault();
                 player.Id = userId;
             }
@@ -29,7 +29,7 @@ namespace ProjectBj.DAL.Repositories
         {
             using(IDbConnection db = new SqlConnection(AppStrings.connectionString))
             {
-                var sqlQuery = SqlQueries.Players.delete;
+                var sqlQuery = "DELETE FROM Players WHERE Id = @id";
                 db.Execute(sqlQuery, new { id });
             }
         }
@@ -39,7 +39,7 @@ namespace ProjectBj.DAL.Repositories
             List<Player> players;
             using (IDbConnection db = new SqlConnection(AppStrings.connectionString))
             {
-                var sqlQuery = SqlQueries.Players.find;
+                var sqlQuery = "SELECT * FROM Players WHERE Name = @name";
                 players = db.Query<Player>(sqlQuery, new { name }).ToList();
             }
             return players;
@@ -50,7 +50,7 @@ namespace ProjectBj.DAL.Repositories
             Player player;
             using (IDbConnection db = new SqlConnection(AppStrings.connectionString))
             {
-                var sqlQuery = SqlQueries.Players.select;
+                var sqlQuery = "SELECT * FROM Players WHERE Id = @id";
                 player = db.Query<Player>(sqlQuery, new { id }).FirstOrDefault();
             }
             return player;
@@ -60,7 +60,7 @@ namespace ProjectBj.DAL.Repositories
         {
             using (IDbConnection db = new SqlConnection(AppStrings.connectionString))
             {
-                var sqlQuery = SqlQueries.Players.get;
+                var sqlQuery = "SELECT * FROM Players WHERE Id = @Id";
                 player = db.Query<Player>(sqlQuery, player).FirstOrDefault();
             }
             return player;
@@ -71,7 +71,7 @@ namespace ProjectBj.DAL.Repositories
             List<Player> players;
             using (IDbConnection db = new SqlConnection(AppStrings.connectionString))
             {
-                var sqlQuery = SqlQueries.Players.getAll;
+                var sqlQuery = "SELECT * FROM Players";
                 players = db.Query<Player>(sqlQuery).ToList();
             }
             return players;
@@ -81,7 +81,7 @@ namespace ProjectBj.DAL.Repositories
         {
             using (IDbConnection db = new SqlConnection(AppStrings.connectionString))
             {
-                var sqlQuery = SqlQueries.Players.update;
+                var sqlQuery = "UPDATE Players SET Name = @Name, IsHuman = @IsHuman, Balance = @Balance, InGame = @Ingame";
                 db.Execute(sqlQuery, player);
             }
         }
@@ -91,7 +91,7 @@ namespace ProjectBj.DAL.Repositories
             PlayerHand playerHand = new PlayerHand() { PlayerId = player.Id, CardId = card.Id };
             using (IDbConnection db = new SqlConnection(AppStrings.connectionString))
             {
-                var sqlQuery = SqlQueries.Players.addCard;
+                var sqlQuery = "INSERT INTO PlayerHands (PlayerId, CardId) VALUES(@PlayerId, @CardId)";
                 db.Execute(sqlQuery, playerHand);
             }
         }
@@ -101,7 +101,7 @@ namespace ProjectBj.DAL.Repositories
             List<Card> cards;
             using (IDbConnection db = new SqlConnection(AppStrings.connectionString))
             {
-                var sqlQuery = SqlQueries.Players.getCards;
+                var sqlQuery = "SELECT c.* FROM playerhands ph JOIN Cards c ON ( ph.CardId = c.Id ) JOIN Players p ON ( ph.PlayerId = p.Id ) WHERE ph.PlayerId = @Id";
                 cards = db.Query<Card>(sqlQuery, player).ToList();
             }
             return cards;

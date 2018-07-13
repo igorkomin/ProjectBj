@@ -18,7 +18,7 @@ namespace ProjectBj.DAL.Repositories
         {
             using (IDbConnection db = new SqlConnection(AppStrings.connectionString))
             {
-                var sqlQuery = SqlQueries.Cards.insert;
+                var sqlQuery = "INSERT INTO Cards (Suit, Rank, Value) VALUES(@Suit, @Rank, @Value); SELECT CAST(SCOPE_IDENTITY() as int)";
                 int? userId = db.Query<int>(sqlQuery, card).FirstOrDefault();
             }
             return card;
@@ -28,7 +28,7 @@ namespace ProjectBj.DAL.Repositories
         {
             using (IDbConnection db = new SqlConnection(AppStrings.connectionString))
             {
-                var sqlQuery = SqlQueries.Cards.delete;
+                var sqlQuery = "DELETE FROM Cards WHERE Id = @id";
                 db.Execute(sqlQuery, new { id });
             }
         }
@@ -38,7 +38,7 @@ namespace ProjectBj.DAL.Repositories
             Card card;
             using (IDbConnection db = new SqlConnection(AppStrings.connectionString))
             {
-                var sqlQuery = SqlQueries.Cards.select;
+                var sqlQuery = "SELECT * FROM Cards WHERE Id = @id";
                 card = db.Query<Card>(sqlQuery, new { id }).FirstOrDefault();
             }
             return card;
@@ -49,7 +49,7 @@ namespace ProjectBj.DAL.Repositories
             List<Card> cards;
             using(IDbConnection db = new SqlConnection(AppStrings.connectionString))
             {
-                var sqlQuery = SqlQueries.Cards.getAll;
+                var sqlQuery = "SELECT * FROM Cards";
                 cards = db.Query<Card>(sqlQuery).ToList();
             }
             return cards;
@@ -59,7 +59,7 @@ namespace ProjectBj.DAL.Repositories
         {
             using (IDbConnection db = new SqlConnection(AppStrings.connectionString))
             {
-                var sqlQuery = SqlQueries.Cards.update;
+                var sqlQuery = "UPDATE Cards SET Suit = @Suit, Rank = @Rank, Value = @Value WHERE Id = @Id";
                 db.Execute(sqlQuery, card);
             }
         }
