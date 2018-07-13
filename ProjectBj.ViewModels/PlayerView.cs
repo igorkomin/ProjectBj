@@ -9,14 +9,6 @@ namespace ProjectBj.ViewModels
 {
     public class PlayerView
     {
-        public PlayerView(Player player)
-        {
-            Id = player.Id;
-            Name = player.Name;
-            IsHuman = player.IsHuman;
-            InGame = player.InGame;
-        }
-
         public int Id { get; set; }
         public string Name { get; set; }
         public bool IsHuman { get; set; }
