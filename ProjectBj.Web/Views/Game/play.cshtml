@@ -21,7 +21,7 @@
                 <p>@player.Name</p>
                 @foreach (var card in player.Cards)
                 {
-                    var imagePath = $"/Assets/Cards/{card.Suit}/{card.Rank}.png";
+                    var imagePath = $"/Content/Cards/{card.Suit}/{card.Rank}.png";
                     <img width="50" src="@imagePath" />
                 }
             </div>
