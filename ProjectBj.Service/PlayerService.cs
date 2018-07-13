@@ -12,42 +12,51 @@ namespace ProjectBj.Service
 {
     public static class PlayerService
     {
-        private static PlayerRepository _playerRepo;
-        private static CardRepository _cardRepo;
+        private static PlayerRepository _playerRepository;
+        private static CardRepository _cardRepository;
 
         static PlayerService()
         {
-            _playerRepo = new PlayerRepository();
-            _cardRepo = new CardRepository();
+            _playerRepository = new PlayerRepository();
+            _cardRepository = new CardRepository();
         }
 
         public static Player NewPlayer(string name)
         {
-            Player player = new Player { Name = name, Balance = Values.startBalance, InGame = false, IsHuman = true };
-            _playerRepo.Create(player);
-            player = _playerRepo.Get(player);
+            Player player = new Player { Name = name, Balance = Values.startBalance, InGame = true, IsHuman = true };
+            player = _playerRepository.Create(player);
             return player;
         }
 
         public static Player NewBot()
         {
-            Player newBot = new Player { Name = Strings.botName, Balance = Values.startBalance, IsHuman = false, InGame = false };
-            _playerRepo.Create(newBot);
-            newBot = _playerRepo.Get(newBot);
+            Player newBot = new Player { Name = AppStrings.botName, Balance = Values.startBalance, IsHuman = false, InGame = true };
+            newBot = _playerRepository.Create(newBot);
             return newBot;
         }
 
         public static Player NewDealer()
         {
-            Player dealer = new Player { Name = Strings.dealerName, InGame = true, IsHuman = false };
-            _playerRepo.Create(dealer);
-            dealer = _playerRepo.Get(dealer);
+            Player dealer = new Player { Name = AppStrings.dealerName, InGame = false, IsHuman = false };
+            dealer = _playerRepository.Create(dealer);
             return dealer;
+        }
+
+        public static List<Player> CreateBots(int number)
+        {
+            DeleteAllBots();
+            List<Player> bots = new List<Player>(); ;
+            for(int i = 0; i < number; i++)
+            {
+                Player bot = NewBot();
+                bots.Add(bot);
+            }
+            return bots;
         }
 
         public static Player GetDealer()
         {
-            Player dealer = PullPlayer(Strings.dealerName);
+            Player dealer = PullPlayer(AppStrings.dealerName);
             if(dealer == null)
             {
                 dealer = NewDealer();
@@ -57,7 +66,7 @@ namespace ProjectBj.Service
 
         public static Player PullPlayer(string name)
         {
-            Player player = _playerRepo.FindPlayers(name).FirstOrDefault();
+            Player player = _playerRepository.FindPlayers(name).FirstOrDefault();
             return player;
         }
 
@@ -73,19 +82,29 @@ namespace ProjectBj.Service
 
         public static Player GetPlayerById(int playerId)
         {
-            Player player = _playerRepo.Get(playerId);
+            Player player = _playerRepository.Get(playerId);
             return player;
         }
 
         public static List<Card> GetCards(Player player)
         {
-            List<Card> cards = _playerRepo.GetCards(player).ToList();
+            List<Card> cards = _playerRepository.GetCards(player).ToList();
             return cards;
         }
 
         public static void DeletePlayer(Player player)
         {
-            _playerRepo.Delete(player.Id);
+            _playerRepository.Delete(player.Id);
+        }
+
+        public static void DeleteAllBots()
+        {
+            List<Player> bots = _playerRepository.FindPlayers(AppStrings.botName).ToList();
+
+            foreach(var bot in bots)
+            {
+                DeletePlayer(bot);
+            }
         }
     }
 }

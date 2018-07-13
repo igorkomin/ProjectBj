@@ -14,32 +14,43 @@ namespace ProjectBj.Service
     public static class DeckService
     {
         private static List<Card> _deck;
-        private static CardRepository _cardRepo;
-        private static PlayerRepository _playerRepo;
-        
+        private static CardRepository _cardRepository;
+        private static PlayerRepository _playerRepository;
+        private static Random _random;
+
         static DeckService()
         {
-            _cardRepo = new CardRepository();
-            _playerRepo = new PlayerRepository();
+            _cardRepository = new CardRepository();
+            _playerRepository = new PlayerRepository();
+            _random = new Random();
         }
 
         public static List<Card> NewDeck()
         {
             _deck = new List<Card>();
-            _deck = Strings.suits.SelectMany(
-                suit => Enumerable.Range(0, 13), 
+            _deck = Enum.GetValues(typeof(Enums.CardSuitEnum.Suit)).Cast<Enums.CardSuitEnum.Suit>().ToArray().SelectMany(
+                suit => Enumerable.Range(2, 13), 
                 (suit, rank) => new Card
                 {
-                    Suit = suit,
+                    Suit = suit.ToString(),
                     Rank = rank,
-                    Value = CardService.GetCardValue(rank)
+                    Value = rank < (int)Enums.CardRanks.Rank.Jack ? rank : GetCardValue(rank)
                 }).ToList();
             return _deck;
         }
 
+        private static int GetCardValue(int cardRank)
+        {
+            if(cardRank == (int)Enums.CardRanks.Rank.Ace)
+            {
+                return 11;
+            }
+            return 10;
+        }
+
         public static List<Card> PullDeck()
         {
-            List<Card> deckFromDb = _cardRepo.GetAllCards().ToList();
+            List<Card> deckFromDb = _cardRepository.GetAllCards().ToList();
 
             if (deckFromDb.Count == 0)
             {
@@ -53,7 +64,7 @@ namespace ProjectBj.Service
         {
             foreach(var card in localDeck)
             {
-                _cardRepo.Create(card);
+                _cardRepository.Create(card);
             }
         }
 
@@ -73,11 +84,10 @@ namespace ProjectBj.Service
         public static List<Card> Shuffle(List<Card> deck)
         {
             List<Card> shuffledDeck = new List<Card>();
-            Random r = new Random();
             int randomIndex = 0;
             while (deck.Count > 0)
             {
-                randomIndex = r.Next(0, deck.Count);
+                randomIndex = _random.Next(0, deck.Count);
                 shuffledDeck.Add(deck[randomIndex]);
                 deck.RemoveAt(randomIndex);
             }
@@ -90,17 +100,17 @@ namespace ProjectBj.Service
             return shuffledDeck;
         }
 
-        public static void DealCard(Player player, bool dealer)
+        public static void DealCard(Player player)
         {
             List<Card> deck = GetShuffledDeck();
             Card card = deck[0];
             GivePlayerCard(player, card);
-            Log.ToDebug(Strings.PlayerTakesCard(player.Name, card.Rank));            
+            Log.ToDebug(AppStrings.PlayerTakesCard(player.Name, card.Rank, card.Suit));            
         }
 
         public static void GivePlayerCard(Player player, Card card)
         {
-            _playerRepo.AddCard(player, card);
+            _playerRepository.AddCard(player, card);
         }
     }
 }

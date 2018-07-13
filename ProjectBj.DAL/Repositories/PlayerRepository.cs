@@ -8,26 +8,26 @@ using System.Linq;
 using System.Configuration;
 using Dapper;
 using ProjectBj.Entities;
-using ProjectBj.DAL.Interfaces;
 using ProjectBj.Configuration;
 
 namespace ProjectBj.DAL.Repositories
 {
-    public class PlayerRepository : IPlayerRepository
-    {
+    public class PlayerRepository
+    { 
         public Player Create(Player player)
         {
-            using (IDbConnection db = new SqlConnection(Strings.connectionString))
+            using (IDbConnection db = new SqlConnection(AppStrings.connectionString))
             {
                 var sqlQuery = SqlQueries.Players.insert;
-                int? userId = db.Query<int>(sqlQuery, player).FirstOrDefault();
+                int userId = db.Query<int>(sqlQuery, player).FirstOrDefault();
+                player.Id = userId;
             }
             return player;
         }
 
         public void Delete(int id)
         {
-            using(IDbConnection db = new SqlConnection(Strings.connectionString))
+            using(IDbConnection db = new SqlConnection(AppStrings.connectionString))
             {
                 var sqlQuery = SqlQueries.Players.delete;
                 db.Execute(sqlQuery, new { id });
@@ -37,7 +37,7 @@ namespace ProjectBj.DAL.Repositories
         public ICollection<Player> FindPlayers(string name)
         {
             List<Player> players;
-            using (IDbConnection db = new SqlConnection(Strings.connectionString))
+            using (IDbConnection db = new SqlConnection(AppStrings.connectionString))
             {
                 var sqlQuery = SqlQueries.Players.find;
                 players = db.Query<Player>(sqlQuery, new { name }).ToList();
@@ -48,7 +48,7 @@ namespace ProjectBj.DAL.Repositories
         public Player Get(int id)
         {
             Player player;
-            using (IDbConnection db = new SqlConnection(Strings.connectionString))
+            using (IDbConnection db = new SqlConnection(AppStrings.connectionString))
             {
                 var sqlQuery = SqlQueries.Players.select;
                 player = db.Query<Player>(sqlQuery, new { id }).FirstOrDefault();
@@ -58,7 +58,7 @@ namespace ProjectBj.DAL.Repositories
 
         public Player Get(Player player)
         {
-            using (IDbConnection db = new SqlConnection(Strings.connectionString))
+            using (IDbConnection db = new SqlConnection(AppStrings.connectionString))
             {
                 var sqlQuery = SqlQueries.Players.get;
                 player = db.Query<Player>(sqlQuery, player).FirstOrDefault();
@@ -69,7 +69,7 @@ namespace ProjectBj.DAL.Repositories
         public ICollection<Player> GetAllPlayers()
         {
             List<Player> players;
-            using (IDbConnection db = new SqlConnection(Strings.connectionString))
+            using (IDbConnection db = new SqlConnection(AppStrings.connectionString))
             {
                 var sqlQuery = SqlQueries.Players.getAll;
                 players = db.Query<Player>(sqlQuery).ToList();
@@ -79,7 +79,7 @@ namespace ProjectBj.DAL.Repositories
 
         public void Update(Player player)
         {
-            using (IDbConnection db = new SqlConnection(Strings.connectionString))
+            using (IDbConnection db = new SqlConnection(AppStrings.connectionString))
             {
                 var sqlQuery = SqlQueries.Players.update;
                 db.Execute(sqlQuery, player);
@@ -89,7 +89,7 @@ namespace ProjectBj.DAL.Repositories
         public void AddCard(Player player, Card card)
         {
             PlayerHand playerHand = new PlayerHand() { PlayerId = player.Id, CardId = card.Id };
-            using (IDbConnection db = new SqlConnection(Strings.connectionString))
+            using (IDbConnection db = new SqlConnection(AppStrings.connectionString))
             {
                 var sqlQuery = SqlQueries.Players.addCard;
                 db.Execute(sqlQuery, playerHand);
@@ -99,7 +99,7 @@ namespace ProjectBj.DAL.Repositories
         public ICollection<Card> GetCards(Player player)
         {
             List<Card> cards;
-            using (IDbConnection db = new SqlConnection(Strings.connectionString))
+            using (IDbConnection db = new SqlConnection(AppStrings.connectionString))
             {
                 var sqlQuery = SqlQueries.Players.getCards;
                 cards = db.Query<Card>(sqlQuery, player).ToList();

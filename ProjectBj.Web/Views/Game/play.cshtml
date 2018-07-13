@@ -1,0 +1,41 @@
+﻿@model List<ProjectBj.ViewModels.PlayerView>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Play</title>
+    @Styles.Render("~/Content/css")
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            @foreach (var player in Model)
+            {
+            <div class="col">
+                <p>@player.Name</p>
+                @foreach (var card in player.Cards)
+                {
+                    var imagePath = $"/Assets/Cards/{card.Suit}/{card.Rank}.png";
+                    <img width="50" src="@imagePath" />
+                }
+            </div>
+                if (player.Name == ProjectBj.Configuration.AppStrings.dealerName)
+                {
+                    <div class="w-100"></div>
+                }
+
+            }
+        </div>
+        <div>
+            
+        </div>
+    </div>
+    @Scripts.Render("~/bundles/bootstrap")
+</body>
+</html>

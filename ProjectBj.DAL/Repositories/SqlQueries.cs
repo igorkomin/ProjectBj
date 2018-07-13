@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ProjectBj.Configuration
+namespace ProjectBj.DAL.Repositories
 {
     public static class SqlQueries
     {

@@ -21,7 +21,7 @@ namespace ProjectBj.Service
 
             foreach(var card in cards)
             {
-                if(card.Rank == Values.cardValues[Values.aceCardIndex])
+                if(card.Rank == (int)Enums.CardRanks.Rank.Ace)
                 {
                     aceCount++;
                 }
@@ -31,15 +31,12 @@ namespace ProjectBj.Service
             return totalValue > Values.blackjackValue ? totalValue - aceCount * Values.aceDelta : totalValue;
         }
 
-        public static void DealFirstTwoCards(Player dealer, List<Player> players)
+        public static void DealFirstTwoCards(List<Player> players)
         {
-            DeckService.DealCard(dealer, true);
-            DeckService.DealCard(dealer, true);
-
             foreach (var player in players)
             {
-                DeckService.DealCard(player, false);
-                DeckService.DealCard(player, false);
+                DeckService.DealCard(player);
+                DeckService.DealCard(player);
             }
         }
 
@@ -76,7 +73,7 @@ namespace ProjectBj.Service
 
         public static void Hit(Player player)
         {
-            DeckService.DealCard(player, false);
+            DeckService.DealCard(player);
         }
     }
 }

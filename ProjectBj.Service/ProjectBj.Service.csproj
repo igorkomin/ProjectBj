@@ -40,8 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CardService.cs" />
     <Compile Include="DeckService.cs" />
+    <Compile Include="Enums\CardRanks.cs" />
+    <Compile Include="Enums\CardSuits.cs" />
     <Compile Include="GameService.cs" />
     <Compile Include="PlayerService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -64,5 +65,6 @@
       <Name>ProjectBj.Logger</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

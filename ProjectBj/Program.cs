@@ -5,10 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ProjectBj.Entities;
 using ProjectBj.DAL.Repositories;
-using ProjectBj.DAL.EF;
 using ProjectBj.Service;
-using ProjectBj.StringHelper;
-using ProjectBj.ConstantHelper.Enums;
 
 namespace ProjectBj
 {
@@ -16,6 +13,11 @@ namespace ProjectBj
     {
         static void Main(string[] args)
         {
+            List<Card> cards = DeckService.NewDeck();
+
+            //var array = Enum.GetValues(typeof(Service.Enums.CardSuitEnum.Suit))
+                //.Cast<Service.Enums.CardSuitEnum.Suit>().ToArray();
+
             Console.ReadKey();
         }
     }
