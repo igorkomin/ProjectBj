@@ -31,10 +31,7 @@ namespace ProjectBj.Web.Controllers
             foreach(var player in players)
             {
                 List<Card> cards = PlayerService.GetCards(player);
-                PlayerView playerView = new PlayerView(player)
-                {
-                    Cards = cards
-                };
+                PlayerView playerView = new PlayerView() { Id = player.Id, Balance = player.Balance, InGame = player.InGame, Name = player.Name, IsHuman = player.IsHuman, Cards = cards };
                 playerViews.Add(playerView);
             }
             
