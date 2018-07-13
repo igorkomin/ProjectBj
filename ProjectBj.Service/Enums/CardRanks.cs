@@ -11,6 +11,8 @@ namespace ProjectBj.Service.Enums
     {
         public enum Rank
         {
+            [Description("A")]
+            Ace = 1,
             [Description("2")]
             Two = 2,
             [Description("3")]
@@ -34,9 +36,7 @@ namespace ProjectBj.Service.Enums
             [Description("Q")]
             Queen = 12,
             [Description("K")]
-            King = 13,
-            [Description("A")]
-            Ace = 14
+            King = 13
         }
     }
 }

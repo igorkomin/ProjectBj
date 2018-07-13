@@ -29,13 +29,15 @@ namespace ProjectBj.Service
         {
             _deck = new List<Card>();
             _deck = Enum.GetValues(typeof(Enums.CardSuitEnum.Suit)).Cast<Enums.CardSuitEnum.Suit>().ToArray().SelectMany(
-                suit => Enumerable.Range(2, 13), 
+                suit => Enumerable.Range(1, 12), 
                 (suit, rank) => new Card
                 {
                     Suit = suit.ToString(),
                     Rank = rank,
                     Value = rank < (int)Enums.CardRanks.Rank.Jack ? rank : GetCardValue(rank)
                 }).ToList();
+
+
             return _deck;
         }
 
