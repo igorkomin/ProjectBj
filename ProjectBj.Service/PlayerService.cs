@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ProjectBj.DAL;
 using ProjectBj.Configuration;
 using ProjectBj.DAL.Repositories;
 using ProjectBj.Entities;
@@ -23,21 +22,21 @@ namespace ProjectBj.Service
 
         public static Player NewPlayer(string name)
         {
-            Player player = new Player { Name = name, Balance = Values.startBalance, InGame = true, IsHuman = true };
+            Player player = new Player { Name = name, Balance = Values.StartBalance, InGame = true, IsHuman = true };
             player = _playerRepository.Create(player);
             return player;
         }
 
         public static Player NewBot()
         {
-            Player newBot = new Player { Name = AppStrings.botName, Balance = Values.startBalance, IsHuman = false, InGame = true };
+            Player newBot = new Player { Name = AppStrings.BotName, Balance = Values.StartBalance, IsHuman = false, InGame = true };
             newBot = _playerRepository.Create(newBot);
             return newBot;
         }
 
         public static Player NewDealer()
         {
-            Player dealer = new Player { Name = AppStrings.dealerName, InGame = false, IsHuman = false };
+            Player dealer = new Player { Name = AppStrings.DealerName, InGame = false, IsHuman = false };
             dealer = _playerRepository.Create(dealer);
             return dealer;
         }
@@ -56,7 +55,7 @@ namespace ProjectBj.Service
 
         public static Player GetDealer()
         {
-            Player dealer = PullPlayer(AppStrings.dealerName);
+            Player dealer = PullPlayer(AppStrings.DealerName);
             if(dealer == null)
             {
                 dealer = NewDealer();
@@ -92,6 +91,12 @@ namespace ProjectBj.Service
             return cards;
         }
 
+        public static void ChangePlayerBalance(Player player, int balanceData)
+        {
+            player.Balance += balanceData;
+            _playerRepository.Update(player);
+        }
+
         public static void DeletePlayer(Player player)
         {
             _playerRepository.Delete(player.Id);
@@ -99,7 +104,7 @@ namespace ProjectBj.Service
 
         public static void DeleteAllBots()
         {
-            List<Player> bots = _playerRepository.FindPlayers(AppStrings.botName).ToList();
+            List<Player> bots = _playerRepository.FindPlayers(AppStrings.BotName).ToList();
 
             foreach(var bot in bots)
             {

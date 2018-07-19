@@ -8,11 +8,11 @@ namespace ProjectBj.Configuration
 {
     public static class Values
     {
-        public static readonly int blackjackValue = 21;
-        public static readonly int aceCardIndex = 12;
-        public static readonly int aceCardRank = 14;
-        public static readonly int aceDelta = 10;
-        public static readonly int minDealerHandValue = 17;
-        public static readonly int startBalance = 1000;
+        public static readonly int BlackjackValue = 21;
+        public static readonly int AceCardValue = 11;
+        public static readonly int FaceCardValue = 10;
+        public static readonly int AceDelta = 10;
+        public static readonly int MinDealerHandValue = 17;
+        public static readonly int StartBalance = 1000;
     }
 }

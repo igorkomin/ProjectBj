@@ -28,28 +28,24 @@ namespace ProjectBj.Service
         public static List<Card> NewDeck()
         {
             _deck = new List<Card>();
-            _deck = Enum.GetValues(typeof(Enums.CardSuitEnum.Suit)).Cast<Enums.CardSuitEnum.Suit>().ToArray().SelectMany(
-                suit => Enumerable.Range(1, 12), 
-                (suit, rank) => new Card
-                {
-                    Suit = suit.ToString(),
-                    Rank = rank,
-                    Value = rank < (int)Enums.CardRanks.Rank.Jack ? rank : GetCardValue(rank)
-                }).ToList();
 
+            foreach (var suit in Enum.GetValues(typeof(Enums.CardSuits.Suit)))
+            {
+                AddSuit(suit.ToString());
+            }
 
             return _deck;
         }
 
-        private static int GetCardValue(int cardRank)
+        private static void AddSuit(string suit)
         {
-            if(cardRank == (int)Enums.CardRanks.Rank.Ace)
+            foreach (int rank in Enum.GetValues(typeof(Enums.CardRanks.Rank)))
             {
-                return 11;
+                var card = new Card { Rank = rank, Suit = suit };
+                _deck.Add(card);
             }
-            return 10;
         }
-
+        
         public static List<Card> PullDeck()
         {
             List<Card> deckFromDb = _cardRepository.GetAllCards().ToList();

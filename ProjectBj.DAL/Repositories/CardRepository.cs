@@ -9,37 +9,31 @@ using System.Configuration;
 using Dapper;
 using ProjectBj.Entities;
 using ProjectBj.Configuration;
+using ProjectBj.Logger;
 
 namespace ProjectBj.DAL.Repositories
 {
     public class CardRepository
     {
+        IDbConnection _db;
+
         public Card Create(Card card)
         {
-            using (IDbConnection db = new SqlConnection(AppStrings.connectionString))
+            try
             {
-                var sqlQuery = "INSERT INTO Cards (Suit, Rank, Value) VALUES(@Suit, @Rank, @Value); SELECT CAST(SCOPE_IDENTITY() as int)";
-                int? userId = db.Query<int>(sqlQuery, card).FirstOrDefault();
+                _db = new SqlConnection(AppStrings.ConnectionString);
+                var sqlQuery = "INSERT INTO Cards (Suit, Rank) VALUES(@Suit, @Rank); SELECT CAST(SCOPE_IDENTITY() as int)";
+                int cardId = _db.Query<int>(sqlQuery, card).FirstOrDefault();
+                card.Id = cardId;
             }
-            return card;
-        }
-
-        public void Delete(int id)
-        {
-            using (IDbConnection db = new SqlConnection(AppStrings.connectionString))
+            catch(Exception exception)
             {
-                var sqlQuery = "DELETE FROM Cards WHERE Id = @id";
-                db.Execute(sqlQuery, new { id });
+                Log.ToDebug(exception.Message);
+                throw;
             }
-        }
-
-        public Card Get(int id)
-        {
-            Card card;
-            using (IDbConnection db = new SqlConnection(AppStrings.connectionString))
+            finally
             {
-                var sqlQuery = "SELECT * FROM Cards WHERE Id = @id";
-                card = db.Query<Card>(sqlQuery, new { id }).FirstOrDefault();
+                _db.Close();
             }
             return card;
         }
@@ -47,21 +41,23 @@ namespace ProjectBj.DAL.Repositories
         public ICollection<Card> GetAllCards()
         {
             List<Card> cards;
-            using(IDbConnection db = new SqlConnection(AppStrings.connectionString))
+            try
             {
+                _db = new SqlConnection(AppStrings.ConnectionString);
                 var sqlQuery = "SELECT * FROM Cards";
-                cards = db.Query<Card>(sqlQuery).ToList();
+                cards = _db.Query<Card>(sqlQuery).ToList();
+
+            }
+            catch(Exception exception)
+            {
+                Log.ToDebug(exception.Message);
+                throw;
+            }
+            finally
+            {
+                _db.Close();
             }
             return cards;
-        }
-
-        public void Update(Card card)
-        {
-            using (IDbConnection db = new SqlConnection(AppStrings.connectionString))
-            {
-                var sqlQuery = "UPDATE Cards SET Suit = @Suit, Rank = @Rank, Value = @Value WHERE Id = @Id";
-                db.Execute(sqlQuery, card);
-            }
         }
     }
 }

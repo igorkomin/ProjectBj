@@ -43,6 +43,9 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.SqlClient, Version=4.4.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SqlClient.4.5.1\lib\net461\System.Data.SqlClient.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -69,6 +72,10 @@
     <ProjectReference Include="..\ProjectBj.Entities\ProjectBj.Entities.csproj">
       <Project>{fe68c0ab-c49b-4ad7-8675-493223b5f50c}</Project>
       <Name>ProjectBj.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ProjectBj.Logger\ProjectBj.Logger.csproj">
+      <Project>{b0f07411-1b51-4415-b5c5-095171b1d067}</Project>
+      <Name>ProjectBj.Logger</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -10,8 +10,8 @@ namespace ProjectBj.Configuration
     public static class AppStrings
     {
         #region Names
-        public static readonly string dealerName = "Dealer";
-        public static readonly string botName = "Bot";
+        public static readonly string DealerName = "Dealer";
+        public static readonly string BotName = "Bot";
         #endregion
         #region Messages
         public static string PlayerTakesCard(string playerName, int cardRank, string cardSuit)
@@ -20,7 +20,7 @@ namespace ProjectBj.Configuration
         }
         #endregion
         #region Database
-        public static readonly string connectionString = "Server=localhost;Database=blackjack;Trusted_Connection=True;";
+        public static readonly string ConnectionString = "Server=localhost;Database=blackjack;Trusted_Connection=True;";
         #endregion
     }
 }

@@ -11,7 +11,6 @@ namespace ProjectBj.Entities
         public int Id { get; set; }
         public string Suit { get; set; }
         public int Rank { get; set; }
-        public int Value { get; set; }
     }
     
 }

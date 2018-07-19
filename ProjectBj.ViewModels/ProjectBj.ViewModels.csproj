@@ -40,8 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GameSettings.cs" />
-    <Compile Include="PlayerView.cs" />
+    <Compile Include="Home\GameSettings.cs" />
+    <Compile Include="Game\PlayerView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

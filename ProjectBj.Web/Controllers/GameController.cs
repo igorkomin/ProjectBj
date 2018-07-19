@@ -22,9 +22,11 @@ namespace ProjectBj.Web.Controllers
         {
             Player dealer = PlayerService.GetDealer();
             Player humanPlayer = PlayerService.GetPlayer(settings.PlayerName);
-            List<Player> players = new List<Player>();
-            players.Add(dealer);
-            players.Add(humanPlayer);
+            List<Player> players = new List<Player>
+            {
+                humanPlayer,
+                dealer
+            };
             players.AddRange(PlayerService.CreateBots(settings.BotsNumber));
             GameService.DealFirstTwoCards(players);
             List<PlayerView> playerViews = new List<PlayerView>();

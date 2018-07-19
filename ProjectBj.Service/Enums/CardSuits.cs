@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ProjectBj.Service.Enums
 {
-    public class CardSuitEnum
+    public class CardSuits
     {
         public enum Suit
         {

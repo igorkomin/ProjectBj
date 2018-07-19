@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using ProjectBj.Entities;
+using ProjectBj.Service;
+using ProjectBj.DAL.Repositories;
 
 namespace ConsoleApp1
 {
@@ -9,7 +12,9 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            var r = Enumerable.Range(1, 13);
+            var repository = new PlayerRepository();
+            Player player = new Player();
+            repository.Create(player);
         }
     }
 }

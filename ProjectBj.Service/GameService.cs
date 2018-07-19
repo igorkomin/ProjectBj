@@ -21,14 +21,22 @@ namespace ProjectBj.Service
 
             foreach(var card in cards)
             {
-                if(card.Rank == (int)Enums.CardRanks.Rank.Ace)
+                int aceCardRank = (int)Enums.CardRanks.Rank.Ace;
+                int tenCardRank = (int)Enums.CardRanks.Rank.Ten;
+                if (card.Rank == aceCardRank)
                 {
-                    aceCount++;
+                    totalValue += Values.AceCardValue;
+                    continue;
                 }
-                totalValue += card.Value;
+                if(card.Rank > tenCardRank)
+                {
+                    totalValue += Values.FaceCardValue;
+                    continue;
+                }
+                totalValue += card.Rank;
             }
 
-            return totalValue > Values.blackjackValue ? totalValue - aceCount * Values.aceDelta : totalValue;
+            return totalValue > Values.BlackjackValue ? totalValue - aceCount * Values.AceDelta : totalValue;
         }
 
         public static void DealFirstTwoCards(List<Player> players)
@@ -46,7 +54,7 @@ namespace ProjectBj.Service
             foreach (var card in deck)
             {
                 int dealerTotal = GetHandTotal(dealer);
-                if (dealerTotal > Values.minDealerHandValue)
+                if (dealerTotal > Values.MinDealerHandValue)
                 {
                     break;
                 }
@@ -56,13 +64,13 @@ namespace ProjectBj.Service
 
         public static bool IsBlackjack(int handTotal)
         {
-            bool isBlackJack = handTotal == Values.blackjackValue ? true : false;
+            bool isBlackJack = handTotal == Values.BlackjackValue ? true : false;
             return isBlackJack;
         }
 
         public static bool IsBust(int handTotal)
         {
-            bool isBust = handTotal > Values.blackjackValue ? true : false;
+            bool isBust = handTotal > Values.BlackjackValue ? true : false;
             return isBust;
         }
 

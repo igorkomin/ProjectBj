@@ -6,6 +6,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ProjectBj.Configuration\ProjectBj.Configuration.csproj" />
+    <ProjectReference Include="..\ProjectBj.DAL\ProjectBj.DAL.csproj" />
+    <ProjectReference Include="..\ProjectBj.Entities\ProjectBj.Entities.csproj" />
+    <ProjectReference Include="..\ProjectBj.Helpers\ProjectBj.Helpers.csproj" />
+    <ProjectReference Include="..\ProjectBj.Logger\ProjectBj.Logger.csproj" />
     <ProjectReference Include="..\ProjectBj.Service\ProjectBj.Service.csproj" />
   </ItemGroup>
 
