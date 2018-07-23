@@ -63,7 +63,7 @@ namespace ProjectBj.Service
             return dealer;
         }
 
-        public static Player PullPlayer(string name)
+        private static Player PullPlayer(string name)
         {
             Player player = _playerRepository.FindPlayers(name).FirstOrDefault();
             return player;
