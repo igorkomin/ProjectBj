@@ -23,21 +23,21 @@ namespace ProjectBj.Service
         private static Player NewPlayer(string name)
         {
             Player player = new Player { Name = name, Balance = Values.StartBalance, InGame = true, IsHuman = true };
-            player = _playerRepository.Create(player);
+            player = _playerRepository.CreateOne(player);
             return player;
         }
 
         private static Player NewBot()
         {
             Player newBot = new Player { Name = AppStrings.BotName, Balance = Values.StartBalance, IsHuman = false, InGame = true };
-            newBot = _playerRepository.Create(newBot);
+            newBot = _playerRepository.CreateOne(newBot);
             return newBot;
         }
 
         private static Player NewDealer()
         {
             Player dealer = new Player { Name = AppStrings.DealerName, InGame = false, IsHuman = false };
-            dealer = _playerRepository.Create(dealer);
+            dealer = _playerRepository.CreateOne(dealer);
             return dealer;
         }
 
