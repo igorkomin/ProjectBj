@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProjectBj.Configuration
+namespace ProjectBj.Common
 {
     public static class AppStrings
     {
