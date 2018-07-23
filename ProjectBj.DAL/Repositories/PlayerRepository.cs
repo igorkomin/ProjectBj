@@ -15,16 +15,17 @@ namespace ProjectBj.DAL.Repositories
 {
     public class PlayerRepository
     {
-        public Player Create(Player player)
+        private string _insertQuery = "INSERT INTO Players (Name, Balance, IsHuman, InGame) " +
+                                      "VALUES(@Name, @Balance, @IsHuman, @InGame); " +
+                                      "SELECT CAST(SCOPE_IDENTITY() as int)";
+
+        public Player CreateOne(Player player)
         {
             try
             {
                 using (IDbConnection db = new SqlConnection(AppStrings.ConnectionString))
                 {
-                    var sqlQuery = "INSERT INTO Players (Name, Balance, IsHuman, InGame) " +
-                                   "VALUES(@Name, @Balance, @IsHuman, @InGame); " +
-                                   "SELECT CAST(SCOPE_IDENTITY() as int)";
-                    int playerId = db.Query<int>(sqlQuery, player).FirstOrDefault();
+                    int playerId = db.Query<int>(_insertQuery, player).FirstOrDefault();
                     player.Id = playerId;
                 }
             }
@@ -33,6 +34,26 @@ namespace ProjectBj.DAL.Repositories
                 throw exception;
             }
             return player;
+        }
+
+        public ICollection<Player> CreateMany(ICollection<Player> players)
+        {
+            try
+            {
+                using (IDbConnection db = new SqlConnection(AppStrings.ConnectionString))
+                {
+                    foreach (var player in players)
+                    {
+                        int playerId = db.Query<int>(_insertQuery, player).FirstOrDefault();
+                        player.Id = playerId;
+                    }
+                }
+            }
+            catch(Exception exception)
+            {
+                throw exception;
+            }
+            return players;
         }
 
         public void Delete(int id)
