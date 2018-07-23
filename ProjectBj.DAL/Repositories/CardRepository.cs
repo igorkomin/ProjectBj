@@ -21,8 +21,15 @@ namespace ProjectBj.DAL.Repositories
                            "VALUES(@Suit, @Rank); " +
                            "SELECT CAST(SCOPE_IDENTITY() as int)";
 
-            int cardId = db.Query<int>(sqlQuery, card).FirstOrDefault();
-            card.Id = cardId;
+            try
+            {
+                int cardId = db.Query<int>(sqlQuery, card).FirstOrDefault();
+                card.Id = cardId;
+            }
+            catch (Exception exception)
+            {
+                throw exception;
+            }
 
             return card;
         }
