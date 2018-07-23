@@ -17,18 +17,19 @@ namespace ProjectBj.Service
             _logRepository = new LogRepository();
         }
 
-        public static void PushLogEntry(LogEntry entry)
+        public static void CreateLogEntry(string message)
         {
+            LogEntry entry = new LogEntry { Message = message, Time = DateTime.Now };
             _logRepository.CreateEntry(entry);
         }
 
-        public static LogEntry PullLogEntry(int id)
+        public static LogEntry GetLogEntry(int id)
         {
             LogEntry entry = _logRepository.GetEntry(id);
             return entry;
         }
 
-        public static List<LogEntry> PullLogs()
+        public static List<LogEntry> GetLogs()
         {
             List<LogEntry> entries = _logRepository.GetAllLogs().ToList();
             return entries;
