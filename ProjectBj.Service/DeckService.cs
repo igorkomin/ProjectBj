@@ -58,10 +58,7 @@ namespace ProjectBj.Service
 
         private static void PushDeck(List<Card> localDeck)
         {
-            foreach(var card in localDeck)
-            {
-                _cardRepository.Create(card);
-            }
+            _cardRepository.CreateDeck(localDeck);
         }
 
         public static List<Card> GetDeck()
