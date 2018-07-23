@@ -20,7 +20,7 @@ namespace ProjectBj.Service
             _cardRepository = new CardRepository();
         }
 
-        public static Player NewPlayer(string name)
+        private static Player NewPlayer(string name)
         {
             Player player = new Player { Name = name, Balance = Values.StartBalance, InGame = true, IsHuman = true };
             player = _playerRepository.Create(player);
