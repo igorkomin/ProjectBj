@@ -7,8 +7,9 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Configuration;
 using Dapper;
-using ProjectBj.Entities;
 using ProjectBj.Configuration;
+using ProjectBj.Common.ExceptionHandlers;
+using ProjectBj.Entities;
 using ProjectBj.Logger;
 
 namespace ProjectBj.DAL.Repositories
@@ -26,9 +27,9 @@ namespace ProjectBj.DAL.Repositories
                 int cardId = db.Query<int>(sqlQuery, card).FirstOrDefault();
                 card.Id = cardId;
             }
-            catch (Exception exception)
+            catch (SqlException exception)
             {
-                throw exception;
+                throw new DataSourceException(exception.Message, exception);
             }
 
             return card;
@@ -59,9 +60,9 @@ namespace ProjectBj.DAL.Repositories
 
                 }
             }
-            catch (Exception exception)
+            catch (SqlException exception)
             {
-                throw exception;
+                throw new DataSourceException(exception.Message, exception);
             }
             return cards;
         }

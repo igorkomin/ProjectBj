@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
 using Dapper;
-using ProjectBj.Entities;
+using ProjectBj.Common.ExceptionHandlers;
 using ProjectBj.Configuration;
+using ProjectBj.Entities;
 
 namespace ProjectBj.DAL.Repositories
 {
@@ -23,9 +24,9 @@ namespace ProjectBj.DAL.Repositories
                     db.Execute(sqlQuery, entry);
                 }
             }
-            catch (Exception exception)
+            catch (SqlException exception)
             {
-                throw exception;
+                throw new DataSourceException(exception.Message, exception);
             }
         }
 
@@ -40,9 +41,9 @@ namespace ProjectBj.DAL.Repositories
                     entry = db.Query<LogEntry>(sqlQuery, new { id }).FirstOrDefault();
                 }
             }
-            catch (Exception exception)
+            catch (SqlException exception)
             {
-                throw exception;
+                throw new DataSourceException(exception.Message, exception);
             }
             return entry;
         }
@@ -58,9 +59,9 @@ namespace ProjectBj.DAL.Repositories
                     logs = db.Query<LogEntry>(sqlQuery).ToList();
                 }
             }
-            catch(Exception exception)
+            catch(SqlException exception)
             {
-                throw exception;
+                throw new DataSourceException(exception.Message, exception);
             }
             return logs;
         }
@@ -75,9 +76,9 @@ namespace ProjectBj.DAL.Repositories
                     db.Execute(sqlQuery, new { id });
                 }
             }
-            catch (Exception exception)
+            catch (SqlException exception)
             {
-                throw exception;
+                throw new DataSourceException(exception.Message, exception);
             }
         }
     }

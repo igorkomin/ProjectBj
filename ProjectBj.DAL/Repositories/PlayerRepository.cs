@@ -7,8 +7,9 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Configuration;
 using Dapper;
-using ProjectBj.Entities;
+using ProjectBj.Common.ExceptionHandlers;
 using ProjectBj.Configuration;
+using ProjectBj.Entities;
 using ProjectBj.Logger;
 
 namespace ProjectBj.DAL.Repositories
@@ -29,9 +30,9 @@ namespace ProjectBj.DAL.Repositories
                     player.Id = playerId;
                 }
             }
-            catch (Exception exception)
+            catch (SqlException exception)
             {
-                throw exception;
+                throw new DataSourceException(exception.Message, exception);
             }
             return player;
         }
@@ -49,9 +50,9 @@ namespace ProjectBj.DAL.Repositories
                     }
                 }
             }
-            catch(Exception exception)
+            catch(SqlException exception)
             {
-                throw exception;
+                throw new DataSourceException(exception.Message, exception);
             }
             return players;
         }
@@ -66,9 +67,9 @@ namespace ProjectBj.DAL.Repositories
                     db.Execute(sqlQuery, new { id });
                 }
             }
-            catch (Exception exception)
+            catch (SqlException exception)
             {
-                throw exception;
+                throw new DataSourceException(exception.Message, exception);
             }
         }
 
@@ -83,9 +84,9 @@ namespace ProjectBj.DAL.Repositories
                     players = db.Query<Player>(sqlQuery, new { name }).ToList();
                 }
             }
-            catch (Exception exception)
+            catch (SqlException exception)
             {
-                throw exception;
+                throw new DataSourceException(exception.Message, exception);
             }
             return players;
         }
@@ -103,7 +104,7 @@ namespace ProjectBj.DAL.Repositories
             }
             catch (Exception exception)
             {
-                throw exception;
+                throw new DataSourceException(exception.Message, exception);
             }
             return player;
         }
@@ -119,9 +120,9 @@ namespace ProjectBj.DAL.Repositories
                     players = db.Query<Player>(sqlQuery).ToList();
                 }
             }
-            catch (Exception exception)
+            catch (SqlException exception)
             {
-                throw exception;
+                throw new DataSourceException(exception.Message, exception);
             }
             return players;
         }
@@ -138,9 +139,9 @@ namespace ProjectBj.DAL.Repositories
                     db.Execute(sqlQuery, player);
                 }
             }
-            catch (Exception exception)
+            catch (SqlException exception)
             {
-                throw exception;
+                throw new DataSourceException(exception.Message, exception);
             }
         }
 
@@ -156,9 +157,9 @@ namespace ProjectBj.DAL.Repositories
                     db.Execute(sqlQuery, playerHand);
                 }
             }
-            catch (Exception exception)
+            catch (SqlException exception)
             {
-                throw exception;
+                throw new DataSourceException(exception.Message, exception);
             }
         }
 
@@ -176,9 +177,9 @@ namespace ProjectBj.DAL.Repositories
                     cards = db.Query<Card>(sqlQuery, player).ToList();
                 }
             }
-            catch (Exception exception)
+            catch (SqlException exception)
             {
-                throw exception;
+                throw new DataSourceException(exception.Message, exception);
             }
             return cards;
         }
@@ -193,9 +194,9 @@ namespace ProjectBj.DAL.Repositories
                     db.Execute(sqlQuery, new { name });
                 }
             }
-            catch (Exception exception)
+            catch (SqlException exception)
             {
-                throw exception;
+                throw new DataSourceException(exception.Message, exception);
             }
         }
     }
