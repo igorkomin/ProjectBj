@@ -66,9 +66,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ProjectBj.Configuration\ProjectBj.Configuration.csproj">
-      <Project>{a0734a99-02a7-43f9-966a-bcc4a992d8a6}</Project>
-      <Name>ProjectBj.Configuration</Name>
+    <ProjectReference Include="..\ProjectBj.Common\ProjectBj.Common.csproj">
+      <Project>{07309782-5321-4b06-93cd-d6e2d410254d}</Project>
+      <Name>ProjectBj.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\ProjectBj.Entities\ProjectBj.Entities.csproj">
       <Project>{fe68c0ab-c49b-4ad7-8675-493223b5f50c}</Project>
@@ -79,5 +79,6 @@
       <Name>ProjectBj.Logger</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
