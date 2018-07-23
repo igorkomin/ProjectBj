@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using ProjectBj.Entities;
 using ProjectBj.DAL;
 using ProjectBj.DAL.Repositories;
-using ProjectBj.Configuration;
 using ProjectBj.Logger;
 
 namespace ProjectBj.Service
@@ -46,11 +45,19 @@ namespace ProjectBj.Service
         
         private static List<Card> PullDeck()
         {
-            List<Card> deckFromDb = _cardRepository.GetAllCards().ToList();
 
-            if (deckFromDb.Count == 0)
+            List<Card> deckFromDb;
+            try
             {
-                return null;
+                deckFromDb = _cardRepository.GetAllCards().ToList();
+                if (deckFromDb.Count == 0)
+                {
+                    return null;
+                }
+            }
+            catch (Exception exception)
+            {
+                throw exception;
             }
 
             return deckFromDb;
@@ -58,7 +65,14 @@ namespace ProjectBj.Service
 
         private static void PushDeck(List<Card> localDeck)
         {
-            _cardRepository.CreateDeck(localDeck);
+            try
+            {
+                _cardRepository.CreateDeck(localDeck);
+            }
+            catch (Exception exception)
+            {
+                throw exception;
+            }
         }
 
         public static List<Card> GetDeck()
@@ -99,12 +113,18 @@ namespace ProjectBj.Service
             List<Card> deck = GetShuffledDeck();
             Card card = deck[0];
             GivePlayerCard(player, card);
-            Log.ToDebug(AppStrings.PlayerTakesCard(player.Name, card.Rank, card.Suit));            
         }
 
         public static void GivePlayerCard(Player player, Card card)
         {
-            _playerRepository.AddCard(player, card);
+            try
+            {
+                _playerRepository.AddCard(player, card);
+            }
+            catch (Exception exception)
+            {
+                throw exception;
+            }
         }
     }
 }
