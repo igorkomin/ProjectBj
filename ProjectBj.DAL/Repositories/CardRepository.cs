@@ -15,24 +15,29 @@ namespace ProjectBj.DAL.Repositories
 {
     public class CardRepository
     {
-        public Card Create(Card card)
+        public Card Create(Card card, IDbConnection db)
         {
-            try
+            var sqlQuery = "INSERT INTO Cards (Suit, Rank) " +
+                           "VALUES(@Suit, @Rank); " +
+                           "SELECT CAST(SCOPE_IDENTITY() as int)";
+
+            int cardId = db.Query<int>(sqlQuery, card).FirstOrDefault();
+            card.Id = cardId;
+
+            return card;
+        }
+
+        public ICollection<Card> CreateDeck(ICollection<Card> deck)
+        {
+            List<Card> newDeck = new List<Card>();
+            using (IDbConnection db = new SqlConnection(AppStrings.ConnectionString))
             {
-                using (IDbConnection db = new SqlConnection(AppStrings.ConnectionString))
+                foreach (Card card in deck)
                 {
-                    var sqlQuery = "INSERT INTO Cards (Suit, Rank) " +
-                                   "VALUES(@Suit, @Rank); " +
-                                   "SELECT CAST(SCOPE_IDENTITY() as int)";
-                    int cardId = db.Query<int>(sqlQuery, card).FirstOrDefault();
-                    card.Id = cardId;
+                    newDeck.Add(Create(card, db));
                 }
             }
-            catch (Exception exception)
-            {
-                throw exception;
-            }
-            return card;
+            return newDeck;
         }
 
         public ICollection<Card> GetAllCards()
