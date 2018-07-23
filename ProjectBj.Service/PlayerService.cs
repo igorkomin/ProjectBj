@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ProjectBj.Configuration;
+using ProjectBj.Common;
+using ProjectBj.Common.ExceptionHandlers;
 using ProjectBj.DAL.Repositories;
 using ProjectBj.Entities;
 
@@ -23,21 +24,43 @@ namespace ProjectBj.Service
         private static Player NewPlayer(string name)
         {
             Player player = new Player { Name = name, Balance = Values.StartBalance, InGame = true, IsHuman = true };
-            player = _playerRepository.CreateOne(player);
+            try
+            {
+                player = _playerRepository.CreateOne(player);
+            }
+            catch (Exception exception)
+            {
+                throw exception;
+            }
             return player;
         }
 
         private static Player NewBot()
         {
             Player newBot = new Player { Name = AppStrings.BotName, Balance = Values.StartBalance, IsHuman = false, InGame = true };
-            newBot = _playerRepository.CreateOne(newBot);
+            try
+            {
+                newBot = _playerRepository.CreateOne(newBot);
+            }
+            catch (Exception exception)
+            {
+                throw exception;
+            }
             return newBot;
         }
 
         private static Player NewDealer()
         {
             Player dealer = new Player { Name = AppStrings.DealerName, InGame = false, IsHuman = false };
-            dealer = _playerRepository.CreateOne(dealer);
+            try
+            {
+                dealer = _playerRepository.CreateOne(dealer);
+            }
+            catch(Exception exception)
+            {
+                throw exception;
+            }
+
             return dealer;
         }
 
@@ -65,7 +88,15 @@ namespace ProjectBj.Service
 
         private static Player PullPlayer(string name)
         {
-            Player player = _playerRepository.FindPlayers(name).FirstOrDefault();
+            Player player;
+            try
+            {
+                player = _playerRepository.FindPlayers(name).FirstOrDefault();
+            }
+            catch (Exception exception)
+            {
+                throw exception;
+            }
             return player;
         }
 
@@ -81,30 +112,68 @@ namespace ProjectBj.Service
 
         public static Player GetPlayerById(int playerId)
         {
-            Player player = _playerRepository.Get(playerId);
+            Player player;
+            try
+            {
+                player = _playerRepository.Get(playerId);
+            }
+            catch (Exception exception)
+            {
+                throw exception;
+            }
+
             return player;
         }
 
         public static List<Card> GetCards(Player player)
         {
-            List<Card> cards = _playerRepository.GetCards(player).ToList();
+            List<Card> cards;
+            try
+            {
+                cards = _playerRepository.GetCards(player).ToList();
+            }
+            catch (Exception exception)
+            {
+                throw exception;
+            }
             return cards;
         }
 
-        public static void ChangePlayerBalance(Player player, int balanceData)
+        public static void ChangePlayerBalance(Player player, int balanceDelta)
         {
-            player.Balance += balanceData;
-            _playerRepository.Update(player);
+            player.Balance += balanceDelta;
+            try
+            {
+                _playerRepository.Update(player);
+            }
+            catch (Exception exception)
+            {
+                throw exception;
+            }
         }
 
         public static void DeletePlayer(Player player)
         {
-            _playerRepository.Delete(player.Id);
+            try
+            {
+                _playerRepository.Delete(player.Id);
+            }
+            catch (Exception exception)
+            {
+                throw exception;
+            }
         }
 
         private static void DeleteAllBots()
         {
-            _playerRepository.DeletePlayersByName(AppStrings.BotName);
+            try
+            {
+                _playerRepository.DeletePlayersByName(AppStrings.BotName);
+            }
+            catch (Exception exception)
+            {
+                throw exception;
+            }
         }
     }
 }
