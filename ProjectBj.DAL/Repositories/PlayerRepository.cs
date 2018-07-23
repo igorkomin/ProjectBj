@@ -17,33 +17,54 @@ namespace ProjectBj.DAL.Repositories
     {
         public Player Create(Player player)
         {
-            using (IDbConnection db = new SqlConnection(AppStrings.ConnectionString))
+            try
             {
-                var sqlQuery = "INSERT INTO Players (Name, Balance, IsHuman, InGame) " +
-                               "VALUES(@Name, @Balance, @IsHuman, @InGame); " +
-                               "SELECT CAST(SCOPE_IDENTITY() as int)";
-                int playerId = db.Query<int>(sqlQuery, player).FirstOrDefault();
-                player.Id = playerId;
+                using (IDbConnection db = new SqlConnection(AppStrings.ConnectionString))
+                {
+                    var sqlQuery = "INSERT INTO Players (Name, Balance, IsHuman, InGame) " +
+                                   "VALUES(@Name, @Balance, @IsHuman, @InGame); " +
+                                   "SELECT CAST(SCOPE_IDENTITY() as int)";
+                    int playerId = db.Query<int>(sqlQuery, player).FirstOrDefault();
+                    player.Id = playerId;
+                }
+            }
+            catch (Exception exception)
+            {
+                throw exception;
             }
             return player;
         }
 
         public void Delete(int id)
         {
-            using (IDbConnection db = new SqlConnection(AppStrings.ConnectionString))
-            { 
-                var sqlQuery = "DELETE FROM Players WHERE Id = @id";
-                db.Execute(sqlQuery, new { id });
+            try
+            {
+                using (IDbConnection db = new SqlConnection(AppStrings.ConnectionString))
+                {
+                    var sqlQuery = "DELETE FROM Players WHERE Id = @id";
+                    db.Execute(sqlQuery, new { id });
+                }
+            }
+            catch (Exception exception)
+            {
+                throw exception;
             }
         }
 
         public ICollection<Player> FindPlayers(string name)
         {
             List<Player> players;
-            using (IDbConnection db = new SqlConnection(AppStrings.ConnectionString))
-            { 
-                var sqlQuery = "SELECT * FROM Players WHERE Name = @name";
-                players = db.Query<Player>(sqlQuery, new { name }).ToList();
+            try
+            {
+                using (IDbConnection db = new SqlConnection(AppStrings.ConnectionString))
+                {
+                    var sqlQuery = "SELECT * FROM Players WHERE Name = @name";
+                    players = db.Query<Player>(sqlQuery, new { name }).ToList();
+                }
+            }
+            catch (Exception exception)
+            {
+                throw exception;
             }
             return players;
         }
@@ -51,10 +72,17 @@ namespace ProjectBj.DAL.Repositories
         public Player Get(int id)
         {
             Player player;
-            using (IDbConnection db = new SqlConnection(AppStrings.ConnectionString))
+            try
             {
-                var sqlQuery = "SELECT * FROM Players WHERE Id = @id";
-                player = db.Query<Player>(sqlQuery, new { id }).FirstOrDefault();
+                using (IDbConnection db = new SqlConnection(AppStrings.ConnectionString))
+                {
+                    var sqlQuery = "SELECT * FROM Players WHERE Id = @id";
+                    player = db.Query<Player>(sqlQuery, new { id }).FirstOrDefault();
+                }
+            }
+            catch (Exception exception)
+            {
+                throw exception;
             }
             return player;
         }
@@ -62,57 +90,91 @@ namespace ProjectBj.DAL.Repositories
         public ICollection<Player> GetAllPlayers()
         {
             List<Player> players;
-
-            using (IDbConnection db = new SqlConnection(AppStrings.ConnectionString))
+            try
             {
-                var sqlQuery = "SELECT * FROM Players";
-                players = db.Query<Player>(sqlQuery).ToList();
+                using (IDbConnection db = new SqlConnection(AppStrings.ConnectionString))
+                {
+                    var sqlQuery = "SELECT * FROM Players";
+                    players = db.Query<Player>(sqlQuery).ToList();
+                }
+            }
+            catch (Exception exception)
+            {
+                throw exception;
             }
             return players;
         }
 
         public void Update(Player player)
         {
-            using (IDbConnection db = new SqlConnection(AppStrings.ConnectionString))
+            try
             {
-                var sqlQuery = "UPDATE Players " +
-                               "SET Name = @Name, IsHuman = @IsHuman, Balance = @Balance, InGame = @Ingame " +
-                               "WHERE Id = @Id";
-                db.Execute(sqlQuery, player);
+                using (IDbConnection db = new SqlConnection(AppStrings.ConnectionString))
+                {
+                    var sqlQuery = "UPDATE Players " +
+                                   "SET Name = @Name, IsHuman = @IsHuman, Balance = @Balance, InGame = @Ingame " +
+                                   "WHERE Id = @Id";
+                    db.Execute(sqlQuery, player);
+                }
+            }
+            catch (Exception exception)
+            {
+                throw exception;
             }
         }
 
         public void AddCard(Player player, Card card)
         {
-            PlayerHand playerHand = new PlayerHand() { PlayerId = player.Id, CardId = card.Id };
-            using (IDbConnection db = new SqlConnection(AppStrings.ConnectionString))
+            try
             {
-                var sqlQuery = "INSERT INTO PlayerHands (PlayerId, CardId) " +
-                               "VALUES (@PlayerId, @CardId)";
-                db.Execute(sqlQuery, playerHand);
+                PlayerHand playerHand = new PlayerHand() { PlayerId = player.Id, CardId = card.Id };
+                using (IDbConnection db = new SqlConnection(AppStrings.ConnectionString))
+                {
+                    var sqlQuery = "INSERT INTO PlayerHands (PlayerId, CardId) " +
+                                   "VALUES (@PlayerId, @CardId)";
+                    db.Execute(sqlQuery, playerHand);
+                }
+            }
+            catch (Exception exception)
+            {
+                throw exception;
             }
         }
 
         public ICollection<Card> GetCards(Player player)
         {
             List<Card> cards;
-            using (IDbConnection db = new SqlConnection(AppStrings.ConnectionString))
+            try
             {
-                var sqlQuery = "SELECT c.* FROM playerhands ph " +
-                               "JOIN Cards c ON ( ph.CardId = c.Id ) " +
-                               "JOIN Players p ON ( ph.PlayerId = p.Id ) " +
-                               "WHERE ph.PlayerId = @Id";
-                cards = db.Query<Card>(sqlQuery, player).ToList();
+                using (IDbConnection db = new SqlConnection(AppStrings.ConnectionString))
+                {
+                    var sqlQuery = "SELECT c.* FROM playerhands ph " +
+                                   "JOIN Cards c ON ( ph.CardId = c.Id ) " +
+                                   "JOIN Players p ON ( ph.PlayerId = p.Id ) " +
+                                   "WHERE ph.PlayerId = @Id";
+                    cards = db.Query<Card>(sqlQuery, player).ToList();
+                }
+            }
+            catch (Exception exception)
+            {
+                throw exception;
             }
             return cards;
         }
 
         public void DeletePlayersByName(string name)
         {
-            using (IDbConnection db = new SqlConnection(AppStrings.ConnectionString))
+            try
             {
-                var sqlQuery = "DELETE FROM Players WHERE Name = @name";
-                db.Execute(sqlQuery, new { name });
+                using (IDbConnection db = new SqlConnection(AppStrings.ConnectionString))
+                {
+                    var sqlQuery = "DELETE FROM Players WHERE Name = @name";
+                    db.Execute(sqlQuery, new { name });
+                }
+            }
+            catch (Exception exception)
+            {
+                throw exception;
             }
         }
     }
