@@ -102,7 +102,7 @@ namespace ProjectBj.Service
             _playerRepository.Delete(player.Id);
         }
 
-        public static void DeleteAllBots()
+        private static void DeleteAllBots()
         {
             _playerRepository.DeletePlayersByName(AppStrings.BotName);
         }
