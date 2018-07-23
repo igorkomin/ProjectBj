@@ -44,7 +44,7 @@ namespace ProjectBj.Service
         public static List<Player> CreateBots(int number)
         {
             DeleteAllBots();
-            List<Player> bots = new List<Player>(); ;
+            List<Player> bots = new List<Player>();
             for(int i = 0; i < number; i++)
             {
                 Player bot = NewBot();
