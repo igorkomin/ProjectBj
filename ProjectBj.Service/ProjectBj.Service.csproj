@@ -44,6 +44,7 @@
     <Compile Include="Enums\CardRanks.cs" />
     <Compile Include="Enums\CardSuits.cs" />
     <Compile Include="GameService.cs" />
+    <Compile Include="LogService.cs" />
     <Compile Include="PlayerService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
