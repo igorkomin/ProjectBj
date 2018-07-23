@@ -104,12 +104,7 @@ namespace ProjectBj.Service
 
         public static void DeleteAllBots()
         {
-            List<Player> bots = _playerRepository.FindPlayers(AppStrings.BotName).ToList();
-
-            foreach(var bot in bots)
-            {
-                DeletePlayer(bot);
-            }
+            _playerRepository.DeletePlayersByName(AppStrings.BotName);
         }
     }
 }
