@@ -17,13 +17,20 @@ namespace ProjectBj.DAL.Repositories
     {
         public Card Create(Card card)
         {
-            using (IDbConnection db = new SqlConnection(AppStrings.ConnectionString))
+            try
             {
-                var sqlQuery = "INSERT INTO Cards (Suit, Rank) " +
-                               "VALUES(@Suit, @Rank); " +
-                               "SELECT CAST(SCOPE_IDENTITY() as int)";
-                int cardId = db.Query<int>(sqlQuery, card).FirstOrDefault();
-                card.Id = cardId;
+                using (IDbConnection db = new SqlConnection(AppStrings.ConnectionString))
+                {
+                    var sqlQuery = "INSERT INTO Cards (Suit, Rank) " +
+                                   "VALUES(@Suit, @Rank); " +
+                                   "SELECT CAST(SCOPE_IDENTITY() as int)";
+                    int cardId = db.Query<int>(sqlQuery, card).FirstOrDefault();
+                    card.Id = cardId;
+                }
+            }
+            catch (Exception exception)
+            {
+                throw exception;
             }
             return card;
         }
@@ -31,11 +38,18 @@ namespace ProjectBj.DAL.Repositories
         public ICollection<Card> GetAllCards()
         {
             List<Card> cards;
-            using (IDbConnection db = new SqlConnection(AppStrings.ConnectionString))
-            { 
-                var sqlQuery = "SELECT * FROM Cards";
-                cards = db.Query<Card>(sqlQuery).ToList();
+            try
+            {
+                using (IDbConnection db = new SqlConnection(AppStrings.ConnectionString))
+                {
+                    var sqlQuery = "SELECT * FROM Cards";
+                    cards = db.Query<Card>(sqlQuery).ToList();
 
+                }
+            }
+            catch (Exception exception)
+            {
+                throw exception;
             }
             return cards;
         }
