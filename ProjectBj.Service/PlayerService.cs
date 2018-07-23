@@ -34,7 +34,7 @@ namespace ProjectBj.Service
             return newBot;
         }
 
-        public static Player NewDealer()
+        private static Player NewDealer()
         {
             Player dealer = new Player { Name = AppStrings.DealerName, InGame = false, IsHuman = false };
             dealer = _playerRepository.Create(dealer);
