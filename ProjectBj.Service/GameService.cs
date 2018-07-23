@@ -56,7 +56,7 @@ namespace ProjectBj.Service
                 int dealerTotal = GetHandTotal(dealer);
                 if (dealerTotal > Values.MinDealerHandValue)
                 {
-                    break;
+                    return;
                 }
                 DeckService.GivePlayerCard(dealer, card);
             }
