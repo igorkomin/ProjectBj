@@ -7,7 +7,7 @@ using System.Data;
 using System.Data.SqlClient;
 using Dapper;
 using ProjectBj.Common.ExceptionHandlers;
-using ProjectBj.Configuration;
+using ProjectBj.Common;
 using ProjectBj.Entities;
 
 namespace ProjectBj.DAL.Repositories

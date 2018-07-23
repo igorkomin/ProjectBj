@@ -7,7 +7,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Configuration;
 using Dapper;
-using ProjectBj.Configuration;
+using ProjectBj.Common;
 using ProjectBj.Common.ExceptionHandlers;
 using ProjectBj.Entities;
 using ProjectBj.Logger;
