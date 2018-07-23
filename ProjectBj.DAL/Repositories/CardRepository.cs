@@ -18,7 +18,7 @@ namespace ProjectBj.DAL.Repositories
         public Card Create(Card card)
         {
             using (IDbConnection db = new SqlConnection(AppStrings.ConnectionString))
-            { 
+            {
                 var sqlQuery = "INSERT INTO Cards (Suit, Rank) " +
                                "VALUES(@Suit, @Rank); " +
                                "SELECT CAST(SCOPE_IDENTITY() as int)";
@@ -31,10 +31,10 @@ namespace ProjectBj.DAL.Repositories
         public ICollection<Card> GetAllCards()
         {
             List<Card> cards;
-            using (IDbConnection _db = new SqlConnection(AppStrings.ConnectionString))
+            using (IDbConnection db = new SqlConnection(AppStrings.ConnectionString))
             { 
                 var sqlQuery = "SELECT * FROM Cards";
-                cards = _db.Query<Card>(sqlQuery).ToList();
+                cards = db.Query<Card>(sqlQuery).ToList();
 
             }
             return cards;
