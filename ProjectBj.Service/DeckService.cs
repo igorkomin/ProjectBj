@@ -77,7 +77,7 @@ namespace ProjectBj.Service
             return deck;
         }
 
-        public static List<Card> Shuffle(List<Card> deck)
+        private static List<Card> Shuffle(List<Card> deck)
         {
             List<Card> shuffledDeck = new List<Card>();
             Random random = new Random();
