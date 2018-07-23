@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ProjectBj.Common;
+using ProjectBj.Common.ExceptionHandlers;
 using ProjectBj.DAL;
 using ProjectBj.DAL.Repositories;
 using ProjectBj.Entities;
-using ProjectBj.Configuration;
 
 namespace ProjectBj.Service
 {
