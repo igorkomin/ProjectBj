@@ -16,13 +16,11 @@ namespace ProjectBj.Service
         private static List<Card> _deck;
         private static CardRepository _cardRepository;
         private static PlayerRepository _playerRepository;
-        private static Random _random;
-
+        
         static DeckService()
         {
             _cardRepository = new CardRepository();
             _playerRepository = new PlayerRepository();
-            _random = new Random();
         }
 
         public static List<Card> NewDeck()
@@ -82,10 +80,11 @@ namespace ProjectBj.Service
         public static List<Card> Shuffle(List<Card> deck)
         {
             List<Card> shuffledDeck = new List<Card>();
+            Random random = new Random();
             int randomIndex = 0;
             while (deck.Count > 0)
             {
-                randomIndex = _random.Next(0, deck.Count);
+                randomIndex = random.Next(0, deck.Count);
                 shuffledDeck.Add(deck[randomIndex]);
                 deck.RemoveAt(randomIndex);
             }
