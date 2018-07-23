@@ -20,24 +20,54 @@ namespace ProjectBj.Service
         public static void CreateLogEntry(string message)
         {
             LogEntry entry = new LogEntry { Message = message, Time = DateTime.Now };
-            _logRepository.CreateEntry(entry);
+            try
+            {
+                _logRepository.CreateEntry(entry);
+            }
+            catch (Exception exception)
+            {
+                throw exception;
+            }
         }
 
         public static LogEntry GetLogEntry(int id)
         {
-            LogEntry entry = _logRepository.GetEntry(id);
+            LogEntry entry;
+            try
+            {
+                entry = _logRepository.GetEntry(id);
+            }
+            catch (Exception exception)
+            {
+                throw exception;
+            }
             return entry;
         }
 
         public static List<LogEntry> GetLogs()
         {
-            List<LogEntry> entries = _logRepository.GetAllLogs().ToList();
+            List<LogEntry> entries;
+            try
+            {
+                entries = _logRepository.GetAllLogs().ToList();
+            }
+            catch (Exception exception)
+            {
+                throw exception;
+            }
             return entries;
         }
 
         public static void DeleteLogEntry(LogEntry entry)
         {
-            _logRepository.DeleteEntry(entry.Id);
+            try
+            {
+                _logRepository.DeleteEntry(entry.Id);
+            }
+            catch (Exception exception)
+            {
+                throw exception;
+            }
         }
     }
 }
