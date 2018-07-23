@@ -23,7 +23,7 @@ namespace ProjectBj.Service
             _playerRepository = new PlayerRepository();
         }
 
-        public static List<Card> NewDeck()
+        private static List<Card> NewDeck()
         {
             _deck = new List<Card>();
 
