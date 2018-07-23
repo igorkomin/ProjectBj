@@ -19,7 +19,9 @@ namespace ProjectBj.DAL.Repositories
         {
             using (IDbConnection db = new SqlConnection(AppStrings.ConnectionString))
             {
-                var sqlQuery = "INSERT INTO Players (Name, Balance, IsHuman, InGame) VALUES(@Name, @Balance, @IsHuman, @InGame); SELECT CAST(SCOPE_IDENTITY() as int)";
+                var sqlQuery = "INSERT INTO Players (Name, Balance, IsHuman, InGame) " +
+                               "VALUES(@Name, @Balance, @IsHuman, @InGame); " +
+                               "SELECT CAST(SCOPE_IDENTITY() as int)";
                 int playerId = db.Query<int>(sqlQuery, player).FirstOrDefault();
                 player.Id = playerId;
             }
@@ -73,7 +75,9 @@ namespace ProjectBj.DAL.Repositories
         {
             using (IDbConnection db = new SqlConnection(AppStrings.ConnectionString))
             {
-                var sqlQuery = "UPDATE Players SET Name = @Name, IsHuman = @IsHuman, Balance = @Balance, InGame = @Ingame WHERE Id = @Id";
+                var sqlQuery = "UPDATE Players " +
+                               "SET Name = @Name, IsHuman = @IsHuman, Balance = @Balance, InGame = @Ingame " +
+                               "WHERE Id = @Id";
                 db.Execute(sqlQuery, player);
             }
         }
@@ -83,7 +87,8 @@ namespace ProjectBj.DAL.Repositories
             PlayerHand playerHand = new PlayerHand() { PlayerId = player.Id, CardId = card.Id };
             using (IDbConnection db = new SqlConnection(AppStrings.ConnectionString))
             {
-                var sqlQuery = "INSERT INTO PlayerHands (PlayerId, CardId) VALUES(@PlayerId, @CardId)";
+                var sqlQuery = "INSERT INTO PlayerHands (PlayerId, CardId) " +
+                               "VALUES (@PlayerId, @CardId)";
                 db.Execute(sqlQuery, playerHand);
             }
         }
@@ -93,7 +98,10 @@ namespace ProjectBj.DAL.Repositories
             List<Card> cards;
             using (IDbConnection db = new SqlConnection(AppStrings.ConnectionString))
             {
-                var sqlQuery = "SELECT c.* FROM playerhands ph JOIN Cards c ON ( ph.CardId = c.Id ) JOIN Players p ON ( ph.PlayerId = p.Id ) WHERE ph.PlayerId = @Id";
+                var sqlQuery = "SELECT c.* FROM playerhands ph " +
+                               "JOIN Cards c ON ( ph.CardId = c.Id ) " +
+                               "JOIN Players p ON ( ph.PlayerId = p.Id ) " +
+                               "WHERE ph.PlayerId = @Id";
                 cards = db.Query<Card>(sqlQuery, player).ToList();
             }
             return cards;
