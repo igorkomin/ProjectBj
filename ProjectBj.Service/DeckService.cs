@@ -56,7 +56,7 @@ namespace ProjectBj.Service
             return deckFromDb;
         }
 
-        public static void PushDeck(List<Card> localDeck)
+        private static void PushDeck(List<Card> localDeck)
         {
             foreach(var card in localDeck)
             {
