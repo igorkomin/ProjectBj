@@ -27,7 +27,7 @@ namespace ProjectBj.Service
             return player;
         }
 
-        public static Player NewBot()
+        private static Player NewBot()
         {
             Player newBot = new Player { Name = AppStrings.BotName, Balance = Values.StartBalance, IsHuman = false, InGame = true };
             newBot = _playerRepository.Create(newBot);
