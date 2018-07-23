@@ -44,7 +44,7 @@ namespace ProjectBj.Service
             }
         }
         
-        public static List<Card> PullDeck()
+        private static List<Card> PullDeck()
         {
             List<Card> deckFromDb = _cardRepository.GetAllCards().ToList();
 
