@@ -20,7 +20,7 @@ namespace ProjectBj.DAL.Repositories
             {
                 using (IDbConnection db = new SqlConnection(AppStrings.ConnectionString))
                 {
-                    var sqlQuery = "INSERT INTO Logs (Time, Message) VALUES (@Time, @Message)";
+                    var sqlQuery = "INSERT INTO Logs (SessionId, Time, Message) VALUES (@SessionId, @Time, @Message)";
                     db.Execute(sqlQuery, entry);
                 }
             }
@@ -32,7 +32,7 @@ namespace ProjectBj.DAL.Repositories
 
         public LogEntry GetEntry(int id)
         {
-            LogEntry entry = new LogEntry();
+            LogEntry entry;
             try
             {
                 using (IDbConnection db = new SqlConnection(AppStrings.ConnectionString))
@@ -56,7 +56,7 @@ namespace ProjectBj.DAL.Repositories
                 using (IDbConnection db = new SqlConnection(AppStrings.ConnectionString))
                 {
                     var sqlQuery = "SELECT * FROM Logs";
-                    logs = db.Query<LogEntry>(sqlQuery).ToList();
+                    logs = db.Query<LogEntry>(sqlQuery).AsList();
                 }
             }
             catch(SqlException exception)
