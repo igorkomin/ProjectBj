@@ -17,9 +17,9 @@ namespace ProjectBj.Service
             _logRepository = new LogRepository();
         }
 
-        public static void CreateLogEntry(string message)
+        public static void CreateLogEntry(string message, int sessionId)
         {
-            LogEntry entry = new LogEntry { Message = message, Time = DateTime.Now };
+            LogEntry entry = new LogEntry { SessionId = sessionId, Message = message, Time = DateTime.Now };
             try
             {
                 _logRepository.CreateEntry(entry);
