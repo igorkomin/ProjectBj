@@ -139,6 +139,18 @@ namespace ProjectBj.Service
             return cards;
         }
 
+        public static void ThrowCards(Player player)
+        {
+            try
+            {
+                _playerRepository.DeleteCards(player);
+            }
+            catch (Exception exception)
+            {
+                throw exception;
+            }
+        }
+
         public static void ChangePlayerBalance(Player player, int balanceDelta)
         {
             player.Balance += balanceDelta;
