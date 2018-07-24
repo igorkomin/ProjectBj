@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace ProjectBj.Entities
 {
-    class GameSession
+    public class GameSession
     {
         public int Id { get; set; }
-        public int PlayerId { get; set; }
-        public DateTime TimeJoined { get; set; }
-        public int Score { get; set; }
+        public bool IsOpen { get; set; }
+        public DateTime TimeCreated { get; set; }
     }
 }
