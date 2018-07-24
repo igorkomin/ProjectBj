@@ -56,8 +56,7 @@ namespace ProjectBj.DAL.Repositories
                 using (IDbConnection db = new SqlConnection(AppStrings.ConnectionString))
                 {
                     var sqlQuery = "SELECT * FROM Cards";
-                    cards = db.Query<Card>(sqlQuery).ToList();
-
+                    cards = db.Query<Card>(sqlQuery).AsList();
                 }
             }
             catch (SqlException exception)
