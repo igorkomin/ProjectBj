@@ -44,8 +44,8 @@ namespace ProjectBj.Service
         {
             foreach (var player in players)
             {
-                DeckService.DealCard(player);
-                DeckService.DealCard(player);
+                DealCard(player);
+                DealCard(player);
             }
         }
 
@@ -61,6 +61,13 @@ namespace ProjectBj.Service
                 }
                 DeckService.GivePlayerCard(dealer, card);
             }
+        }
+
+        public static void DealCard(Player player)
+        {
+            List<Card> deck = DeckService.GetShuffledDeck();
+            Card card = deck[0];
+            DeckService.GivePlayerCard(player, card);
         }
 
         public static bool IsBlackjack(int handTotal)
@@ -82,7 +89,7 @@ namespace ProjectBj.Service
 
         public static void Hit(Player player)
         {
-            DeckService.DealCard(player);
+            DealCard(player);
         }
     }
 }

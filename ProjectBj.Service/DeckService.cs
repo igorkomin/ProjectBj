@@ -45,7 +45,6 @@ namespace ProjectBj.Service
         
         private static List<Card> PullDeck()
         {
-
             List<Card> deckFromDb;
             try
             {
@@ -106,13 +105,6 @@ namespace ProjectBj.Service
         {
             List<Card> shuffledDeck = Shuffle(GetDeck());
             return shuffledDeck;
-        }
-
-        public static void DealCard(Player player)
-        {
-            List<Card> deck = GetShuffledDeck();
-            Card card = deck[0];
-            GivePlayerCard(player, card);
         }
 
         public static void GivePlayerCard(Player player, Card card)
