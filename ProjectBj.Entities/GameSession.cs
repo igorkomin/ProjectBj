@@ -9,7 +9,7 @@ namespace ProjectBj.Entities
     public class GameSession
     {
         public int Id { get; set; }
-        public bool IsOpen { get; set; }
+        public bool IsOpen { get; set; } = true;
         public DateTime TimeCreated { get; set; }
     }
 }
