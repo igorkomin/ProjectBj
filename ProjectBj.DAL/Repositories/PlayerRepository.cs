@@ -81,7 +81,7 @@ namespace ProjectBj.DAL.Repositories
                 using (IDbConnection db = new SqlConnection(AppStrings.ConnectionString))
                 {
                     var sqlQuery = "SELECT * FROM Players WHERE Name = @name";
-                    players = db.Query<Player>(sqlQuery, new { name }).ToList();
+                    players = db.Query<Player>(sqlQuery, new { name }).AsList();
                 }
             }
             catch (SqlException exception)
@@ -102,7 +102,7 @@ namespace ProjectBj.DAL.Repositories
                     player = db.Query<Player>(sqlQuery, new { id }).FirstOrDefault();
                 }
             }
-            catch (Exception exception)
+            catch (SqlException exception)
             {
                 throw new DataSourceException(exception.Message, exception);
             }
@@ -117,7 +117,7 @@ namespace ProjectBj.DAL.Repositories
                 using (IDbConnection db = new SqlConnection(AppStrings.ConnectionString))
                 {
                     var sqlQuery = "SELECT * FROM Players";
-                    players = db.Query<Player>(sqlQuery).ToList();
+                    players = db.Query<Player>(sqlQuery).AsList();
                 }
             }
             catch (SqlException exception)
@@ -170,11 +170,11 @@ namespace ProjectBj.DAL.Repositories
             {
                 using (IDbConnection db = new SqlConnection(AppStrings.ConnectionString))
                 {
-                    var sqlQuery = "SELECT c.* FROM playerhands ph " +
+                    var sqlQuery = "SELECT c.* FROM PlayerHands ph " +
                                    "JOIN Cards c ON ( ph.CardId = c.Id ) " +
                                    "JOIN Players p ON ( ph.PlayerId = p.Id ) " +
                                    "WHERE ph.PlayerId = @Id";
-                    cards = db.Query<Card>(sqlQuery, player).ToList();
+                    cards = db.Query<Card>(sqlQuery, player).AsList();
                 }
             }
             catch (SqlException exception)
@@ -182,6 +182,22 @@ namespace ProjectBj.DAL.Repositories
                 throw new DataSourceException(exception.Message, exception);
             }
             return cards;
+        }
+
+        public void DeleteCards(Player player)
+        {
+            try
+            {
+                using (IDbConnection db = new SqlConnection(AppStrings.ConnectionString))
+                {
+                    var sqlQuery = "DELETE FROM PlayerHands WHERE PlayerId = @Id";
+                    db.Execute(sqlQuery, player);
+                }
+            }
+            catch (SqlException exception)
+            {
+                throw new DataSourceException(exception.Message, exception); ;
+            }
         }
 
         public void DeletePlayersByName(string name)
