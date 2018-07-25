@@ -5,19 +5,20 @@ using System.Text;
 using System.Threading.Tasks;
 using ProjectBj.Entities;
 using ProjectBj.DAL.Repositories;
+using ProjectBj.Service.Interfaces;
 
 namespace ProjectBj.Service
 {
-    public static class LogService
+    public class LogService : ILogService
     {
-        private static LogRepository _logRepository;
+        private LogRepository _logRepository;
 
-        static LogService()
+        public LogService()
         {
             _logRepository = new LogRepository();
         }
 
-        public static void CreateLogEntry(string message, int sessionId)
+        public void CreateLogEntry(string message, int sessionId)
         {
             LogEntry entry = new LogEntry { SessionId = sessionId, Message = message, Time = DateTime.Now };
             try
@@ -30,35 +31,35 @@ namespace ProjectBj.Service
             }
         }
 
-        public static LogEntry GetLogEntry(int id)
+        public LogEntry GetLogEntry(int id)
         {
             LogEntry entry;
             try
             {
                 entry = _logRepository.GetEntry(id);
+                return entry;
             }
             catch (Exception exception)
             {
                 throw exception;
             }
-            return entry;
         }
 
-        public static List<LogEntry> GetLogs()
+        public List<LogEntry> GetLogs()
         {
             List<LogEntry> entries;
             try
             {
                 entries = _logRepository.GetAllLogs().ToList();
+                return entries;
             }
             catch (Exception exception)
             {
                 throw exception;
             }
-            return entries;
         }
 
-        public static void DeleteLogEntry(LogEntry entry)
+        public void DeleteLogEntry(LogEntry entry)
         {
             try
             {
