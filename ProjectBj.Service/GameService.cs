@@ -3,43 +3,45 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ProjectBj.Common;
-using ProjectBj.Common.ExceptionHandlers;
 using ProjectBj.DAL;
 using ProjectBj.DAL.Repositories;
 using ProjectBj.Entities;
+using ProjectBj.Service.Enums;
+using ProjectBj.Service.Helpers;
+using ProjectBj.Service.Interfaces;
 
 namespace ProjectBj.Service
 {
-    public static class GameService
+    public class GameService : IGameService
     {
-        public static int GetHandTotal(Player player)
+        public int GetHandTotal(Player player)
         {
             int totalValue = 0;
             int aceCount = 0;
 
-            List<Card> cards = PlayerService.GetCards(player);
+            List<Card> cards = new PlayerService().GetCards(player);
 
             foreach(var card in cards)
             {
-                int aceCardRank = (int)Enums.CardRanks.Rank.Ace;
-                int tenCardRank = (int)Enums.CardRanks.Rank.Ten;
+                int aceCardRank = (int)CardRanks.Rank.Ace;
+                int tenCardRank = (int)CardRanks.Rank.Ten;
                 if (card.Rank == aceCardRank)
                 {
-                    totalValue += Values.AceCardValue;
+                    totalValue += ValueHelper.AceCardValue;
                     continue;
                 }
                 if(card.Rank > tenCardRank)
                 {
-                    totalValue += Values.FaceCardValue;
+                    totalValue += ValueHelper.FaceCardValue;
                     continue;
                 }
                 totalValue += card.Rank;
             }
-            return totalValue > Values.BlackjackValue ? totalValue - aceCount * Values.AceDelta : totalValue;
+
+            return totalValue > ValueHelper.BlackjackValue ? totalValue - aceCount * ValueHelper.AceDelta : totalValue;
         }
 
-        public static void DealFirstTwoCards(List<Player> players)
+        public void DealFirstTwoCards(List<Player> players)
         {
             foreach (var player in players)
             {
@@ -48,46 +50,49 @@ namespace ProjectBj.Service
             }
         }
 
-        public static void FillDealerHand(Player dealer)
+        public void FillDealerHand(Player dealer)
         {
-            List<Card> deck = DeckService.GetShuffledDeck();
+            List<Card> deck = new DeckService().GetShuffledDeck();
             foreach (var card in deck)
             {
                 int dealerTotal = GetHandTotal(dealer);
-                if (dealerTotal > Values.MinDealerHandValue)
+                if (dealerTotal > ValueHelper.MinDealerHandValue)
                 {
                     return;
                 }
-                DeckService.GivePlayerCard(dealer, card);
+                new DeckService().GivePlayerCard(dealer, card);
             }
         }
 
-        public static void DealCard(Player player)
+        public void DealCard(Player player)
         {
-            List<Card> deck = DeckService.GetShuffledDeck();
+            List<Card> deck = new DeckService().GetShuffledDeck();
             Card card = deck[0];
-            DeckService.GivePlayerCard(player, card);
+            new DeckService().GivePlayerCard(player, card);
+
+            string cardRank = EnumHelper.GetEnumDescription((CardRanks.Rank)card.Rank);
         }
 
-        public static bool IsBlackjack(int handTotal)
+        public bool IsBlackjack(int handTotal)
         {
-            bool isBlackJack = handTotal == Values.BlackjackValue ? true : false;
+            bool isBlackJack = handTotal == ValueHelper.BlackjackValue ? true : false;
             return isBlackJack;
         }
 
-        public static bool IsBust(int handTotal)
+        public bool IsBust(int handTotal)
         {
-            bool isBust = handTotal > Values.BlackjackValue ? true : false;
+            bool isBust = handTotal > ValueHelper.BlackjackValue ? true : false;
             return isBust;
         }
 
-        public static void Stay(Player player)
+        public void Stay(Player player)
         {
+            
             player.InGame = false;
         }
 
-        public static void Hit(Player player)
-        {
+        public void Hit(Player player)
+        {   
             DealCard(player);
         }
     }
