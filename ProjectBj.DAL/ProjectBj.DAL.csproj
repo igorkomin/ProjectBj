@@ -54,6 +54,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DatabaseConfiguration.cs" />
+    <Compile Include="ExceptionHandlers\DataSourceException.cs" />
+    <Compile Include="Interfaces\ICardRepository.cs" />
+    <Compile Include="Interfaces\IGameSessionRepository.cs" />
+    <Compile Include="Interfaces\ILogRepository.cs" />
+    <Compile Include="Interfaces\IPlayerRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\CardRepository.cs" />
     <Compile Include="Repositories\GameSessionRepository.cs" />
