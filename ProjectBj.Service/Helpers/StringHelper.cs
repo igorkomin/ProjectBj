@@ -1,6 +1,6 @@
 ﻿namespace ProjectBj.Service.Helpers
 {
-    public class StringHelper
+    public static class StringHelper
     {
         #region Names
         public static readonly string DealerName = "Dealer";
