@@ -6,33 +6,34 @@ using System.Threading.Tasks;
 using ProjectBj.DAL;
 using ProjectBj.DAL.Repositories;
 using ProjectBj.Entities;
+using ProjectBj.Service.Interfaces;
 
 namespace ProjectBj.Service
 {
-    public static class SessionService
+    public class SessionService : ISessionService
     {
-        private static GameSessionRepository _sessionRepository;
+        private GameSessionRepository _sessionRepository;
 
-        static SessionService()
+        public SessionService()
         {
             _sessionRepository = new GameSessionRepository();
         }
 
-        public static GameSession CreateSession()
+        public GameSession CreateSession()
         {
             GameSession session = new GameSession { TimeCreated = DateTime.Now };
             try
             {
                 session = _sessionRepository.Create(session);
+                return session;
             }
             catch (Exception exception)
             {
                 throw exception;
             }
-            return session;
         }
 
-        public static void CloseSession(GameSession session)
+        public void CloseSession(GameSession session)
         {
             session.IsOpen = false;
             try
@@ -45,7 +46,7 @@ namespace ProjectBj.Service
             }
         }
 
-        public static void AddPlayer(GameSession session, Player player)
+        public void AddPlayer(GameSession session, Player player)
         {
             _sessionRepository.AddPlayer(session, player);
         }
