@@ -7,16 +7,16 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Configuration;
 using Dapper;
-using ProjectBj.Common;
-using ProjectBj.Common.ExceptionHandlers;
 using ProjectBj.Entities;
 using ProjectBj.Logger;
+using ProjectBj.DAL.Interfaces;
+using ProjectBj.DAL.ExceptionHandlers;
 
 namespace ProjectBj.DAL.Repositories
 {
-    public class CardRepository
+    public class CardRepository : ICardRepository
     {
-        public Card Create(Card card, IDbConnection db)
+        private Card Create(Card card, IDbConnection db)
         {
             var sqlQuery = "INSERT INTO Cards (Suit, Rank) " +
                            "VALUES(@Suit, @Rank); " +
@@ -26,19 +26,18 @@ namespace ProjectBj.DAL.Repositories
             {
                 int cardId = db.Query<int>(sqlQuery, card).FirstOrDefault();
                 card.Id = cardId;
+                return card;
             }
             catch (SqlException exception)
             {
                 throw new DataSourceException(exception.Message, exception);
             }
-
-            return card;
         }
 
         public ICollection<Card> CreateDeck(ICollection<Card> deck)
         {
             List<Card> newDeck = new List<Card>();
-            using (IDbConnection db = new SqlConnection(AppStrings.ConnectionString))
+            using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
             {
                 foreach (Card card in deck)
                 {
@@ -53,17 +52,17 @@ namespace ProjectBj.DAL.Repositories
             List<Card> cards;
             try
             {
-                using (IDbConnection db = new SqlConnection(AppStrings.ConnectionString))
+                using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
                 {
                     var sqlQuery = "SELECT * FROM Cards";
                     cards = db.Query<Card>(sqlQuery).AsList();
                 }
+                return cards;
             }
             catch (SqlException exception)
             {
                 throw new DataSourceException(exception.Message, exception);
             }
-            return cards;
         }
     }
 }
