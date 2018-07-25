@@ -6,19 +6,19 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
 using Dapper;
-using ProjectBj.Common.ExceptionHandlers;
-using ProjectBj.Common;
+using ProjectBj.DAL.Interfaces;
 using ProjectBj.Entities;
+using ProjectBj.DAL.ExceptionHandlers;
 
 namespace ProjectBj.DAL.Repositories
 {
-    public class LogRepository
+    public class LogRepository : ILogRepository
     {
         public void CreateEntry(LogEntry entry)
         {
             try
             {
-                using (IDbConnection db = new SqlConnection(AppStrings.ConnectionString))
+                using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
                 {
                     var sqlQuery = "INSERT INTO Logs (SessionId, Time, Message) VALUES (@SessionId, @Time, @Message)";
                     db.Execute(sqlQuery, entry);
@@ -35,17 +35,17 @@ namespace ProjectBj.DAL.Repositories
             LogEntry entry;
             try
             {
-                using (IDbConnection db = new SqlConnection(AppStrings.ConnectionString))
+                using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
                 {
                     var sqlQuery = "SELECT * FROM Logs WHERE Id = @id";
                     entry = db.Query<LogEntry>(sqlQuery, new { id }).FirstOrDefault();
                 }
+                return entry;
             }
             catch (SqlException exception)
             {
                 throw new DataSourceException(exception.Message, exception);
             }
-            return entry;
         }
 
         public ICollection<LogEntry> GetAllLogs()
@@ -53,24 +53,24 @@ namespace ProjectBj.DAL.Repositories
             List<LogEntry> logs = new List<LogEntry>();
             try
             {
-                using (IDbConnection db = new SqlConnection(AppStrings.ConnectionString))
+                using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
                 {
                     var sqlQuery = "SELECT * FROM Logs";
                     logs = db.Query<LogEntry>(sqlQuery).AsList();
                 }
+                return logs;
             }
             catch(SqlException exception)
             {
                 throw new DataSourceException(exception.Message, exception);
             }
-            return logs;
         }
 
         public void DeleteEntry(int id)
         {
             try
             {
-                using (IDbConnection db = new SqlConnection(AppStrings.ConnectionString))
+                using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
                 {
                     var sqlQuery = "DELETE FROM Logs WHERE Id = @id";
                     db.Execute(sqlQuery, new { id });
