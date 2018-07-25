@@ -36,7 +36,6 @@ namespace ProjectBj.Service
                 }
                 totalValue += card.Rank;
             }
-
             return totalValue > Values.BlackjackValue ? totalValue - aceCount * Values.AceDelta : totalValue;
         }
 
