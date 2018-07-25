@@ -3,68 +3,67 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ProjectBj.Common;
-using ProjectBj.Common.ExceptionHandlers;
 using ProjectBj.DAL.Repositories;
 using ProjectBj.Entities;
+using ProjectBj.Service.Interfaces;
+using ProjectBj.Service.Helpers;
 
 namespace ProjectBj.Service
 {
-    public static class PlayerService
+    public class PlayerService : IPlayerService
     {
-        private static PlayerRepository _playerRepository;
-        private static CardRepository _cardRepository;
+        private PlayerRepository _playerRepository;
+        private CardRepository _cardRepository;
 
-        static PlayerService()
+        public PlayerService()
         {
             _playerRepository = new PlayerRepository();
             _cardRepository = new CardRepository();
         }
 
-        private static Player NewPlayer(string name)
+        private Player NewPlayer(string name)
         {
-            Player player = new Player { Name = name, Balance = Values.StartBalance, InGame = true, IsHuman = true };
+            Player player = new Player { Name = name, Balance = ValueHelper.StartBalance, InGame = true, IsHuman = true };
             try
             {
                 player = _playerRepository.CreateOne(player);
+                return player;
             }
             catch (Exception exception)
             {
                 throw exception;
             }
-            return player;
         }
 
-        private static Player NewBot()
+        private Player NewBot()
         {
-            Player newBot = new Player { Name = AppStrings.BotName, Balance = Values.StartBalance, IsHuman = false, InGame = true };
+            Player newBot = new Player { Name = StringHelper.BotName, Balance = ValueHelper.StartBalance, IsHuman = false, InGame = true };
             try
             {
                 newBot = _playerRepository.CreateOne(newBot);
+                return newBot;
             }
             catch (Exception exception)
             {
                 throw exception;
             }
-            return newBot;
         }
 
-        private static Player NewDealer()
+        private Player NewDealer()
         {
-            Player dealer = new Player { Name = AppStrings.DealerName, InGame = false, IsHuman = false };
+            Player dealer = new Player { Name = StringHelper.DealerName, InGame = false, IsHuman = false };
             try
             {
                 dealer = _playerRepository.CreateOne(dealer);
+                return dealer;
             }
             catch(Exception exception)
             {
                 throw exception;
             }
-
-            return dealer;
         }
 
-        public static List<Player> CreateBots(int number)
+        public List<Player> CreateBots(int number)
         {
             DeleteAllBots();
             List<Player> bots = new List<Player>();
@@ -76,9 +75,9 @@ namespace ProjectBj.Service
             return bots;
         }
 
-        public static Player GetDealer()
+        public Player GetDealer()
         {
-            Player dealer = PullPlayer(AppStrings.DealerName);
+            Player dealer = PullPlayer(StringHelper.DealerName);
             if(dealer == null)
             {
                 dealer = NewDealer();
@@ -86,21 +85,21 @@ namespace ProjectBj.Service
             return dealer;
         }
 
-        private static Player PullPlayer(string name)
+        private Player PullPlayer(string name)
         {
             Player player;
             try
             {
                 player = _playerRepository.FindPlayers(name).FirstOrDefault();
+                return player;
             }
             catch (Exception exception)
             {
                 throw exception;
             }
-            return player;
         }
 
-        public static Player GetPlayer(string name)
+        public Player GetPlayer(string name)
         {
             Player player = PullPlayer(name);
             if(player == null)
@@ -110,36 +109,35 @@ namespace ProjectBj.Service
             return player;
         }
 
-        public static Player GetPlayerById(int playerId)
+        public Player GetPlayerById(int id)
         {
             Player player;
             try
             {
-                player = _playerRepository.Get(playerId);
+                player = _playerRepository.Get(id);
+                return player;
             }
             catch (Exception exception)
             {
                 throw exception;
             }
-
-            return player;
         }
 
-        public static List<Card> GetCards(Player player)
+        public List<Card> GetCards(Player player)
         {
             List<Card> cards;
             try
             {
                 cards = _playerRepository.GetCards(player).ToList();
+                return cards;
             }
             catch (Exception exception)
             {
                 throw exception;
             }
-            return cards;
         }
 
-        public static void ThrowCards(Player player)
+        public void ThrowCards(Player player)
         {
             try
             {
@@ -151,7 +149,7 @@ namespace ProjectBj.Service
             }
         }
 
-        public static void ChangePlayerBalance(Player player, int balanceDelta)
+        public void ChangePlayerBalance(Player player, int balanceDelta)
         {
             player.Balance += balanceDelta;
             try
@@ -164,7 +162,7 @@ namespace ProjectBj.Service
             }
         }
 
-        public static void DeletePlayer(Player player)
+        public void DeletePlayer(Player player)
         {
             try
             {
@@ -176,11 +174,11 @@ namespace ProjectBj.Service
             }
         }
 
-        private static void DeleteAllBots()
+        private void DeleteAllBots()
         {
             try
             {
-                _playerRepository.DeletePlayersByName(AppStrings.BotName);
+                _playerRepository.DeletePlayersByName(StringHelper.BotName);
             }
             catch (Exception exception)
             {
