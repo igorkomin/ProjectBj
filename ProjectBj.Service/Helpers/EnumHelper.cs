@@ -13,7 +13,6 @@ namespace ProjectBj.Service.Helpers
         {
             var fieldInfo = value.GetType().GetField(value.ToString());
             var attributes = (DescriptionAttribute[])fieldInfo.GetCustomAttributes(typeof(DescriptionAttribute), false);
-
             return attributes[0].Description;
         }
     }
