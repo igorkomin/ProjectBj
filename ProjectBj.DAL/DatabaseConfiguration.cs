@@ -1,6 +1,6 @@
 ﻿namespace ProjectBj.DAL
 {
-    internal class DatabaseConfiguration
+    internal static class DatabaseConfiguration
     {
         public static readonly string Server = "localhost";
         public static readonly string Database = "blackjack";
