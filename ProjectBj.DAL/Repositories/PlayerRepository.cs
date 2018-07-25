@@ -7,14 +7,14 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Configuration;
 using Dapper;
-using ProjectBj.Common;
-using ProjectBj.Common.ExceptionHandlers;
+using ProjectBj.DAL.Interfaces;
 using ProjectBj.Entities;
 using ProjectBj.Logger;
+using ProjectBj.DAL.ExceptionHandlers;
 
 namespace ProjectBj.DAL.Repositories
 {
-    public class PlayerRepository
+    public class PlayerRepository : IPlayerRepository
     {
         private string _insertQuery = "INSERT INTO Players (Name, Balance, IsHuman, InGame) " +
                                       "VALUES(@Name, @Balance, @IsHuman, @InGame); " +
@@ -24,44 +24,44 @@ namespace ProjectBj.DAL.Repositories
         {
             try
             {
-                using (IDbConnection db = new SqlConnection(AppStrings.ConnectionString))
+                using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
                 {
                     int playerId = db.Query<int>(_insertQuery, player).FirstOrDefault();
                     player.Id = playerId;
                 }
+                return player;
             }
             catch (SqlException exception)
             {
                 throw new DataSourceException(exception.Message, exception);
             }
-            return player;
         }
 
         public ICollection<Player> CreateMany(ICollection<Player> players)
         {
             try
             {
-                using (IDbConnection db = new SqlConnection(AppStrings.ConnectionString))
+                using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
                 {
                     foreach (var player in players)
                     {
                         int playerId = db.Query<int>(_insertQuery, player).FirstOrDefault();
                         player.Id = playerId;
                     }
+                    return players;
                 }
             }
             catch(SqlException exception)
             {
                 throw new DataSourceException(exception.Message, exception);
             }
-            return players;
         }
 
         public void Delete(int id)
         {
             try
             {
-                using (IDbConnection db = new SqlConnection(AppStrings.ConnectionString))
+                using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
                 {
                     var sqlQuery = "DELETE FROM Players WHERE Id = @id";
                     db.Execute(sqlQuery, new { id });
@@ -78,17 +78,17 @@ namespace ProjectBj.DAL.Repositories
             List<Player> players;
             try
             {
-                using (IDbConnection db = new SqlConnection(AppStrings.ConnectionString))
+                using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
                 {
                     var sqlQuery = "SELECT * FROM Players WHERE Name = @name";
                     players = db.Query<Player>(sqlQuery, new { name }).AsList();
                 }
+                return players;
             }
             catch (SqlException exception)
             {
                 throw new DataSourceException(exception.Message, exception);
             }
-            return players;
         }
 
         public Player Get(int id)
@@ -96,17 +96,17 @@ namespace ProjectBj.DAL.Repositories
             Player player;
             try
             {
-                using (IDbConnection db = new SqlConnection(AppStrings.ConnectionString))
+                using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
                 {
                     var sqlQuery = "SELECT * FROM Players WHERE Id = @id";
                     player = db.Query<Player>(sqlQuery, new { id }).FirstOrDefault();
                 }
+                return player;
             }
             catch (SqlException exception)
             {
                 throw new DataSourceException(exception.Message, exception);
             }
-            return player;
         }
 
         public ICollection<Player> GetAllPlayers()
@@ -114,24 +114,24 @@ namespace ProjectBj.DAL.Repositories
             List<Player> players;
             try
             {
-                using (IDbConnection db = new SqlConnection(AppStrings.ConnectionString))
+                using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
                 {
                     var sqlQuery = "SELECT * FROM Players";
                     players = db.Query<Player>(sqlQuery).AsList();
                 }
+                return players;
             }
             catch (SqlException exception)
             {
                 throw new DataSourceException(exception.Message, exception);
             }
-            return players;
         }
 
         public void Update(Player player)
         {
             try
             {
-                using (IDbConnection db = new SqlConnection(AppStrings.ConnectionString))
+                using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
                 {
                     var sqlQuery = "UPDATE Players " +
                                    "SET Name = @Name, IsHuman = @IsHuman, Balance = @Balance, InGame = @Ingame " +
@@ -143,6 +143,7 @@ namespace ProjectBj.DAL.Repositories
             {
                 throw new DataSourceException(exception.Message, exception);
             }
+
         }
 
         public void AddCard(Player player, Card card)
@@ -150,7 +151,7 @@ namespace ProjectBj.DAL.Repositories
             try
             {
                 PlayerHand playerHand = new PlayerHand() { PlayerId = player.Id, CardId = card.Id };
-                using (IDbConnection db = new SqlConnection(AppStrings.ConnectionString))
+                using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
                 {
                     var sqlQuery = "INSERT INTO PlayerHands (PlayerId, CardId) " +
                                    "VALUES (@PlayerId, @CardId)";
@@ -168,7 +169,7 @@ namespace ProjectBj.DAL.Repositories
             List<Card> cards;
             try
             {
-                using (IDbConnection db = new SqlConnection(AppStrings.ConnectionString))
+                using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
                 {
                     var sqlQuery = "SELECT c.* FROM PlayerHands ph " +
                                    "JOIN Cards c ON ( ph.CardId = c.Id ) " +
@@ -176,19 +177,19 @@ namespace ProjectBj.DAL.Repositories
                                    "WHERE ph.PlayerId = @Id";
                     cards = db.Query<Card>(sqlQuery, player).AsList();
                 }
+                return cards;
             }
             catch (SqlException exception)
             {
                 throw new DataSourceException(exception.Message, exception);
             }
-            return cards;
         }
 
         public void DeleteCards(Player player)
         {
             try
             {
-                using (IDbConnection db = new SqlConnection(AppStrings.ConnectionString))
+                using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
                 {
                     var sqlQuery = "DELETE FROM PlayerHands WHERE PlayerId = @Id";
                     db.Execute(sqlQuery, player);
@@ -204,7 +205,7 @@ namespace ProjectBj.DAL.Repositories
         {
             try
             {
-                using (IDbConnection db = new SqlConnection(AppStrings.ConnectionString))
+                using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
                 {
                     var sqlQuery = "DELETE FROM Players WHERE Name = @name";
                     db.Execute(sqlQuery, new { name });
