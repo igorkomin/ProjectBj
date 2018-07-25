@@ -7,22 +7,23 @@ using ProjectBj.Entities;
 using ProjectBj.DAL;
 using ProjectBj.DAL.Repositories;
 using ProjectBj.Logger;
+using ProjectBj.Service.Interfaces;
 
 namespace ProjectBj.Service
 {
-    public static class DeckService
+    public class DeckService : IDeckService
     {
-        private static List<Card> _deck;
-        private static CardRepository _cardRepository;
-        private static PlayerRepository _playerRepository;
+        private List<Card> _deck;
+        private CardRepository _cardRepository;
+        private PlayerRepository _playerRepository;
         
-        static DeckService()
+        public DeckService()
         {
             _cardRepository = new CardRepository();
             _playerRepository = new PlayerRepository();
         }
 
-        private static List<Card> NewDeck()
+        private List<Card> NewDeck()
         {
             _deck = new List<Card>();
 
@@ -34,7 +35,7 @@ namespace ProjectBj.Service
             return _deck;
         }
 
-        private static void AddSuit(string suit)
+        private void AddSuit(string suit)
         {
             foreach (int rank in Enum.GetValues(typeof(Enums.CardRanks.Rank)))
             {
@@ -43,7 +44,7 @@ namespace ProjectBj.Service
             }
         }
         
-        private static List<Card> PullDeck()
+        private List<Card> PullDeck()
         {
             List<Card> deckFromDb;
             try
@@ -53,16 +54,15 @@ namespace ProjectBj.Service
                 {
                     return null;
                 }
+                return deckFromDb;
             }
             catch (Exception exception)
             {
                 throw exception;
             }
-
-            return deckFromDb;
         }
 
-        private static void PushDeck(List<Card> localDeck)
+        private void PushDeck(List<Card> localDeck)
         {
             try
             {
@@ -74,7 +74,7 @@ namespace ProjectBj.Service
             }
         }
 
-        public static List<Card> GetDeck()
+        public List<Card> GetDeck()
         {
             List<Card> deck = PullDeck();
 
@@ -87,7 +87,7 @@ namespace ProjectBj.Service
             return deck;
         }
 
-        private static List<Card> Shuffle(List<Card> deck)
+        private List<Card> Shuffle(List<Card> deck)
         {
             List<Card> shuffledDeck = new List<Card>();
             Random random = new Random();
@@ -101,13 +101,13 @@ namespace ProjectBj.Service
             return shuffledDeck;
         }
 
-        public static List<Card> GetShuffledDeck()
+        public List<Card> GetShuffledDeck()
         {
             List<Card> shuffledDeck = Shuffle(GetDeck());
             return shuffledDeck;
         }
 
-        public static void GivePlayerCard(Player player, Card card)
+        public void GivePlayerCard(Player player, Card card)
         {
             try
             {
