@@ -58,10 +58,6 @@
     <Compile Include="SessionService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ProjectBj.Common\ProjectBj.Common.csproj">
-      <Project>{07309782-5321-4b06-93cd-d6e2d410254d}</Project>
-      <Name>ProjectBj.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ProjectBj.DAL\ProjectBj.DAL.csproj">
       <Project>{f39b0a1a-cf4f-416d-b5ab-232a5479fccd}</Project>
       <Name>ProjectBj.DAL</Name>
