@@ -41,38 +41,6 @@ namespace ProjectBj.Service
             return totalValue > ValueHelper.BlackjackValue ? totalValue - aceCount * ValueHelper.AceDelta : totalValue;
         }
 
-        public void DealFirstTwoCards(List<Player> players)
-        {
-            foreach (var player in players)
-            {
-                DealCard(player);
-                DealCard(player);
-            }
-        }
-
-        public void FillDealerHand(Player dealer)
-        {
-            List<Card> deck = new DeckService().GetShuffledDeck();
-            foreach (var card in deck)
-            {
-                int dealerTotal = GetHandTotal(dealer);
-                if (dealerTotal > ValueHelper.MinDealerHandValue)
-                {
-                    return;
-                }
-                new DeckService().GivePlayerCard(dealer, card);
-            }
-        }
-
-        public void DealCard(Player player)
-        {
-            List<Card> deck = new DeckService().GetShuffledDeck();
-            Card card = deck[0];
-            new DeckService().GivePlayerCard(player, card);
-
-            string cardRank = EnumHelper.GetEnumDescription((CardRanks.Rank)card.Rank);
-        }
-
         public bool IsBlackjack(int handTotal)
         {
             bool isBlackJack = handTotal == ValueHelper.BlackjackValue ? true : false;
@@ -87,13 +55,7 @@ namespace ProjectBj.Service
 
         public void Stay(Player player)
         {
-            
             player.InGame = false;
-        }
-
-        public void Hit(Player player)
-        {   
-            DealCard(player);
         }
     }
 }

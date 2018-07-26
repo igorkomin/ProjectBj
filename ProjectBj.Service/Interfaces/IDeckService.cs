@@ -12,5 +12,9 @@ namespace ProjectBj.Service.Interfaces
         List<Card> GetDeck();
         List<Card> GetShuffledDeck();
         void GivePlayerCard(Player player, Card card);
+        void FillDealerHand(Player player);
+        void DealCard(Player player);
+        void Hit(Player player);
+        void DealFirstTwoCards(List<Player> players);
     }
 }

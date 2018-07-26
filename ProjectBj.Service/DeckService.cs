@@ -7,6 +7,8 @@ using ProjectBj.Entities;
 using ProjectBj.DAL;
 using ProjectBj.DAL.Repositories;
 using ProjectBj.Logger;
+using ProjectBj.Service.Enums;
+using ProjectBj.Service.Helpers;
 using ProjectBj.Service.Interfaces;
 
 namespace ProjectBj.Service
@@ -117,6 +119,43 @@ namespace ProjectBj.Service
             {
                 throw exception;
             }
+        }
+
+        public void FillDealerHand(Player dealer)
+        {
+            List<Card> deck = GetShuffledDeck();
+            foreach(var card in deck)
+            {
+                int dealerTotal = new GameService().GetHandTotal(dealer);
+                if (dealerTotal > ValueHelper.MinDealerHandValue)
+                {
+                    return;
+                }
+                GivePlayerCard(dealer, card);
+            }
+        }
+
+        public void DealCard(Player player)
+        {
+            List<Card> deck = new DeckService().GetShuffledDeck();
+            Card card = deck[0];
+            new DeckService().GivePlayerCard(player, card);
+
+            string cardRank = EnumHelper.GetEnumDescription((CardRanks.Rank)card.Rank);
+        }
+
+        public void DealFirstTwoCards(List<Player> players)
+        {
+            foreach (var player in players)
+            {
+                DealCard(player);
+                DealCard(player);
+            }
+        }
+
+        public void Hit(Player player)
+        {
+            DealCard(player);
         }
     }
 }

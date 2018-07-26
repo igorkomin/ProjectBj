@@ -12,10 +12,6 @@ namespace ProjectBj.Service.Interfaces
         int GetHandTotal(Player player);
         bool IsBlackjack(int handTotal);
         bool IsBust(int handTotal);
-        void DealFirstTwoCards(List<Player> players);
-        void FillDealerHand(Player player);
-        void DealCard(Player player);
         void Stay(Player player);
-        void Hit(Player player);
     }
 }
