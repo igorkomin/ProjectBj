@@ -45,13 +45,12 @@ namespace ProjectBj.Service
             }
         }
 
-        public List<LogEntry> GetLogs()
+        public async Task<List<LogEntry>> GetLogs()
         {
-            List<LogEntry> entries;
             try
             {
-                entries = _logRepository.GetAllLogs().ToList();
-                return entries;
+                var entries = await _logRepository.GetAllLogs();
+                return entries.ToList();
             }
             catch (Exception exception)
             {
