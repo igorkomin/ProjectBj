@@ -90,17 +90,16 @@ namespace ProjectBj.DAL.Repositories
             }
         }
 
-        public Player Get(int id)
+        public async Task<Player> Get(int id)
         {
-            Player player;
             try
             {
                 using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
                 {
                     var sqlQuery = "SELECT * FROM Players WHERE Id = @id";
-                    player = db.Query<Player>(sqlQuery, new { id }).FirstOrDefault();
+                    var player = await db.QueryAsync<Player>(sqlQuery, new { id });
+                    return player.FirstOrDefault();
                 }
-                return player;
             }
             catch (SqlException exception)
             {

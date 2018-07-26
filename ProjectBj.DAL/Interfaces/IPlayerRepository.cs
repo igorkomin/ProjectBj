@@ -10,7 +10,7 @@ namespace ProjectBj.DAL.Interfaces
     interface IPlayerRepository
     {
         Task<Player> CreateOne(Player player);
-        Player Get(int id);
+        Task<Player> Get(int id);
         Task<ICollection<Player>> CreateMany(ICollection<Player> players);
         Task<ICollection<Player>> FindPlayers(string name);
         ICollection<Player> GetAllPlayers();
