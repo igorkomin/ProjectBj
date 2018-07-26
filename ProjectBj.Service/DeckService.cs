@@ -29,7 +29,7 @@ namespace ProjectBj.Service
         {
             _deck = new List<Card>();
 
-            foreach (var suit in Enum.GetValues(typeof(Enums.CardSuits.Suit)))
+            foreach (var suit in Enum.GetValues(typeof(CardSuits.Suit)))
             {
                 AddSuit(suit.ToString());
             }
@@ -39,7 +39,7 @@ namespace ProjectBj.Service
 
         private void AddSuit(string suit)
         {
-            foreach (int rank in Enum.GetValues(typeof(Enums.CardRanks.Rank)))
+            foreach (int rank in Enum.GetValues(typeof(CardRanks.Rank)))
             {
                 var card = new Card { Rank = rank, Suit = suit };
                 _deck.Add(card);
@@ -64,11 +64,11 @@ namespace ProjectBj.Service
             }
         }
 
-        private void PushDeck(List<Card> localDeck)
+        private async Task PushDeck(List<Card> localDeck)
         {
             try
             {
-                _cardRepository.CreateDeck(localDeck);
+                await _cardRepository.CreateDeck(localDeck);
             }
             catch (Exception exception)
             {
@@ -126,7 +126,7 @@ namespace ProjectBj.Service
             List<Card> deck = GetShuffledDeck();
             foreach(var card in deck)
             {
-                int dealerTotal = new GameService().GetHandTotal(dealer);
+                int dealerTotal = new PlayerService().GetHandTotal(dealer);
                 if (dealerTotal > ValueHelper.MinDealerHandValue)
                 {
                     return;
