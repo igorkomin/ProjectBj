@@ -86,13 +86,12 @@ namespace ProjectBj.Service
             return dealer;
         }
 
-        private Player PullPlayer(string name)
+        private async Task<Player> PullPlayer(string name)
         {
-            Player player;
             try
             {
-                player = _playerRepository.FindPlayers(name).FirstOrDefault();
-                return player;
+                var player = await _playerRepository.FindPlayers(name);
+                return player.FirstOrDefault();
             }
             catch (Exception exception)
             {
