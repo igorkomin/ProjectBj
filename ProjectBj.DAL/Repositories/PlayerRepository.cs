@@ -197,14 +197,14 @@ namespace ProjectBj.DAL.Repositories
             }
         }
 
-        public void DeletePlayersByName(string name)
+        public async Task DeletePlayersByName(string name)
         {
             try
             {
                 using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
                 {
                     var sqlQuery = "DELETE FROM Players WHERE Name = @name";
-                    db.Execute(sqlQuery, new { name });
+                    await db.ExecuteAsync(sqlQuery, new { name });
                 }
             }
             catch (SqlException exception)

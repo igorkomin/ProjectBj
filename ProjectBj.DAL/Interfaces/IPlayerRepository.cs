@@ -19,6 +19,6 @@ namespace ProjectBj.DAL.Interfaces
         Task Update(Player player);
         Task AddCard(Player player, Card card);
         Task DeleteCards(Player player);
-        void DeletePlayersByName(string name);
+        Task DeletePlayersByName(string name);
     }
 }
