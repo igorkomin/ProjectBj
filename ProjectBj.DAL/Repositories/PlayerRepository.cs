@@ -181,14 +181,14 @@ namespace ProjectBj.DAL.Repositories
             }
         }
 
-        public void DeleteCards(Player player)
+        public async Task DeleteCards(Player player)
         {
             try
             {
                 using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
                 {
                     var sqlQuery = "DELETE FROM PlayerHands WHERE PlayerId = @Id";
-                    db.Execute(sqlQuery, player);
+                    await db.ExecuteAsync(sqlQuery, player);
                 }
             }
             catch (SqlException exception)
