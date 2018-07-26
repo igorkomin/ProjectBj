@@ -46,9 +46,9 @@ namespace ProjectBj.Service
             }
         }
 
-        public void AddPlayer(GameSession session, Player player)
+        public async Task AddPlayer(GameSession session, Player player)
         {
-            _sessionRepository.AddPlayer(session, player);
+            await _sessionRepository.AddPlayer(session, player);
         }
     }
 }
