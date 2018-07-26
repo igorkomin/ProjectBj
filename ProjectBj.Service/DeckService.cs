@@ -152,9 +152,9 @@ namespace ProjectBj.Service
             }
         }
 
-        public void Hit(Player player)
+        public async Task Hit(Player player)
         {
-            DealCard(player);
+            await DealCard(player);
         }
     }
 }
