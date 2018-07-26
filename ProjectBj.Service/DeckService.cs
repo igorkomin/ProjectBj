@@ -137,9 +137,9 @@ namespace ProjectBj.Service
 
         public void DealCard(Player player)
         {
-            List<Card> deck = new DeckService().GetShuffledDeck();
+            List<Card> deck = GetShuffledDeck();
             Card card = deck[0];
-            new DeckService().GivePlayerCard(player, card);
+            GivePlayerCard(player, card);
 
             string cardRank = EnumHelper.GetEnumDescription((CardRanks.Rank)card.Rank);
         }
