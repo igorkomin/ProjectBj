@@ -64,14 +64,14 @@ namespace ProjectBj.DAL.Repositories
             }
         }
 
-        public void DeleteEntry(int id)
+        public async Task DeleteEntry(int id)
         {
             try
             {
                 using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
                 {
                     var sqlQuery = "DELETE FROM Logs WHERE Id = @id";
-                    db.Execute(sqlQuery, new { id });
+                    await db.ExecuteAsync(sqlQuery, new { id });
                 }
             }
             catch (SqlException exception)

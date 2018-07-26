@@ -12,6 +12,6 @@ namespace ProjectBj.DAL.Interfaces
         Task<LogEntry> GetEntry(int id);
         Task<ICollection<LogEntry>> GetAllLogs();
         Task CreateEntry(LogEntry entry);
-        void DeleteEntry(int id);
+        Task DeleteEntry(int id);
     }
 }
