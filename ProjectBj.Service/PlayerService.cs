@@ -137,11 +137,11 @@ namespace ProjectBj.Service
             }
         }
 
-        public void ThrowCards(Player player)
+        public async Task ThrowCards(Player player)
         {
             try
             {
-                _playerRepository.DeleteCards(player);
+                await _playerRepository.DeleteCards(player);
             }
             catch (Exception exception)
             {
