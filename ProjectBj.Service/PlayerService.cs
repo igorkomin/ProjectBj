@@ -66,7 +66,7 @@ namespace ProjectBj.Service
 
         public async Task<List<Player>> CreateBots(int number)
         {
-            DeleteAllBots();
+            await DeleteAllBots();
             List<Player> bots = new List<Player>();
             for(int i = 0; i < number; i++)
             {
