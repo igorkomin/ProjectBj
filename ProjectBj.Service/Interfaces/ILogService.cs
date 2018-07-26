@@ -12,6 +12,6 @@ namespace ProjectBj.Service.Interfaces
         Task CreateLogEntry(string message, int sessionId);
         Task<LogEntry> GetLogEntry(int id);
         Task<List<LogEntry>> GetLogs();
-        void DeleteLogEntry(LogEntry entry);
+        Task DeleteLogEntry(LogEntry entry);
     }
 }

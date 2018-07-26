@@ -58,11 +58,11 @@ namespace ProjectBj.Service
             }
         }
 
-        public void DeleteLogEntry(LogEntry entry)
+        public async Task DeleteLogEntry(LogEntry entry)
         {
             try
             {
-                _logRepository.DeleteEntry(entry.Id);
+                await _logRepository.DeleteEntry(entry.Id);
             }
             catch (Exception exception)
             {
