@@ -16,7 +16,7 @@ namespace ProjectBj.DAL.Repositories
 {
     public class CardRepository : ICardRepository
     {
-        private Card Create(Card card, IDbConnection db)
+        private async Task<Card> Create(Card card, IDbConnection db)
         {
             var sqlQuery = "INSERT INTO Cards (Suit, Rank) " +
                            "VALUES(@Suit, @Rank); " +
@@ -24,8 +24,8 @@ namespace ProjectBj.DAL.Repositories
 
             try
             {
-                int cardId = db.Query<int>(sqlQuery, card).FirstOrDefault();
-                card.Id = cardId;
+                var cardId = await db.QueryAsync<int>(sqlQuery, card);
+                card.Id = cardId.FirstOrDefault();
                 return card;
             }
             catch (SqlException exception)
@@ -36,7 +36,7 @@ namespace ProjectBj.DAL.Repositories
 
         public ICollection<Card> CreateDeck(ICollection<Card> deck)
         {
-            List<Card> newDeck = new List<Card>();
+            var newDeck = new List<Card>();
             using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
             {
                 foreach (Card card in deck)
