@@ -15,6 +15,6 @@ namespace ProjectBj.DAL.Interfaces
         ICollection<GameSession> GetPlayerSessions(Player player);
         Task Update(GameSession session);
         Task Delete(GameSession session);
-        void AddPlayer(GameSession session, Player player);
+        Task AddPlayer(GameSession session, Player player);
     }
 }

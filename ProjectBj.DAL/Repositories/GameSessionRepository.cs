@@ -67,7 +67,7 @@ namespace ProjectBj.DAL.Repositories
             }
         }
 
-        public void AddPlayer(GameSession session, Player player)
+        public async Task AddPlayer(GameSession session, Player player)
         {
             try
             {
@@ -76,7 +76,7 @@ namespace ProjectBj.DAL.Repositories
                 {
                     var sqlQuery = "INSERT INTO GameSessionPlayers (SessionId, PlayerId, TimeJoined) " +
                                    "VALUES (@SessionId, @PlayerId, @TimeJoined)";
-                    db.Execute(sqlQuery, gameSessionPlayer);
+                    await db.ExecuteAsync(sqlQuery, gameSessionPlayer);
                 }
             }
             catch (SqlException exception)
