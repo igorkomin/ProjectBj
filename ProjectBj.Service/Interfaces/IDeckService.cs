@@ -9,7 +9,7 @@ namespace ProjectBj.Service.Interfaces
 {
     public interface IDeckService
     {
-        List<Card> GetDeck();
+        Task<List<Card>> GetDeck();
         List<Card> GetShuffledDeck();
         void GivePlayerCard(Player player, Card card);
         void FillDealerHand(Player player);

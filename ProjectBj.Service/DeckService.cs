@@ -75,14 +75,14 @@ namespace ProjectBj.Service
             }
         }
 
-        public List<Card> GetDeck()
+        public async Task<List<Card>> GetDeck()
         {
-            List<Card> deck = PullDeck();
+            List<Card> deck = await PullDeck();
 
             if(deck == null)
             {
                 deck = NewDeck();
-                PushDeck(deck);
+                await PushDeck(deck);
             }
 
             return deck;
