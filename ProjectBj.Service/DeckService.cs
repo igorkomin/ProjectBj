@@ -143,12 +143,12 @@ namespace ProjectBj.Service
             string cardRank = EnumHelper.GetEnumDescription((CardRanks.Rank)card.Rank);
         }
 
-        public void DealFirstTwoCards(List<Player> players)
+        public async Task DealFirstTwoCards(List<Player> players)
         {
             foreach (var player in players)
             {
-                DealCard(player);
-                DealCard(player);
+                await DealCard(player);
+                await DealCard(player);
             }
         }
 

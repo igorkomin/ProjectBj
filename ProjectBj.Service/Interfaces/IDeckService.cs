@@ -15,6 +15,6 @@ namespace ProjectBj.Service.Interfaces
         Task FillDealerHand(Player player);
         Task DealCard(Player player);
         void Hit(Player player);
-        void DealFirstTwoCards(List<Player> players);
+        Task DealFirstTwoCards(List<Player> players);
     }
 }
