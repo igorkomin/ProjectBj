@@ -105,9 +105,8 @@ namespace ProjectBj.DAL.Repositories
             }
         }
 
-        public ICollection<GameSession> GetPlayerSessions(Player player)
+        public async Task<ICollection<GameSession>> GetPlayerSessions(Player player)
         {
-            List<GameSession> sessions;
             try
             {
                 using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
@@ -117,8 +116,8 @@ namespace ProjectBj.DAL.Repositories
                                    "JOIN GameSessions gs ON ( gsp.PlayerId = gs.Id ) " +
                                    "WHERE p.Id = @Id";
 
-                    sessions = db.Query<GameSession>(sqlQuery, player).AsList();
-                    return sessions;
+                    var sessions = await db.QueryAsync<GameSession>(sqlQuery, player);
+                    return sessions.AsList();
                 }
             }
             catch (SqlException exception)
