@@ -37,7 +37,7 @@ namespace ProjectBj.DAL.Repositories
             }
         }
 
-        public ICollection<Player> CreateMany(ICollection<Player> players)
+        public async Task<ICollection<Player>> CreateMany(ICollection<Player> players)
         {
             try
             {
@@ -45,8 +45,8 @@ namespace ProjectBj.DAL.Repositories
                 {
                     foreach (var player in players)
                     {
-                        int playerId = db.Query<int>(_insertQuery, player).FirstOrDefault();
-                        player.Id = playerId;
+                        var playerId = await db.QueryAsync<int>(_insertQuery, player);
+                        player.Id = playerId.FirstOrDefault();
                     }
                     return players;
                 }
