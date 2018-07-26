@@ -17,6 +17,6 @@ namespace ProjectBj.Service.Interfaces
         int GetHandTotal(Player player);
         Task ThrowCards(Player player);
         Task ChangePlayerBalance(Player player, int balanceDelta);
-        void DeletePlayer(Player player);
+        Task DeletePlayer(Player player);
     }
 }

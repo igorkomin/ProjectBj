@@ -161,11 +161,11 @@ namespace ProjectBj.Service
             }
         }
 
-        public void DeletePlayer(Player player)
+        public async Task DeletePlayer(Player player)
         {
             try
             {
-                _playerRepository.Delete(player.Id);
+                await _playerRepository.Delete(player.Id);
             }
             catch (Exception exception)
             {
