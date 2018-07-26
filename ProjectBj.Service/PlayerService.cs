@@ -7,6 +7,7 @@ using ProjectBj.DAL.Repositories;
 using ProjectBj.Entities;
 using ProjectBj.Service.Interfaces;
 using ProjectBj.Service.Helpers;
+using ProjectBj.Service.Enums;
 
 namespace ProjectBj.Service
 {
@@ -184,6 +185,33 @@ namespace ProjectBj.Service
             {
                 throw exception;
             }
+        }
+
+        public int GetHandTotal(Player player)
+        {
+            int totalValue = 0;
+            int aceCount = 0;
+
+            List<Card> cards = GetCards(player);
+
+            foreach (var card in cards)
+            {
+                int aceCardRank = (int)CardRanks.Rank.Ace;
+                int tenCardRank = (int)CardRanks.Rank.Ten;
+                if (card.Rank == aceCardRank)
+                {
+                    totalValue += ValueHelper.AceCardValue;
+                    continue;
+                }
+                if (card.Rank > tenCardRank)
+                {
+                    totalValue += ValueHelper.FaceCardValue;
+                    continue;
+                }
+                totalValue += card.Rank;
+            }
+
+            return totalValue > ValueHelper.BlackjackValue ? totalValue - aceCount * ValueHelper.AceDelta : totalValue;
         }
     }
 }
