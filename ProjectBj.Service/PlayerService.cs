@@ -36,12 +36,12 @@ namespace ProjectBj.Service
             }
         }
 
-        private Player NewBot()
+        private async Task<Player> NewBot()
         {
             Player newBot = new Player { Name = StringHelper.BotName, Balance = ValueHelper.StartBalance, IsHuman = false, InGame = true };
             try
             {
-                newBot = _playerRepository.CreateOne(newBot);
+                newBot = await _playerRepository.CreateOne(newBot);
                 return newBot;
             }
             catch (Exception exception)
