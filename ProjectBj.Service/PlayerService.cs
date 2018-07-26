@@ -22,12 +22,12 @@ namespace ProjectBj.Service
             _cardRepository = new CardRepository();
         }
 
-        private Player NewPlayer(string name)
+        private async Task<Player> NewPlayer(string name)
         {
             Player player = new Player { Name = name, Balance = ValueHelper.StartBalance, InGame = true, IsHuman = true };
             try
             {
-                player = _playerRepository.CreateOne(player);
+                player = await _playerRepository.CreateOne(player);
                 return player;
             }
             catch (Exception exception)
