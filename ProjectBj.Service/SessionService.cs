@@ -19,12 +19,12 @@ namespace ProjectBj.Service
             _sessionRepository = new GameSessionRepository();
         }
 
-        public GameSession CreateSession()
+        public async Task<GameSession> CreateSession()
         {
             GameSession session = new GameSession { TimeCreated = DateTime.Now };
             try
             {
-                session = _sessionRepository.Create(session);
+                session = await _sessionRepository.Create(session);
                 return session;
             }
             catch (Exception exception)

@@ -9,7 +9,7 @@ namespace ProjectBj.Service.Interfaces
 {
     interface ISessionService
     {
-        GameSession CreateSession();
+        Task<GameSession> CreateSession();
         void CloseSession(GameSession session);
         void AddPlayer(GameSession session, Player player);
     }
