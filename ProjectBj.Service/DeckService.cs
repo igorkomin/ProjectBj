@@ -46,17 +46,16 @@ namespace ProjectBj.Service
             }
         }
         
-        private List<Card> PullDeck()
+        private async Task<List<Card>> PullDeck()
         {
-            List<Card> deckFromDb;
             try
             {
-                deckFromDb = _cardRepository.GetAllCards().ToList();
-                if (deckFromDb.Count == 0)
+                var deckFromDb = await _cardRepository.GetAllCards();
+                if (deckFromDb.ToList().Count == 0)
                 {
                     return null;
                 }
-                return deckFromDb;
+                return deckFromDb.ToList();
             }
             catch (Exception exception)
             {
