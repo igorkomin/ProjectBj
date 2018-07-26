@@ -148,12 +148,12 @@ namespace ProjectBj.Service
             }
         }
 
-        public void ChangePlayerBalance(Player player, int balanceDelta)
+        public async Task ChangePlayerBalance(Player player, int balanceDelta)
         {
             player.Balance += balanceDelta;
             try
             {
-                _playerRepository.Update(player);
+                await _playerRepository.Update(player);
             }
             catch (Exception exception)
             {
