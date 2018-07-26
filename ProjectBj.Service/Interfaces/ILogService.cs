@@ -9,7 +9,7 @@ namespace ProjectBj.Service.Interfaces
 {
     interface ILogService
     {
-        void CreateLogEntry(string message, int sessionId);
+        Task CreateLogEntry(string message, int sessionId);
         LogEntry GetLogEntry(int id);
         List<LogEntry> GetLogs();
         void DeleteLogEntry(LogEntry entry);

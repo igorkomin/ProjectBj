@@ -18,12 +18,12 @@ namespace ProjectBj.Service
             _logRepository = new LogRepository();
         }
 
-        public void CreateLogEntry(string message, int sessionId)
+        public async Task CreateLogEntry(string message, int sessionId)
         {
             LogEntry entry = new LogEntry { SessionId = sessionId, Message = message, Time = DateTime.Now };
             try
             {
-                _logRepository.CreateEntry(entry);
+                await _logRepository.CreateEntry(entry);
             }
             catch (Exception exception)
             {
