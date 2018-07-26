@@ -12,7 +12,7 @@ using ProjectBj.DAL.ExceptionHandlers;
 
 namespace ProjectBj.DAL.Repositories
 {
-    public class GameSessionRepository : IGameSessio`nRepository
+    public class GameSessionRepository : IGameSessionRepository
     {
         public async Task<GameSession> Create(GameSession session)
         {
@@ -50,7 +50,7 @@ namespace ProjectBj.DAL.Repositories
             }
         }
 
-        public void Delete(GameSession session)
+        public async Task Delete(GameSession session)
         {
             try
             {
@@ -58,7 +58,7 @@ namespace ProjectBj.DAL.Repositories
                 {
                     var sqlQuery = "DELETE FROM GameSessions " +
                                    "WHERE Id = @Id";
-                    db.Execute(sqlQuery, session);
+                    await db.ExecuteAsync(sqlQuery, session);
                 }
             }
             catch (SqlException exception)
