@@ -78,7 +78,7 @@ namespace ProjectBj.Service
 
         public async Task<Player> GetDealer()
         {
-            Player dealer = PullPlayer(StringHelper.DealerName);
+            Player dealer = await PullPlayer(StringHelper.DealerName);
             if(dealer == null)
             {
                 dealer = await NewDealer();
