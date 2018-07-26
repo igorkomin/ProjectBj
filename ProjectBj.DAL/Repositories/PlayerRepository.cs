@@ -8,7 +8,7 @@ using System.Linq;
 using System.Configuration;
 using Dapper;
 using ProjectBj.DAL.Interfaces;
-using ProjectBj.Entities;
+using ProjectBj.Entities;`
 using ProjectBj.Logger;
 using ProjectBj.DAL.ExceptionHandlers;
 
@@ -124,7 +124,7 @@ namespace ProjectBj.DAL.Repositories
             }
         }
 
-        public void Update(Player player)
+        public async Task Update(Player player)
         {
             try
             {
@@ -133,7 +133,7 @@ namespace ProjectBj.DAL.Repositories
                     var sqlQuery = "UPDATE Players " +
                                    "SET Name = @Name, IsHuman = @IsHuman, Balance = @Balance, InGame = @Ingame " +
                                    "WHERE Id = @Id";
-                    db.Execute(sqlQuery, player);
+                    await db.ExecuteAsync(sqlQuery, player);
                 }
             }
             catch (SqlException exception)
