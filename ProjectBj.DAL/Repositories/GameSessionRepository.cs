@@ -14,16 +14,15 @@ namespace ProjectBj.DAL.Repositories
 {
     public class GameSessionRepository : IGameSessionRepository
     {
-        public GameSession Create(GameSession session)
+        public async Task<GameSession> Create(GameSession session)
         {
             try
             {
                 using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
                 {
                     var sqlQuery = "INSERT INTO GameSessions (TimeCreated) " +
-                                   "VALUES (@TimeCreated);" +
-                                   "SELECT CAST(SCOPE_IDENTITY() as int)";
-                    int sessionId = db.Query<int>(sqlQuery, session).FirstOrDefault();
+                                   "VALUES (@TimeCreated);";
+                    await db.ExecuteAsync(sqlQuery, session);
                 }
             }
             catch (SqlException exception)
