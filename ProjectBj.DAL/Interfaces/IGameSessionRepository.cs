@@ -11,7 +11,7 @@ namespace ProjectBj.DAL.Interfaces
     {
         Task<GameSession> Create(GameSession session);
         GameSession GetCurrentSession(Player player);
-        ICollection<Player> GetSessionPlayers(GameSession session);
+        Task<ICollection<Player>> GetSessionPlayers(GameSession session);
         ICollection<GameSession> GetPlayerSessions(Player player);
         Task Update(GameSession session);
         Task Delete(GameSession session);
