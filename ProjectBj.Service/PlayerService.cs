@@ -50,12 +50,12 @@ namespace ProjectBj.Service
             }
         }
 
-        private Player NewDealer()
+        private async Task<Player> NewDealer()
         {
             Player dealer = new Player { Name = StringHelper.DealerName, InGame = false, IsHuman = false };
             try
             {
-                dealer = _playerRepository.CreateOne(dealer);
+                dealer = await _playerRepository.CreateOne(dealer);
                 return dealer;
             }
             catch(Exception exception)
