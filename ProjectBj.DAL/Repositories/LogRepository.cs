@@ -47,17 +47,16 @@ namespace ProjectBj.DAL.Repositories
             }
         }
 
-        public ICollection<LogEntry> GetAllLogs()
+        public async Task<ICollection<LogEntry>> GetAllLogs()
         {
-            List<LogEntry> logs = new List<LogEntry>();
             try
             {
                 using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
                 {
                     var sqlQuery = "SELECT * FROM Logs";
-                    logs = db.Query<LogEntry>(sqlQuery).AsList();
+                    var logs = await db.QueryAsync<LogEntry>(sqlQuery);
+                    return logs.AsList();
                 }
-                return logs;
             }
             catch(SqlException exception)
             {

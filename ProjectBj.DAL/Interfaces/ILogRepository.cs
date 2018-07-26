@@ -10,7 +10,7 @@ namespace ProjectBj.DAL.Interfaces
     interface ILogRepository
     {
         Task<LogEntry> GetEntry(int id);
-        ICollection<LogEntry> GetAllLogs();
+        Task<ICollection<LogEntry>> GetAllLogs();
         Task CreateEntry(LogEntry entry);
         void DeleteEntry(int id);
     }
