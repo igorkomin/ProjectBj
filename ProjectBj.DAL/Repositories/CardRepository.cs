@@ -34,14 +34,14 @@ namespace ProjectBj.DAL.Repositories
             }
         }
 
-        public ICollection<Card> CreateDeck(ICollection<Card> deck)
+        public async Task<ICollection<Card>> CreateDeck(ICollection<Card> deck)
         {
             var newDeck = new List<Card>();
             using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
             {
                 foreach (Card card in deck)
                 {
-                    newDeck.Add(Create(card, db));
+                    newDeck.Add(await Create(card, db));
                 }
             }
             return newDeck;

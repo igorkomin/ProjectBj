@@ -10,7 +10,7 @@ namespace ProjectBj.DAL.Interfaces
 {
     interface ICardRepository
     {
-        ICollection<Card> CreateDeck(ICollection<Card> deck);
+        Task<ICollection<Card>> CreateDeck(ICollection<Card> deck);
         Task<ICollection<Card>> GetAllCards();
     }
 }
