@@ -76,12 +76,12 @@ namespace ProjectBj.Service
             return bots;
         }
 
-        public Player GetDealer()
+        public async Task<Player> GetDealer()
         {
             Player dealer = PullPlayer(StringHelper.DealerName);
             if(dealer == null)
             {
-                dealer = NewDealer();
+                dealer = await NewDealer();
             }
             return dealer;
         }
