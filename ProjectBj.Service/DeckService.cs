@@ -88,7 +88,7 @@ namespace ProjectBj.Service
             return deck;
         }
 
-        private List<Card> Shuffle(List<Card> deck)
+        private async Task<List<Card>> Shuffle(List<Card> deck)
         {
             List<Card> shuffledDeck = new List<Card>();
             Random random = new Random();
