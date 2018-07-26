@@ -73,17 +73,16 @@ namespace ProjectBj.DAL.Repositories
             }
         }
 
-        public ICollection<Player> FindPlayers(string name)
+        public async Task<ICollection<Player>> FindPlayers(string name)
         {
-            List<Player> players;
             try
             {
                 using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
                 {
                     var sqlQuery = "SELECT * FROM Players WHERE Name = @name";
-                    players = db.Query<Player>(sqlQuery, new { name }).AsList();
+                    var players = await db.QueryAsync<Player>(sqlQuery, new { name });
+                    return players.AsList();
                 }
-                return players;
             }
             catch (SqlException exception)
             {
