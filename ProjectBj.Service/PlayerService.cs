@@ -185,12 +185,12 @@ namespace ProjectBj.Service
             }
         }
 
-        public int GetHandTotal(Player player)
+        public async Task<int> GetHandTotal(Player player)
         {
             int totalValue = 0;
             int aceCount = 0;
 
-            List<Card> cards = GetCards(player);
+            List<Card> cards = await GetCards(player);
 
             foreach (var card in cards)
             {

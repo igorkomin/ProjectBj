@@ -14,7 +14,7 @@ namespace ProjectBj.Service.Interfaces
         Task<Player> GetPlayerById(int id);
         Task<List<Player>> CreateBots(int number);
         Task<List<Card>> GetCards(Player player);
-        int GetHandTotal(Player player);
+        Task GetHandTotal(Player player);
         Task ThrowCards(Player player);
         Task ChangePlayerBalance(Player player, int balanceDelta);
         Task DeletePlayer(Player player);
