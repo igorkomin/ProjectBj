@@ -102,9 +102,9 @@ namespace ProjectBj.Service
             return shuffledDeck;
         }
 
-        public List<Card> GetShuffledDeck()
+        public async Task<List<Card>> GetShuffledDeck()
         {
-            List<Card> shuffledDeck = Shuffle(GetDeck());
+            List<Card> shuffledDeck = await Shuffle(await GetDeck());
             return shuffledDeck;
         }
 
