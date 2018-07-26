@@ -8,7 +8,7 @@ using System.Linq;
 using System.Configuration;
 using Dapper;
 using ProjectBj.DAL.Interfaces;
-using ProjectBj.Entities;`
+using ProjectBj.Entities;
 using ProjectBj.Logger;
 using ProjectBj.DAL.ExceptionHandlers;
 
@@ -143,7 +143,7 @@ namespace ProjectBj.DAL.Repositories
 
         }
 
-        public void AddCard(Player player, Card card)
+        public async Task AddCard(Player player, Card card)
         {
             try
             {
@@ -152,7 +152,7 @@ namespace ProjectBj.DAL.Repositories
                 {
                     var sqlQuery = "INSERT INTO PlayerHands (PlayerId, CardId) " +
                                    "VALUES (@PlayerId, @CardId)";
-                    db.Execute(sqlQuery, playerHand);
+                    await db.ExecuteAsync(sqlQuery, playerHand);
                 }
             }
             catch (SqlException exception)

@@ -17,7 +17,7 @@ namespace ProjectBj.DAL.Interfaces
         ICollection<Card> GetCards(Player player);
         Task Delete(int id);
         Task Update(Player player);
-        void AddCard(Player player, Card card);
+        Task AddCard(Player player, Card card);
         void DeleteCards(Player player);
         void DeletePlayersByName(string name);
     }
