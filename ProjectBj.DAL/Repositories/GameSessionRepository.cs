@@ -127,10 +127,8 @@ namespace ProjectBj.DAL.Repositories
             }
         }
 
-        public GameSession GetCurrentSession(Player player)
+        public async Task<GameSession> GetCurrentSession(Player player)
         {
-            GameSession session;
-
             try
             {
                 using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
@@ -140,8 +138,8 @@ namespace ProjectBj.DAL.Repositories
                                    "JOIN GameSessions gs ON ( gsp.PlayerId = gs.Id ) " +
                                    "WHERE gs.IsOpen = 1 AND p.Id = @Id";
 
-                    session = db.Query<GameSession>(sqlQuery, player).FirstOrDefault();
-                    return session;
+                    var session = await db.QueryAsync<GameSession>(sqlQuery, player);
+                    return session.FirstOrDefault();
                 }
             }
             catch (SqlException exception)
