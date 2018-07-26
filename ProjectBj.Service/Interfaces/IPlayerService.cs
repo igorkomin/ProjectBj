@@ -13,7 +13,7 @@ namespace ProjectBj.Service.Interfaces
         Task<Player> GetPlayer(string name);
         Task<Player> GetPlayerById(int id);
         Task<List<Player>> CreateBots(int number);
-        List<Card> GetCards(Player player);
+        Task<List<Card>> GetCards(Player player);
         int GetHandTotal(Player player);
         Task ThrowCards(Player player);
         void ChangePlayerBalance(Player player, int balanceDelta);

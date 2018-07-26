@@ -123,13 +123,12 @@ namespace ProjectBj.Service
             }
         }
 
-        public List<Card> GetCards(Player player)
+        public async Task<List<Card>> GetCards(Player player)
         {
-            List<Card> cards;
             try
             {
-                cards = _playerRepository.GetCards(player).ToList();
-                return cards;
+                var cards = await _playerRepository.GetCards(player);
+                return cards.ToList();
             }
             catch (Exception exception)
             {
