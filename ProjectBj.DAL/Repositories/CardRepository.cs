@@ -47,17 +47,16 @@ namespace ProjectBj.DAL.Repositories
             return newDeck;
         }
 
-        public ICollection<Card> GetAllCards()
+        public async Task<ICollection<Card>> GetAllCards()
         {
-            List<Card> cards;
             try
             {
                 using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
                 {
                     var sqlQuery = "SELECT * FROM Cards";
-                    cards = db.Query<Card>(sqlQuery).AsList();
+                    var cards = await db.QueryAsync<Card>(sqlQuery);
+                    return cards.AsList();
                 }
-                return cards;
             }
             catch (SqlException exception)
             {
