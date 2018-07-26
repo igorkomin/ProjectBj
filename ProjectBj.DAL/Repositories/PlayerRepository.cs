@@ -161,9 +161,8 @@ namespace ProjectBj.DAL.Repositories
             }
         }
 
-        public ICollection<Card> GetCards(Player player)
+        public async Task<ICollection<Card>> GetCards(Player player)
         {
-            List<Card> cards;
             try
             {
                 using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
@@ -172,9 +171,9 @@ namespace ProjectBj.DAL.Repositories
                                    "JOIN Cards c ON ( ph.CardId = c.Id ) " +
                                    "JOIN Players p ON ( ph.PlayerId = p.Id ) " +
                                    "WHERE ph.PlayerId = @Id";
-                    cards = db.Query<Card>(sqlQuery, player).AsList();
+                    var cards = await db.QueryAsync<Card>(sqlQuery, player);
+                    return cards.AsList();
                 }
-                return cards;
             }
             catch (SqlException exception)
             {

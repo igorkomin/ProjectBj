@@ -14,7 +14,7 @@ namespace ProjectBj.DAL.Interfaces
         Task<ICollection<Player>> CreateMany(ICollection<Player> players);
         Task<ICollection<Player>> FindPlayers(string name);
         Task<ICollection<Player>> GetAllPlayers();
-        ICollection<Card> GetCards(Player player);
+        Task<ICollection<Card>> GetCards(Player player);
         Task Delete(int id);
         Task Update(Player player);
         Task AddCard(Player player, Card card);
