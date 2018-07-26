@@ -109,12 +109,12 @@ namespace ProjectBj.Service
             return player;
         }
 
-        public Player GetPlayerById(int id)
+        public async Task<Player> GetPlayerById(int id)
         {
             Player player;
             try
             {
-                player = _playerRepository.Get(id);
+                player = await _playerRepository.Get(id);
                 return player;
             }
             catch (Exception exception)
