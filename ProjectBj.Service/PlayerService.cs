@@ -64,13 +64,13 @@ namespace ProjectBj.Service
             }
         }
 
-        public List<Player> CreateBots(int number)
+        public async Task<List<Player>> CreateBots(int number)
         {
             DeleteAllBots();
             List<Player> bots = new List<Player>();
             for(int i = 0; i < number; i++)
             {
-                Player bot = NewBot();
+                Player bot = await NewBot();
                 bots.Add(bot);
             }
             return bots;
