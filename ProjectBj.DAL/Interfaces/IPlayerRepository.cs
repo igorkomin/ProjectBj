@@ -13,7 +13,7 @@ namespace ProjectBj.DAL.Interfaces
         Task<Player> Get(int id);
         Task<ICollection<Player>> CreateMany(ICollection<Player> players);
         Task<ICollection<Player>> FindPlayers(string name);
-        ICollection<Player> GetAllPlayers();
+        Task<ICollection<Player>> GetAllPlayers();
         ICollection<Card> GetCards(Player player);
         Task Delete(int id);
         void Update(Player player);
