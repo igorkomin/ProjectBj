@@ -12,7 +12,7 @@ namespace ProjectBj.Service.Interfaces
         Task<List<Card>> GetDeck();
         Task<List<Card>> GetShuffledDeck();
         Task GivePlayerCard(Player player, Card card);
-        void FillDealerHand(Player player);
+        Task FillDealerHand(Player player);
         Task DealCard(Player player);
         void Hit(Player player);
         void DealFirstTwoCards(List<Player> players);

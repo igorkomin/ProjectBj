@@ -120,17 +120,17 @@ namespace ProjectBj.Service
             }
         }
 
-        public void FillDealerHand(Player dealer)
+        public async Task FillDealerHand(Player dealer)
         {
-            List<Card> deck = GetShuffledDeck();
+            List<Card> deck = await GetShuffledDeck();
             foreach(var card in deck)
             {
-                int dealerTotal = new PlayerService().GetHandTotal(dealer);
+                int dealerTotal = await new PlayerService().GetHandTotal(dealer);
                 if (dealerTotal > ValueHelper.MinDealerHandValue)
                 {
                     return;
                 }
-                GivePlayerCard(dealer, card);
+                await GivePlayerCard(dealer, card);
             }
         }
 
