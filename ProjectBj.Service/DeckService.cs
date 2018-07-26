@@ -108,11 +108,11 @@ namespace ProjectBj.Service
             return shuffledDeck;
         }
 
-        public void GivePlayerCard(Player player, Card card)
+        public async Task GivePlayerCard(Player player, Card card)
         {
             try
             {
-                _playerRepository.AddCard(player, card);
+                await _playerRepository.AddCard(player, card);
             }
             catch (Exception exception)
             {
