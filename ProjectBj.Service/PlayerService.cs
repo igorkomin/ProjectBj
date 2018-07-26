@@ -173,11 +173,11 @@ namespace ProjectBj.Service
             }
         }
 
-        private void DeleteAllBots()
+        private async Task DeleteAllBots()
         {
             try
             {
-                _playerRepository.DeletePlayersByName(StringHelper.BotName);
+                await _playerRepository.DeletePlayersByName(StringHelper.BotName);
             }
             catch (Exception exception)
             {
