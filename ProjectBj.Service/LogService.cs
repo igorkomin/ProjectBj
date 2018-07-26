@@ -31,12 +31,12 @@ namespace ProjectBj.Service
             }
         }
 
-        public LogEntry GetLogEntry(int id)
+        public async Task<LogEntry> GetLogEntry(int id)
         {
             LogEntry entry;
             try
             {
-                entry = _logRepository.GetEntry(id);
+                entry = await _logRepository.GetEntry(id);
                 return entry;
             }
             catch (Exception exception)
