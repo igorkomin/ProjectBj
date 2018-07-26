@@ -30,17 +30,16 @@ namespace ProjectBj.DAL.Repositories
             }
         }
 
-        public LogEntry GetEntry(int id)
+        public async Task<LogEntry> GetEntry(int id)
         {
-            LogEntry entry;
             try
             {
                 using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
                 {
                     var sqlQuery = "SELECT * FROM Logs WHERE Id = @id";
-                    entry = db.Query<LogEntry>(sqlQuery, new { id }).FirstOrDefault();
+                    var entry = await db.QueryAsync<LogEntry>(sqlQuery, new { id });
+                    return entry.FirstOrDefault();
                 }
-                return entry;
             }
             catch (SqlException exception)
             {
