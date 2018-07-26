@@ -20,16 +20,16 @@ namespace ProjectBj.DAL.Repositories
                                       "VALUES(@Name, @Balance, @IsHuman, @InGame); " +
                                       "SELECT CAST(SCOPE_IDENTITY() as int)";
 
-        public Player CreateOne(Player player)
+        public async Task<Player> CreateOne(Player player)
         {
             try
             {
                 using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
                 {
-                    int playerId = db.Query<int>(_insertQuery, player).FirstOrDefault();
-                    player.Id = playerId;
+                    var playerId = await db.QueryAsync<int>(_insertQuery, player);
+                    player.Id = playerId.FirstOrDefault();
+                    return player;
                 }
-                return player;
             }
             catch (SqlException exception)
             {
