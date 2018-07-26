@@ -10,7 +10,7 @@ namespace ProjectBj.Service.Interfaces
     interface IPlayerService
     {
         Task<Player> GetDealer();
-        Player GetPlayer(string name);
+        Task<Player> GetPlayer(string name);
         Player GetPlayerById(int id);
         Task<List<Player>> CreateBots(int number);
         List<Card> GetCards(Player player);

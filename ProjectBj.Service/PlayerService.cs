@@ -99,12 +99,12 @@ namespace ProjectBj.Service
             }
         }
 
-        public Player GetPlayer(string name)
+        public async Task<Player> GetPlayer(string name)
         {
-            Player player = PullPlayer(name);
+            Player player = await PullPlayer(name);
             if(player == null)
             {
-                player = NewPlayer(name);
+                player = await NewPlayer(name);
             }
             return player;
         }
