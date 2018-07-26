@@ -134,11 +134,11 @@ namespace ProjectBj.Service
             }
         }
 
-        public void DealCard(Player player)
+        public async Task DealCard(Player player)
         {
-            List<Card> deck = GetShuffledDeck();
+            List<Card> deck = await GetShuffledDeck();
             Card card = deck[0];
-            GivePlayerCard(player, card);
+            await GivePlayerCard(player, card);
 
             string cardRank = EnumHelper.GetEnumDescription((CardRanks.Rank)card.Rank);
         }
