@@ -12,7 +12,7 @@ using ProjectBj.DAL.ExceptionHandlers;
 
 namespace ProjectBj.DAL.Repositories
 {
-    public class GameSessionRepository : IGameSessionRepository
+    public class GameSessionRepository : IGameSessio`nRepository
     {
         public async Task<GameSession> Create(GameSession session)
         {
@@ -32,7 +32,7 @@ namespace ProjectBj.DAL.Repositories
             return session;
         }
 
-        public void Update(GameSession session)
+        public async Task Update(GameSession session)
         {
             try
             {
@@ -41,7 +41,7 @@ namespace ProjectBj.DAL.Repositories
                     var sqlQuery = "UPDATE GameSessions " +
                                    "SET IsOpen = @IsOpen " +
                                    "WHERE Id = @Id";
-                    db.Execute(sqlQuery, session);
+                    await db.ExecuteAsync(sqlQuery, session);
                 }
             }
             catch (SqlException exception)
