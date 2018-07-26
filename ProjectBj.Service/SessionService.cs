@@ -33,12 +33,12 @@ namespace ProjectBj.Service
             }
         }
 
-        public void CloseSession(GameSession session)
+        public async Task CloseSession(GameSession session)
         {
             session.IsOpen = false;
             try
             {
-                _sessionRepository.Update(session);
+                await _sessionRepository.Update(session);
             }
             catch (Exception exception)
             {
