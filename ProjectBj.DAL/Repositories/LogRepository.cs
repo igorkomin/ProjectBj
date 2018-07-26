@@ -14,14 +14,14 @@ namespace ProjectBj.DAL.Repositories
 {
     public class LogRepository : ILogRepository
     {
-        public void CreateEntry(LogEntry entry)
+        public async Task CreateEntry(LogEntry entry)
         {
             try
             {
                 using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
                 {
                     var sqlQuery = "INSERT INTO Logs (SessionId, Time, Message) VALUES (@SessionId, @Time, @Message)";
-                    db.Execute(sqlQuery, entry);
+                    await db.ExecuteAsync(sqlQuery, entry);
                 }
             }
             catch (SqlException exception)
