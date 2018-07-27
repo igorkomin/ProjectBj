@@ -55,6 +55,7 @@
     <Compile Include="LogService.cs" />
     <Compile Include="PlayerService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Providers\GameProvider.cs" />
     <Compile Include="SessionService.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -69,6 +70,10 @@
     <ProjectReference Include="..\ProjectBj.Logger\ProjectBj.Logger.csproj">
       <Project>{b0f07411-1b51-4415-b5c5-095171b1d067}</Project>
       <Name>ProjectBj.Logger</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ProjectBj.ViewModels\ProjectBj.ViewModels.csproj">
+      <Project>{28004629-1a7a-4632-ab7d-a1857b170d46}</Project>
+      <Name>ProjectBj.ViewModels</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
