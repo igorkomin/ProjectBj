@@ -1,4 +1,5 @@
-﻿namespace ProjectBj.Service.Helpers
+﻿using ProjectBj.Service.Enums;
+namespace ProjectBj.Service.Helpers
 {
     public static class StringHelper
     {
@@ -22,7 +23,19 @@
         public static string PlayerStays(string playerName)
         {
             return $"{playerName} stays";
-        } 
+        }
+        #endregion
+        #region Other
+        public static string RankName(int rankId)
+        {
+            string rankName = EnumHelper.GetEnumDescription((CardRanks.Rank)rankId);
+            return rankName;
+        }
+        public static string CardLink(string suit, int rank)
+        {
+            string cardLink = $"/Assets/Cards/{suit}/{rank}.png";
+            return cardLink;
+        }
         #endregion
     }
 }
