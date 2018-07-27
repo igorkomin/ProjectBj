@@ -10,6 +10,8 @@ using ProjectBj.Logger;
 using ProjectBj.Service.Enums;
 using ProjectBj.Service.Helpers;
 using ProjectBj.Service.Interfaces;
+using ProjectBj.ViewModels;
+using ProjectBj.ViewModels.Game;
 
 namespace ProjectBj.Service
 {
@@ -140,7 +142,7 @@ namespace ProjectBj.Service
             Card card = deck[0];
             await GivePlayerCard(player, card);
 
-            string cardRank = EnumHelper.GetEnumDescription((CardRanks.Rank)card.Rank);
+            string cardRank = StringHelper.RankName(card.Rank);
         }
 
         public async Task DealFirstTwoCards(List<Player> players)
@@ -150,6 +152,19 @@ namespace ProjectBj.Service
                 await DealCard(player);
                 await DealCard(player);
             }
+        }
+
+        public async Task<CardViewModel> PrepareCardViewModel(Card card)
+        {
+            CardViewModel cardViewModel = new CardViewModel
+            {
+                Id = card.Id,
+                Suit = card.Suit,
+                Rank = StringHelper.RankName(card.Rank),
+                ImageUrl = StringHelper.CardLink(card.Suit, card.Rank)
+            };
+
+            return cardViewModel;
         }
 
         public async Task Hit(Player player)
