@@ -8,6 +8,8 @@ using ProjectBj.Entities;
 using ProjectBj.Service.Interfaces;
 using ProjectBj.Service.Helpers;
 using ProjectBj.Service.Enums;
+using ProjectBj.ViewModels;
+using ProjectBj.ViewModels.Game;
 
 namespace ProjectBj.Service
 {
@@ -74,6 +76,58 @@ namespace ProjectBj.Service
                 bots.Add(bot);
             }
             return bots;
+        }
+
+        public async Task<PlayerViewModel> PreparePlayerViewModel(string name)
+        {
+            Player player = await GetPlayer(name);
+
+            PlayerViewModel playerViewModel = new PlayerViewModel
+            {
+                Id = player.Id,
+                Name = player.Name,
+                Balance = player.Balance,
+                InGame = player.InGame,
+                IsHuman = player.IsHuman,
+                Hand = await GetCards(player)
+            };
+
+            return playerViewModel;
+        }
+
+        public async Task<DealerViewModel> PrepareDealerViewModel()
+        {
+            Player dealer = await GetDealer();
+
+            DealerViewModel dealerViewModel = new DealerViewModel
+            {
+                Id = dealer.Id,
+                Name = dealer.Name,
+                InGame = dealer.InGame,
+                Hand = await GetCards(dealer)
+            };
+
+            return dealerViewModel;
+        }
+
+        public async Task<List<PlayerViewModel>> PrepareBotViewModelList(int botNumber)
+        {
+            List<Player> bots = await CreateBots(botNumber);
+            List<PlayerViewModel> botViewModels = new List<PlayerViewModel>();
+
+            foreach (var bot in bots)
+            {
+                PlayerViewModel botViewModel = new PlayerViewModel
+                {
+                    Id = bot.Id,
+                    Name = bot.Name,
+                    InGame = bot.InGame,
+                    Balance = bot.Balance,
+                    Hand = await GetCards(bot)
+                };
+            }
+
+            return botViewModels;
         }
 
         public async Task<Player> GetDealer()
