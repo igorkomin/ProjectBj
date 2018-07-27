@@ -20,24 +20,7 @@ namespace ProjectBj.Web.Controllers
         [HttpPost]
         public ActionResult Play(GameSettings settings)
         {
-            Player dealer = PlayerService.GetDealer();
-            Player humanPlayer = PlayerService.GetPlayer(settings.PlayerName);
-            List<Player> players = new List<Player>
-            {
-                humanPlayer,
-                dealer
-            };
-            players.AddRange(PlayerService.CreateBots(settings.BotsNumber));
-            GameService.DealFirstTwoCards(players);
-            List<PlayerView> playerViews = new List<PlayerView>();
-            foreach(var player in players)
-            {
-                List<Card> cards = PlayerService.GetCards(player);
-                PlayerView playerView = new PlayerView() { Id = player.Id, Balance = player.Balance, InGame = player.InGame, Name = player.Name, IsHuman = player.IsHuman, Cards = cards };
-                playerViews.Add(playerView);
-            }
-            
-            return View(playerViews);
+            return View();
         }
     }
 }
