@@ -7,6 +7,7 @@
         public static readonly int FaceCardValue = 10;
         public static readonly int AceDelta = 10;
         public static readonly int MinDealerHandValue = 17;
+        public static readonly int MinBotHandValue = 18;
         public static readonly int StartBalance = 1000;
     }
 }
