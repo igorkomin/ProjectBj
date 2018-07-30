@@ -16,9 +16,9 @@ namespace ProjectBj.DAL.Repositories
 {
     public class PlayerRepository : IPlayerRepository
     {
-        private string _insertQuery = "INSERT INTO Players (Name, Balance, IsHuman, InGame) " +
-                                      "VALUES(@Name, @Balance, @IsHuman, @InGame); " +
-                                      "SELECT CAST(SCOPE_IDENTITY() as int)";
+        private readonly string _insertQuery = "INSERT INTO Players (Name, Balance, IsHuman, InGame) " +
+                                               "VALUES(@Name, @Balance, @IsHuman, @InGame); " +
+                                               "SELECT CAST(SCOPE_IDENTITY() as int)";
 
         public async Task<Player> CreateOne(Player player)
         {
@@ -143,15 +143,15 @@ namespace ProjectBj.DAL.Repositories
 
         }
 
-        public async Task AddCard(Player player, Card card)
+        public async Task AddCard(Player player, Card card, int sessionId)
         {
             try
             {
-                PlayerHand playerHand = new PlayerHand() { PlayerId = player.Id, CardId = card.Id };
+                PlayerHand playerHand = new PlayerHand() { PlayerId = player.Id, CardId = card.Id, SessionId = sessionId };
                 using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
                 {
-                    var sqlQuery = "INSERT INTO PlayerHands (PlayerId, CardId) " +
-                                   "VALUES (@PlayerId, @CardId)";
+                    var sqlQuery = "INSERT INTO PlayerHands (PlayerId, CardId, SessionId) " +
+                                   "VALUES (@PlayerId, @CardId, @SessionId)";
                     await db.ExecuteAsync(sqlQuery, playerHand);
                 }
             }
@@ -161,7 +161,7 @@ namespace ProjectBj.DAL.Repositories
             }
         }
 
-        public async Task<ICollection<Card>> GetCards(Player player)
+        public async Task<ICollection<Card>> GetCards(Player player, int sessionId)
         {
             try
             {
@@ -170,7 +170,8 @@ namespace ProjectBj.DAL.Repositories
                     var sqlQuery = "SELECT c.* FROM PlayerHands ph " +
                                    "JOIN Cards c ON ( ph.CardId = c.Id ) " +
                                    "JOIN Players p ON ( ph.PlayerId = p.Id ) " +
-                                   "WHERE ph.PlayerId = @Id";
+                                   "WHERE ph.PlayerId = @Id " +
+                                   $"AND ph.SessionId = {sessionId}";
                     var cards = await db.QueryAsync<Card>(sqlQuery, player);
                     return cards.AsList();
                 }
@@ -178,6 +179,20 @@ namespace ProjectBj.DAL.Repositories
             catch (SqlException exception)
             {
                 throw new DataSourceException(exception.Message, exception);
+            }
+        }
+
+        public async Task<ICollection<Player>> GetSessionBots(int sessionId)
+        {
+            using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
+            {
+                var sqlQuery = "SELECT p.* FROM PlayerHands ph " +
+                               "JOIN Players p ON ( ph.PlayerId = p.Id ) " +
+                               "WHERE ph.SessionId = @sessionId " +
+                               "AND p.IsHuman = false " +
+                               "AND p.InGame = true";
+                var bots = await db.QueryAsync<Player>(sqlQuery, new { sessionId });
+                return bots.AsList();
             }
         }
 

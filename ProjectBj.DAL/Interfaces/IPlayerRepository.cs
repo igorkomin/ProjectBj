@@ -14,10 +14,10 @@ namespace ProjectBj.DAL.Interfaces
         Task<ICollection<Player>> CreateMany(ICollection<Player> players);
         Task<ICollection<Player>> FindPlayers(string name);
         Task<ICollection<Player>> GetAllPlayers();
-        Task<ICollection<Card>> GetCards(Player player);
+        Task<ICollection<Card>> GetCards(Player player, int sessionId);
         Task Delete(int id);
         Task Update(Player player);
-        Task AddCard(Player player, Card card);
+        Task AddCard(Player player, Card card, int sessionId);
         Task DeleteCards(Player player);
         Task DeletePlayersByName(string name);
     }

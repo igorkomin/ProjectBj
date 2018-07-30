@@ -107,14 +107,15 @@ namespace ProjectBj.Service
         public async Task<List<Card>> GetShuffledDeck()
         {
             List<Card> shuffledDeck = Shuffle(await GetDeck());
+
             return shuffledDeck;
         }
 
-        public async Task GivePlayerCard(Player player, Card card)
+        private async Task GivePlayerCard(Player player, Card card, int sessionId)
         {
             try
             {
-                await _playerRepository.AddCard(player, card);
+                await _playerRepository.AddCard(player, card, sessionId);
             }
             catch (Exception exception)
             {
@@ -122,39 +123,26 @@ namespace ProjectBj.Service
             }
         }
 
-        public async Task FillDealerHand(Player dealer)
+        public async Task DealCard(int playerId, int sessionId)
         {
-            List<Card> deck = await GetShuffledDeck();
-            foreach(var card in deck)
-            {
-                int dealerTotal = await new PlayerService().GetHandTotal(dealer);
-                if (dealerTotal > ValueHelper.MinDealerHandValue)
-                {
-                    return;
-                }
-                await GivePlayerCard(dealer, card);
-            }
-        }
-
-        public async Task DealCard(Player player)
-        {
+            Player player = await _playerRepository.Get(playerId);
             List<Card> deck = await GetShuffledDeck();
             Card card = deck[0];
-            await GivePlayerCard(player, card);
+            await GivePlayerCard(player, card, sessionId);
 
             string cardRank = StringHelper.RankName(card.Rank);
         }
 
-        public async Task DealFirstTwoCards(List<Player> players)
+        public async Task DealFirstTwoCards(List<int> playerIds, int sessionId)
         {
-            foreach (var player in players)
+            foreach (var playerId in playerIds)
             {
-                await DealCard(player);
-                await DealCard(player);
+                await DealCard(playerId, sessionId);
+                await DealCard(playerId, sessionId);
             }
         }
 
-        public async Task<CardViewModel> PrepareCardViewModel(Card card)
+        public async Task<CardViewModel> GetCardViewModel(Card card)
         {
             CardViewModel cardViewModel = new CardViewModel
             {
@@ -167,9 +155,9 @@ namespace ProjectBj.Service
             return cardViewModel;
         }
 
-        public async Task Hit(Player player)
+        public async Task Hit(int playerId, int sessionId)
         {
-            await DealCard(player);
+            await DealCard(playerId, sessionId);
         }
     }
 }

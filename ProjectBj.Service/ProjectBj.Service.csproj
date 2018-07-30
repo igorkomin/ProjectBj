@@ -43,6 +43,7 @@
     <Compile Include="DeckService.cs" />
     <Compile Include="Enums\CardRanks.cs" />
     <Compile Include="Enums\CardSuits.cs" />
+    <Compile Include="Enums\GameResults.cs" />
     <Compile Include="GameService.cs" />
     <Compile Include="Helpers\EnumHelper.cs" />
     <Compile Include="Helpers\StringHelper.cs" />

@@ -8,7 +8,6 @@ using ProjectBj.Entities;
 using ProjectBj.Service.Interfaces;
 using ProjectBj.Service.Helpers;
 using ProjectBj.Service.Enums;
-using ProjectBj.ViewModels;
 using ProjectBj.ViewModels.Game;
 
 namespace ProjectBj.Service
@@ -78,7 +77,7 @@ namespace ProjectBj.Service
             return bots;
         }
 
-        public async Task<PlayerViewModel> PreparePlayerViewModel(string name)
+        public async Task<PlayerViewModel> GetPlayerViewModel(string name)
         {
             Player player = await GetPlayer(name);
 
@@ -88,14 +87,13 @@ namespace ProjectBj.Service
                 Name = player.Name,
                 Balance = player.Balance,
                 InGame = player.InGame,
-                IsHuman = player.IsHuman,
-                Hand = await GetCards(player)
+                IsHuman = player.IsHuman
             };
 
             return playerViewModel;
         }
 
-        public async Task<DealerViewModel> PrepareDealerViewModel()
+        public async Task<DealerViewModel> GetDealerViewModel()
         {
             Player dealer = await GetDealer();
 
@@ -103,28 +101,32 @@ namespace ProjectBj.Service
             {
                 Id = dealer.Id,
                 Name = dealer.Name,
-                InGame = dealer.InGame,
-                Hand = await GetCards(dealer)
+                InGame = dealer.InGame
             };
 
             return dealerViewModel;
         }
 
-        public async Task<List<PlayerViewModel>> PrepareBotViewModelList(int botNumber)
+        public async Task<List<PlayerViewModel>> GetBotViewModelList(int botnumber, int sessionId)
         {
-            List<Player> bots = await CreateBots(botNumber);
-            List<PlayerViewModel> botViewModels = new List<PlayerViewModel>();
+            var bots = await _playerRepository.GetSessionBots(sessionId);
+            var botViewModels = new List<PlayerViewModel>();
 
-            foreach (var bot in bots)
+            if (bots.Count == 0 || bots == null)
+            {
+                bots = await CreateBots(botnumber);
+            }
+
+            foreach(var bot in bots)
             {
                 PlayerViewModel botViewModel = new PlayerViewModel
                 {
                     Id = bot.Id,
                     Name = bot.Name,
                     InGame = bot.InGame,
-                    Balance = bot.Balance,
-                    Hand = await GetCards(bot)
+                    Balance = bot.Balance
                 };
+                botViewModels.Add(botViewModel);
             }
 
             return botViewModels;
@@ -177,11 +179,12 @@ namespace ProjectBj.Service
             }
         }
 
-        public async Task<List<Card>> GetCards(Player player)
+        public async Task<List<Card>> GetCards(int playerId, int sessionId)
         {
             try
             {
-                var cards = await _playerRepository.GetCards(player);
+                var player = await _playerRepository.Get(playerId);
+                var cards = await _playerRepository.GetCards(player, sessionId);
                 return cards.ToList();
             }
             catch (Exception exception)
@@ -195,19 +198,6 @@ namespace ProjectBj.Service
             try
             {
                 await _playerRepository.DeleteCards(player);
-            }
-            catch (Exception exception)
-            {
-                throw exception;
-            }
-        }
-
-        public async Task ChangePlayerBalance(Player player, int balanceDelta)
-        {
-            player.Balance += balanceDelta;
-            try
-            {
-                await _playerRepository.Update(player);
             }
             catch (Exception exception)
             {
@@ -239,17 +229,18 @@ namespace ProjectBj.Service
             }
         }
 
-        public async Task<int> GetHandTotal(Player player)
+        public async Task<int> GetHandValue(int playerId, int sessionId)
         {
             int totalValue = 0;
             int aceCount = 0;
 
-            List<Card> cards = await GetCards(player);
+            List<Card> cards = await GetCards(playerId, sessionId);
 
             foreach (var card in cards)
             {
                 int aceCardRank = (int)CardRanks.Rank.Ace;
                 int tenCardRank = (int)CardRanks.Rank.Ten;
+
                 if (card.Rank == aceCardRank)
                 {
                     totalValue += ValueHelper.AceCardValue;

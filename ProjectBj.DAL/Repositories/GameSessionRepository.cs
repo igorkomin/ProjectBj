@@ -67,24 +67,6 @@ namespace ProjectBj.DAL.Repositories
             }
         }
 
-        public async Task AddPlayer(GameSession session, Player player)
-        {
-            try
-            {
-                GameSessionPlayer gameSessionPlayer = new GameSessionPlayer() { SessionId = session.Id, PlayerId = player.Id };
-                using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
-                {
-                    var sqlQuery = "INSERT INTO GameSessionPlayers (SessionId, PlayerId, TimeJoined) " +
-                                   "VALUES (@SessionId, @PlayerId, @TimeJoined)";
-                    await db.ExecuteAsync(sqlQuery, gameSessionPlayer);
-                }
-            }
-            catch (SqlException exception)
-            {
-                throw new DataSourceException(exception.Message, exception);
-            }
-        }
-
         public async Task<ICollection<Player>> GetSessionPlayers(GameSession session)
         {
             try

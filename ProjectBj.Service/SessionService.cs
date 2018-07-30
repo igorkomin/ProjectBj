@@ -13,24 +13,38 @@ namespace ProjectBj.Service
     public class SessionService : ISessionService
     {
         private GameSessionRepository _sessionRepository;
+        private PlayerRepository _playerRepository;
 
         public SessionService()
         {
             _sessionRepository = new GameSessionRepository();
         }
 
-        public async Task<GameSession> CreateSession()
+        private async Task<int> CreateSession()
         {
             GameSession session = new GameSession { TimeCreated = DateTime.Now };
             try
             {
                 session = await _sessionRepository.Create(session);
-                return session;
+                return session.Id;
             }
             catch (Exception exception)
             {
                 throw exception;
             }
+        }
+
+        public async Task<int> GetSession(int playerId)
+        {
+            Player player = await _playerRepository.Get(playerId);
+            GameSession currentSession = await _sessionRepository.GetCurrentSession(player);
+
+            if(currentSession == null)
+            {
+                int newSessionId = await CreateSession();
+            }
+
+            return currentSession.Id;
         }
 
         public async Task CloseSession(GameSession session)
@@ -44,11 +58,6 @@ namespace ProjectBj.Service
             {
                 throw exception;
             }
-        }
-
-        public async Task AddPlayer(GameSession session, Player player)
-        {
-            await _sessionRepository.AddPlayer(session, player);
         }
     }
 }

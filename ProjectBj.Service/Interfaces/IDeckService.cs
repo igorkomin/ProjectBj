@@ -11,10 +11,8 @@ namespace ProjectBj.Service.Interfaces
     {
         Task<List<Card>> GetDeck();
         Task<List<Card>> GetShuffledDeck();
-        Task GivePlayerCard(Player player, Card card);
-        Task FillDealerHand(Player player);
-        Task DealCard(Player player);
-        Task Hit(Player player);
-        Task DealFirstTwoCards(List<Player> players);
+        Task DealCard(int playerId, int sessionId);
+        Task Hit(int playerId, int sessionId);
+        Task DealFirstTwoCards(List<int> players, int sessionId);
     }
 }

@@ -11,5 +11,6 @@ namespace ProjectBj.Entities
         public int Id { get; set; }
         public int PlayerId { get; set; }
         public int CardId { get; set; }
+        public int SessionId { get; set; }
     }
 }

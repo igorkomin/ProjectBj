@@ -14,21 +14,44 @@ namespace ProjectBj.Service
 {
     public class GameService : IGameService
     {
-        public bool IsBlackjack(int handTotal)
+        private PlayerRepository _playerRepository;
+
+        public async Task<GameResults.Result> GetGameResult(int playerId, int playerScore, int dealerScore, int bet)
         {
-            bool isBlackJack = handTotal == ValueHelper.BlackjackValue ? true : false;
-            return isBlackJack;
+            if (playerScore == ValueHelper.BlackjackValue)
+            {
+                await ChangePlayerBalance(playerId, bet);
+                return GameResults.Result.Blackjack;
+            }
+
+            if (playerScore > ValueHelper.BlackjackValue)
+            {
+                await ChangePlayerBalance(playerId, -bet);
+                return GameResults.Result.Bust;
+            }
+
+            if (playerScore > dealerScore || dealerScore > ValueHelper.BlackjackValue)
+            {
+                await ChangePlayerBalance(playerId, bet);
+                return GameResults.Result.Win;
+            }
+
+            await ChangePlayerBalance(playerId, -bet);
+            return GameResults.Result.Lose;
         }
 
-        public bool IsBust(int handTotal)
+        public async Task ChangePlayerBalance(int playerId, int balanceDelta)
         {
-            bool isBust = handTotal > ValueHelper.BlackjackValue ? true : false;
-            return isBust;
-        }
-
-        public void Stay(Player player)
-        {
-            player.InGame = false;
+            Player player = await _playerRepository.Get(playerId);
+            player.Balance += balanceDelta;
+            try
+            {
+                await _playerRepository.Update(player);
+            }
+            catch (Exception exception)
+            {
+                throw exception;
+            }
         }
     }
 }
