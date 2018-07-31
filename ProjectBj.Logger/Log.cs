@@ -9,7 +9,7 @@ namespace ProjectBj.Logger
 {
     public static class Log
     {
-        public static void ToDebug(string message)
+        public static async Task ToDebug(string message)
         {
             Debug.WriteLine(message);
         }
