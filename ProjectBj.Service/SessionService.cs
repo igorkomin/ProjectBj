@@ -35,7 +35,7 @@ namespace ProjectBj.Service
             }
         }
 
-        public async Task<int> GetSession(int playerId)
+        public async Task<int> GetSessionByPlayerId(int playerId)
         {
             Player player = await _playerRepository.Get(playerId);
             GameSession currentSession = await _sessionRepository.GetCurrentSession(player);
@@ -49,12 +49,19 @@ namespace ProjectBj.Service
             return currentSession.Id;
         }
 
-        public async Task CloseSession(GameSession session)
+        public async Task<GameSession> GetSessionById(int id)
         {
+            GameSession session = await _sessionRepository.Get(id);
+            return session;
+        }
+
+        public async Task CloseSession(int sessionId)
+        {
+            GameSession session = await GetSessionById(sessionId);
             session.IsOpen = false;
             try
             {
-                await _sessionRepository.Update(session);
+                await _sessionRepository.Update(session.Id);
             }
             catch (Exception exception)
             {
