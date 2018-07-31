@@ -25,17 +25,36 @@ namespace ProjectBj.DAL.Repositories
                                    "SELECT CAST(SCOPE_IDENTITY() as int)";
                     var sessionId = await db.QueryAsync<int>(sqlQuery, session);
                     session.Id = sessionId.FirstOrDefault();
+                    return session;
                 }
             }
             catch (SqlException exception)
             {
                 throw new DataSourceException(exception.Message, exception);
             }
-            return session;
         }
 
-        public async Task Update(GameSession session)
+        public async Task<GameSession> Get(int id)
         {
+            try
+            {
+                using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
+                {
+                    var sqlQuery = "SELECT * FROM GameSessions " +
+                                   "WHERE Id = @id";
+                    var session = await db.QueryAsync<GameSession>(sqlQuery, new { id });
+                    return session.FirstOrDefault();
+                }
+            }
+            catch (SqlException exception)
+            {
+                throw new DataSourceException(exception.Message, exception);
+            }
+        }
+
+        public async Task Update(int sessionId)
+        {
+            GameSession session = await Get(sessionId);
             try
             {
                 using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))

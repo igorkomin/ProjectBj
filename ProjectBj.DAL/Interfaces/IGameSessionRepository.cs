@@ -13,7 +13,7 @@ namespace ProjectBj.DAL.Interfaces
         Task<GameSession> GetCurrentSession(Player player);
         Task<ICollection<Player>> GetSessionPlayers(GameSession session);
         Task<ICollection<GameSession>> GetPlayerSessions(Player player);
-        Task Update(GameSession session);
+        Task Update(int sessionId);
         Task Delete(GameSession session);
     }
 }
