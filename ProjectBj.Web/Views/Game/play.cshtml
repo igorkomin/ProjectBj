@@ -13,6 +13,12 @@
     @Styles.Render("~/Content/css")
 </head>
 <body>
+    <script type="text/javascript">
+        var bots = @Html.Raw(Json.Encode(Model.Bots));
+        for (var i = 0; i < bots.length; i++) {
+            document.getElementById("hand-" + i).innerHTML+= ""
+        }
+    </script>
     <div class="container-fluid text-center">
         <div class="row">
             <div class="col-lg-9">
@@ -27,7 +33,7 @@
                 <div class="row h33">
                     <div class="col-md-3">
                         <span class="badge badge-pill badge-secondary">00</span><p>Player</p>
-                        <div id="hand-1" class="hand left">
+                        <div id="hand-player" class="hand left">
                             
                         </div>
                     </div>
@@ -42,7 +48,7 @@
                     </div>
                     <div class="col-md-3">
                         <span class="badge badge-pill badge-secondary">00</span><p>Bot 1</p>
-                        <div id="hand-2" class="hand right">
+                        <div id="hand-0" class="hand right">
                             
                         </div>
                     </div>
@@ -50,25 +56,25 @@
                 <div class="row h33">
                     <div class="col-md-3">
                         <span class="badge badge-pill badge-secondary">00</span><p>Bot 2</p>
-                        <div id="hand-3" class="hand left-corner">
+                        <div id="hand-1" class="hand left-corner">
                             
                         </div>
                     </div>
                     <div class="col-md-3">
                         <span class="badge badge-pill badge-secondary">00</span><p>Bot 3</p>
-                        <div id="hand-4" class="hand bottom">
+                        <div id="hand-2" class="hand bottom">
                             
                         </div>
                     </div>
                     <div class="col-md-3">
                         <span class="badge badge-pill badge-secondary">00</span><p>Bot 4</p>
-                        <div id="hand-5" class="hand bottom">
+                        <div id="hand-3" class="hand bottom">
                             
                         </div>
                     </div>
                     <div class="col-md-3">
                         <span class="badge badge-pill badge-secondary">00</span><p>Bot 5</p>
-                        <div id="hand-6" class="hand">
+                        <div id="hand-4" class="hand">
                             
                         </div>
                     </div>
