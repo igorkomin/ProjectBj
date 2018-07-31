@@ -18,6 +18,7 @@ namespace ProjectBj.Service
         public SessionService()
         {
             _sessionRepository = new GameSessionRepository();
+            _playerRepository = new PlayerRepository();
         }
 
         private async Task<int> CreateSession()
@@ -42,6 +43,7 @@ namespace ProjectBj.Service
             if(currentSession == null)
             {
                 int newSessionId = await CreateSession();
+                return newSessionId;
             }
 
             return currentSession.Id;

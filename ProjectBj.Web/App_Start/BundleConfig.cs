@@ -11,10 +11,13 @@ namespace ProjectBj.Web.App_Start
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                        "~/Scripts/bootstrap.js"));
+                        "~/Scripts/bootstrap.js",
+                        "~/Scripts/slider.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                        "~/Content/bootstrap.css"));
+                        "~/Content/bootstrap.css",
+                        "~/Content/style.css",
+                        "~/Content/slider.css"));
         }
     }
 }

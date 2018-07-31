@@ -1,52 +1,48 @@
-﻿.h33 {
+.h33 {
     height: 33vh;
 }
 
 .hand img {
-    position: relative;
+	position: relative;
 }
 
 .top {
-    transform: rotate(205deg);
+	transform: rotate(205deg);
 }
 
 .bottom {
-    transform: rotate(25deg);
+	transform: rotate(25deg);
 }
 
 .left-corner {
-    transform: rotate(90deg);
+	transform: rotate(90deg);
 }
 
 .left {
-    transform: rotate(115deg);
+	transform: rotate(115deg);
 }
 
 .right {
-    transform: translate(0, 2em) rotate(-65deg);
+	transform: translate(0, 2em) rotate(-65deg);
 }
 
 .hand img:nth-child(1) {
     left: 3em;
     transform: translate(1.9em, 0.9em) rotate(-42deg);
 }
-
 .hand img:nth-child(2) {
-    right: 0;
+	right: 0;
     transform: translate(1.5em, 0.5em) rotate(-33deg);
 }
-
 .hand img:nth-child(3) {
-    right: 3em;
+	right: 3em;
     transform: translate(1.1em, 0.3em) rotate(-24deg);
 }
-
 .hand img:nth-child(4) {
-    right: 6em;
+	right: 6em;
     transform: translate(0.7em, 0.2em) rotate(-15deg);
 }
-
 .hand img:nth-child(5) {
-    right: 9em;
+	right: 9em;
     transform: translate(0.3em, 0.1em) rotate(-6deg);
 }

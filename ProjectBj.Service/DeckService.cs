@@ -93,7 +93,7 @@ namespace ProjectBj.Service
         private List<Card> Shuffle(List<Card> deck)
         {
             List<Card> shuffledDeck = new List<Card>();
-            Random random = new Random();
+            Random random = new Random(DateTime.Now.Millisecond);
             int randomIndex = 0;
             while (deck.Count > 0)
             {
@@ -142,17 +142,21 @@ namespace ProjectBj.Service
             }
         }
 
-        public async Task<CardViewModel> GetCardViewModel(Card card)
+        public async Task<List<CardViewModel>> GetCardViewModels(List<Card> cards)
         {
-            CardViewModel cardViewModel = new CardViewModel
+            List<CardViewModel> cardViewModels = new List<CardViewModel>();
+            foreach (var card in cards)
             {
-                Id = card.Id,
-                Suit = card.Suit,
-                Rank = StringHelper.RankName(card.Rank),
-                ImageUrl = StringHelper.CardLink(card.Suit, card.Rank)
-            };
-
-            return cardViewModel;
+                CardViewModel cardViewModel = new CardViewModel
+                {
+                    Id = card.Id,
+                    Suit = card.Suit,
+                    Rank = StringHelper.RankName(card.Rank),
+                    ImageUrl = StringHelper.CardLink(card.Suit, card.Rank)
+                };
+                cardViewModels.Add(cardViewModel);
+            }
+            return cardViewModels;
         }
 
         public async Task Hit(int playerId, int sessionId)

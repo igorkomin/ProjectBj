@@ -21,8 +21,10 @@ namespace ProjectBj.DAL.Repositories
                 using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
                 {
                     var sqlQuery = "INSERT INTO GameSessions (TimeCreated) " +
-                                   "VALUES (@TimeCreated);";
-                    await db.ExecuteAsync(sqlQuery, session);
+                                   "VALUES (@TimeCreated); " +
+                                   "SELECT CAST(SCOPE_IDENTITY() as int)";
+                    var sessionId = await db.QueryAsync<int>(sqlQuery, session);
+                    session.Id = sessionId.FirstOrDefault();
                 }
             }
             catch (SqlException exception)
@@ -93,9 +95,9 @@ namespace ProjectBj.DAL.Repositories
             {
                 using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
                 {
-                    var sqlQuery = "SELECT gs.* FROM GameSessionPlayers gsp " +
-                                   "JOIN Players p ON ( gsp.PlayerId = p.Id ) " +
-                                   "JOIN GameSessions gs ON ( gsp.PlayerId = gs.Id ) " +
+                    var sqlQuery = "SELECT gs.* FROM PlayerHands ph " +
+                                   "JOIN Players p ON ( ph.PlayerId = p.Id ) " +
+                                   "JOIN GameSessions gs ON ( ph.PlayerId = gs.Id ) " +
                                    "WHERE p.Id = @Id";
 
                     var sessions = await db.QueryAsync<GameSession>(sqlQuery, player);
@@ -114,9 +116,9 @@ namespace ProjectBj.DAL.Repositories
             {
                 using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
                 {
-                    var sqlQuery = "SELECT gs.* FROM GameSessionPlayers gsp " +
-                                   "JOIN Players p ON ( gsp.PlayerId = p.Id ) " +
-                                   "JOIN GameSessions gs ON ( gsp.PlayerId = gs.Id ) " +
+                    var sqlQuery = "SELECT gs.* FROM PlayerHands ph " +
+                                   "JOIN Players p ON ( ph.PlayerId = p.Id ) " +
+                                   "JOIN GameSessions gs ON ( ph.PlayerId = gs.Id ) " +
                                    "WHERE gs.IsOpen = 1 AND p.Id = @Id";
 
                     var session = await db.QueryAsync<GameSession>(sqlQuery, player);

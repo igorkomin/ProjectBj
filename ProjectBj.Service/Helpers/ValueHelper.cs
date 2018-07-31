@@ -9,5 +9,6 @@
         public static readonly int MinDealerHandValue = 17;
         public static readonly int MinBotHandValue = 18;
         public static readonly int StartBalance = 1000;
+        public static readonly int BotBetValue = 50;
     }
 }

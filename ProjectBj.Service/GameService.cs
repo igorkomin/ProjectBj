@@ -16,6 +16,11 @@ namespace ProjectBj.Service
     {
         private PlayerRepository _playerRepository;
 
+        public GameService()
+        {
+            _playerRepository = new PlayerRepository();
+        }
+
         public async Task<GameResults.Result> GetGameResult(int playerId, int playerScore, int dealerScore, int bet)
         {
             if (playerScore == ValueHelper.BlackjackValue)

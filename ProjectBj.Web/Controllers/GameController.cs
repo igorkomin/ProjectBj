@@ -4,8 +4,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ProjectBj.ViewModels;
+using ProjectBj.ViewModels.Game;
 using ProjectBj.Entities;
 using ProjectBj.Service;
+using ProjectBj.Service.Providers;
+using System.Threading.Tasks;
 
 namespace ProjectBj.Web.Controllers
 {
@@ -18,26 +21,12 @@ namespace ProjectBj.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Play(GameSettings settings)
+        public async Task<ActionResult> Play(GameSettings settings)
         {
-            Player dealer = PlayerService.GetDealer();
-            Player humanPlayer = PlayerService.GetPlayer(settings.PlayerName);
-            List<Player> players = new List<Player>
-            {
-                humanPlayer,
-                dealer
-            };
-            players.AddRange(PlayerService.CreateBots(settings.BotsNumber));
-            GameService.DealFirstTwoCards(players);
-            List<PlayerView> playerViews = new List<PlayerView>();
-            foreach(var player in players)
-            {
-                List<Card> cards = PlayerService.GetCards(player);
-                PlayerView playerView = new PlayerView() { Id = player.Id, Balance = player.Balance, InGame = player.InGame, Name = player.Name, IsHuman = player.IsHuman, Cards = cards };
-                playerViews.Add(playerView);
-            }
-            
-            return View(playerViews);
+            GameProvider provider = new GameProvider(settings.PlayerName, settings.BotsNumber);
+            GameViewModel model = await provider.NewGame();
+
+            return View(model);
         }
     }
 }

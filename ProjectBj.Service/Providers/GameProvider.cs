@@ -45,33 +45,80 @@ namespace ProjectBj.Service.Providers
                 SessionId = session
             };
 
-            gameViewModel.Player.Hand = await _playerService.GetCards(player.Id, session);
-            gameViewModel.Dealer.Hand = await _playerService.GetCards(dealer.Id, session);
-
-            foreach(var bot in gameViewModel.Bots)
-            {
-                bot.Hand = await _playerService.GetCards(bot.Id, session);
-            }
+            await UpdateViewModel(gameViewModel);
 
             return gameViewModel;
         }
 
-        public async Task<GameResults.Result> GetGameResult()
+        public async Task UpdateViewModel(GameViewModel gameViewModel)
+        {
+            var session = gameViewModel.SessionId;
+            var player = gameViewModel.Player;
+            var dealer = gameViewModel.Dealer;
+            var bots = gameViewModel.Bots;
+
+            var playerHand = await _playerService.GetCards(player.Id, session);
+            var dealerHand = await _playerService.GetCards(dealer.Id, session);
+
+            gameViewModel.Player.Hand = await _deckService.GetCardViewModels(playerHand);
+            gameViewModel.Dealer.Hand = await _deckService.GetCardViewModels(dealerHand);
+
+            foreach (var bot in bots)
+            {
+                var botHand = await _playerService.GetCards(bot.Id, session);
+                bot.Hand = await _deckService.GetCardViewModels(botHand);
+            }
+        }
+
+        public async Task<GameViewModel> MakeBet(int playerId, int betValue)
         {
             var gameViewModel = await GetGameViewModel();
-            var playerId = gameViewModel.Player.Id;
-            var dealerId = gameViewModel.Dealer.Id;
+            gameViewModel.Player.Bet = betValue;
+            return gameViewModel;
+        }
+
+        public async Task SetGameResult()
+        {
+            var gameViewModel = await GetGameViewModel();
+
             var sessionId = gameViewModel.SessionId;
-            var playerScore = await _playerService.GetHandValue(playerId, sessionId);
-            var dealerScore = await _playerService.GetHandValue(dealerId, sessionId);
+            var playerId = gameViewModel.Player.Id;
+            var playerScore = await _playerService.GetHandValue(gameViewModel.Player.Id, sessionId);
+            var dealerScore = await _playerService.GetHandValue(gameViewModel.Dealer.Id, sessionId);
             var bet = gameViewModel.Player.Bet;
+
             var result = await _gameService.GetGameResult(playerId, playerScore, dealerScore, bet);
-            return result;
+            gameViewModel.Player.GameResult = (int)result;
+
+            foreach(var bot in gameViewModel.Bots)
+            {
+                var botScore = await _playerService.GetHandValue(bot.Id, sessionId);
+                var botBet = ValueHelper.BotBetValue;
+                result = await _gameService.GetGameResult(bot.Id, botScore, dealerScore, botBet);
+                bot.GameResult = (int)result;
+            }
+        }
+
+        public async Task<GameViewModel> DealFirstCards()
+        {
+            GameViewModel model = await GetGameViewModel();
+            List<int> playerIds = new List<int>
+            {
+                model.Player.Id,
+                model.Dealer.Id
+            };
+            foreach (var bot in model.Bots)
+            {
+                playerIds.Add(bot.Id);
+            }
+            await _deckService.DealFirstTwoCards(playerIds, model.SessionId);
+            await UpdateViewModel(model);
+            return model;
         }
 
         public async Task<GameViewModel> NewGame()
         {
-            var gameViewModel = await GetGameViewModel();
+            var gameViewModel = await DealFirstCards();
             
             return gameViewModel;
         }
