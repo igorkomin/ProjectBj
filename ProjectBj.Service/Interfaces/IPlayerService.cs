@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ProjectBj.Entities;
+using ProjectBj.ViewModels.Game;
 
 namespace ProjectBj.Service.Interfaces
 {
@@ -12,10 +13,12 @@ namespace ProjectBj.Service.Interfaces
         Task<Player> GetDealer();
         Task<Player> GetPlayer(string name);
         Task<Player> GetPlayerById(int id);
+        Task<PlayerViewModel> GetPlayerViewModel(string name);
+        Task<DealerViewModel> GetDealerViewModel();
+        Task<List<PlayerViewModel>> GetBotViewModelList(int botnumber, int sessionId);
         Task<List<Player>> CreateBots(int number);
         Task<List<Card>> GetCards(int playerId, int sessionId);
         Task<int> GetHandValue(int playerId, int sessionId);
-        Task ThrowCards(Player player);
         Task DeletePlayer(Player player);
     }
 }
