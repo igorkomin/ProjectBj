@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ProjectBj.Entities;
+using ProjectBj.ViewModels.Game;
 
 namespace ProjectBj.Service.Interfaces
 {
@@ -14,5 +15,6 @@ namespace ProjectBj.Service.Interfaces
         Task DealCard(int playerId, int sessionId);
         Task Hit(int playerId, int sessionId);
         Task DealFirstTwoCards(List<int> players, int sessionId);
+        Task<List<CardViewModel>> GetCardViewModels(List<Card> cards);
     }
 }
