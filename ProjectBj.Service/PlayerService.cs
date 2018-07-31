@@ -193,18 +193,6 @@ namespace ProjectBj.Service
             }
         }
 
-        public async Task ThrowCards(Player player)
-        {
-            try
-            {
-                await _playerRepository.DeleteCards(player);
-            }
-            catch (Exception exception)
-            {
-                throw exception;
-            }
-        }
-
         public async Task DeletePlayer(Player player)
         {
             try
