@@ -33,7 +33,7 @@ namespace ProjectBj.Service.Providers
         public async Task<GameViewModel> GetGameViewModel()
         {
             var player = await _playerService.GetPlayerViewModel(_playerName);
-            var session = await _sessionService.GetSession(player.Id);
+            var session = await _sessionService.GetSessionByPlayerId(player.Id);
             var dealer = await _playerService.GetDealerViewModel();
             var bots = await _playerService.GetBotViewModelList(_botNumber, session);
             
