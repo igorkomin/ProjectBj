@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Autofac;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,16 +7,18 @@ using System.Threading.Tasks;
 using ProjectBj.ViewModels.Game;
 using ProjectBj.Service.Enums;
 using ProjectBj.Service.Helpers;
+using ProjectBj.Service.Interfaces;
+using ProjectBj.Service.Utility;
 
 namespace ProjectBj.Service.Providers
 {
     public class GameProvider
     {
-        DeckService _deckService;
-        GameService _gameService;
-        LogService _logService;
-        PlayerService _playerService;
-        SessionService _sessionService;
+        IDeckService _deckService;
+        IGameService _gameService;
+        ILogService _logService;
+        IPlayerService _playerService;
+        ISessionService _sessionService;
         string _playerName;
         int _botNumber;
 
@@ -23,11 +26,11 @@ namespace ProjectBj.Service.Providers
         {
             _playerName = playerName;
             _botNumber = botNumber;
-            _deckService = new DeckService();
-            _gameService = new GameService();
-            _logService = new LogService();
-            _playerService = new PlayerService();
-            _sessionService = new SessionService();
+            _deckService = ContainerProvider.Container.Resolve<IDeckService>();
+            _gameService = ContainerProvider.Container.Resolve<IGameService>();
+            _logService = ContainerProvider.Container.Resolve<ILogService>();
+            _playerService = ContainerProvider.Container.Resolve<IPlayerService>();
+            _sessionService = ContainerProvider.Container.Resolve<ISessionService>();
         }
         
         public async Task<GameViewModel> GetGameViewModel()
@@ -46,7 +49,6 @@ namespace ProjectBj.Service.Providers
             };
 
             await UpdateViewModel(gameViewModel);
-
             return gameViewModel;
         }
 
