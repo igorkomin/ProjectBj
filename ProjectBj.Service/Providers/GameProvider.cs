@@ -21,7 +21,7 @@ namespace ProjectBj.Service.Providers
         ISessionService _sessionService;
         string _playerName;
         int _botNumber;
-
+        
         public GameProvider(string playerName, int botNumber)
         {
             _playerName = playerName;
@@ -121,7 +121,6 @@ namespace ProjectBj.Service.Providers
         public async Task<GameViewModel> NewGame()
         {
             var gameViewModel = await DealFirstCards();
-            
             return gameViewModel;
         }
 
@@ -137,6 +136,13 @@ namespace ProjectBj.Service.Providers
             return gameViewModel;
         }
 
+        public async Task<GameViewModel> Stand(int playerId, int sessionId)
+        {
+            var gameViewModel = await GetGameViewModel();
+            await BotsTurn(sessionId);
+            return gameViewModel;
+        }
+
         public async Task<GameViewModel> BotsTurn(int sessionId)
         {
             var gameViewModel = await GetGameViewModel();
@@ -145,12 +151,9 @@ namespace ProjectBj.Service.Providers
             {
                 await BotTurn(bot.Id, sessionId);
             }
-
-            await DealerTurn(gameViewModel.Dealer.Id, sessionId);   
-
-            // TODO: Get game result
-            // TODO: Close session
-
+            await DealerTurn(gameViewModel.Dealer.Id, sessionId);
+            await SetGameResult();
+            await CloseGameSession(sessionId);
             return gameViewModel;
         }
 
@@ -174,6 +177,11 @@ namespace ProjectBj.Service.Providers
             }
             await _deckService.DealCard(dealerId, sessionId);
             return await DealerTurn(dealerId, sessionId);
+        }
+
+        public async Task CloseGameSession(int sessionId)
+        {
+            await _sessionService.CloseSession(sessionId);
         }
     }
 }

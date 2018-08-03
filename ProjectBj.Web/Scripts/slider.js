@@ -1,6 +1,5 @@
-var slider = document.getElementById("bet_range");
-var output = document.getElementById("bet_output");
-
-slider.oninput = function() {
-    output.innerHTML = this.value;
-}
+$(document).on('input', '#bet_range', function () {
+    $('#bet_output').html(
+        $(this).val()
+    );
+});

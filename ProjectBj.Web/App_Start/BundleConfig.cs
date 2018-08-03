@@ -12,7 +12,10 @@ namespace ProjectBj.Web.App_Start
         {
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                         "~/Scripts/bootstrap.js",
-                        "~/Scripts/slider.js"));
+                        "~/Scripts/jquery-3.3.1.js",
+                        "~/Scripts/main.js",
+                        "~/Scripts/slider.js",
+                        "~/Scripts/slider-bots.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                         "~/Content/bootstrap.css",

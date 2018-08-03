@@ -20,13 +20,9 @@ namespace ProjectBj.Web.Controllers
             return View();
         }
 
-        [HttpPost]
-        public async Task<ActionResult> Play(GameSettings settings)
+        public ActionResult Play()
         {
-            GameProvider provider = new GameProvider(settings.PlayerName, settings.BotsNumber);
-            GameViewModel model = await provider.NewGame();
-
-            return View(model);
+            return View();
         }
     }
 }
