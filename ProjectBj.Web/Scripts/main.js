@@ -1,30 +1,33 @@
 ﻿$(document).ready(function (event) {
-    $("#play-button").click(function (event) {
-        if ($("#player-name").val.length > 0) {
-            Start();
-        }
-        ShowError();
-    });
+    var playerName = $.cookie("playerName");
+    var botsNumber = $.cookie("botsNumber");
+
+    if (playerName === undefined || botsNumber === undefined) {
+        $('#error-modal').modal({
+            backdrop: "static",
+            keyboard: false
+        });
+    }
+    else {
+        getGameData(playerName, botsNumber);
+    }
 });
 
-function ShowError() {
-    $("#player-name").sha
-}
-
-function Start() {
-    var playerName = $("#player-name").val();
-    var botsNumber = $("#bots-number").text();
-
+function getGameData(playerName, botsNumber) {
     $.ajax({
-        url: "/api/main/start",
+        url: "/api/main/game",
         type: "POST",
         contentType: "application/json",
         data: JSON.stringify({ PlayerName: playerName, BotsNumber: botsNumber }),
-        success: function () {
-            console.log("OK");
+        success: function (response) {
+            showData(response);
         },
         error: function (response) {
-            console.log(response.responseText);
+            console.error(response.responseText);
         }
     });
+}
+
+function showData(gameData) {
+    
 }
