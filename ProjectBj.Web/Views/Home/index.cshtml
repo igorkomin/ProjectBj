@@ -1,7 +1,5 @@
-﻿@model ProjectBj.ViewModels.GameSettings
-
-@{
-    Layout = null;
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <!DOCTYPE html>
@@ -13,27 +11,29 @@
     @Styles.Render("~/Content/css")
 </head>
 <body>
-    @using (@Html.BeginForm("Play", "Game"))
+    @using (@Html.BeginForm("Play", "Game", FormMethod.Post, new { id = "game-form" }))
     {
-    <div class="container w-50 mt-5">
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text">Enter your name</span>
+        <div class="container w-50 mt-5">
+            <div id="player-name-block" class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Enter your name</span>
+                </div>
+                <input id="player-name" type="text" class="form-control" />
             </div>
-            <input id="player-name" type="text" class="form-control" />
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Number of bots</span>
+                </div>
+                <input id="slider-bots" type="range" min="0" max="5" value="0" step="1" class="slider" />
+                <div class="input-group-append">
+                    <span id="bots-number" class="input-group-text">0</span>
+                </div>
+            </div>
+            <input id="play-button" type="submit" class="btn btn-primary" value="PLAY" />
         </div>
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text">Number of bots</span>
-            </div>
-            <input id="slider-bots" type="range" min="0" max="5" value="0" step="1" class="slider" />
-            <div class="input-group-append">
-                <span id="bots-number" class="input-group-text">0</span>
-            </div>
-        </div>
-        <input id="play-button" type="submit" class="btn btn-outline-primary" value="PLAY" />
-    </div>
     }
+    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/login")
 </body>
 </html>
