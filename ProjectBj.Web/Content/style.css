@@ -1,4 +1,13 @@
-#slider-bots{
+body {
+    background-image: url('/Content/bg.jpg');
+    background-repeat: repeat;
+}
+
+#stop-sign {
+    width: 48px;
+}
+
+#slider-bots {
     width: 74%;
 }
 
@@ -6,12 +15,17 @@
     height: 33vh;
 }
 
+.hand {
+    margin-top: 5px;
+}
+
 .hand img {
 	position: relative;
 }
 
 .top {
-	transform: rotate(205deg);
+	margin-top: 30px;
+    transform: rotate(205deg);
 }
 
 .bottom {
