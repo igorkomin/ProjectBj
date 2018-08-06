@@ -113,6 +113,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bg.jpg" />
     <Content Include="Content\Cards\Clubs\10.png" />
     <Content Include="Content\Cards\Clubs\11.png" />
     <Content Include="Content\Cards\Clubs\12.png" />
@@ -173,6 +174,12 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\jquery-ui.css" />
+    <Content Include="Content\jquery-ui.min.css" />
+    <Content Include="Content\jquery-ui.structure.css" />
+    <Content Include="Content\jquery-ui.structure.min.css" />
+    <Content Include="Content\jquery-ui.theme.css" />
+    <Content Include="Content\jquery-ui.theme.min.css" />
     <Content Include="Content\slider.css" />
     <Content Include="Content\style.css" />
     <Content Include="Global.asax" />
@@ -199,7 +206,11 @@
     <Content Include="Scripts\esm\popper-utils.min.js.map" />
     <Content Include="Scripts\esm\popper-utils.js.map" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\jquery.cookie.js" />
     <Content Include="Scripts\main.js" />
+    <Content Include="Scripts\jquery-ui.js" />
+    <Content Include="Scripts\jquery-ui.min.js" />
+    <Content Include="Scripts\login.js" />
     <Content Include="Scripts\slider-bots.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -265,6 +276,10 @@
     <ProjectReference Include="..\ProjectBj.Entities\ProjectBj.Entities.csproj">
       <Project>{fe68c0ab-c49b-4ad7-8675-493223b5f50c}</Project>
       <Name>ProjectBj.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ProjectBj.Logger\ProjectBj.Logger.csproj">
+      <Project>{b0f07411-1b51-4415-b5c5-095171b1d067}</Project>
+      <Name>ProjectBj.Logger</Name>
     </ProjectReference>
     <ProjectReference Include="..\ProjectBj.Service\ProjectBj.Service.csproj">
       <Project>{d8587967-8e91-44ed-851b-2fa11e44cc0a}</Project>
