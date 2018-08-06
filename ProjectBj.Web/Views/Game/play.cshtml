@@ -1,5 +1,5 @@
 ﻿@{
-    Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <!DOCTYPE html>
@@ -11,15 +11,25 @@
     @Styles.Render("~/Content/css")
 </head>
 <body>
-    <script type="text/javascript">
-        
-    </script>
     <div class="container-fluid text-center">
+        <div class="modal fade" id="error-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalCenterTitle">Error!</h5>
+                    </div>
+                    <div class="modal-body">
+                        You are not logged in!<br />Go back to the <a href="/">main page</a> and enter your name.
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="row">
             <div class="col-lg-9">
                 <div class="row h33">
                     <div class="col-md-12">
-                        <p>Dealer</p>
+                        <span id="name-d">Dealer</span>
+                        <span id="score-d" class="badge badge-pill badge-secondary">00</span>
                         <div id="hand-dealer" class="hand top">
                             
                         </div>
@@ -27,7 +37,8 @@
                 </div>
                 <div class="row h33">
                     <div class="col-md-3">
-                        <span class="badge badge-pill badge-secondary">00</span><p>Player</p>
+                        <span>Player</span>
+                        <span class="badge badge-pill badge-secondary">00</span>
                         <div id="hand-player" class="hand left">
                             
                         </div>
@@ -38,11 +49,12 @@
                             <input type="range" min="50" max="100" value="50" step="5" class="slider" id="bet_range">
                         </div>
                         <h3 id="bet_output">50</h3>
-                        <button type="button" class="btn btn-outline-primary">HIT</button>
-                        <button type="button" class="btn btn-outline-secondary">STAND</button>
+                        <button type="button" class="btn btn-primary">HIT</button>
+                        <button type="button" class="btn btn-secondary">STAND</button>
                     </div>
                     <div class="col-md-3">
-                        <span class="badge badge-pill badge-secondary">00</span><p>Bot 1</p>
+                        <span id="name-0">Bot 1</span>
+                        <span id="score-0" class="badge badge-pill badge-secondary">00</span>
                         <div id="hand-0" class="hand right">
                             
                         </div>
@@ -50,27 +62,31 @@
                 </div>
                 <div class="row h33">
                     <div class="col-md-3">
-                        <span class="badge badge-pill badge-secondary">00</span><p>Bot 2</p>
+                        <span id="name-1">Bot 2</span>
+                        <span id="score-1" class="badge badge-pill badge-secondary">00</span>
                         <div id="hand-1" class="hand left-corner">
                             
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <span class="badge badge-pill badge-secondary">00</span><p>Bot 3</p>
+                        <span id="name-2">Bot 3</span>
+                        <span id="score-2" class="badge badge-pill badge-secondary">00</span>
                         <div id="hand-2" class="hand bottom">
                             
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <span class="badge badge-pill badge-secondary">00</span><p>Bot 4</p>
+                        <span id="name-3">Bot 4</span>
+                        <span id="score-3" class="badge badge-pill badge-secondary">00</span>
                         <div id="hand-3" class="hand bottom">
-                            
+                           
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <span class="badge badge-pill badge-secondary">00</span><p>Bot 5</p>
+                        <span id="name-4">Bot 5</span>
+                        <span id="score-4" class="badge badge-pill badge-secondary">00</span>
                         <div id="hand-4" class="hand">
-                            
+                           
                         </div>
                     </div>
                 </div>
@@ -83,6 +99,8 @@
             </div>
         </div>
     </div>
+    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/main")
 </body>
 </html>
