@@ -7,7 +7,7 @@ using Autofac;
 using ProjectBj.Service;
 using ProjectBj.Service.Interfaces;
 
-namespace ProjectBj.Service.Utility
+namespace ProjectBj.Web.Utility
 {
     public class AutofacConfig
     {
