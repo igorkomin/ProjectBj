@@ -8,7 +8,7 @@ using ProjectBj.ViewModels.Game;
 
 namespace ProjectBj.Service.Interfaces
 {
-    interface IPlayerService
+    public interface IPlayerService
     {
         Task<Player> GetDealer();
         Task<Player> GetPlayer(string name);
