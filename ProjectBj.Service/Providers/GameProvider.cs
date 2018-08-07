@@ -22,15 +22,17 @@ namespace ProjectBj.Service.Providers
         string _playerName;
         int _botNumber;
         
-        public GameProvider(string playerName, int botNumber)
+        public GameProvider(string playerName, int botNumber,
+            IDeckService deckService, IGameService gameService, ILogService logService, 
+            IPlayerService playerService, ISessionService sessionService)
         {
             _playerName = playerName;
             _botNumber = botNumber;
-            _deckService = ContainerProvider.Container.Resolve<IDeckService>();
-            _gameService = ContainerProvider.Container.Resolve<IGameService>();
-            _logService = ContainerProvider.Container.Resolve<ILogService>();
-            _playerService = ContainerProvider.Container.Resolve<IPlayerService>();
-            _sessionService = ContainerProvider.Container.Resolve<ISessionService>();
+            _deckService = deckService;
+            _gameService = gameService;
+            _logService = logService;
+            _playerService = playerService;
+            _sessionService = sessionService;
         }
         
         public async Task<GameViewModel> GetGameViewModel()
