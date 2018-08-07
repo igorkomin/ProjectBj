@@ -11,7 +11,7 @@ using ProjectBj.Service.Interfaces;
 
 namespace ProjectBj.Service.Providers
 {
-    public class GameProvider
+    public class GameProvider : IGameProvider
     {
         IDeckService _deckService;
         IGameService _gameService;
