@@ -193,6 +193,35 @@ namespace ProjectBj.Service
             }
         }
 
+        public async Task<List<CardViewModel>> GetCardViewModels(int playerId, int sessionId)
+        {
+            List<Card> cards = await GetCards(playerId, sessionId);
+            List<CardViewModel> cardViewModels = new List<CardViewModel>();
+            foreach (var card in cards)
+            {
+                CardViewModel cardViewModel = new CardViewModel
+                {
+                    Id = card.Id,
+                    Suit = card.Suit,
+                    Rank = StringHelper.RankName(card.Rank),
+                    ImageUrl = StringHelper.CardLink(card.Suit, card.Rank)
+                };
+                cardViewModels.Add(cardViewModel);
+            }
+            return cardViewModels;
+        }
+
+        public async Task<HandViewModel> GetHandViewModel(int playerId, int sessionId)
+        {
+            List<CardViewModel> cardViewModels = await GetCardViewModels(playerId, sessionId);
+            HandViewModel handViewModel = new HandViewModel
+            {
+                Cards = cardViewModels,
+                Score = await GetHandValue(playerId, sessionId)
+            };
+            return handViewModel;
+        }
+
         public async Task DeletePlayer(Player player)
         {
             try

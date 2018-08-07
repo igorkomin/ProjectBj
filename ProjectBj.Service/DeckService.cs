@@ -142,23 +142,6 @@ namespace ProjectBj.Service
             }
         }
 
-        public async Task<List<CardViewModel>> GetCardViewModels(List<Card> cards)
-        {
-            List<CardViewModel> cardViewModels = new List<CardViewModel>();
-            foreach (var card in cards)
-            {
-                CardViewModel cardViewModel = new CardViewModel
-                {
-                    Id = card.Id,
-                    Suit = card.Suit,
-                    Rank = StringHelper.RankName(card.Rank),
-                    ImageUrl = StringHelper.CardLink(card.Suit, card.Rank)
-                };
-                cardViewModels.Add(cardViewModel);
-            }
-            return cardViewModels;
-        }
-
         public async Task Hit(int playerId, int sessionId)
         {
             await DealCard(playerId, sessionId);
