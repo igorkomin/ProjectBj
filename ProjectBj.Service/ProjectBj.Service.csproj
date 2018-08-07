@@ -52,6 +52,7 @@
     <Compile Include="Helpers\StringHelper.cs" />
     <Compile Include="Helpers\ValueHelper.cs" />
     <Compile Include="Interfaces\IDeckService.cs" />
+    <Compile Include="Interfaces\IGameProvider.cs" />
     <Compile Include="Interfaces\IGameService.cs" />
     <Compile Include="Interfaces\ILogService.cs" />
     <Compile Include="Interfaces\ISessionService.cs" />
