@@ -8,7 +8,7 @@ using ProjectBj.Service.Enums;
 
 namespace ProjectBj.Service.Interfaces
 {
-    interface IGameService
+    public interface IGameService
     {
         Task<GameResults.Result> GetGameResult(int playerId, int playerScore, int dealerScore, int bet);
         Task ChangePlayerBalance(int playerId, int balanceDelta);
