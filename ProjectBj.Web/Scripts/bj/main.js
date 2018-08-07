@@ -30,10 +30,46 @@ function getGameData(playerName, botsNumber) {
 
 function showData(gameData) {
     // dealer
-    var id = gameData.Dealer.Id;
     var name = gameData.Dealer.Name;
-    var inGame = gameData.Dealer.InGame;
-    var hand = gameData.Dealer.Hand;
+    var hand = gameData.Dealer.Hand.Cards;
+    var score = gameData.Dealer.Hand.Score;
+    var inGame = gameData.Dealer.inGame;
+    $("#name-d").text(name);
+    $("#score-d").text(score);
+    $.each(hand, function (index, card) {
+        $("#hand-d").add("<img src='" + card.ImageUrl + "' />");
+    });
 
-    
+    // player
+    name = gameData.Player.Name;
+    inGame = gameData.Player.InGame;
+    hand = gameData.Player.Hand;
+    score = gameData.Player.Hand.Score;
+    var isHuman = gameData.Player.IsHunan;
+    var ballance = gameData.Player.Ballance;
+    var gameResult = gameData.Player.GameResult;
+    var bet = gameData.Player.Bet;
+    $("#name-p").text(name);
+    $("#score-p").text(score);
+    $.each(hand, function (index, card) {
+        $("#hand-p").add("<img src='" + card.ImageUrl + "' />");
+    });
+
+    // bots
+    var bots = gameData.Bots;
+    $.each(bots, function (botIndex, bot) {
+        var name = bot.Name+index;
+        var isHuman = bot.IsHuman;
+        var ballance = bot.Ballance;
+        var inGame = bot.InGame;
+        var hand = bot.Hand;
+        var score = bot.Hand.Score;
+        var gameResult = bot.GameResult;
+        var bet = bot.Bet;
+        $("#name-" + botIndex).text(name);
+        $("#score-" + botIndex).text(score);
+        $.each(hand, function (cardIndex, card) {
+            $("#hand-" + botIndex).add("<img src='" + card.ImageUrl + "' />");
+        });
+    })
 }
