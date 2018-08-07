@@ -62,7 +62,6 @@
     <Compile Include="Providers\GameProvider.cs" />
     <Compile Include="SessionService.cs" />
     <Compile Include="Utility\AutofacConfig.cs" />
-    <Compile Include="Utility\ContainerProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ProjectBj.DAL\ProjectBj.DAL.csproj">
