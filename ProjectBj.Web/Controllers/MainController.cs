@@ -26,7 +26,6 @@ namespace ProjectBj.Web.Controllers
         [HttpPost]
         public async Task<IHttpActionResult> Game([FromBody]GameSettings settings)
         {
-            
             GameViewModel model = await _provider.NewGame();
 
             if(model == null)
