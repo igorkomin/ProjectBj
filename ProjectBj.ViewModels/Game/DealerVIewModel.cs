@@ -12,6 +12,6 @@ namespace ProjectBj.ViewModels.Game
         public int Id { get; set; }
         public string Name { get; set; }
         public bool InGame { get; set; }
-        public List<CardViewModel> Hand { get; set; }
+        public HandViewModel Hand { get; set; }
     }
 }
