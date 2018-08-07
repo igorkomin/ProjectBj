@@ -12,8 +12,8 @@ namespace ProjectBj.Web.App_Start
         {
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                         "~/Scripts/bootstrap.js",
-                        "~/Scripts/slider.js",
-                        "~/Scripts/slider-bots.js"
+                        "~/Scripts/bj/slider.js",
+                        "~/Scripts/bj/slider-bots.js"
                         ));
 
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
@@ -23,11 +23,11 @@ namespace ProjectBj.Web.App_Start
                         ));
 
             bundles.Add(new ScriptBundle("~/bundles/login").Include(
-                        "~/Scripts/login.js"
+                        "~/Scripts/bj/login.js"
                         ));
 
             bundles.Add(new ScriptBundle("~/bundles/main").Include(
-                        "~/Scripts/main.js"
+                        "~/Scripts/bj/main.js"
                         ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
