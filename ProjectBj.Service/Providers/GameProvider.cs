@@ -59,16 +59,12 @@ namespace ProjectBj.Service.Providers
             var dealer = gameViewModel.Dealer;
             var bots = gameViewModel.Bots;
 
-            var playerHand = await _playerService.GetCards(player.Id, session);
-            var dealerHand = await _playerService.GetCards(dealer.Id, session);
-
-            gameViewModel.Player.Hand = await _deckService.GetCardViewModels(playerHand);
-            gameViewModel.Dealer.Hand = await _deckService.GetCardViewModels(dealerHand);
+            gameViewModel.Player.Hand = await _playerService.GetHandViewModel(player.Id, session);
+            gameViewModel.Dealer.Hand = await _playerService.GetHandViewModel(dealer.Id, session);
 
             foreach (var bot in bots)
             {
-                var botHand = await _playerService.GetCards(bot.Id, session);
-                bot.Hand = await _deckService.GetCardViewModels(botHand);
+                bot.Hand = await _playerService.GetHandViewModel(bot.Id, session);
             }
         }
 
@@ -79,14 +75,16 @@ namespace ProjectBj.Service.Providers
             return gameViewModel;
         }
 
-        public async Task SetGameResult()
+        public async Task UpdateGameResult()
         {
             var gameViewModel = await GetGameViewModel();
 
             var sessionId = gameViewModel.SessionId;
             var playerId = gameViewModel.Player.Id;
-            var playerScore = await _playerService.GetHandValue(gameViewModel.Player.Id, sessionId);
-            var dealerScore = await _playerService.GetHandValue(gameViewModel.Dealer.Id, sessionId);
+            
+            var playerScore = gameViewModel.Player.Hand.Score;
+            var dealerScore = gameViewModel.Dealer.Hand.Score;
+
             var bet = gameViewModel.Player.Bet;
 
             var result = await _gameService.GetGameResult(playerId, playerScore, dealerScore, bet);
@@ -94,7 +92,7 @@ namespace ProjectBj.Service.Providers
 
             foreach(var bot in gameViewModel.Bots)
             {
-                var botScore = await _playerService.GetHandValue(bot.Id, sessionId);
+                var botScore = bot.Hand.Score;
                 var botBet = ValueHelper.BotBetValue;
                 result = await _gameService.GetGameResult(bot.Id, botScore, dealerScore, botBet);
                 bot.GameResult = (int)result;
@@ -152,7 +150,7 @@ namespace ProjectBj.Service.Providers
                 await BotTurn(bot.Id, sessionId);
             }
             await DealerTurn(gameViewModel.Dealer.Id, sessionId);
-            await SetGameResult();
+            await UpdateGameResult();
             await CloseGameSession(sessionId);
             return gameViewModel;
         }
