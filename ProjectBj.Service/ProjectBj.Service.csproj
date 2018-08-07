@@ -61,7 +61,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\GameProvider.cs" />
     <Compile Include="SessionService.cs" />
-    <Compile Include="Utility\AutofacConfig.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ProjectBj.DAL\ProjectBj.DAL.csproj">
