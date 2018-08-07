@@ -7,7 +7,7 @@ using ProjectBj.Entities;
 
 namespace ProjectBj.Service.Interfaces
 {
-    interface ILogService
+    public interface ILogService
     {
         Task CreateLogEntry(string message, int sessionId);
         Task<LogEntry> GetLogEntry(int id);
