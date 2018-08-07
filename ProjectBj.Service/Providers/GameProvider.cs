@@ -8,7 +8,6 @@ using ProjectBj.ViewModels.Game;
 using ProjectBj.Service.Enums;
 using ProjectBj.Service.Helpers;
 using ProjectBj.Service.Interfaces;
-using ProjectBj.Service.Utility;
 
 namespace ProjectBj.Service.Providers
 {
