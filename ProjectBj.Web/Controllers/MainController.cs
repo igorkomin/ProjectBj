@@ -16,12 +16,6 @@ namespace ProjectBj.Web.Controllers
     public class MainController : ApiController
     {
         [HttpPost]
-        public async Task<IHttpActionResult> SaveSettings([FromBody]GameSettings settings)
-        {
-            return Ok(settings);
-        }
-        
-        [HttpPost]
         public async Task<IHttpActionResult> Game([FromBody]GameSettings settings)
         {
             GameProvider provider = new GameProvider(settings.PlayerName, settings.BotsNumber);
@@ -31,7 +25,7 @@ namespace ProjectBj.Web.Controllers
             {
                 return InternalServerError();
             }
-            
+
             return Ok(model);
         }
     }
