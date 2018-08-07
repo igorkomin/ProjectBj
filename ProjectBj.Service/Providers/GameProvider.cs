@@ -13,20 +13,17 @@ namespace ProjectBj.Service.Providers
 {
     public class GameProvider : IGameProvider
     {
-        IDeckService _deckService;
-        IGameService _gameService;
-        ILogService _logService;
-        IPlayerService _playerService;
-        ISessionService _sessionService;
-        string _playerName;
-        int _botNumber;
+        public string _playerName { get; set; }
+        public int _botNumber { get; set; }
+        private IDeckService _deckService;
+        private IGameService _gameService;
+        private ILogService _logService;
+        private IPlayerService _playerService;
+        private ISessionService _sessionService;
         
-        public GameProvider(string playerName, int botNumber,
-            IDeckService deckService, IGameService gameService, ILogService logService, 
-            IPlayerService playerService, ISessionService sessionService)
+        public GameProvider(IDeckService deckService, IGameService gameService, 
+            ILogService logService, IPlayerService playerService, ISessionService sessionService)
         {
-            _playerName = playerName;
-            _botNumber = botNumber;
             _deckService = deckService;
             _gameService = gameService;
             _logService = logService;
