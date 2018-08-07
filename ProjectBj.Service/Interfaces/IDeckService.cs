@@ -15,6 +15,5 @@ namespace ProjectBj.Service.Interfaces
         Task DealCard(int playerId, int sessionId);
         Task Hit(int playerId, int sessionId);
         Task DealFirstTwoCards(List<int> players, int sessionId);
-        Task<List<CardViewModel>> GetCardViewModels(List<Card> cards);
     }
 }

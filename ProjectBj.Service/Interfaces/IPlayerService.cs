@@ -15,9 +15,11 @@ namespace ProjectBj.Service.Interfaces
         Task<Player> GetPlayerById(int id);
         Task<PlayerViewModel> GetPlayerViewModel(string name);
         Task<DealerViewModel> GetDealerViewModel();
-        Task<List<PlayerViewModel>> GetBotViewModelList(int botnumber, int sessionId);
-        Task<List<Player>> CreateBots(int number);
+        Task<HandViewModel> GetHandViewModel(int playerId, int sessionId);
         Task<List<Card>> GetCards(int playerId, int sessionId);
+        Task<List<CardViewModel>> GetCardViewModels(int playerId, int sessionId);
+        Task<List<Player>> CreateBots(int number);
+        Task<List<PlayerViewModel>> GetBotViewModelList(int botnumber, int sessionId);
         Task<int> GetHandValue(int playerId, int sessionId);
         Task DeletePlayer(Player player);
     }
