@@ -29,5 +29,11 @@ function getGameData(playerName, botsNumber) {
 }
 
 function showData(gameData) {
+    // dealer
+    var id = gameData.Dealer.Id;
+    var name = gameData.Dealer.Name;
+    var inGame = gameData.Dealer.InGame;
+    var hand = gameData.Dealer.Hand;
+
     
 }
