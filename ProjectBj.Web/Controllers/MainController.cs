@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Web.Caching;
 using System.Web.Http;
 using ProjectBj.Logger;
+using ProjectBj.Service.Interfaces;
 using ProjectBj.Service.Providers;
 using ProjectBj.ViewModels;
 using ProjectBj.ViewModels.Game;
@@ -15,11 +16,18 @@ namespace ProjectBj.Web.Controllers
 {
     public class MainController : ApiController
     {
+        IGameProvider _provider;
+
+        public MainController(IGameProvider provider)
+        {
+            _provider = provider;
+        }
+
         [HttpPost]
         public async Task<IHttpActionResult> Game([FromBody]GameSettings settings)
         {
-            GameProvider provider = new GameProvider(settings.PlayerName, settings.BotsNumber);
-            GameViewModel model = await provider.NewGame();
+            
+            GameViewModel model = await _provider.NewGame();
 
             if(model == null)
             {
