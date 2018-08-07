@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -16,6 +17,7 @@ namespace ProjectBj.Web.Utility
         public static void ConfigureContainer()
         {
             var builder = new ContainerBuilder();
+            builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
             builder.RegisterType<DeckService>().As<IDeckService>();
             builder.RegisterType<GameService>().As<IGameService>();
             builder.RegisterType<LogService>().As<ILogService>();
