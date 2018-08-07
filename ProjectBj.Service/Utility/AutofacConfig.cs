@@ -19,7 +19,7 @@ namespace ProjectBj.Service.Utility
             builder.RegisterType<LogService>().As<ILogService>();
             builder.RegisterType<PlayerService>().As<IPlayerService>();
             builder.RegisterType<SessionService>().As<ISessionService>();
-            ContainerProvider.Container = builder.Build();
+            var container = builder.Build();
         }
     }
 }
