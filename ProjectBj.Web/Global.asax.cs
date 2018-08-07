@@ -1,4 +1,5 @@
 ﻿using ProjectBj.Web.App_Start;
+using ProjectBj.Web.Utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,7 @@ namespace ProjectBj.Web
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
+            AutofacConfig.ConfigureContainer();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
