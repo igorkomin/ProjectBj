@@ -55,7 +55,7 @@ function showData(gameData) {
 
     var bots = gameData.Bots;
     $.each(bots, function (botIndex, bot) {
-        var name = bot.Name+botIndex;
+        var name = bot.Name + botIndex;
         var isHuman = bot.IsHuman;
         var ballance = bot.Ballance;
         var inGame = bot.InGame;
@@ -68,5 +68,5 @@ function showData(gameData) {
         $.each(hand, function (cardIndex, card) {
             $("#hand-" + botIndex).add("<img src='" + card.ImageUrl + "' />");
         });
-    })
+    });
 }
