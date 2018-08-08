@@ -29,7 +29,6 @@ function getGameData(playerName, botsNumber) {
 }
 
 function showData(gameData) {
-    // dealer
     var name = gameData.Dealer.Name;
     var hand = gameData.Dealer.Hand.Cards;
     var score = gameData.Dealer.Hand.Score;
@@ -40,7 +39,6 @@ function showData(gameData) {
         $("#hand-d").add("<img src='" + card.ImageUrl + "' />");
     });
 
-    // player
     name = gameData.Player.Name;
     inGame = gameData.Player.InGame;
     hand = gameData.Player.Hand;
@@ -55,10 +53,9 @@ function showData(gameData) {
         $("#hand-p").add("<img src='" + card.ImageUrl + "' />");
     });
 
-    // bots
     var bots = gameData.Bots;
     $.each(bots, function (botIndex, bot) {
-        var name = bot.Name+index;
+        var name = bot.Name+botIndex;
         var isHuman = bot.IsHuman;
         var ballance = bot.Ballance;
         var inGame = bot.InGame;
