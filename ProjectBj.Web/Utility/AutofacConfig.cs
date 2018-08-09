@@ -1,14 +1,18 @@
-﻿using System;
+﻿using Autofac;
+using Autofac.Integration.WebApi;
+using Autofac.Integration.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
-using Autofac;
-using Autofac.Integration.WebApi;
+using System.Web.Mvc;
 using ProjectBj.Service;
 using ProjectBj.Service.Interfaces;
+using ProjectBj.Service.Providers;
+using System.Web.Compilation;
 
 namespace ProjectBj.Web.Utility
 {
@@ -17,14 +21,19 @@ namespace ProjectBj.Web.Utility
         public static void ConfigureContainer()
         {
             var builder = new ContainerBuilder();
+            var config = GlobalConfiguration.Configuration;
+
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
+            
             builder.RegisterType<DeckService>().As<IDeckService>();
             builder.RegisterType<GameService>().As<IGameService>();
             builder.RegisterType<LogService>().As<ILogService>();
             builder.RegisterType<PlayerService>().As<IPlayerService>();
             builder.RegisterType<SessionService>().As<ISessionService>();
+            builder.RegisterType<GameProvider>().As<IGameProvider>();
+            
             var container = builder.Build();
-            GlobalConfiguration.Configuration.DependencyResolver = new AutofacWebApiDependencyResolver(container);
+            config.DependencyResolver = new AutofacWebApiDependencyResolver(container); ;
         }
     }
 }
