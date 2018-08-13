@@ -1,3 +1,20 @@
-<p>
-  login works!
-</p>
+<div class="container w-50 mt-5">
+    <div id="player-name-block" class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Enter your name</span>
+        </div>
+        <input #playerName id="player-name" type="text" class="form-control" />
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Number of bots</span>
+        </div>
+        <input #botsSlider id="slider-bots" type="range" (change)="updateSliderValue(botsSlider.value)"
+          min="0" max="5" value="0" step="1" class="slider" />
+        <div class="input-group-append">
+            <span id="bots-number" class="input-group-text">{{ sliderValue }}</span>
+        </div>
+    </div>
+    <input routerLink="/game" id="play-button" (click)="login(playerName.value, botsSlider.value)"
+      type="submit" class="btn btn-primary" value="PLAY" />
+</div>
