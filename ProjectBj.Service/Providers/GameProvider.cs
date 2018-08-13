@@ -1,5 +1,4 @@
-﻿using Autofac;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -114,8 +113,10 @@ namespace ProjectBj.Service.Providers
             return model;
         }
 
-        public async Task<GameViewModel> NewGame()
+        public async Task<GameViewModel> NewGame(string playerName, int botsNumber)
         {
+            _playerName = playerName;
+            _botNumber = botsNumber;
             var gameViewModel = await DealFirstCards();
             return gameViewModel;
         }

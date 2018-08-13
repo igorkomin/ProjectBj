@@ -15,8 +15,8 @@ namespace ProjectBj.Web
     {
         protected void Application_Start()
         {
-            AreaRegistration.RegisterAllAreas();
             AutofacConfig.ConfigureContainer();
+            AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);

@@ -16,7 +16,7 @@ namespace ProjectBj.Web.Controllers
 {
     public class MainController : ApiController
     {
-        IGameProvider _provider;
+        private readonly IGameProvider _provider;
 
         public MainController(IGameProvider provider)
         {
@@ -26,7 +26,7 @@ namespace ProjectBj.Web.Controllers
         [HttpPost]
         public async Task<IHttpActionResult> Game([FromBody]GameSettings settings)
         {
-            GameViewModel model = await _provider.NewGame();
+            GameViewModel model = await _provider.NewGame(settings.PlayerName, settings.BotsNumber);
 
             if(model == null)
             {

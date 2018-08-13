@@ -33,7 +33,7 @@ namespace ProjectBj.Service.Helpers
         }
         public static string CardLink(string suit, int rank)
         {
-            string cardLink = $"~/Content/Cards/{suit}/{rank}.png";
+            string cardLink = $"../Content/Cards/{suit}/{rank}.png";
             return cardLink;
         }
         #endregion
