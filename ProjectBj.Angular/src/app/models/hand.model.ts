@@ -1,6 +1,6 @@
-import { CardModel } from "./card.model";
+import { Card } from "./card.model";
 
-export class HandModel {
-    cards: CardModel[];
+export class Hand {
+    cards: Card[];
     score: number;
 }

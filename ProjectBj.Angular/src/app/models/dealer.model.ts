@@ -1,8 +1,8 @@
-import { HandModel } from "./hand.model";
+import { Hand } from "./hand.model";
 
-export class DealerModel {
+export class Dealer {
     id: number;
     name: string;
     inGame: boolean;
-    hand: HandModel;
+    hand: Hand;
 }

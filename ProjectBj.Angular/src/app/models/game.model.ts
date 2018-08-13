@@ -1,9 +1,9 @@
-import { DealerModel } from "./dealer.model";
-import { PlayerModel } from "./player.model";
+import { Dealer } from "./dealer.model";
+import { Player } from "./player.model";
 
-export class GameModel {
+export class Game {
     sessionId: number;
-    dealer: DealerModel;
-    player: PlayerModel;
-    bots: PlayerModel[];
+    dealer: Dealer;
+    player: Player;
+    bots: Player[];
 }
