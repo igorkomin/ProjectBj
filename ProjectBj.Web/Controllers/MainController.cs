@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Caching;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using ProjectBj.Logger;
 using ProjectBj.Service.Interfaces;
 using ProjectBj.Service.Providers;
@@ -21,6 +22,15 @@ namespace ProjectBj.Web.Controllers
         public MainController(IGameProvider provider)
         {
             _provider = provider;
+        }
+
+        [HttpPost]
+        public async Task<GameSettings> Debug([FromBody]GameSettings settings)
+        {
+            settings.PlayerName += "+";
+            settings.BotsNumber++;
+
+            return settings;
         }
 
         [HttpPost]
