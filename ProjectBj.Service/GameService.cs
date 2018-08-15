@@ -25,7 +25,8 @@ namespace ProjectBj.Service
         {
             if (playerScore == ValueHelper.BlackjackValue)
             {
-                await ChangePlayerBalance(playerId, bet);
+                int winAmount = (bet * 2) + (bet / 2);
+                await ChangePlayerBalance(playerId, winAmount);
                 return GameResults.Result.Blackjack;
             }
 
