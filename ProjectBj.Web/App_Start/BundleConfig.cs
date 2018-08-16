@@ -31,7 +31,6 @@ namespace ProjectBj.Web.App_Start
                         ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                        "~/Content/bootstrap.css",
                         "~/Content/style.css",
                         "~/Content/jquery-ui.css",
                         "~/Content/slider.css"
