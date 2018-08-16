@@ -1,14 +1,14 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterModule, Routes } from '@angular/router';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { RouterModule, Routes } from "@angular/router";
 
-import { LoginComponent } from '../components/login.component';
-import { GameComponent } from '../components/game.component';
+import { LoginComponent } from "../components/login.component";
+import { GameComponent } from "../components/game.component";
 
 const routes: Routes = [
-    { path: '', redirectTo: '/login', pathMatch: 'full' },
-    { path: 'login', component: LoginComponent },
-    { path: 'game', component: GameComponent }
+    { path: "", redirectTo: "/login", pathMatch: "full" },
+    { path: "login", component: LoginComponent },
+    { path: "game", component: GameComponent }
 ]
 
 @NgModule({
@@ -19,5 +19,5 @@ const routes: Routes = [
     exports: [
         RouterModule
     ]
-})
+});
 export class AppRoutingModule { }
