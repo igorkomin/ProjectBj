@@ -33,7 +33,7 @@ namespace ProjectBj.Web.Utility
             builder.RegisterType<GameProvider>().As<IGameProvider>();
             
             var container = builder.Build();
-            config.DependencyResolver = new AutofacWebApiDependencyResolver(container); ;
+            config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
         }
     }
 }
