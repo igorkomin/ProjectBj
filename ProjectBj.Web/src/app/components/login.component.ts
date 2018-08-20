@@ -25,11 +25,4 @@ export class LoginComponent implements OnInit {
     updateSliderValue(value: number): void {
         this.sliderValue = value;
     }
-
-    validateForm(nameLength: number): void {
-        this.loginLinkEnabled = false;
-        if (nameLength > 0) {
-            this.loginLinkEnabled = true;
-        }
-    }
 }
