@@ -5,7 +5,6 @@ using System.Web;
 using System.Web.Mvc;
 using ProjectBj.ViewModels;
 using ProjectBj.ViewModels.Game;
-using ProjectBj.Entities;
 using ProjectBj.Service;
 using ProjectBj.Service.Providers;
 using System.Threading.Tasks;
