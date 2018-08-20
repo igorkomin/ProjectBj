@@ -7,6 +7,8 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Configuration;
 using Dapper;
+using Dapper.Contrib;
+using Dapper.Contrib.Extensions;
 using ProjectBj.DataAccess.Interfaces;
 using ProjectBj.Entities;
 using ProjectBj.Logger;
