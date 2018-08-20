@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ProjectBj.ViewModels.Game;
-using ProjectBj.Service.Enums;
-using ProjectBj.Service.Helpers;
-using ProjectBj.Service.Interfaces;
+using ProjectBj.BusinessLogic.Enums;
+using ProjectBj.BusinessLogic.Helpers;
+using ProjectBj.BusinessLogic.Interfaces;
 
-namespace ProjectBj.Service.Providers
+namespace ProjectBj.BusinessLogic.Providers
 {
     public class GameProvider : IGameProvider
     {

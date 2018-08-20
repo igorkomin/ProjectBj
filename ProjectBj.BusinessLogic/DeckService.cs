@@ -7,13 +7,13 @@ using ProjectBj.Entities;
 using ProjectBj.DataAccess;
 using ProjectBj.DataAccess.Repositories;
 using ProjectBj.Logger;
-using ProjectBj.Service.Enums;
-using ProjectBj.Service.Helpers;
-using ProjectBj.Service.Interfaces;
+using ProjectBj.BusinessLogic.Enums;
+using ProjectBj.BusinessLogic.Helpers;
+using ProjectBj.BusinessLogic.Interfaces;
 using ProjectBj.ViewModels;
 using ProjectBj.ViewModels.Game;
 
-namespace ProjectBj.Service
+namespace ProjectBj.BusinessLogic
 {
     public class DeckService : IDeckService
     {

@@ -1,4 +1,4 @@
-﻿namespace ProjectBj.Service.Helpers
+﻿namespace ProjectBj.BusinessLogic.Helpers
 {
     public static class ValueHelper
     {

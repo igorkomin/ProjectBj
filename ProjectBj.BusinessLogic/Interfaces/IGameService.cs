@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ProjectBj.Entities;
-using ProjectBj.Service.Enums;
+using ProjectBj.BusinessLogic.Enums;
 
-namespace ProjectBj.Service.Interfaces
+namespace ProjectBj.BusinessLogic.Interfaces
 {
     public interface IGameService
     {

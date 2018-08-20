@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ProjectBj.Entities;
 
-namespace ProjectBj.Service.Interfaces
+namespace ProjectBj.BusinessLogic.Interfaces
 {
     public interface ILogService
     {

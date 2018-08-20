@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using ProjectBj.Entities;
 using ProjectBj.DataAccess.Repositories;
-using ProjectBj.Service.Interfaces;
+using ProjectBj.BusinessLogic.Interfaces;
 
-namespace ProjectBj.Service
+namespace ProjectBj.BusinessLogic
 {
     public class LogService : ILogService
     {

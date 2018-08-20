@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 using ProjectBj.DataAccess;
 using ProjectBj.DataAccess.Repositories;
 using ProjectBj.Entities;
-using ProjectBj.Service.Enums;
-using ProjectBj.Service.Helpers;
-using ProjectBj.Service.Interfaces;
+using ProjectBj.BusinessLogic.Enums;
+using ProjectBj.BusinessLogic.Helpers;
+using ProjectBj.BusinessLogic.Interfaces;
 
-namespace ProjectBj.Service
+namespace ProjectBj.BusinessLogic
 {
     public class GameService : IGameService
     {

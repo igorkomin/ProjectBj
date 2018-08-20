@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProjectBj.Service.Enums
+namespace ProjectBj.BusinessLogic.Enums
 {
     public class GameResults
     {

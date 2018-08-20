@@ -7,8 +7,8 @@
     <ProjectGuid>{D8587967-8E91-44ED-851B-2FA11E44CC0A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ProjectBj.Service</RootNamespace>
-    <AssemblyName>ProjectBj.Service</AssemblyName>
+    <RootNamespace>ProjectBj.BusinessLogic</RootNamespace>
+    <AssemblyName>ProjectBj.BusinessLogic</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectBj.Entities", "Proje
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectBj.Logger", "ProjectBj.Logger\ProjectBj.Logger.csproj", "{B0F07411-1B51-4415-B5C5-095171B1D067}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectBj.Service", "ProjectBj.Service\ProjectBj.Service.csproj", "{D8587967-8E91-44ED-851B-2FA11E44CC0A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectBj.BusinessLogic", "ProjectBj.BusinessLogic\ProjectBj.BusinessLogic.csproj", "{D8587967-8E91-44ED-851B-2FA11E44CC0A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectBj.Web", "ProjectBj.Web\ProjectBj.Web.csproj", "{924CA740-A4C5-48D0-8BA7-88C3E51CB8DB}"
 EndProject

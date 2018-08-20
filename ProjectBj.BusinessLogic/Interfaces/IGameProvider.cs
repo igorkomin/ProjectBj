@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ProjectBj.ViewModels.Game;
 
-namespace ProjectBj.Service.Interfaces
+namespace ProjectBj.BusinessLogic.Interfaces
 {
     public interface IGameProvider
     {

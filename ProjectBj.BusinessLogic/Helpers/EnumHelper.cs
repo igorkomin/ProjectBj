@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProjectBj.Service.Helpers
+namespace ProjectBj.BusinessLogic.Helpers
 {
     public static class EnumHelper
     {

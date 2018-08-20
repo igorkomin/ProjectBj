@@ -5,12 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using ProjectBj.DataAccess.Repositories;
 using ProjectBj.Entities;
-using ProjectBj.Service.Interfaces;
-using ProjectBj.Service.Helpers;
-using ProjectBj.Service.Enums;
+using ProjectBj.BusinessLogic.Interfaces;
+using ProjectBj.BusinessLogic.Helpers;
+using ProjectBj.BusinessLogic.Enums;
 using ProjectBj.ViewModels.Game;
 
-namespace ProjectBj.Service
+namespace ProjectBj.BusinessLogic
 {
     public class PlayerService : IPlayerService
     {

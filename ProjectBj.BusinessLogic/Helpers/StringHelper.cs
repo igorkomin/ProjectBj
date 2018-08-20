@@ -1,5 +1,5 @@
-﻿using ProjectBj.Service.Enums;
-namespace ProjectBj.Service.Helpers
+﻿using ProjectBj.BusinessLogic.Enums;
+namespace ProjectBj.BusinessLogic.Helpers
 {
     public static class StringHelper
     {

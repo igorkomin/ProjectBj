@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using ProjectBj.DataAccess;
 using ProjectBj.DataAccess.Repositories;
 using ProjectBj.Entities;
-using ProjectBj.Service.Interfaces;
+using ProjectBj.BusinessLogic.Interfaces;
 
-namespace ProjectBj.Service
+namespace ProjectBj.BusinessLogic
 {
     public class SessionService : ISessionService
     {

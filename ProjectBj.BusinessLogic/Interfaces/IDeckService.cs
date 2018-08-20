@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using ProjectBj.Entities;
 using ProjectBj.ViewModels.Game;
 
-namespace ProjectBj.Service.Interfaces
+namespace ProjectBj.BusinessLogic.Interfaces
 {
     public interface IDeckService
     {
