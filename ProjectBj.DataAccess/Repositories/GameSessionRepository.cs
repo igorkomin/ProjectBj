@@ -37,10 +37,8 @@ namespace ProjectBj.DataAccess.Repositories
             {
                 using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
                 {
-                    var sqlQuery = "SELECT * FROM GameSessions " +
-                                   "WHERE Id = @id";
-                    var session = await db.QueryAsync<GameSession>(sqlQuery, new { id });
-                    return session.FirstOrDefault();
+                    var session = await db.GetAsync<GameSession>(id);
+                    return session;
                 }
             }
             catch (SqlException exception)
@@ -71,9 +69,7 @@ namespace ProjectBj.DataAccess.Repositories
             {
                 using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
                 {
-                    var sqlQuery = "DELETE FROM GameSessions " +
-                                   "WHERE Id = @Id";
-                    await db.ExecuteAsync(sqlQuery, session);
+                    await db.DeleteAsync(session);
                 }
             }
             catch (SqlException exception)
