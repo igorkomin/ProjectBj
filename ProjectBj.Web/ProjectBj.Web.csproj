@@ -193,9 +193,6 @@
     <Content Include="Scripts\bj\main.js" />
     <Content Include="Scripts\jquery-ui.js" />
     <Content Include="Scripts\jquery-ui.min.js" />
-    <Content Include="Scripts\bj\login.js" />
-    <Content Include="Scripts\bj\slider-bots.js" />
-    <Content Include="Scripts\bj\slider.js" />
     <Content Include="src\app\styles\common\bootstrap.css" />
     <Content Include="src\app\styles\game.style.css" />
     <Content Include="src\app\views\game.view.html" />
