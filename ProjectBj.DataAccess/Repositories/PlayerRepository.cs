@@ -57,8 +57,7 @@ namespace ProjectBj.DataAccess.Repositories
             {
                 using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
                 {
-                    var sqlQuery = "DELETE FROM Players WHERE Id = @id";
-                    await db.ExecuteAsync(sqlQuery, new { id });
+                    await db.DeleteAsync(player);
                 }
             }
             catch (SqlException exception)
