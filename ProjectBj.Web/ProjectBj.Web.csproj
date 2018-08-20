@@ -190,7 +190,6 @@
     <Content Include="angular.json" />
     <Content Include="package.json" />
     <Content Include="Scripts\jquery.cookie.js" />
-    <Content Include="Scripts\bj\main.js" />
     <Content Include="Scripts\jquery-ui.js" />
     <Content Include="Scripts\jquery-ui.min.js" />
     <Content Include="src\app\styles\common\bootstrap.css" />
