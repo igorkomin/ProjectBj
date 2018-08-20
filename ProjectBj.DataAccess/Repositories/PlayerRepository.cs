@@ -135,7 +135,7 @@ namespace ProjectBj.DataAccess.Repositories
         {
             try
             {
-                PlayerHand playerHand = new PlayerHand() { PlayerId = player.Id, CardId = card.Id, SessionId = sessionId };
+                PlayerHand playerHand = new PlayerHand { PlayerId = player.Id, CardId = card.Id, SessionId = sessionId };
                 using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
                 {
                     await db.InsertAsync(playerHand);
