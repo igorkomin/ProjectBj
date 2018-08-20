@@ -129,8 +129,6 @@ namespace ProjectBj.BusinessLogic
             List<Card> deck = await GetShuffledDeck();
             Card card = deck[0];
             await GivePlayerCard(player, card, sessionId);
-
-            string cardRank = StringHelper.RankName(card.Rank);
         }
 
         public async Task DealFirstTwoCards(List<int> playerIds, int sessionId)
