@@ -105,8 +105,7 @@ namespace ProjectBj.DataAccess.Repositories
             {
                 using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
                 {
-                    var sqlQuery = "SELECT * FROM Players";
-                    var players = await db.QueryAsync<Player>(sqlQuery);
+                    var players = await db.GetAllAsync<Player>();
                     return players.AsList();
                 }
             }
