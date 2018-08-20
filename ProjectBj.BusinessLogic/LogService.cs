@@ -62,7 +62,7 @@ namespace ProjectBj.BusinessLogic
         {
             try
             {
-                await _logRepository.DeleteEntry(entry.Id);
+                await _logRepository.DeleteEntry(entry);
             }
             catch (Exception exception)
             {

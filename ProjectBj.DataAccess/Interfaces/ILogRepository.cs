@@ -12,6 +12,6 @@ namespace ProjectBj.DataAccess.Interfaces
         Task<LogEntry> GetEntry(int id);
         Task<ICollection<LogEntry>> GetAllLogs();
         Task CreateEntry(LogEntry entry);
-        Task DeleteEntry(int id);
+        Task DeleteEntry(LogEntry entry);
     }
 }
