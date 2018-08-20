@@ -61,9 +61,9 @@
     <Compile Include="SessionService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ProjectBj.DAL\ProjectBj.DAL.csproj">
+    <ProjectReference Include="..\ProjectBj.DataAccess\ProjectBj.DataAccess.csproj">
       <Project>{f39b0a1a-cf4f-416d-b5ab-232a5479fccd}</Project>
-      <Name>ProjectBj.DAL</Name>
+      <Name>ProjectBj.DataAccess</Name>
     </ProjectReference>
     <ProjectReference Include="..\ProjectBj.Entities\ProjectBj.Entities.csproj">
       <Project>{fe68c0ab-c49b-4ad7-8675-493223b5f50c}</Project>

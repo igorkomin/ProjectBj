@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ProjectBj.Entities;
-using ProjectBj.DAL.Repositories;
+using ProjectBj.DataAccess.Repositories;
 using ProjectBj.Service.Interfaces;
 
 namespace ProjectBj.Service

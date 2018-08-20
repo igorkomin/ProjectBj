@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ProjectBj.DAL.Repositories;
+using ProjectBj.DataAccess.Repositories;
 using ProjectBj.Entities;
 using ProjectBj.Service.Interfaces;
 using ProjectBj.Service.Helpers;
