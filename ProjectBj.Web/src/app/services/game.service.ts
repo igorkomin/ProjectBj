@@ -8,9 +8,9 @@ import { Game } from '../models/game.model';
 const apiUrl = 'api/main/';
 const requestOptions = {
     headers: new HttpHeaders({
-        'Content-Type' : 'application/json'
+        'Content-Type': 'application/json'
     })
-}
+};
 
 @Injectable({
     providedIn: 'root'
