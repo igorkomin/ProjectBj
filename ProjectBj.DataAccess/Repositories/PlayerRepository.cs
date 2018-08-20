@@ -18,18 +18,13 @@ namespace ProjectBj.DataAccess.Repositories
 {
     public class PlayerRepository : IPlayerRepository
     {
-        private readonly string _insertQuery = "INSERT INTO Players (Name, Balance, IsHuman, InGame) " +
-                                               "VALUES(@Name, @Balance, @IsHuman, @InGame); " +
-                                               "SELECT CAST(SCOPE_IDENTITY() as int)";
-
         public async Task<Player> CreateOne(Player player)
         {
             try
             {
                 using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
                 {
-                    var playerId = await db.QueryAsync<int>(_insertQuery, player);
-                    player.Id = playerId.FirstOrDefault();
+                    player.Id = await db.InsertAsync(player);
                     return player;
                 }
             }
@@ -47,8 +42,7 @@ namespace ProjectBj.DataAccess.Repositories
                 {
                     foreach (var player in players)
                     {
-                        var playerId = await db.QueryAsync<int>(_insertQuery, player);
-                        player.Id = playerId.FirstOrDefault();
+                        player.Id = await db.InsertAsync(player);
                     }
                     return players;
                 }
@@ -132,10 +126,7 @@ namespace ProjectBj.DataAccess.Repositories
             {
                 using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
                 {
-                    var sqlQuery = "UPDATE Players " +
-                                   "SET Name = @Name, IsHuman = @IsHuman, Balance = @Balance, InGame = @Ingame " +
-                                   "WHERE Id = @Id";
-                    await db.ExecuteAsync(sqlQuery, player);
+                    await db.UpdateAsync(player);
                 }
             }
             catch (SqlException exception)
@@ -152,9 +143,7 @@ namespace ProjectBj.DataAccess.Repositories
                 PlayerHand playerHand = new PlayerHand() { PlayerId = player.Id, CardId = card.Id, SessionId = sessionId };
                 using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
                 {
-                    var sqlQuery = "INSERT INTO PlayerHands (PlayerId, CardId, SessionId) " +
-                                   "VALUES (@PlayerId, @CardId, @SessionId)";
-                    await db.ExecuteAsync(sqlQuery, playerHand);
+                    await db.InsertAsync(playerHand);
                 }
             }
             catch (SqlException exception)
