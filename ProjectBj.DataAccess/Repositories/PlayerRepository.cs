@@ -194,7 +194,7 @@ namespace ProjectBj.DataAccess.Repositories
             }
             catch (SqlException exception)
             {
-                throw new DataSourceException(exception.Message, exception); ;
+                throw new DataSourceException(exception.Message, exception);
             }
         }
 
