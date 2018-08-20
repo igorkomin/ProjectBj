@@ -5,8 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using ProjectBj.ViewModels;
 using ProjectBj.ViewModels.Game;
-using ProjectBj.Service;
-using ProjectBj.Service.Providers;
+using ProjectBj.BusinessLogic;
+using ProjectBj.BusinessLogic.Providers;
 using System.Threading.Tasks;
 
 namespace ProjectBj.Web.Controllers

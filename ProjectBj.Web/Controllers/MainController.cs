@@ -8,8 +8,8 @@ using System.Web.Caching;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using ProjectBj.Logger;
-using ProjectBj.Service.Interfaces;
-using ProjectBj.Service.Providers;
+using ProjectBj.BusinessLogic.Interfaces;
+using ProjectBj.BusinessLogic.Providers;
 using ProjectBj.ViewModels;
 using ProjectBj.ViewModels.Game;
 

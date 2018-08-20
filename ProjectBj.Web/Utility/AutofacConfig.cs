@@ -9,9 +9,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Mvc;
-using ProjectBj.Service;
-using ProjectBj.Service.Interfaces;
-using ProjectBj.Service.Providers;
+using ProjectBj.BusinessLogic;
+using ProjectBj.BusinessLogic.Interfaces;
+using ProjectBj.BusinessLogic.Providers;
 using System.Web.Compilation;
 
 namespace ProjectBj.Web.Utility
