@@ -62,14 +62,13 @@ namespace ProjectBj.DataAccess.Repositories
             }
         }
 
-        public async Task DeleteEntry(int id)
+        public async Task DeleteEntry(LogEntry entry)
         {
             try
             {
                 using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
                 {
-                    var sqlQuery = "DELETE FROM Logs WHERE Id = @id";
-                    await db.ExecuteAsync(sqlQuery, new { id });
+                    await db.DeleteAsync(entry);
                 }
             }
             catch (SqlException exception)
