@@ -6,7 +6,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Dapper;
-using Dapper.Contrib;
 using Dapper.Contrib.Extensions;
 using ProjectBj.Entities;
 using ProjectBj.DataAccess.Interfaces;
