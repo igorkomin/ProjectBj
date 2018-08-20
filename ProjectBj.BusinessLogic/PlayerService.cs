@@ -23,13 +23,21 @@ namespace ProjectBj.BusinessLogic
             _cardRepository = new CardRepository();
         }
 
-        private async Task<Player> NewPlayer(string name)
+        private async Task<PlayerViewModel> NewPlayer(string name)
         {
-            Player player = new Player { Name = name, Balance = ValueHelper.StartBalance, InGame = true, IsHuman = true };
+            PlayerViewModel playerViewModel;
+            Player player = new Player
+            {
+                Name = name,
+                Balance = ValueHelper.StartBalance,
+                InGame = true,
+                IsHuman = true
+            };
             try
             {
                 player = await _playerRepository.CreateOne(player);
-                return player;
+                playerViewModel = await GetPlayerViewModel(player);
+                return playerViewModel;
             }
             catch (Exception exception)
             {
@@ -37,13 +45,21 @@ namespace ProjectBj.BusinessLogic
             }
         }
 
-        private async Task<Player> NewBot()
+        private async Task<PlayerViewModel> NewBot()
         {
-            Player newBot = new Player { Name = StringHelper.BotName, Balance = ValueHelper.StartBalance, IsHuman = false, InGame = true };
+            PlayerViewModel botViewModel;
+            Player bot = new Player
+            {
+                Name = StringHelper.BotName,
+                Balance = ValueHelper.StartBalance,
+                IsHuman = false,
+                InGame = true
+            };
             try
             {
-                newBot = await _playerRepository.CreateOne(newBot);
-                return newBot;
+                bot = await _playerRepository.CreateOne(bot);
+                botViewModel = await GetPlayerViewModel(bot);
+                return botViewModel;
             }
             catch (Exception exception)
             {
@@ -51,13 +67,20 @@ namespace ProjectBj.BusinessLogic
             }
         }
 
-        private async Task<Player> NewDealer()
+        private async Task<DealerViewModel> NewDealer()
         {
-            Player dealer = new Player { Name = StringHelper.DealerName, InGame = false, IsHuman = false };
+            DealerViewModel dealerViewModel;
+            Player dealer = new Player
+            {
+                Name = StringHelper.DealerName,
+                InGame = false,
+                IsHuman = false
+            };
             try
             {
                 dealer = await _playerRepository.CreateOne(dealer);
-                return dealer;
+                dealerViewModel = await GetDealerViewModel(dealer);
+                return dealerViewModel;
             }
             catch(Exception exception)
             {
@@ -65,22 +88,21 @@ namespace ProjectBj.BusinessLogic
             }
         }
 
-        public async Task<List<Player>> CreateBots(int number)
+        private async Task<List<PlayerViewModel>> CreateBots(int number)
         {
             await DeleteAllBots();
-            List<Player> bots = new List<Player>();
+            List<PlayerViewModel> bots = new List<PlayerViewModel>();
             for(int i = 0; i < number; i++)
             {
-                Player bot = await NewBot();
+                PlayerViewModel bot = await NewBot();
                 bots.Add(bot);
             }
+
             return bots;
         }
 
-        public async Task<PlayerViewModel> GetPlayerViewModel(string name)
+        private async Task<PlayerViewModel> GetPlayerViewModel(Player player)
         {
-            Player player = await GetPlayer(name);
-
             PlayerViewModel playerViewModel = new PlayerViewModel
             {
                 Id = player.Id,
@@ -89,35 +111,26 @@ namespace ProjectBj.BusinessLogic
                 InGame = player.InGame,
                 IsHuman = player.IsHuman
             };
-
             return playerViewModel;
         }
 
-        public async Task<DealerViewModel> GetDealerViewModel()
+        private async Task<DealerViewModel> GetDealerViewModel(Player dealer)
         {
-            Player dealer = await GetDealer();
-
             DealerViewModel dealerViewModel = new DealerViewModel
             {
                 Id = dealer.Id,
                 Name = dealer.Name,
                 InGame = dealer.InGame
             };
-
             return dealerViewModel;
         }
 
-        public async Task<List<PlayerViewModel>> GetBotViewModelList(int botnumber, int sessionId)
+        public async Task<List<PlayerViewModel>> GetBotViewModels(int botnumber, int sessionId)
         {
             var bots = await _playerRepository.GetSessionBots(sessionId);
             var botViewModels = new List<PlayerViewModel>();
 
-            if (bots.Count == 0 || bots == null)
-            {
-                bots = await CreateBots(botnumber);
-            }
-
-            foreach(var bot in bots)
+            foreach (var bot in bots)
             {
                 PlayerViewModel botViewModel = new PlayerViewModel
                 {
@@ -129,12 +142,17 @@ namespace ProjectBj.BusinessLogic
                 botViewModels.Add(botViewModel);
             }
 
+            if (botViewModels.Count == 0 || botViewModels == null)
+            {
+                botViewModels = await CreateBots(botnumber);
+            }
+            
             return botViewModels;
         }
 
-        public async Task<Player> GetDealer()
+        public async Task<DealerViewModel> GetDealer()
         {
-            Player dealer = await PullPlayer(StringHelper.DealerName);
+            DealerViewModel dealer = await PullDealer();
             if(dealer == null)
             {
                 dealer = await NewDealer();
@@ -142,12 +160,13 @@ namespace ProjectBj.BusinessLogic
             return dealer;
         }
 
-        private async Task<Player> PullPlayer(string name)
+        private async Task<PlayerViewModel> PullPlayer(string name)
         {
             try
             {
                 var player = await _playerRepository.FindPlayers(name);
-                return player.FirstOrDefault();
+                var playerViewModel = await GetPlayerViewModel(player.FirstOrDefault());
+                return playerViewModel;
             }
             catch (Exception exception)
             {
@@ -155,9 +174,23 @@ namespace ProjectBj.BusinessLogic
             }
         }
 
-        public async Task<Player> GetPlayer(string name)
+        private async Task<DealerViewModel> PullDealer()
         {
-            Player player = await PullPlayer(name);
+            try
+            {
+                var dealer = await _playerRepository.FindPlayers(StringHelper.DealerName);
+                var dealerViewModel = await GetDealerViewModel(dealer.FirstOrDefault());
+                return dealerViewModel;
+            }
+            catch (Exception exception)
+            {
+                throw exception;
+            }
+        }
+
+        public async Task<PlayerViewModel> GetPlayerViewModel(string name)
+        {
+            PlayerViewModel player = await PullPlayer(name);
             if(player == null)
             {
                 player = await NewPlayer(name);
@@ -171,6 +204,7 @@ namespace ProjectBj.BusinessLogic
             try
             {
                 player = await _playerRepository.Get(id);
+
                 return player;
             }
             catch (Exception exception)
@@ -179,36 +213,31 @@ namespace ProjectBj.BusinessLogic
             }
         }
 
-        public async Task<List<Card>> GetCards(int playerId, int sessionId)
+        private async Task<List<CardViewModel>> GetCardViewModels(int playerId, int sessionId)
         {
             try
             {
-                var player = await _playerRepository.Get(playerId);
+                Player player = await _playerRepository.Get(playerId);
                 var cards = await _playerRepository.GetCards(player, sessionId);
-                return cards.ToList();
+                List<CardViewModel> cardViewModels = new List<CardViewModel>();
+                foreach (var card in cards)
+                {
+                    CardViewModel cardViewModel = new CardViewModel
+                    {
+                        Id = card.Id,
+                        Suit = card.Suit,
+                        Rank = StringHelper.RankName(card.Rank),
+                        RankValue = card.Rank,
+                        ImageUrl = StringHelper.CardLink(card.Suit, card.Rank)
+                    };
+                    cardViewModels.Add(cardViewModel);
+                }
+                return cardViewModels;
             }
             catch (Exception exception)
             {
                 throw exception;
             }
-        }
-
-        public async Task<List<CardViewModel>> GetCardViewModels(int playerId, int sessionId)
-        {
-            List<Card> cards = await GetCards(playerId, sessionId);
-            List<CardViewModel> cardViewModels = new List<CardViewModel>();
-            foreach (var card in cards)
-            {
-                CardViewModel cardViewModel = new CardViewModel
-                {
-                    Id = card.Id,
-                    Suit = card.Suit,
-                    Rank = StringHelper.RankName(card.Rank),
-                    ImageUrl = StringHelper.CardLink(card.Suit, card.Rank)
-                };
-                cardViewModels.Add(cardViewModel);
-            }
-            return cardViewModels;
         }
 
         public async Task<HandViewModel> GetHandViewModel(int playerId, int sessionId)
@@ -251,27 +280,29 @@ namespace ProjectBj.BusinessLogic
             int totalValue = 0;
             int aceCount = 0;
 
-            List<Card> cards = await GetCards(playerId, sessionId);
+            List<CardViewModel> cards = await GetCardViewModels(playerId, sessionId);
 
             foreach (var card in cards)
             {
                 int aceCardRank = (int)CardRanks.Rank.Ace;
                 int tenCardRank = (int)CardRanks.Rank.Ten;
 
-                if (card.Rank == aceCardRank)
+                if (card.RankValue == aceCardRank)
                 {
                     totalValue += ValueHelper.AceCardValue;
+                    aceCount++;
                     continue;
                 }
-                if (card.Rank > tenCardRank)
+                if (card.RankValue > tenCardRank)
                 {
                     totalValue += ValueHelper.FaceCardValue;
                     continue;
                 }
-                totalValue += card.Rank;
+                totalValue += card.RankValue;
             }
 
-            return totalValue > ValueHelper.BlackjackValue ? totalValue - aceCount * ValueHelper.AceDelta : totalValue;
+            return totalValue > ValueHelper.BlackjackValue ? 
+                totalValue - aceCount * ValueHelper.AceDelta : totalValue;
         }
     }
 }

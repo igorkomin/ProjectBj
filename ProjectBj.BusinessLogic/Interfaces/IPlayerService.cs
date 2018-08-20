@@ -10,15 +10,10 @@ namespace ProjectBj.BusinessLogic.Interfaces
 {
     public interface IPlayerService
     {
-        Task<Player> GetDealer();
-        Task<Player> GetPlayer(string name);
-        Task<Player> GetPlayerById(int id);
+        Task<DealerViewModel> GetDealer();
         Task<PlayerViewModel> GetPlayerViewModel(string name);
-        Task<DealerViewModel> GetDealerViewModel();
+        Task<Player> GetPlayerById(int id);
         Task<HandViewModel> GetHandViewModel(int playerId, int sessionId);
-        Task<List<Card>> GetCards(int playerId, int sessionId);
-        Task<List<CardViewModel>> GetCardViewModels(int playerId, int sessionId);
-        Task<List<Player>> CreateBots(int number);
         Task<List<PlayerViewModel>> GetBotViewModels(int botnumber, int sessionId);
         Task<int> GetHandValue(int playerId, int sessionId);
         Task DeletePlayer(Player player);
