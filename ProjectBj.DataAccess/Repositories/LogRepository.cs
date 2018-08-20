@@ -53,8 +53,7 @@ namespace ProjectBj.DataAccess.Repositories
             {
                 using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
                 {
-                    var sqlQuery = "SELECT * FROM Logs";
-                    var logs = await db.QueryAsync<LogEntry>(sqlQuery);
+                    var logs = await db.GetAllAsync<LogEntry>();
                     return logs.AsList();
                 }
             }
