@@ -13,8 +13,8 @@ namespace ProjectBj.BusinessLogic.Enums
             Unfinished = 0,
             Blackjack = 1,
             Bust = 2,
-            Win = 3,
-            Lose = 4,
+            Won = 3,
+            Lost = 4
         }
     }
 }
