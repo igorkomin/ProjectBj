@@ -36,9 +36,8 @@ namespace ProjectBj.DataAccess.Repositories
             {
                 using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
                 {
-                    var sqlQuery = "SELECT * FROM Logs WHERE Id = @id";
-                    var entry = await db.QueryAsync<LogEntry>(sqlQuery, new { id });
-                    return entry.FirstOrDefault();
+                    var entry = await db.GetAsync<LogEntry>(id);
+                    return entry;
                 }
             }
             catch (SqlException exception)
