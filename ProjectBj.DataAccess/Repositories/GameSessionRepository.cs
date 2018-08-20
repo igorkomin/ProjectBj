@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Dapper;
+using Dapper.Contrib;
+using Dapper.Contrib.Extensions;
 using ProjectBj.Entities;
 using ProjectBj.DataAccess.Interfaces;
 using ProjectBj.DataAccess.ExceptionHandlers;
@@ -20,11 +22,7 @@ namespace ProjectBj.DataAccess.Repositories
             {
                 using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
                 {
-                    var sqlQuery = "INSERT INTO GameSessions (TimeCreated) " +
-                                   "VALUES (@TimeCreated); " +
-                                   "SELECT CAST(SCOPE_IDENTITY() as int)";
-                    var sessionId = await db.QueryAsync<int>(sqlQuery, session);
-                    session.Id = sessionId.FirstOrDefault();
+                    session.Id = await db.InsertAsync(session);
                     return session;
                 }
             }
@@ -59,10 +57,7 @@ namespace ProjectBj.DataAccess.Repositories
             {
                 using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
                 {
-                    var sqlQuery = "UPDATE GameSessions " +
-                                   "SET IsOpen = @IsOpen " +
-                                   "WHERE Id = @Id";
-                    await db.ExecuteAsync(sqlQuery, session);
+                    await db.UpdateAsync(session);
                 }
             }
             catch (SqlException exception)
