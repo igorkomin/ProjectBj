@@ -76,7 +76,6 @@ namespace ProjectBj.BusinessLogic.Providers
         {
             var gameViewModel = await GetGameViewModel();
 
-            var sessionId = gameViewModel.SessionId;
             var playerId = gameViewModel.Player.Id;
             
             var playerScore = gameViewModel.Player.Hand.Score;
