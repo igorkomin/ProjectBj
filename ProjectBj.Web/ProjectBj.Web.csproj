@@ -189,9 +189,6 @@
     <Content Include="Global.asax" />
     <Content Include="angular.json" />
     <Content Include="package.json" />
-    <Content Include="Scripts\jquery.cookie.js" />
-    <Content Include="Scripts\jquery-ui.js" />
-    <Content Include="Scripts\jquery-ui.min.js" />
     <Content Include="src\app\styles\common\bootstrap.css" />
     <Content Include="src\app\styles\game.style.css" />
     <Content Include="src\app\views\game.view.html" />
