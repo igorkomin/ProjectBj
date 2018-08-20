@@ -48,8 +48,7 @@ namespace ProjectBj.DataAccess.Repositories
             {
                 using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
                 {
-                    var sqlQuery = "SELECT * FROM Cards";
-                    var cards = await db.QueryAsync<Card>(sqlQuery);
+                    var cards = await db.GetAllAsync<Card>();
                     return cards.AsList();
                 }
             }
