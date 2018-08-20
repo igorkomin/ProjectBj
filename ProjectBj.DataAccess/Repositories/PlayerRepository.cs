@@ -89,9 +89,8 @@ namespace ProjectBj.DataAccess.Repositories
             {
                 using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
                 {
-                    var sqlQuery = "SELECT * FROM Players WHERE Id = @id";
-                    var player = await db.QueryAsync<Player>(sqlQuery, new { id });
-                    return player.FirstOrDefault();
+                    var player = await db.GetAsync<Player>(id);
+                    return player;
                 }
             }
             catch (SqlException exception)
