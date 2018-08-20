@@ -15,7 +15,7 @@ namespace ProjectBj.DataAccess.Interfaces
         Task<ICollection<Player>> FindPlayers(string name);
         Task<ICollection<Player>> GetAllPlayers();
         Task<ICollection<Card>> GetCards(Player player, int sessionId);
-        Task Delete(int id);
+        Task Delete(Player player);
         Task Update(Player player);
         Task AddCard(Player player, Card card, int sessionId);
         Task DeleteCards(Player player);
