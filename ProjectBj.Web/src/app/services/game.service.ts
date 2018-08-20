@@ -17,7 +17,6 @@ const requestOptions = {
 })
 
 export class GameService {
-    
     constructor(private http: HttpClient) { }
 
     getGameViewModel(settings: Settings): Observable<Game> {
