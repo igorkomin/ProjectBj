@@ -10,7 +10,7 @@ const routes: Routes = [
     { path: "game", component: GameComponent },
     { path: "", redirectTo: "/login", pathMatch: "full" },
     { path: "**", redirectTo: "/login" }
-]
+];
 
 @NgModule({
     imports: [
