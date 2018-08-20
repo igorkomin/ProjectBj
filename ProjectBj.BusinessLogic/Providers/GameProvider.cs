@@ -35,14 +35,14 @@ namespace ProjectBj.BusinessLogic.Providers
             var player = await _playerService.GetPlayerViewModel(_playerName);
             var session = await _sessionService.GetSessionByPlayerId(player.Id);
             var dealer = await _playerService.GetDealer();
-            var bots = await _playerService.GetBotViewModels(_botNumber, session);
+            var bots = await _playerService.GetBotViewModels(_botNumber, session.Id);
             
             GameViewModel gameViewModel = new GameViewModel
             {
                 Player = player,
                 Dealer = dealer,
                 Bots = bots,
-                SessionId = session
+                SessionId = session.Id
             };
 
             await UpdateViewModel(gameViewModel);

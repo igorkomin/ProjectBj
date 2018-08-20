@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ProjectBj.Entities;
+using ProjectBj.ViewModels.Game;
 
 namespace ProjectBj.BusinessLogic.Interfaces
 {
     public interface ISessionService
     {
-        Task<int> GetSessionByPlayerId(int playerId);
+        Task<SessionViewModel> GetSessionByPlayerId(int playerId);
         Task<GameSession> GetSessionById(int id);
         Task CloseSession(int sessionId);
     }

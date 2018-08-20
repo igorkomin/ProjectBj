@@ -7,6 +7,7 @@ using ProjectBj.DataAccess;
 using ProjectBj.DataAccess.Repositories;
 using ProjectBj.Entities;
 using ProjectBj.BusinessLogic.Interfaces;
+using ProjectBj.ViewModels.Game;
 
 namespace ProjectBj.BusinessLogic
 {
@@ -21,13 +22,23 @@ namespace ProjectBj.BusinessLogic
             _playerRepository = new PlayerRepository();
         }
 
-        private async Task<int> CreateSession()
+        private async Task<SessionViewModel> CreateSession()
         {
-            GameSession session = new GameSession { TimeCreated = DateTime.Now };
+            SessionViewModel sessionViewModel;
+            GameSession session = new GameSession
+            {
+                TimeCreated = DateTime.Now
+            };
             try
             {
                 session = await _sessionRepository.Create(session);
-                return session.Id;
+                sessionViewModel = new SessionViewModel
+                {
+                    Id = session.Id,
+                    IsOpen = session.IsOpen,
+                    TimeCreated = session.TimeCreated
+                };
+                return sessionViewModel;
             }
             catch (Exception exception)
             {
@@ -35,18 +46,24 @@ namespace ProjectBj.BusinessLogic
             }
         }
 
-        public async Task<int> GetSessionByPlayerId(int playerId)
+        public async Task<SessionViewModel> GetSessionByPlayerId(int playerId)
         {
             Player player = await _playerRepository.Get(playerId);
             GameSession currentSession = await _sessionRepository.GetCurrentSession(player);
+            SessionViewModel currentSessionViewModel = new SessionViewModel
+            {
+                Id = currentSession.Id,
+                IsOpen = currentSession.IsOpen,
+                TimeCreated = currentSession.TimeCreated
+            };
 
             if(currentSession == null)
             {
-                int newSessionId = await CreateSession();
-                return newSessionId;
+                SessionViewModel newSession = await CreateSession();
+                return newSession;
             }
 
-            return currentSession.Id;
+            return currentSessionViewModel;
         }
 
         public async Task<GameSession> GetSessionById(int id)
