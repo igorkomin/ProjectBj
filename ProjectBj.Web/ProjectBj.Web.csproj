@@ -129,13 +129,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bg.jpg" />
-    <Content Include="Content\blackjack-table.png" />
-    <Content Include="Content\bootstrap-grid.css" />
-    <Content Include="Content\bootstrap-grid.min.css" />
-    <Content Include="Content\bootstrap-reboot.css" />
-    <Content Include="Content\bootstrap-reboot.min.css" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Cards\Clubs\10.png" />
     <Content Include="Content\Cards\Clubs\11.png" />
     <Content Include="Content\Cards\Clubs\12.png" />
@@ -191,58 +184,19 @@
     <Content Include="Content\Cards\Spades\8.png" />
     <Content Include="Content\Cards\Spades\9.png" />
     <Content Include="Content\jquery-ui.css" />
-    <Content Include="Content\jquery-ui.min.css" />
-    <Content Include="Content\jquery-ui.structure.css" />
-    <Content Include="Content\jquery-ui.structure.min.css" />
-    <Content Include="Content\jquery-ui.theme.css" />
-    <Content Include="Content\jquery-ui.theme.min.css" />
-    <Content Include="Content\slider.css" />
+    <Content Include="src\app\styles\common\slider.css" />
     <Content Include="Content\style.css" />
     <Content Include="Global.asax" />
-    <Content Include="Scripts\bootstrap.bundle.js" />
-    <Content Include="Scripts\bootstrap.bundle.min.js" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\esm\popper-utils.js" />
-    <Content Include="Scripts\esm\popper-utils.min.js" />
-    <Content Include="Scripts\esm\popper.js" />
-    <Content Include="Scripts\esm\popper.min.js" />
-    <Content Include="Scripts\esm\popper.min.js.map" />
-    <Content Include="Scripts\esm\popper.js.map" />
-    <Content Include="Scripts\esm\popper-utils.min.js.map" />
-    <Content Include="Scripts\esm\popper-utils.js.map" />
-    <Content Include="Scripts\bootstrap.min.js.map" />
-    <Content Include="Scripts\bootstrap.js.map" />
-    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
-    <Content Include="Scripts\bootstrap.bundle.js.map" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-reboot.min.css.map" />
-    <Content Include="Content\bootstrap-reboot.css.map" />
-    <Content Include="Content\bootstrap-grid.min.css.map" />
-    <Content Include="Content\bootstrap-grid.css.map" />
     <Content Include="angular.json" />
     <Content Include="package.json" />
-    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery.cookie.js" />
     <Content Include="Scripts\bj\main.js" />
     <Content Include="Scripts\jquery-ui.js" />
     <Content Include="Scripts\jquery-ui.min.js" />
     <Content Include="Scripts\bj\login.js" />
     <Content Include="Scripts\bj\slider-bots.js" />
-    <Content Include="Scripts\jquery-3.3.1.js" />
-    <Content Include="Scripts\jquery-3.3.1.min.js" />
-    <Content Include="Scripts\jquery-3.3.1.slim.js" />
-    <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
-    <Content Include="Scripts\popper-utils.js" />
-    <Content Include="Scripts\popper-utils.min.js" />
-    <Content Include="Scripts\popper.js" />
-    <Content Include="Scripts\popper.min.js" />
     <Content Include="Scripts\bj\slider.js" />
-    <Content Include="Scripts\umd\popper-utils.js" />
-    <Content Include="Scripts\umd\popper-utils.min.js" />
-    <Content Include="Scripts\umd\popper.js" />
-    <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="src\app\styles\common\bootstrap.css" />
     <Content Include="src\app\styles\game.style.css" />
     <Content Include="src\app\views\game.view.html" />
     <Content Include="src\app\styles\login.style.css" />
@@ -275,17 +229,6 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
-    <Content Include="Scripts\jquery-3.3.1.min.map" />
-    <Content Include="Scripts\umd\popper.min.js.map" />
-    <Content Include="Scripts\umd\popper.js.map" />
-    <Content Include="Scripts\umd\popper-utils.min.js.map" />
-    <Content Include="Scripts\umd\popper-utils.js.map" />
-    <Content Include="Scripts\README.md" />
-    <Content Include="Scripts\popper.min.js.map" />
-    <Content Include="Scripts\popper.js.map" />
-    <Content Include="Scripts\popper-utils.min.js.map" />
-    <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Home\index.cshtml" />
     <Content Include="Views\Game\play.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -328,7 +271,13 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="Scripts\index.d.ts" />
+    <TypeScriptCompile Include="src\app\models\card.model.ts" />
+    <TypeScriptCompile Include="src\app\models\dealer.model.ts" />
+    <TypeScriptCompile Include="src\app\models\game.model.ts" />
+    <TypeScriptCompile Include="src\app\models\hand.model.ts" />
+    <TypeScriptCompile Include="src\app\models\login.model.ts" />
+    <TypeScriptCompile Include="src\app\models\player.model.ts" />
+    <TypeScriptCompile Include="src\app\models\settings.model.ts" />
     <TypeScriptCompile Include="src\app\modules\app-routing.module.spec.ts" />
     <TypeScriptCompile Include="src\app\modules\app-routing.module.ts" />
     <TypeScriptCompile Include="src\app\components\app.component.spec.ts" />
@@ -338,6 +287,8 @@
     <TypeScriptCompile Include="src\app\components\login.component.spec.ts" />
     <TypeScriptCompile Include="src\app\components\login.component.ts" />
     <TypeScriptCompile Include="src\app\modules\app.module.ts" />
+    <TypeScriptCompile Include="src\app\services\game.service.spec.ts" />
+    <TypeScriptCompile Include="src\app\services\game.service.ts" />
     <TypeScriptCompile Include="src\environments\environment.prod.ts" />
     <TypeScriptCompile Include="src\environments\environment.ts" />
     <TypeScriptCompile Include="src\main.ts" />
@@ -360,7 +311,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>54822</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:54822/</IISUrl>
+          <IISUrl>http://localhost:54820/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

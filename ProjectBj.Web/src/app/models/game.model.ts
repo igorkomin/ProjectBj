@@ -1,5 +1,5 @@
-import { Dealer } from "./dealer.class";
-import { Player } from "./player.class";
+import { Dealer } from "./dealer.model";
+import { Player } from "./player.model";
 
 export class Game {
     sessionId: number;

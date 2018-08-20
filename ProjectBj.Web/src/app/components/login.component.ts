@@ -1,15 +1,37 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+
+import { Login } from './../models/login.model';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './../views/login.view.html',
-  styleUrls: ['./../styles/login.style.css']
+  selector: "app-login",
+  templateUrl: "./../views/login.view.html",
+    styleUrls: [
+        "./../styles/login.style.css",
+        "./../styles/common/bootstrap.css",
+        "./../styles/common/slider.css"
+    ]
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+    model = new Login("", 0);
 
-  ngOnInit() {
-  }
+    sliderValue = 0;
+    loginLinkEnabled = false;
+    constructor(private router: Router) { }
 
+    ngOnInit() {
+    }
+
+    updateSliderValue(value: number): void {
+        this.sliderValue = value;
+    }
+
+    validateForm(nameLength: number): void {
+        this.loginLinkEnabled = false;
+        if (nameLength > 0) {
+            this.loginLinkEnabled = true;
+            
+        }
+    }
 }

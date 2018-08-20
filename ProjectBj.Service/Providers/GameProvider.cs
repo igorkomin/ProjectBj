@@ -129,6 +129,7 @@ namespace ProjectBj.Service.Providers
             if (handValue > ValueHelper.BlackjackValue)
             {
                 await BotsTurn(sessionId);
+                await UpdateViewModel(gameViewModel);
             }
             return gameViewModel;
         }

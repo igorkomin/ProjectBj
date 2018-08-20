@@ -25,25 +25,45 @@ namespace ProjectBj.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<GameSettings> Debug([FromBody]GameSettings settings)
+        public async Task<IHttpActionResult> Game([FromBody]GameSettings settings)
         {
-            settings.PlayerName += "+";
-            settings.BotsNumber++;
-
-            return settings;
+            try
+            {
+                GameViewModel model = await _provider.NewGame(settings.PlayerName, settings.BotsNumber);
+                return Ok(model);
+            }
+            catch (Exception exception)
+            {
+                return InternalServerError(exception);
+            }
         }
 
         [HttpPost]
-        public async Task<IHttpActionResult> Game([FromBody]GameSettings settings)
+        public async Task<IHttpActionResult> Hit(int playerId, int sessionId)
         {
-            GameViewModel model = await _provider.NewGame(settings.PlayerName, settings.BotsNumber);
-
-            if(model == null)
+            try
             {
-                return InternalServerError();
+                GameViewModel model = await _provider.Hit(playerId, sessionId);
+                return Ok(model);
             }
+            catch (Exception exception)
+            {
+                return InternalServerError(exception);
+            }
+        }
 
-            return Ok(model);
+        [HttpPost]
+        public async Task<IHttpActionResult> Stand(int playerId, int sessionId)
+        {
+            try
+            {
+                GameViewModel model = await _provider.Stand(playerId, sessionId);
+                return Ok(model);
+            }
+            catch(Exception exception)
+            {
+                return InternalServerError(exception);
+            }
         }
     }
 }

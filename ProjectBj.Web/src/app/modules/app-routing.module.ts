@@ -6,9 +6,10 @@ import { LoginComponent } from "../components/login.component";
 import { GameComponent } from "../components/game.component";
 
 const routes: Routes = [
-    { path: "", redirectTo: "/login", pathMatch: "full" },
     { path: "login", component: LoginComponent },
-    { path: "game", component: GameComponent }
+    { path: "game", component: GameComponent },
+    { path: "", redirectTo: "/login", pathMatch: "full" },
+    { path: "**", redirectTo: "/login" }
 ]
 
 @NgModule({
@@ -19,5 +20,5 @@ const routes: Routes = [
     exports: [
         RouterModule
     ]
-});
+})
 export class AppRoutingModule { }
