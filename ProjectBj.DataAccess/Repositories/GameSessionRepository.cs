@@ -7,10 +7,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Dapper;
 using ProjectBj.Entities;
-using ProjectBj.DAL.Interfaces;
-using ProjectBj.DAL.ExceptionHandlers;
+using ProjectBj.DataAccess.Interfaces;
+using ProjectBj.DataAccess.ExceptionHandlers;
 
-namespace ProjectBj.DAL.Repositories
+namespace ProjectBj.DataAccess.Repositories
 {
     public class GameSessionRepository : IGameSessionRepository
     {

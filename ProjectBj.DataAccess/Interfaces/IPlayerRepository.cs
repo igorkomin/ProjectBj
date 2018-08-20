@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ProjectBj.Entities;
 
-namespace ProjectBj.DAL.Interfaces
+namespace ProjectBj.DataAccess.Interfaces
 {
     interface IPlayerRepository
     {

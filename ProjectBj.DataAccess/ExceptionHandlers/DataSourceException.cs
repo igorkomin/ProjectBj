@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProjectBj.DAL.ExceptionHandlers
+namespace ProjectBj.DataAccess.ExceptionHandlers
 {
     public class DataSourceException : Exception
     {

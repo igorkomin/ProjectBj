@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
 using Dapper;
-using ProjectBj.DAL.Interfaces;
+using ProjectBj.DataAccess.Interfaces;
 using ProjectBj.Entities;
-using ProjectBj.DAL.ExceptionHandlers;
+using ProjectBj.DataAccess.ExceptionHandlers;
 
-namespace ProjectBj.DAL.Repositories
+namespace ProjectBj.DataAccess.Repositories
 {
     public class LogRepository : ILogRepository
     {

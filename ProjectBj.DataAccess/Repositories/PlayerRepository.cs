@@ -7,12 +7,12 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Configuration;
 using Dapper;
-using ProjectBj.DAL.Interfaces;
+using ProjectBj.DataAccess.Interfaces;
 using ProjectBj.Entities;
 using ProjectBj.Logger;
-using ProjectBj.DAL.ExceptionHandlers;
+using ProjectBj.DataAccess.ExceptionHandlers;
 
-namespace ProjectBj.DAL.Repositories
+namespace ProjectBj.DataAccess.Repositories
 {
     public class PlayerRepository : IPlayerRepository
     {

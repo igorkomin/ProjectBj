@@ -1,4 +1,4 @@
-﻿namespace ProjectBj.DAL
+﻿namespace ProjectBj.DataAccess
 {
     internal static class DatabaseConfiguration
     {

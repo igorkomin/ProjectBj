@@ -7,12 +7,14 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Configuration;
 using Dapper;
+using Dapper.Contrib;
+using Dapper.Contrib.Extensions;
 using ProjectBj.Entities;
 using ProjectBj.Logger;
-using ProjectBj.DAL.Interfaces;
-using ProjectBj.DAL.ExceptionHandlers;
+using ProjectBj.DataAccess.Interfaces;
+using ProjectBj.DataAccess.ExceptionHandlers;
 
-namespace ProjectBj.DAL.Repositories
+namespace ProjectBj.DataAccess.Repositories
 {
     public class CardRepository : ICardRepository
     {
@@ -23,7 +25,7 @@ namespace ProjectBj.DAL.Repositories
                            "SELECT CAST(SCOPE_IDENTITY() as int)";
 
             try
-            {
+            { 
                 var cardId = await db.QueryAsync<int>(sqlQuery, card);
                 card.Id = cardId.FirstOrDefault();
                 return card;
