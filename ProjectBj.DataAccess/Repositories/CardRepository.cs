@@ -20,14 +20,9 @@ namespace ProjectBj.DataAccess.Repositories
     {
         private async Task<Card> Create(Card card, IDbConnection db)
         {
-            var sqlQuery = "INSERT INTO Cards (Suit, Rank) " +
-                           "VALUES(@Suit, @Rank); " +
-                           "SELECT CAST(SCOPE_IDENTITY() as int)";
-
             try
-            { 
-                var cardId = await db.QueryAsync<int>(sqlQuery, card);
-                card.Id = cardId.FirstOrDefault();
+            {
+                card.Id = await db.InsertAsync(card);
                 return card;
             }
             catch (SqlException exception)
