@@ -39,11 +39,11 @@ namespace ProjectBj.BusinessLogic
             if (playerScore > dealerScore || dealerScore > ValueHelper.BlackjackValue)
             {
                 await ChangePlayerBalance(playerId, bet);
-                return GameResults.Result.Win;
+                return GameResults.Result.Won;
             }
 
             await ChangePlayerBalance(playerId, -bet);
-            return GameResults.Result.Lose;
+            return GameResults.Result.Lost;
         }
 
         public async Task ChangePlayerBalance(int playerId, int balanceDelta)
