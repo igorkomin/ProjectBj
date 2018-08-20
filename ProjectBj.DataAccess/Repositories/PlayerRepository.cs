@@ -51,7 +51,7 @@ namespace ProjectBj.DataAccess.Repositories
             }
         }
 
-        public async Task Delete(int id)
+        public async Task Delete(Player player)
         {
             try
             {

@@ -255,7 +255,7 @@ namespace ProjectBj.BusinessLogic
         {
             try
             {
-                await _playerRepository.Delete(player.Id);
+                await _playerRepository.Delete(player);
             }
             catch (Exception exception)
             {
