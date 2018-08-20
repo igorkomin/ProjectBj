@@ -13,7 +13,6 @@ import { Login } from './../models/login.model';
     ]
 })
 export class LoginComponent implements OnInit {
-
     model = new Login("", 0);
 
     sliderValue = 0;
@@ -31,7 +30,6 @@ export class LoginComponent implements OnInit {
         this.loginLinkEnabled = false;
         if (nameLength > 0) {
             this.loginLinkEnabled = true;
-            
         }
     }
 }
