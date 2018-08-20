@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
 using Dapper;
+using Dapper.Contrib.Extensions;
 using ProjectBj.DataAccess.Interfaces;
 using ProjectBj.Entities;
 using ProjectBj.DataAccess.ExceptionHandlers;
@@ -20,8 +21,7 @@ namespace ProjectBj.DataAccess.Repositories
             {
                 using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
                 {
-                    var sqlQuery = "INSERT INTO Logs (SessionId, Time, Message) VALUES (@SessionId, @Time, @Message)";
-                    await db.ExecuteAsync(sqlQuery, entry);
+                    await db.InsertAsync(entry);
                 }
             }
             catch (SqlException exception)
