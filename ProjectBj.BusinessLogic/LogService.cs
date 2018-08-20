@@ -20,7 +20,11 @@ namespace ProjectBj.BusinessLogic
 
         public async Task CreateLogEntry(string message, int sessionId)
         {
-            LogEntry entry = new LogEntry { SessionId = sessionId, Message = message, Time = DateTime.Now };
+            LogEntry entry = new LogEntry
+            {
+                SessionId = sessionId,
+                Message = message,
+                Time = DateTime.Now };
             try
             {
                 await _logRepository.CreateEntry(entry);
