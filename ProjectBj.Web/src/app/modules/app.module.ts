@@ -13,8 +13,6 @@ import { AppRoutingModule } from './app-routing.module';
 @NgModule({
     declarations: [
       AppComponent,
-      LoginComponent,
-      GameComponent
   ],
   imports: [
       BrowserModule,
