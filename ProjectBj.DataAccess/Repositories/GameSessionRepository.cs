@@ -31,7 +31,7 @@ namespace ProjectBj.DataAccess.Repositories
             }
         }
 
-        public async Task<GameSession> Get(int id)
+        public async Task<GameSession> GetById(int id)
         {
             try
             {
@@ -49,7 +49,7 @@ namespace ProjectBj.DataAccess.Repositories
 
         public async Task Update(int sessionId)
         {
-            GameSession session = await Get(sessionId);
+            GameSession session = await GetById(sessionId);
             try
             {
                 using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
