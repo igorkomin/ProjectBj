@@ -226,9 +226,8 @@ namespace ProjectBj.BusinessLogic.Providers
                     {
                         Id = card.Id,
                         Suit = card.Suit,
-                        Rank = StringHelper.RankName(card.Rank),
+                        Rank = StringHelper.GetRankName(card.Rank),
                         RankValue = card.Rank,
-                        ImageUrl = StringHelper.CardLink(card.Suit, card.Rank)
                     };
                     cardViewModels.Add(cardViewModel);
                 }
