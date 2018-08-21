@@ -12,6 +12,5 @@ namespace ProjectBj.ViewModels.Game
         public string Suit { get; set; }
         public string Rank { get; set; }
         public int RankValue { get; set; }
-        public string ImageUrl { get; set; }
     }
 }
