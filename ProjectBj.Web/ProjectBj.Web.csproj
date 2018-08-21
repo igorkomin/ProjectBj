@@ -155,6 +155,19 @@
     <Content Include="Content\Cards\Diamonds\7.png" />
     <Content Include="Content\Cards\Diamonds\8.png" />
     <Content Include="Content\Cards\Diamonds\9.png" />
+    <Content Include="Content\Cards\faces\JC.gif" />
+    <Content Include="Content\Cards\faces\JD.gif" />
+    <Content Include="Content\Cards\faces\JH.gif" />
+    <Content Include="Content\Cards\faces\joker.gif" />
+    <Content Include="Content\Cards\faces\JS.gif" />
+    <Content Include="Content\Cards\faces\KC.gif" />
+    <Content Include="Content\Cards\faces\KD.gif" />
+    <Content Include="Content\Cards\faces\KH.gif" />
+    <Content Include="Content\Cards\faces\KS.gif" />
+    <Content Include="Content\Cards\faces\QC.gif" />
+    <Content Include="Content\Cards\faces\QD.gif" />
+    <Content Include="Content\Cards\faces\QH.gif" />
+    <Content Include="Content\Cards\faces\QS.gif" />
     <Content Include="Content\Cards\Hearts\10.png" />
     <Content Include="Content\Cards\Hearts\11.png" />
     <Content Include="Content\Cards\Hearts\12.png" />
@@ -184,6 +197,7 @@
     <Content Include="Content\Cards\Spades\8.png" />
     <Content Include="Content\Cards\Spades\9.png" />
     <Content Include="Content\jquery-ui.css" />
+    <Content Include="src\app\styles\common\cards.css" />
     <Content Include="src\app\styles\common\slider.css" />
     <Content Include="Content\style.css" />
     <Content Include="Global.asax" />
@@ -208,7 +222,6 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\GameController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MainController.cs" />
     <Compile Include="Global.asax.cs">
@@ -219,6 +232,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
+    <Content Include="Content\Cards\faces\README" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
@@ -276,6 +290,12 @@
     <TypeScriptCompile Include="src\app\components\login.component.spec.ts" />
     <TypeScriptCompile Include="src\app\components\login.component.ts" />
     <TypeScriptCompile Include="src\app\modules\app.module.ts" />
+    <TypeScriptCompile Include="src\app\modules\game\game-routing.module.ts" />
+    <TypeScriptCompile Include="src\app\modules\game\game.module.spec.ts" />
+    <TypeScriptCompile Include="src\app\modules\game\game.module.ts" />
+    <TypeScriptCompile Include="src\app\modules\login\login-routing.module.ts" />
+    <TypeScriptCompile Include="src\app\modules\login\login.module.spec.ts" />
+    <TypeScriptCompile Include="src\app\modules\login\login.module.ts" />
     <TypeScriptCompile Include="src\app\services\game.service.spec.ts" />
     <TypeScriptCompile Include="src\app\services\game.service.ts" />
     <TypeScriptCompile Include="src\environments\environment.prod.ts" />
@@ -300,7 +320,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>54822</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:54820/</IISUrl>
+          <IISUrl>http://localhost:54829/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
