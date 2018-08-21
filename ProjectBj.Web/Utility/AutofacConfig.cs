@@ -7,12 +7,13 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Compilation;
 using System.Web.Http;
 using System.Web.Mvc;
 using ProjectBj.BusinessLogic;
 using ProjectBj.BusinessLogic.Interfaces;
 using ProjectBj.BusinessLogic.Providers;
-using System.Web.Compilation;
+using ProjectBj.BusinessLogic.Services;
 
 namespace ProjectBj.Web.Utility
 {
@@ -30,7 +31,7 @@ namespace ProjectBj.Web.Utility
             builder.RegisterType<LogProvider>().As<ILogProvider>();
             builder.RegisterType<PlayerProvider>().As<IPlayerProvider>();
             builder.RegisterType<SessionProvider>().As<ISessionProvider>();
-            builder.RegisterType<GameProvider>().As<IGameService>();
+            builder.RegisterType<GameService>().As<IGameService>();
             
             var container = builder.Build();
             config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
