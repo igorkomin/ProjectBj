@@ -1,15 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
-using System.Web.Caching;
 using System.Web.Http;
-using System.Web.Http.Cors;
 using ProjectBj.Logger;
 using ProjectBj.BusinessLogic.Interfaces;
-using ProjectBj.BusinessLogic.Providers;
 using ProjectBj.ViewModels;
 using ProjectBj.ViewModels.Game;
 
