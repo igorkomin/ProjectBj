@@ -9,7 +9,8 @@ import { Observable } from '../../../node_modules/rxjs';
     styleUrls: [
         './../styles/game.style.css',
         './../styles/common/bootstrap.css',
-        './../styles/common/slider.css'
+        './../styles/common/slider.css',
+        './../styles/common/cards.css'
     ]
 })
 export class GameComponent implements OnInit {
