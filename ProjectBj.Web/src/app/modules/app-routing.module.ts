@@ -6,8 +6,14 @@ import { LoginComponent } from "../components/login.component";
 import { GameComponent } from "../components/game.component";
 
 const routes: Routes = [
-    { path: "login", component: LoginComponent },
-    { path: "game", component: GameComponent },
+    {
+        path: "login",
+        loadChildren: './login/login.module#LoginModule'
+    },
+    {
+        path: "game", 
+        loadChildren: './game/game.module#GameModule'
+    },
     { path: "", redirectTo: "/login", pathMatch: "full" },
     { path: "**", redirectTo: "/login" }
 ];
