@@ -1,4 +1,4 @@
-<div class="container-fluid text-center">
+<div class="container-fluid text-center mt-3">
     <div class="modal fade" id="error-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -14,74 +14,410 @@
     <div class="row">
         <div class="col-lg-9">
             <div class="row h33">
-                <div class="col-md-12">
-                    <span id="name-d">Dealer</span>
-                    <span id="score-d" class="badge badge-pill badge-secondary">00</span>
-                    <div id="hand-d" class="hand top">
-                        <img src="/Content/Cards/shirt_vertical.png" />
-                        <img src="/Content/Cards/shirt_vertical.png" />
-                    </div>
-                </div>
-            </div>
-            <div class="row h33">
-                <div class="col-md-3">
-                    <span id="name-p">Player</span>
-                    <span id="score-p" class="badge badge-pill badge-secondary">00</span>
-                    <div id="hand-p" class="hand left">
-                        <img src="/Content/Cards/shirt_vertical.png" />
-                        <img src="/Content/Cards/shirt_vertical.png" />
-                    </div>
-                </div>
+                <div class="col-md-3"></div>
                 <div class="col-md-6">
-                    <div>Choose your bet</div>
-                    <div class="slidecontainer">
-                        <input #betSlider type="range" (input)="updateSliderValue(betSlider.value)"
-                               min="50" max="100" value="50" step="5" class="slider" id="bet_range">
+                    <p class="caption">Dealer <span class="badge badge-secondary">00</span></p>
+                    <div class="playingCards simpleCards">
+                        <ul class="hand">
+                            <li>
+                                <span class="card rank-7 diams">
+                                    <span class="rank">7</span>
+                                    <span class="suit"></span>
+                                </span>
+                            </li>
+                            <li>
+                                <span class="card rank-8 hearts">
+                                    <span class="rank">8</span>
+                                    <span class="suit"></span>
+                                </span>
+                            </li>
+                            <li>
+                                <span class="card rank-10 clubs">
+                                    <span class="rank">10</span>
+                                    <span class="suit"></span>
+                                </span>
+                            </li>
+                            <li>
+                                <span class="card rank-j diams">
+                                    <span class="rank">J</span>
+                                    <span class="suit"></span>
+                                </span>
+                            </li>
+                            <li>
+                                <span class="card rank-5 clubs">
+                                    <span class="rank">5</span>
+                                    <span class="suit"></span>
+                                </span>
+                            </li>
+                            <li>
+                                <span class="card rank-6 diams">
+                                    <span class="rank">6</span>
+                                    <span class="suit"></span>
+                                </span>
+                            </li>
+                            <li>
+                                <span class="card rank-q hearts">
+                                    <span class="rank">Q</span>
+                                    <span class="suit"></span>
+                                </span>
+                            </li>
+                            <li>
+                                <span class="card rank-k spades">
+                                    <span class="rank">K</span>
+                                    <span class="suit"></span>
+                                </span>
+                            </li>
+                        </ul>
                     </div>
-                    <h3 id="bet_output">{{ sliderValue }}</h3>
-                    <button type="button" class="btn btn-primary">HIT</button>
-                    <button type="button" class="btn btn-secondary">STAND</button>
+                </div>
+                <div clas="col-md-3"></div>
+            </div>
+            <div class="row h33">
+                <div class="col-md-6">
+                    <div class="caption">Choose your bet</div>
+                    <div class="slidecontainer">
+                        <input type="range" min="50" max="100" value="50" step="5" class="slider" id="bet_range">
+                    </div>
+                    <h3 id="bet_output">50</h3>
+                    <button type="button" class="btn btn-primary">PLACE</button>
                 </div>
                 <div class="col-md-3">
-                    <span id="name-0">Bot 1</span>
-                    <span id="score-0" class="badge badge-pill badge-secondary">00</span>
-                    <div id="hand-0" class="hand right">
-                        <img src="/Content/Cards/shirt_vertical.png" />
-                        <img src="/Content/Cards/shirt_vertical.png" />
+                    <div class="caption">Actions</div>
+                    <div class="btn-group-vertical">
+                        <button type="button" class="btn btn-primary">HIT</button>
+                        <button type="button" class="btn btn-secondary">STAND</button>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <p class="caption">Player <span class="badge badge-pill badge-secondary">00</span></p>
+                    <div class="playingCards simpleCards rotateHand">
+                        <ul class="hand">
+                            <li>
+                                <span class="card rank-7 diams">
+                                    <span class="rank">7</span>
+                                    <span class="suit"></span>
+                                </span>
+                            </li>
+                            <li>
+                                <span class="card rank-8 hearts">
+                                    <span class="rank">8</span>
+                                    <span class="suit"></span>
+                                </span>
+                            </li>
+                            <li>
+                                <span class="card rank-10 clubs">
+                                    <span class="rank">10</span>
+                                    <span class="suit"></span>
+                                </span>
+                            </li>
+                            <li>
+                                <span class="card rank-j diams">
+                                    <span class="rank">J</span>
+                                    <span class="suit"></span>
+                                </span>
+                            </li>
+                            <li>
+                                <span class="card rank-5 clubs">
+                                    <span class="rank">5</span>
+                                    <span class="suit"></span>
+                                </span>
+                            </li>
+                            <li>
+                                <span class="card rank-6 diams">
+                                    <span class="rank">6</span>
+                                    <span class="suit"></span>
+                                </span>
+                            </li>
+                            <li>
+                                <span class="card rank-q hearts">
+                                    <span class="rank">Q</span>
+                                    <span class="suit"></span>
+                                </span>
+                            </li>
+                            <li>
+                                <span class="card rank-k spades">
+                                    <span class="rank">K</span>
+                                    <span class="suit"></span>
+                                </span>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
-            <div class="row h33">
-                <div class="col-md-3">
-                    <span id="name-1">Bot 2</span>
-                    <span id="score-1" class="badge badge-pill badge-secondary">00</span>
-                    <div id="hand-1" class="hand left-corner">
-                        <img src="/Content/Cards/shirt_vertical.png" />
-                        <img src="/Content/Cards/shirt_vertical.png" />
+            <div class="row">
+                <div class="col-md-1">
+                    <p class="caption">Bot 1 <span class="badge badge-pill badge-secondary">00</span></p>
+                    <div class="playingCards simpleCards rotateHand">
+                        <ul class="hand">
+                            <li>
+                                <span class="card rank-7 diams">
+                                    <span class="rank">7</span>
+                                    <span class="suit"></span>
+                                </span>
+                            </li>
+                            <li>
+                                <span class="card rank-8 hearts">
+                                    <span class="rank">8</span>
+                                    <span class="suit"></span>
+                                </span>
+                            </li>
+                            <li>
+                                <span class="card rank-10 clubs">
+                                    <span class="rank">10</span>
+                                    <span class="suit"></span>
+                                </span>
+                            </li>
+                            <li>
+                                <span class="card rank-j diams">
+                                    <span class="rank">J</span>
+                                    <span class="suit"></span>
+                                </span>
+                            </li>
+                            <li>
+                                <span class="card rank-5 clubs">
+                                    <span class="rank">5</span>
+                                    <span class="suit"></span>
+                                </span>
+                            </li>
+                            <li>
+                                <span class="card rank-6 diams">
+                                    <span class="rank">6</span>
+                                    <span class="suit"></span>
+                                </span>
+                            </li>
+                            <li>
+                                <span class="card rank-q hearts">
+                                    <span class="rank">Q</span>
+                                    <span class="suit"></span>
+                                </span>
+                            </li>
+                            <li>
+                                <span class="card rank-k spades">
+                                    <span class="rank">K</span>
+                                    <span class="suit"></span>
+                                </span>
+                            </li>
+                        </ul>
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <span id="name-2">Bot 3</span>
-                    <span id="score-2" class="badge badge-pill badge-secondary">00</span>
-                    <div id="hand-2" class="hand bottom">
-                        <img src="/Content/Cards/shirt_vertical.png" />
-                        <img src="/Content/Cards/shirt_vertical.png" />
+                <div class="col-md-1">
+                    <p class="caption">Bot 2 <span class="badge badge-pill badge-secondary">00</span></p>
+                    <div class="playingCards simpleCards rotateHand">
+                        <ul class="hand">
+                            <li>
+                                <span class="card rank-7 diams">
+                                    <span class="rank">7</span>
+                                    <span class="suit"></span>
+                                </span>
+                            </li>
+                            <li>
+                                <span class="card rank-8 hearts">
+                                    <span class="rank">8</span>
+                                    <span class="suit"></span>
+                                </span>
+                            </li>
+                            <li>
+                                <span class="card rank-10 clubs">
+                                    <span class="rank">10</span>
+                                    <span class="suit"></span>
+                                </span>
+                            </li>
+                            <li>
+                                <span class="card rank-j diams">
+                                    <span class="rank">J</span>
+                                    <span class="suit"></span>
+                                </span>
+                            </li>
+                            <li>
+                                <span class="card rank-5 clubs">
+                                    <span class="rank">5</span>
+                                    <span class="suit"></span>
+                                </span>
+                            </li>
+                            <li>
+                                <span class="card rank-6 diams">
+                                    <span class="rank">6</span>
+                                    <span class="suit"></span>
+                                </span>
+                            </li>
+                            <li>
+                                <span class="card rank-q hearts">
+                                    <span class="rank">Q</span>
+                                    <span class="suit"></span>
+                                </span>
+                            </li>
+                            <li>
+                                <span class="card rank-k spades">
+                                    <span class="rank">K</span>
+                                    <span class="suit"></span>
+                                </span>
+                            </li>
+                        </ul>
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <span id="name-3">Bot 4</span>
-                    <span id="score-3" class="badge badge-pill badge-secondary">00</span>
-                    <div id="hand-3" class="hand bottom">
-                        <img src="/Content/Cards/shirt_vertical.png" />
-                        <img src="/Content/Cards/shirt_vertical.png" />
+                <div class="col-md-1">
+                    <p class="caption">Bot 3 <span class="badge badge-pill badge-secondary">00</span></p>
+                    <div class="playingCards simpleCards rotateHand">
+                        <ul class="hand">
+                            <li>
+                                <span class="card rank-7 diams">
+                                    <span class="rank">7</span>
+                                    <span class="suit"></span>
+                                </span>
+                            </li>
+                            <li>
+                                <span class="card rank-8 hearts">
+                                    <span class="rank">8</span>
+                                    <span class="suit"></span>
+                                </span>
+                            </li>
+                            <li>
+                                <span class="card rank-10 clubs">
+                                    <span class="rank">10</span>
+                                    <span class="suit"></span>
+                                </span>
+                            </li>
+                            <li>
+                                <span class="card rank-j diams">
+                                    <span class="rank">J</span>
+                                    <span class="suit"></span>
+                                </span>
+                            </li>
+                            <li>
+                                <span class="card rank-5 clubs">
+                                    <span class="rank">5</span>
+                                    <span class="suit"></span>
+                                </span>
+                            </li>
+                            <li>
+                                <span class="card rank-6 diams">
+                                    <span class="rank">6</span>
+                                    <span class="suit"></span>
+                                </span>
+                            </li>
+                            <li>
+                                <span class="card rank-q hearts">
+                                    <span class="rank">Q</span>
+                                    <span class="suit"></span>
+                                </span>
+                            </li>
+                            <li>
+                                <span class="card rank-k spades">
+                                    <span class="rank">K</span>
+                                    <span class="suit"></span>
+                                </span>
+                            </li>
+                        </ul>
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <span id="name-4">Bot 5</span>
-                    <span id="score-4" class="badge badge-pill badge-secondary">00</span>
-                    <div id="hand-4" class="hand">
-                        <img src="/Content/Cards/shirt_vertical.png" />
-                        <img src="/Content/Cards/shirt_vertical.png" />
+                <div class="col-md-1">
+                    <p class="caption">Bot 4 <span class="badge badge-pill badge-secondary">00</span></p>
+                    <div class="playingCards simpleCards rotateHand">
+                        <ul class="hand">
+                            <li>
+                                <span class="card rank-7 diams">
+                                    <span class="rank">7</span>
+                                    <span class="suit"></span>
+                                </span>
+                            </li>
+                            <li>
+                                <span class="card rank-8 hearts">
+                                    <span class="rank">8</span>
+                                    <span class="suit"></span>
+                                </span>
+                            </li>
+                            <li>
+                                <span class="card rank-10 clubs">
+                                    <span class="rank">10</span>
+                                    <span class="suit"></span>
+                                </span>
+                            </li>
+                            <li>
+                                <span class="card rank-j diams">
+                                    <span class="rank">J</span>
+                                    <span class="suit"></span>
+                                </span>
+                            </li>
+                            <li>
+                                <span class="card rank-5 clubs">
+                                    <span class="rank">5</span>
+                                    <span class="suit"></span>
+                                </span>
+                            </li>
+                            <li>
+                                <span class="card rank-6 diams">
+                                    <span class="rank">6</span>
+                                    <span class="suit"></span>
+                                </span>
+                            </li>
+                            <li>
+                                <span class="card rank-q hearts">
+                                    <span class="rank">Q</span>
+                                    <span class="suit"></span>
+                                </span>
+                            </li>
+                            <li>
+                                <span class="card rank-k spades">
+                                    <span class="rank">K</span>
+                                    <span class="suit"></span>
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-1">
+                    <p class="caption">Bot 5 <span class="badge badge-pill badge-secondary">00</span></p>
+                    <div class="playingCards simpleCards rotateHand">
+                        <ul class="hand">
+                            <li>
+                                <span class="card rank-7 diams">
+                                    <span class="rank">7</span>
+                                    <span class="suit"></span>
+                                </span>
+                            </li>
+                            <li>
+                                <span class="card rank-8 hearts">
+                                    <span class="rank">8</span>
+                                    <span class="suit"></span>
+                                </span>
+                            </li>
+                            <li>
+                                <span class="card rank-10 clubs">
+                                    <span class="rank">10</span>
+                                    <span class="suit"></span>
+                                </span>
+                            </li>
+                            <li>
+                                <span class="card rank-j diams">
+                                    <span class="rank">J</span>
+                                    <span class="suit"></span>
+                                </span>
+                            </li>
+                            <li>
+                                <span class="card rank-5 clubs">
+                                    <span class="rank">5</span>
+                                    <span class="suit"></span>
+                                </span>
+                            </li>
+                            <li>
+                                <span class="card rank-6 diams">
+                                    <span class="rank">6</span>
+                                    <span class="suit"></span>
+                                </span>
+                            </li>
+                            <li>
+                                <span class="card rank-q hearts">
+                                    <span class="rank">Q</span>
+                                    <span class="suit"></span>
+                                </span>
+                            </li>
+                            <li>
+                                <span class="card rank-k spades">
+                                    <span class="rank">K</span>
+                                    <span class="suit"></span>
+                                </span>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
