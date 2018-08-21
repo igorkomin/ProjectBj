@@ -7,7 +7,7 @@ using ProjectBj.Entities;
 
 namespace ProjectBj.BusinessLogic.Interfaces
 {
-    public interface ILogService
+    public interface ILogProvider
     {
         Task CreateLogEntry(string message, int sessionId);
         Task<LogEntry> GetLogEntry(int id);

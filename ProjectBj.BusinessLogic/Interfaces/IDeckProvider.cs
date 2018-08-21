@@ -8,7 +8,7 @@ using ProjectBj.ViewModels.Game;
 
 namespace ProjectBj.BusinessLogic.Interfaces
 {
-    public interface IDeckService
+    public interface IDeckProvider
     {
         Task<List<Card>> GetDeck();
         Task<List<Card>> GetShuffledDeck();

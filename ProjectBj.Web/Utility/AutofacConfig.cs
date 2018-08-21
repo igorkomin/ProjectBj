@@ -25,12 +25,12 @@ namespace ProjectBj.Web.Utility
 
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
             
-            builder.RegisterType<DeckService>().As<IDeckService>();
-            builder.RegisterType<GameService>().As<IGameService>();
-            builder.RegisterType<LogService>().As<ILogService>();
-            builder.RegisterType<PlayerService>().As<IPlayerService>();
-            builder.RegisterType<SessionService>().As<ISessionService>();
+            builder.RegisterType<DeckProvider>().As<IDeckProvider>();
             builder.RegisterType<GameProvider>().As<IGameProvider>();
+            builder.RegisterType<LogProvider>().As<ILogProvider>();
+            builder.RegisterType<PlayerProvider>().As<IPlayerProvider>();
+            builder.RegisterType<SessionProvider>().As<ISessionProvider>();
+            builder.RegisterType<GameProvider>().As<IGameService>();
             
             var container = builder.Build();
             config.DependencyResolver = new AutofacWebApiDependencyResolver(container);

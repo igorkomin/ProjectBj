@@ -8,7 +8,7 @@ using ProjectBj.ViewModels.Game;
 
 namespace ProjectBj.BusinessLogic.Interfaces
 {
-    public interface IPlayerService
+    public interface IPlayerProvider
     {
         Task<DealerViewModel> GetDealer();
         Task<PlayerViewModel> GetPlayerViewModel(string name);

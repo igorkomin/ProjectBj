@@ -8,7 +8,7 @@ using ProjectBj.ViewModels.Game;
 
 namespace ProjectBj.BusinessLogic.Interfaces
 {
-    public interface ISessionService
+    public interface ISessionProvider
     {
         Task<SessionViewModel> GetSessionByPlayerId(int playerId);
         Task<GameSession> GetSessionById(int id);

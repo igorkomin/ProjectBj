@@ -17,11 +17,11 @@ namespace ProjectBj.Web.Controllers
 {
     public class MainController : ApiController
     {
-        private readonly IGameProvider _provider;
+        private readonly IGameService _service;
 
-        public MainController(IGameProvider provider)
+        public MainController(IGameService service)
         {
-            _provider = provider;
+            _service = service;
         }
 
         [HttpPost]
@@ -29,7 +29,7 @@ namespace ProjectBj.Web.Controllers
         {
             try
             {
-                GameViewModel model = await _provider.NewGame(settings.PlayerName, settings.BotsNumber);
+                GameViewModel model = await _service.NewGame(settings.PlayerName, settings.BotsNumber);
                 return Ok(model);
             }
             catch (Exception exception)
@@ -43,7 +43,7 @@ namespace ProjectBj.Web.Controllers
         {
             try
             {
-                GameViewModel model = await _provider.Hit(playerId, sessionId);
+                GameViewModel model = await _service.Hit(playerId, sessionId);
                 return Ok(model);
             }
             catch (Exception exception)
@@ -57,7 +57,7 @@ namespace ProjectBj.Web.Controllers
         {
             try
             {
-                GameViewModel model = await _provider.Stand(playerId, sessionId);
+                GameViewModel model = await _service.Stand(playerId, sessionId);
                 return Ok(model);
             }
             catch(Exception exception)

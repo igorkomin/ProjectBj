@@ -13,15 +13,15 @@ using ProjectBj.BusinessLogic.Interfaces;
 using ProjectBj.ViewModels;
 using ProjectBj.ViewModels.Game;
 
-namespace ProjectBj.BusinessLogic
+namespace ProjectBj.BusinessLogic.Providers
 {
-    public class DeckService : IDeckService
+    public class DeckProvider : IDeckProvider
     {
         private List<Card> _deck;
         private CardRepository _cardRepository;
         private PlayerRepository _playerRepository;
         
-        public DeckService()
+        public DeckProvider()
         {
             _cardRepository = new CardRepository();
             _playerRepository = new PlayerRepository();

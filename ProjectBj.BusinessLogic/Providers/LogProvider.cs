@@ -7,13 +7,13 @@ using ProjectBj.Entities;
 using ProjectBj.DataAccess.Repositories;
 using ProjectBj.BusinessLogic.Interfaces;
 
-namespace ProjectBj.BusinessLogic
+namespace ProjectBj.BusinessLogic.Providers
 {
-    public class LogService : ILogService
+    public class LogProvider : ILogProvider
     {
         private LogRepository _logRepository;
 
-        public LogService()
+        public LogProvider()
         {
             _logRepository = new LogRepository();
         }

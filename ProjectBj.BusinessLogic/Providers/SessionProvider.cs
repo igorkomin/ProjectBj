@@ -9,14 +9,14 @@ using ProjectBj.Entities;
 using ProjectBj.BusinessLogic.Interfaces;
 using ProjectBj.ViewModels.Game;
 
-namespace ProjectBj.BusinessLogic
+namespace ProjectBj.BusinessLogic.Providers
 {
-    public class SessionService : ISessionService
+    public class SessionProvider : ISessionProvider
     {
         private GameSessionRepository _sessionRepository;
         private PlayerRepository _playerRepository;
 
-        public SessionService()
+        public SessionProvider()
         {
             _sessionRepository = new GameSessionRepository();
             _playerRepository = new PlayerRepository();

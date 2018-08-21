@@ -10,14 +10,14 @@ using ProjectBj.BusinessLogic.Helpers;
 using ProjectBj.BusinessLogic.Enums;
 using ProjectBj.ViewModels.Game;
 
-namespace ProjectBj.BusinessLogic
+namespace ProjectBj.BusinessLogic.Providers
 {
-    public class PlayerService : IPlayerService
+    public class PlayerProvider : IPlayerProvider
     {
         private PlayerRepository _playerRepository;
         private CardRepository _cardRepository;
 
-        public PlayerService()
+        public PlayerProvider()
         {
             _playerRepository = new PlayerRepository();
             _cardRepository = new CardRepository();

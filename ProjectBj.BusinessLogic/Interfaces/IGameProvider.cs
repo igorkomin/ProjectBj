@@ -3,23 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ProjectBj.ViewModels.Game;
+using ProjectBj.Entities;
+using ProjectBj.BusinessLogic.Enums;
 
 namespace ProjectBj.BusinessLogic.Interfaces
 {
     public interface IGameProvider
     {
-        Task<GameViewModel> BotsTurn(int sessionId);
-        Task<GameViewModel> DealFirstCards();
-        Task<GameViewModel> GetGameViewModel();
-        Task<GameViewModel> Hit(int playerId, int sessionId);
-        Task<GameViewModel> MakeBet(int playerId, int betValue);
-        Task<GameViewModel> NewGame(string playerName, int botsNumber);
-        Task<GameViewModel> Stand(int playerId, int sessionId);
-        Task<bool> BotTurn(int botId, int sessionId);
-        Task<bool> DealerTurn(int dealerId, int sessionId);
-        Task CloseGameSession(int sessionId);
-        Task UpdateGameResult();
-        Task UpdateViewModel(GameViewModel gameViewModel);
+        Task<GameResults.Result> GetGameResult(int playerId, int playerScore, int dealerScore, int bet);
+        Task ChangePlayerBalance(int playerId, int balanceDelta);
     }
 }
