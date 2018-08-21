@@ -14,28 +14,28 @@ namespace ProjectBj.BusinessLogic.Services
     {
         public string _playerName { get; set; }
         public int _botNumber { get; set; }
-        private IDeckProvider _deckService;
-        private IGameProvider _gameService;
-        private ILogProvider _logService;
-        private IPlayerProvider _playerService;
-        private ISessionProvider _sessionService;
+        private IDeckProvider _deckProvider;
+        private IGameProvider _gameProvider;
+        private ILogProvider _logProvider;
+        private IPlayerProvider _playerProvider;
+        private ISessionProvider _sessionProvider;
         
-        public GameService(IDeckProvider deckService, IGameProvider gameService, 
-            ILogProvider logService, IPlayerProvider playerService, ISessionProvider sessionService)
+        public GameService(IDeckProvider deckProvider, IGameProvider gameProvider, 
+            ILogProvider logProvider, IPlayerProvider playerProvider, ISessionProvider sessionProvider)
         {
-            _deckService = deckService;
-            _gameService = gameService;
-            _logService = logService;
-            _playerService = playerService;
-            _sessionService = sessionService;
+            _deckProvider = deckProvider;
+            _gameProvider = gameProvider;
+            _logProvider = logProvider;
+            _playerProvider = playerProvider;
+            _sessionProvider = sessionProvider;
         }
         
         public async Task<GameViewModel> GetGameViewModel()
         {
-            var player = await _playerService.GetPlayerViewModel(_playerName);
-            var session = await _sessionService.GetSessionByPlayerId(player.Id);
-            var dealer = await _playerService.GetDealer();
-            var bots = await _playerService.GetBotViewModels(_botNumber, session.Id);
+            var player = await _playerProvider.GetPlayerViewModel(_playerName);
+            var session = await _sessionProvider.GetSessionByPlayerId(player.Id);
+            var dealer = await _playerProvider.GetDealer();
+            var bots = await _playerProvider.GetBotViewModels(_botNumber, session.Id);
             
             GameViewModel gameViewModel = new GameViewModel
             {
@@ -56,12 +56,12 @@ namespace ProjectBj.BusinessLogic.Services
             var dealer = gameViewModel.Dealer;
             var bots = gameViewModel.Bots;
 
-            gameViewModel.Player.Hand = await _playerService.GetHandViewModel(player.Id, session);
-            gameViewModel.Dealer.Hand = await _playerService.GetHandViewModel(dealer.Id, session);
+            gameViewModel.Player.Hand = await _playerProvider.GetHandViewModel(player.Id, session);
+            gameViewModel.Dealer.Hand = await _playerProvider.GetHandViewModel(dealer.Id, session);
 
             foreach (var bot in bots)
             {
-                bot.Hand = await _playerService.GetHandViewModel(bot.Id, session);
+                bot.Hand = await _playerProvider.GetHandViewModel(bot.Id, session);
             }
         }
 
@@ -83,14 +83,14 @@ namespace ProjectBj.BusinessLogic.Services
 
             var bet = gameViewModel.Player.Bet;
 
-            var result = await _gameService.GetGameResult(playerId, playerScore, dealerScore, bet);
+            var result = await _gameProvider.GetGameResult(playerId, playerScore, dealerScore, bet);
             gameViewModel.Player.GameResult = (int)result;
 
             foreach(var bot in gameViewModel.Bots)
             {
                 var botScore = bot.Hand.Score;
                 var botBet = ValueHelper.BotBetValue;
-                result = await _gameService.GetGameResult(bot.Id, botScore, dealerScore, botBet);
+                result = await _gameProvider.GetGameResult(bot.Id, botScore, dealerScore, botBet);
                 bot.GameResult = (int)result;
             }
         }
@@ -107,7 +107,7 @@ namespace ProjectBj.BusinessLogic.Services
             {
                 playerIds.Add(bot.Id);
             }
-            await _deckService.DealFirstTwoCards(playerIds, model.SessionId);
+            await _deckProvider.DealFirstTwoCards(playerIds, model.SessionId);
             await UpdateViewModel(model);
             return model;
         }
@@ -122,9 +122,9 @@ namespace ProjectBj.BusinessLogic.Services
 
         public async Task<GameViewModel> Hit(int playerId, int sessionId)
         {
-            await _deckService.DealCard(playerId, sessionId);
+            await _deckProvider.DealCard(playerId, sessionId);
             var gameViewModel = await GetGameViewModel();
-            var handValue = await _playerService.GetHandValue(playerId, sessionId);
+            var handValue = await _playerProvider.GetHandValue(playerId, sessionId);
             if (handValue > ValueHelper.BlackjackValue)
             {
                 await BotsTurn(sessionId);
@@ -156,29 +156,29 @@ namespace ProjectBj.BusinessLogic.Services
 
         private async Task<bool> BotTurn(int botId, int sessionId)
         {
-            int handValue = await _playerService.GetHandValue(botId, sessionId);
+            int handValue = await _playerProvider.GetHandValue(botId, sessionId);
             if (handValue > ValueHelper.MinBotHandValue)
             {
                 return false;
             }
-            await _deckService.DealCard(botId, sessionId);
+            await _deckProvider.DealCard(botId, sessionId);
             return await BotTurn(botId, sessionId);
         }
 
         public async Task<bool> DealerTurn(int dealerId, int sessionId)
         {
-            int handValue = await _playerService.GetHandValue(dealerId, sessionId);
+            int handValue = await _playerProvider.GetHandValue(dealerId, sessionId);
             if (handValue > ValueHelper.MinDealerHandValue)
             {
                 return false;
             }
-            await _deckService.DealCard(dealerId, sessionId);
+            await _deckProvider.DealCard(dealerId, sessionId);
             return await DealerTurn(dealerId, sessionId);
         }
 
         public async Task CloseGameSession(int sessionId)
         {
-            await _sessionService.CloseSession(sessionId);
+            await _sessionProvider.CloseSession(sessionId);
         }
     }
 }
