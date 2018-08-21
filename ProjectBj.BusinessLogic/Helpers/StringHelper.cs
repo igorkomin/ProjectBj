@@ -26,15 +26,10 @@ namespace ProjectBj.BusinessLogic.Helpers
         }
         #endregion
         #region Other
-        public static string RankName(int rankId)
+        public static string GetRankName(int rankId)
         {
             string rankName = EnumHelper.GetEnumDescription((CardRanks.Rank)rankId);
             return rankName;
-        }
-        public static string CardLink(string suit, int rank)
-        {
-            string cardLink = $"../Content/Cards/{suit}/{rank}.png";
-            return cardLink;
         }
         #endregion
     }
