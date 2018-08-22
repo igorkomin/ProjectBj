@@ -65,6 +65,31 @@ namespace ProjectBj.BusinessLogic.Services
             }
         }
 
+        public async Task<GameViewModel> UpdateViewModel(int playerId, int sessionId)
+        {
+            var session = sessionId;
+            var player = await _playerProvider.GetPlayerById(playerId);
+            var dealer = await _playerProvider.GetDealer();
+            var bots = await _playerProvider.GetSessionBotViewModels(session);
+
+            player.Hand = await _playerProvider.GetHandViewModel(player.Id, session);
+            dealer.Hand = await _playerProvider.GetHandViewModel(dealer.Id, session);
+
+            foreach (var bot in bots)
+            {
+                bot.Hand = await _playerProvider.GetHandViewModel(bot.Id, session);
+            }
+
+            GameViewModel gameViewModel = new GameViewModel
+            {
+                Bots = bots,
+                Dealer = dealer,
+                Player = player,
+                SessionId = session
+            };
+            return gameViewModel;
+        }
+
         public async Task<GameViewModel> MakeBet(int playerId, int betValue)
         {
             var gameViewModel = await GetGameViewModel();
@@ -123,34 +148,35 @@ namespace ProjectBj.BusinessLogic.Services
         public async Task<GameViewModel> Hit(int playerId, int sessionId)
         {
             await _deckProvider.DealCard(playerId, sessionId);
-            var gameViewModel = await GetGameViewModel();
-            var handValue = await _playerProvider.GetHandValue(playerId, sessionId);
+            GameViewModel gameViewModel = await UpdateViewModel(playerId, sessionId);
+            int handValue = await _playerProvider.GetHandValue(playerId, sessionId);
             if (handValue > ValueHelper.BlackjackValue)
             {
-                await BotsTurn(sessionId);
-                await UpdateViewModel(gameViewModel);
+                gameViewModel = await BotsTurn(playerId, sessionId);
+                //await UpdateViewModel(gameViewModel);
             }
             return gameViewModel;
         }
 
         public async Task<GameViewModel> Stand(int playerId, int sessionId)
         {
-            var gameViewModel = await GetGameViewModel();
-            await BotsTurn(sessionId);
+            await BotsTurn(playerId, sessionId);
+            var gameViewModel = await UpdateViewModel(playerId, sessionId);
             return gameViewModel;
         }
 
-        private async Task<GameViewModel> BotsTurn(int sessionId)
+        private async Task<GameViewModel> BotsTurn(int playerId, int sessionId)
         {
-            var gameViewModel = await GetGameViewModel();
+            var gameViewModel = await UpdateViewModel(playerId, sessionId);
 
             foreach (var bot in gameViewModel.Bots)
             {
                 await BotTurn(bot.Id, sessionId);
             }
             await DealerTurn(gameViewModel.Dealer.Id, sessionId);
-            await UpdateGameResult();
-            await CloseGameSession(sessionId);
+            //await UpdateGameResult();
+            //await CloseGameSession(sessionId);
+            gameViewModel = await UpdateViewModel(playerId, sessionId);
             return gameViewModel;
         }
 
