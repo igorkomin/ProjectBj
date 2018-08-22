@@ -11,17 +11,17 @@ using ProjectBj.ViewModels.Game;
 
 namespace ProjectBj.Web.Controllers
 {
-    public class MainController : ApiController
+    public class GameController : ApiController
     {
         private readonly IGameService _service;
 
-        public MainController(IGameService service)
+        public GameController(IGameService service)
         {
             _service = service;
         }
 
         [HttpPost]
-        public async Task<IHttpActionResult> Game([FromBody]GameSettings settings)
+        public async Task<IHttpActionResult> Start([FromBody]GameSettings settings)
         {
             try
             {
@@ -35,11 +35,11 @@ namespace ProjectBj.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<IHttpActionResult> Hit(int playerId, int sessionId)
+        public async Task<IHttpActionResult> Hit([FromBody]IdentifierViewModel identifier)
         {
             try
             {
-                GameViewModel model = await _service.Hit(playerId, sessionId);
+                GameViewModel model = await _service.Hit(identifier.PlayerId, identifier.SessionId);
                 return Ok(model);
             }
             catch (Exception exception)
@@ -49,11 +49,11 @@ namespace ProjectBj.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<IHttpActionResult> Stand(int playerId, int sessionId)
+        public async Task<IHttpActionResult> Stand([FromBody]IdentifierViewModel identifier)
         {
             try
             {
-                GameViewModel model = await _service.Stand(playerId, sessionId);
+                GameViewModel model = await _service.Stand(identifier.PlayerId, identifier.SessionId);
                 return Ok(model);
             }
             catch(Exception exception)
