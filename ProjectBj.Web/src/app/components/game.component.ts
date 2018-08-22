@@ -17,39 +17,44 @@ import { Settings } from '../models/settings.model';
 })
 export class GameComponent implements OnInit {
 
-    gameSettings: Settings;
+    playerName: string;
+    botsNumber: number;
     sliderValue: number = 50;
     sessionId: number;
     playerId: number;
     game: any;
 
     constructor(
+        private gameService: GameService,
         private route: ActivatedRoute,
         private router: Router,
-        private http: HttpClient,
-        private gameService: GameService
+        private http: HttpClient
     ) { }
 
     ngOnInit() {
         this.route
             .queryParams
             .subscribe(params => {
-                this.gameSettings.playerName = params['name'];
-                this.gameSettings.botsNumber = params['bots'];
+                this.playerName = params['name'];
+                this.botsNumber = params['bots'];
             });
+        this.getGame();
     }
 
     updateSliderValue(value: number): void {
         this.sliderValue = value;
     }
     getGame(): void {
-        this.gameService.getGameViewModel(this.gameSettings).subscribe({
-            next(game) {
-                this.game = game;
+        let gameSettings = new Settings();
+        gameSettings.playerName = this.playerName;
+        gameSettings.botsNumber = this.botsNumber;
+        this.gameService.getGameViewModel(gameSettings).subscribe(
+            response => {
+                this.game = response;
             },
-            error(exception) {
+            exception => {
                 console.error(exception.error.exceptionMessage);
             }
-        });
+        );
     }
 }
