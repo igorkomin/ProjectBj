@@ -18,7 +18,6 @@
             </div>
         </div>
         <input #loginButton routerLink="/game" id="play-button" [queryParams]="{ name: playerName.value, bots: botsSlider.value }"
-               [disabled]="!loginForm.form.valid"
-               (mouseover)="validateForm(playerName.value.length)" type="submit" class="btn btn-primary" value="PLAY" />
+               [disabled]="!loginForm.form.valid" type="submit" class="btn btn-primary" value="PLAY" />
     </form>
 </div>
