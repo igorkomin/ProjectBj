@@ -125,7 +125,7 @@ namespace ProjectBj.BusinessLogic.Providers
 
         public async Task DealCard(int playerId, int sessionId)
         {
-            Player player = await _playerRepository.Get(playerId);
+            Player player = await _playerRepository.GetById(playerId);
             List<Card> deck = await GetShuffledDeck();
             Card card = deck[0];
             await GivePlayerCard(player, card, sessionId);
