@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { Settings } from '../models/settings.model';
 import { Game } from '../models/game.model';
 
-const apiUrl = 'api/main/';
+const apiUrl = '../api/main/';
 const requestOptions = {
     headers: new HttpHeaders({
         'Content-Type': 'application/json'
