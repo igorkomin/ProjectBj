@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 
 import { Settings } from '../models/settings.model';
 import { Game } from '../models/game.model';
+import { Identifier } from '../models/identifier.model';
 
 const apiUrl = '../api/main/';
 const requestOptions = {
@@ -20,17 +21,17 @@ export class GameService {
     constructor(private http: HttpClient) { }
 
     getGameViewModel(settings: Settings): Observable<Game> {
-        let requestUrl = apiUrl + 'Game';
+        let requestUrl = apiUrl + 'Start';
         return this.http.post<Game>(requestUrl, settings, requestOptions);
     }
 
-    hit(playerId: number, sessionId: number) {
+    hit(identifier: Identifier): Observable<Game> {
         let requestUrl = apiUrl + 'Hit';
-        return this.http.post<Game>(requestUrl, { playerId: playerId, sessionId: sessionId }, requestOptions);
+        return this.http.post<Game>(requestUrl, identifier, requestOptions);
     }
 
-    stand(playerId: number, sessionId: number) {
+    stand(identifier: Identifier): Observable<Game> {
         let requestUrl = apiUrl + 'Stand';
-        return this.http.post<Game>(requestUrl, { playerId: playerId, sessionId: sessionId }, requestOptions);
+        return this.http.post<Game>(requestUrl, identifier, requestOptions);
     }
 }
