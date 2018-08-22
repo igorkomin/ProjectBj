@@ -1,0 +1,18 @@
+﻿.h33 {
+    height: 33vh;
+}
+
+.caption {
+    font-weight: bold;
+}
+
+.bot-seat {
+    border-right: 1px solid black;
+    border-top: 1px solid black;
+}
+
+.player-seat {
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+}
