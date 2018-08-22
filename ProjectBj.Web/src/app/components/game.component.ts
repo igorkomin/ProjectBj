@@ -5,6 +5,7 @@ import { Observable } from '../../../node_modules/rxjs';
 
 import { GameService } from '../services/game.service';
 import { Settings } from '../models/settings.model';
+import { Identifier } from '../models/identifier.model';
 
 @Component({
     selector: 'app-game',
@@ -51,10 +52,38 @@ export class GameComponent implements OnInit {
         this.gameService.getGameViewModel(gameSettings).subscribe(
             response => {
                 this.game = response;
+                this.sessionId = response.sessionId;
+                this.playerId = response.player.id;
             },
             exception => {
                 console.error(exception.error.exceptionMessage);
             }
         );
+    }
+    hit(): void {
+        let identifier = new Identifier();
+        identifier.playerId = this.playerId;
+        identifier.sessionId = this.sessionId;
+        this.gameService.hit(identifier).subscribe(
+            response => {
+                this.game = response;
+            },
+            exception => {
+                console.error(exception.error.exceptionMessage);
+            }
+        );
+    }
+    stand(): void {
+        let identifier = new Identifier();
+        identifier.playerId = this.playerId;
+        identifier.sessionId = this.sessionId;
+        this.gameService.hit(identifier).subscribe(
+            response => {
+                this.game = response;
+            },
+            exception => {
+                console.error(exception.error.exceptionMessage);
+            }
+        )
     }
 }
