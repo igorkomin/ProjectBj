@@ -40,7 +40,7 @@ namespace ProjectBj.BusinessLogic.Providers
             LogEntry entry;
             try
             {
-                entry = await _logRepository.GetEntry(id);
+                entry = await _logRepository.GetEntryById(id);
                 return entry;
             }
             catch (Exception exception)
