@@ -83,7 +83,7 @@ namespace ProjectBj.DataAccess.Repositories
             }
         }
 
-        public async Task<Player> Get(int id)
+        public async Task<Player> GetById(int id)
         {
             try
             {
