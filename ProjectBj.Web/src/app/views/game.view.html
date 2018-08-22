@@ -16,54 +16,12 @@
             <div class="row h33">
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
-                    <p class="caption">Dealer <span class="badge badge-secondary">00</span></p>
+                    <p class="caption">{{ game.dealer.name }} <span class="badge badge-secondary">{{ game.dealer.hand.score }}</span></p>
                     <div class="playingCards simpleCards">
                         <ul class="hand">
-                            <li>
-                                <span class="card rank-7 diams">
-                                    <span class="rank">7</span>
-                                    <span class="suit"></span>
-                                </span>
-                            </li>
-                            <li>
-                                <span class="card rank-8 hearts">
-                                    <span class="rank">8</span>
-                                    <span class="suit"></span>
-                                </span>
-                            </li>
-                            <li>
-                                <span class="card rank-10 clubs">
-                                    <span class="rank">10</span>
-                                    <span class="suit"></span>
-                                </span>
-                            </li>
-                            <li>
-                                <span class="card rank-j diams">
-                                    <span class="rank">J</span>
-                                    <span class="suit"></span>
-                                </span>
-                            </li>
-                            <li>
-                                <span class="card rank-5 clubs">
-                                    <span class="rank">5</span>
-                                    <span class="suit"></span>
-                                </span>
-                            </li>
-                            <li>
-                                <span class="card rank-6 diams">
-                                    <span class="rank">6</span>
-                                    <span class="suit"></span>
-                                </span>
-                            </li>
-                            <li>
-                                <span class="card rank-q hearts">
-                                    <span class="rank">Q</span>
-                                    <span class="suit"></span>
-                                </span>
-                            </li>
-                            <li>
-                                <span class="card rank-k spades">
-                                    <span class="rank">K</span>
+                            <li *ngFor="let card of game.dealer.hand.cards">
+                                <span class="card rank-{{ card.rank }} {{ card.suit | lowercase }}">
+                                    <span class="rank">{{ card.rank }}</span>
                                     <span class="suit"></span>
                                 </span>
                             </li>
@@ -89,54 +47,12 @@
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <p class="caption">Player <span class="badge badge-pill badge-secondary">00</span></p>
+                    <p class="caption">{{ game.player.name }} <span class="badge badge-pill badge-secondary">{{ game.player.hand.score }}</span></p>
                     <div class="playingCards simpleCards rotateHand">
                         <ul class="hand">
-                            <li>
-                                <span class="card rank-7 diams">
-                                    <span class="rank">7</span>
-                                    <span class="suit"></span>
-                                </span>
-                            </li>
-                            <li>
-                                <span class="card rank-8 hearts">
-                                    <span class="rank">8</span>
-                                    <span class="suit"></span>
-                                </span>
-                            </li>
-                            <li>
-                                <span class="card rank-10 clubs">
-                                    <span class="rank">10</span>
-                                    <span class="suit"></span>
-                                </span>
-                            </li>
-                            <li>
-                                <span class="card rank-j diams">
-                                    <span class="rank">J</span>
-                                    <span class="suit"></span>
-                                </span>
-                            </li>
-                            <li>
-                                <span class="card rank-5 clubs">
-                                    <span class="rank">5</span>
-                                    <span class="suit"></span>
-                                </span>
-                            </li>
-                            <li>
-                                <span class="card rank-6 diams">
-                                    <span class="rank">6</span>
-                                    <span class="suit"></span>
-                                </span>
-                            </li>
-                            <li>
-                                <span class="card rank-q hearts">
-                                    <span class="rank">Q</span>
-                                    <span class="suit"></span>
-                                </span>
-                            </li>
-                            <li>
-                                <span class="card rank-k spades">
-                                    <span class="rank">K</span>
+                            <li *ngFor="let card of game.player.hand.cards">
+                                <span class="card rank-{{ card.rank }} {{ card.suit | lowercase }}">
+                                    <span class="rank">{{ card.rank }}</span>
                                     <span class="suit"></span>
                                 </span>
                             </li>
@@ -145,275 +61,13 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-1">
-                    <p class="caption">Bot 1 <span class="badge badge-pill badge-secondary">00</span></p>
+                <div class="col-md-1" *ngFor="let bot of game.bots">
+                    <p class="caption">{{ bot.name }} <span class="badge badge-pill badge-secondary">00</span></p>
                     <div class="playingCards simpleCards rotateHand">
-                        <ul class="hand">
+                        <ul class="hand" *ngFor="bot.hand.cards">
                             <li>
-                                <span class="card rank-7 diams">
-                                    <span class="rank">7</span>
-                                    <span class="suit"></span>
-                                </span>
-                            </li>
-                            <li>
-                                <span class="card rank-8 hearts">
-                                    <span class="rank">8</span>
-                                    <span class="suit"></span>
-                                </span>
-                            </li>
-                            <li>
-                                <span class="card rank-10 clubs">
-                                    <span class="rank">10</span>
-                                    <span class="suit"></span>
-                                </span>
-                            </li>
-                            <li>
-                                <span class="card rank-j diams">
-                                    <span class="rank">J</span>
-                                    <span class="suit"></span>
-                                </span>
-                            </li>
-                            <li>
-                                <span class="card rank-5 clubs">
-                                    <span class="rank">5</span>
-                                    <span class="suit"></span>
-                                </span>
-                            </li>
-                            <li>
-                                <span class="card rank-6 diams">
-                                    <span class="rank">6</span>
-                                    <span class="suit"></span>
-                                </span>
-                            </li>
-                            <li>
-                                <span class="card rank-q hearts">
-                                    <span class="rank">Q</span>
-                                    <span class="suit"></span>
-                                </span>
-                            </li>
-                            <li>
-                                <span class="card rank-k spades">
-                                    <span class="rank">K</span>
-                                    <span class="suit"></span>
-                                </span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-1">
-                    <p class="caption">Bot 2 <span class="badge badge-pill badge-secondary">00</span></p>
-                    <div class="playingCards simpleCards rotateHand">
-                        <ul class="hand">
-                            <li>
-                                <span class="card rank-7 diams">
-                                    <span class="rank">7</span>
-                                    <span class="suit"></span>
-                                </span>
-                            </li>
-                            <li>
-                                <span class="card rank-8 hearts">
-                                    <span class="rank">8</span>
-                                    <span class="suit"></span>
-                                </span>
-                            </li>
-                            <li>
-                                <span class="card rank-10 clubs">
-                                    <span class="rank">10</span>
-                                    <span class="suit"></span>
-                                </span>
-                            </li>
-                            <li>
-                                <span class="card rank-j diams">
-                                    <span class="rank">J</span>
-                                    <span class="suit"></span>
-                                </span>
-                            </li>
-                            <li>
-                                <span class="card rank-5 clubs">
-                                    <span class="rank">5</span>
-                                    <span class="suit"></span>
-                                </span>
-                            </li>
-                            <li>
-                                <span class="card rank-6 diams">
-                                    <span class="rank">6</span>
-                                    <span class="suit"></span>
-                                </span>
-                            </li>
-                            <li>
-                                <span class="card rank-q hearts">
-                                    <span class="rank">Q</span>
-                                    <span class="suit"></span>
-                                </span>
-                            </li>
-                            <li>
-                                <span class="card rank-k spades">
-                                    <span class="rank">K</span>
-                                    <span class="suit"></span>
-                                </span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-1">
-                    <p class="caption">Bot 3 <span class="badge badge-pill badge-secondary">00</span></p>
-                    <div class="playingCards simpleCards rotateHand">
-                        <ul class="hand">
-                            <li>
-                                <span class="card rank-7 diams">
-                                    <span class="rank">7</span>
-                                    <span class="suit"></span>
-                                </span>
-                            </li>
-                            <li>
-                                <span class="card rank-8 hearts">
-                                    <span class="rank">8</span>
-                                    <span class="suit"></span>
-                                </span>
-                            </li>
-                            <li>
-                                <span class="card rank-10 clubs">
-                                    <span class="rank">10</span>
-                                    <span class="suit"></span>
-                                </span>
-                            </li>
-                            <li>
-                                <span class="card rank-j diams">
-                                    <span class="rank">J</span>
-                                    <span class="suit"></span>
-                                </span>
-                            </li>
-                            <li>
-                                <span class="card rank-5 clubs">
-                                    <span class="rank">5</span>
-                                    <span class="suit"></span>
-                                </span>
-                            </li>
-                            <li>
-                                <span class="card rank-6 diams">
-                                    <span class="rank">6</span>
-                                    <span class="suit"></span>
-                                </span>
-                            </li>
-                            <li>
-                                <span class="card rank-q hearts">
-                                    <span class="rank">Q</span>
-                                    <span class="suit"></span>
-                                </span>
-                            </li>
-                            <li>
-                                <span class="card rank-k spades">
-                                    <span class="rank">K</span>
-                                    <span class="suit"></span>
-                                </span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-1">
-                    <p class="caption">Bot 4 <span class="badge badge-pill badge-secondary">00</span></p>
-                    <div class="playingCards simpleCards rotateHand">
-                        <ul class="hand">
-                            <li>
-                                <span class="card rank-7 diams">
-                                    <span class="rank">7</span>
-                                    <span class="suit"></span>
-                                </span>
-                            </li>
-                            <li>
-                                <span class="card rank-8 hearts">
-                                    <span class="rank">8</span>
-                                    <span class="suit"></span>
-                                </span>
-                            </li>
-                            <li>
-                                <span class="card rank-10 clubs">
-                                    <span class="rank">10</span>
-                                    <span class="suit"></span>
-                                </span>
-                            </li>
-                            <li>
-                                <span class="card rank-j diams">
-                                    <span class="rank">J</span>
-                                    <span class="suit"></span>
-                                </span>
-                            </li>
-                            <li>
-                                <span class="card rank-5 clubs">
-                                    <span class="rank">5</span>
-                                    <span class="suit"></span>
-                                </span>
-                            </li>
-                            <li>
-                                <span class="card rank-6 diams">
-                                    <span class="rank">6</span>
-                                    <span class="suit"></span>
-                                </span>
-                            </li>
-                            <li>
-                                <span class="card rank-q hearts">
-                                    <span class="rank">Q</span>
-                                    <span class="suit"></span>
-                                </span>
-                            </li>
-                            <li>
-                                <span class="card rank-k spades">
-                                    <span class="rank">K</span>
-                                    <span class="suit"></span>
-                                </span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-1">
-                    <p class="caption">Bot 5 <span class="badge badge-pill badge-secondary">00</span></p>
-                    <div class="playingCards simpleCards rotateHand">
-                        <ul class="hand">
-                            <li>
-                                <span class="card rank-7 diams">
-                                    <span class="rank">7</span>
-                                    <span class="suit"></span>
-                                </span>
-                            </li>
-                            <li>
-                                <span class="card rank-8 hearts">
-                                    <span class="rank">8</span>
-                                    <span class="suit"></span>
-                                </span>
-                            </li>
-                            <li>
-                                <span class="card rank-10 clubs">
-                                    <span class="rank">10</span>
-                                    <span class="suit"></span>
-                                </span>
-                            </li>
-                            <li>
-                                <span class="card rank-j diams">
-                                    <span class="rank">J</span>
-                                    <span class="suit"></span>
-                                </span>
-                            </li>
-                            <li>
-                                <span class="card rank-5 clubs">
-                                    <span class="rank">5</span>
-                                    <span class="suit"></span>
-                                </span>
-                            </li>
-                            <li>
-                                <span class="card rank-6 diams">
-                                    <span class="rank">6</span>
-                                    <span class="suit"></span>
-                                </span>
-                            </li>
-                            <li>
-                                <span class="card rank-q hearts">
-                                    <span class="rank">Q</span>
-                                    <span class="suit"></span>
-                                </span>
-                            </li>
-                            <li>
-                                <span class="card rank-k spades">
-                                    <span class="rank">K</span>
+                                <span class="card rank-{{ card.rank }} {{ card.suit | lowercase }}">
+                                    <span class="rank">{{ card.rank }}</span>
                                     <span class="suit"></span>
                                 </span>
                             </li>
