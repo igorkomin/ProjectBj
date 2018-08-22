@@ -204,6 +204,7 @@
     <Content Include="angular.json" />
     <Content Include="package.json" />
     <Content Include="src\app\styles\common\bootstrap.css" />
+    <Content Include="src\app\styles\game.style.css" />
     <Content Include="src\app\views\game.view.html" />
     <Content Include="src\app\styles\login.style.css" />
     <Content Include="src\app\views\login.view.html" />
