@@ -164,8 +164,12 @@ namespace ProjectBj.BusinessLogic.Providers
         {
             try
             {
-                var player = await _playerRepository.FindPlayers(name);
-                var playerViewModel = await GetPlayerViewModel(player.FirstOrDefault());
+                var searchResults = await _playerRepository.FindPlayers(name);
+                if(searchResults.Count == 0)
+                {
+                    return null;
+                }
+                var playerViewModel = await GetPlayerViewModel(searchResults.FirstOrDefault());
                 return playerViewModel;
             }
             catch (Exception exception)
@@ -178,8 +182,12 @@ namespace ProjectBj.BusinessLogic.Providers
         {
             try
             {
-                var dealer = await _playerRepository.FindPlayers(StringHelper.DealerName);
-                var dealerViewModel = await GetDealerViewModel(dealer.FirstOrDefault());
+                var searchResults = await _playerRepository.FindPlayers(StringHelper.DealerName);
+                if(searchResults.Count == 0)
+                {
+                    return null;
+                }
+                var dealerViewModel = await GetDealerViewModel(searchResults.FirstOrDefault());
                 return dealerViewModel;
             }
             catch (Exception exception)
@@ -203,7 +211,7 @@ namespace ProjectBj.BusinessLogic.Providers
             Player player;
             try
             {
-                player = await _playerRepository.Get(id);
+                player = await _playerRepository.GetById(id);
 
                 return player;
             }
@@ -217,7 +225,7 @@ namespace ProjectBj.BusinessLogic.Providers
         {
             try
             {
-                Player player = await _playerRepository.Get(playerId);
+                Player player = await _playerRepository.GetById(playerId);
                 var cards = await _playerRepository.GetCards(player, sessionId);
                 List<CardViewModel> cardViewModels = new List<CardViewModel>();
                 foreach (var card in cards)
