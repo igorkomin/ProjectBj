@@ -48,7 +48,7 @@ namespace ProjectBj.BusinessLogic.Providers
 
         public async Task ChangePlayerBalance(int playerId, int balanceDelta)
         {
-            Player player = await _playerRepository.Get(playerId);
+            Player player = await _playerRepository.GetById(playerId);
             player.Balance += balanceDelta;
             try
             {
