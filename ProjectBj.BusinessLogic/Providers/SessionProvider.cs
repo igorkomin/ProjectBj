@@ -48,8 +48,13 @@ namespace ProjectBj.BusinessLogic.Providers
 
         public async Task<SessionViewModel> GetSessionByPlayerId(int playerId)
         {
-            Player player = await _playerRepository.Get(playerId);
+            Player player = await _playerRepository.GetById(playerId);
             GameSession currentSession = await _sessionRepository.GetCurrentSession(player);
+            if (currentSession == null)
+            {
+                SessionViewModel newSession = await CreateSession();
+                return newSession;
+            }
             SessionViewModel currentSessionViewModel = new SessionViewModel
             {
                 Id = currentSession.Id,
@@ -57,11 +62,6 @@ namespace ProjectBj.BusinessLogic.Providers
                 TimeCreated = currentSession.TimeCreated
             };
 
-            if(currentSession == null)
-            {
-                SessionViewModel newSession = await CreateSession();
-                return newSession;
-            }
 
             return currentSessionViewModel;
         }
