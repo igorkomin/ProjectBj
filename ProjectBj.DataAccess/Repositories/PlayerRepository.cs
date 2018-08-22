@@ -177,7 +177,7 @@ namespace ProjectBj.DataAccess.Repositories
         {
             using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
             {
-                var sqlQuery = "SELECT p.* FROM PlayerHands ph " +
+                var sqlQuery = "SELECT DISTINCT p.* FROM PlayerHands ph " +
                                "JOIN Players p ON ( ph.PlayerId = p.Id ) " +
                                "WHERE ph.SessionId = @sessionId " +
                                "AND p.IsHuman = 0 " +
