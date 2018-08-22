@@ -44,6 +44,7 @@
     <Compile Include="Game\DealerVIewModel.cs" />
     <Compile Include="Game\GameViewModel.cs" />
     <Compile Include="Game\HandViewModel.cs" />
+    <Compile Include="Game\IdentifierViewModel.cs" />
     <Compile Include="Game\LogEntryViewModel.cs" />
     <Compile Include="Game\SessionViewModel.cs" />
     <Compile Include="Home\GameSettings.cs" />
