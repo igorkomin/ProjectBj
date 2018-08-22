@@ -150,6 +150,25 @@ namespace ProjectBj.BusinessLogic.Providers
             return botViewModels;
         }
 
+        public async Task<List<PlayerViewModel>> GetSessionBotViewModels(int sessionId)
+        {
+            var bots = await _playerRepository.GetSessionBots(sessionId);
+            var botViewModels = new List<PlayerViewModel>();
+
+            foreach (var bot in bots)
+            {
+                PlayerViewModel botViewModel = new PlayerViewModel
+                {
+                    Id = bot.Id,
+                    Name = bot.Name,
+                    InGame = bot.InGame,
+                    Balance = bot.Balance
+                };
+                botViewModels.Add(botViewModel);
+            }
+            return botViewModels;
+        }
+
         public async Task<DealerViewModel> GetDealer()
         {
             DealerViewModel dealer = await PullDealer();
@@ -206,14 +225,15 @@ namespace ProjectBj.BusinessLogic.Providers
             return player;
         }
 
-        public async Task<Player> GetPlayerById(int id)
+        public async Task<PlayerViewModel> GetPlayerById(int id)
         {
             Player player;
+            PlayerViewModel playerViewModel;
             try
             {
                 player = await _playerRepository.GetById(id);
-
-                return player;
+                playerViewModel = await GetPlayerViewModel(player);
+                return playerViewModel;
             }
             catch (Exception exception)
             {

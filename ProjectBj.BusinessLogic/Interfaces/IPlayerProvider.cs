@@ -12,9 +12,10 @@ namespace ProjectBj.BusinessLogic.Interfaces
     {
         Task<DealerViewModel> GetDealer();
         Task<PlayerViewModel> GetPlayerViewModel(string name);
-        Task<Player> GetPlayerById(int id);
+        Task<PlayerViewModel> GetPlayerById(int id);
         Task<HandViewModel> GetHandViewModel(int playerId, int sessionId);
         Task<List<PlayerViewModel>> GetBotViewModels(int botnumber, int sessionId);
+        Task<List<PlayerViewModel>> GetSessionBotViewModels(int sessionId);
         Task<int> GetHandValue(int playerId, int sessionId);
         Task DeletePlayer(Player player);
     }
