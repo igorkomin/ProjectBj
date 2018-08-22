@@ -30,7 +30,7 @@ namespace ProjectBj.DataAccess.Repositories
             }
         }
 
-        public async Task<LogEntry> GetEntry(int id)
+        public async Task<LogEntry> GetEntryById(int id)
         {
             try
             {

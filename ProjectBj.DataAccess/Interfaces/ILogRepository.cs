@@ -9,7 +9,7 @@ namespace ProjectBj.DataAccess.Interfaces
 {
     interface ILogRepository
     {
-        Task<LogEntry> GetEntry(int id);
+        Task<LogEntry> GetEntryById(int id);
         Task<ICollection<LogEntry>> GetAllLogs();
         Task CreateEntry(LogEntry entry);
         Task DeleteEntry(LogEntry entry);
