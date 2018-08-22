@@ -42,8 +42,8 @@
                 <div class="col-md-3">
                     <div class="caption">Actions</div>
                     <div class="btn-group-vertical">
-                        <button type="button" class="btn btn-primary">HIT</button>
-                        <button type="button" class="btn btn-secondary">STAND</button>
+                        <button type="button" (click)="hit()" class="btn btn-primary">HIT</button>
+                        <button type="button" (click)="stand()" class="btn btn-secondary">STAND</button>
                     </div>
                 </div>
                 <div class="col-md-3">
@@ -62,7 +62,7 @@
             </div>
             <div class="row">
                 <div class="col-md-1" *ngFor="let bot of game?.bots">
-                    <p class="caption">{{ bot?.name }} <span class="badge badge-pill badge-secondary">{{ bot?.hand.score }}</span></p>
+                    <p class="caption">{{ bot?.name }}{{ bot?.id }} <span class="badge badge-pill badge-secondary">{{ bot?.hand.score }}</span></p>
                     <div class="playingCards simpleCards rotateHand">
                         <ul class="hand">
                             <li *ngFor="let card of bot?.hand.cards">
