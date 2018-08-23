@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using RandomNameGeneratorLibrary;
 using ProjectBj.DataAccess.Repositories;
 using ProjectBj.Entities;
 using ProjectBj.BusinessLogic.Interfaces;
@@ -16,11 +17,13 @@ namespace ProjectBj.BusinessLogic.Providers
     {
         private PlayerRepository _playerRepository;
         private CardRepository _cardRepository;
+        private PersonNameGenerator _nameGenerator;
 
         public PlayerProvider()
         {
             _playerRepository = new PlayerRepository();
             _cardRepository = new CardRepository();
+            _nameGenerator = new PersonNameGenerator();
         }
 
         private async Task<PlayerViewModel> NewPlayer(string name)
@@ -50,7 +53,7 @@ namespace ProjectBj.BusinessLogic.Providers
             PlayerViewModel botViewModel;
             Player bot = new Player
             {
-                Name = StringHelper.BotName,
+                Name = _nameGenerator.GenerateRandomFirstAndLastName(),
                 Balance = ValueHelper.StartBalance,
                 IsHuman = false,
                 InGame = true
@@ -294,7 +297,7 @@ namespace ProjectBj.BusinessLogic.Providers
         {
             try
             {
-                await _playerRepository.DeletePlayersByName(StringHelper.BotName);
+                await _playerRepository.DeleteNonHumanPlayers();
             }
             catch (Exception exception)
             {
