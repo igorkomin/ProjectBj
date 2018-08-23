@@ -17,7 +17,6 @@ import { Identifier } from '../models/identifier.model';
     ]
 })
 export class GameComponent implements OnInit {
-
     playerName: string;
     botsNumber: number;
     sliderValue: number = 50;
