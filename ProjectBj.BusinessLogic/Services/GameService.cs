@@ -14,11 +14,11 @@ namespace ProjectBj.BusinessLogic.Services
     {
         public string _playerName { get; set; }
         public int _botNumber { get; set; }
-        private IDeckProvider _deckProvider;
-        private IGameProvider _gameProvider;
-        private ILogProvider _logProvider;
-        private IPlayerProvider _playerProvider;
-        private ISessionProvider _sessionProvider;
+        private readonly IDeckProvider _deckProvider;
+        private readonly IGameProvider _gameProvider;
+        private readonly ILogProvider _logProvider;
+        private readonly IPlayerProvider _playerProvider;
+        private readonly ISessionProvider _sessionProvider;
         
         public GameService(IDeckProvider deckProvider, IGameProvider gameProvider, 
             ILogProvider logProvider, IPlayerProvider playerProvider, ISessionProvider sessionProvider)
@@ -175,7 +175,7 @@ namespace ProjectBj.BusinessLogic.Services
             }
             await DealerTurn(gameViewModel.Dealer.Id, sessionId);
             //await UpdateGameResult();
-            //await CloseGameSession(sessionId);
+            await CloseGameSession(sessionId);
             gameViewModel = await UpdateViewModel(playerId, sessionId);
             return gameViewModel;
         }
