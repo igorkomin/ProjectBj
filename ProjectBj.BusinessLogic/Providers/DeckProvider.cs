@@ -93,7 +93,7 @@ namespace ProjectBj.BusinessLogic.Providers
         private List<Card> Shuffle(List<Card> deck)
         {
             List<Card> shuffledDeck = new List<Card>();
-            Random random = new Random(DateTime.Now.Millisecond);
+            Random random = new Random(Guid.NewGuid().GetHashCode()); 
             int randomIndex = 0;
             while (deck.Count > 0)
             {
