@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace ProjectBj.Entities
 {
-    public class LogEntry
+    public class LogEntry : BaseEntity
     {
-        public int Id { get; set; }
         public int SessionId { get; set; }
         public DateTime Time { get; set; }
         public string Message { get; set; }
