@@ -203,6 +203,22 @@ namespace ProjectBj.DataAccess.Repositories
             }
         }
 
+        public async Task DeleteNonHumanPlayers()
+        {
+            try
+            {
+                using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
+                {
+                    var sqlQuery = "DELETE FROM Players WHERE IsHuman = 0";
+                    await db.ExecuteAsync(sqlQuery);
+                }
+            }
+            catch (Exception exception)
+            {
+                throw new DataSourceException(exception.Message, exception);
+            }
+        }
+
         public async Task DeletePlayersByName(string name)
         {
             try
