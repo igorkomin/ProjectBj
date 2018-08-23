@@ -47,9 +47,8 @@ namespace ProjectBj.DataAccess.Repositories
             }
         }
 
-        public async Task Update(int sessionId)
+        public async Task Update(GameSession session)
         {
-            GameSession session = await GetById(sessionId);
             try
             {
                 using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
