@@ -76,7 +76,7 @@ export class GameComponent implements OnInit {
         let identifier = new Identifier();
         identifier.playerId = this.playerId;
         identifier.sessionId = this.sessionId;
-        this.gameService.hit(identifier).subscribe(
+        this.gameService.stand(identifier).subscribe(
             response => {
                 this.game = response;
             },
