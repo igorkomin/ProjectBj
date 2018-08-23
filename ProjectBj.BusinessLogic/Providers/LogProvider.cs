@@ -24,7 +24,8 @@ namespace ProjectBj.BusinessLogic.Providers
             {
                 SessionId = sessionId,
                 Message = message,
-                Time = DateTime.Now };
+                Time = DateTime.Now
+            };
             try
             {
                 await _logRepository.CreateEntry(entry);
