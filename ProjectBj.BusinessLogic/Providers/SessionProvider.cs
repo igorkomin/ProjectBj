@@ -78,7 +78,7 @@ namespace ProjectBj.BusinessLogic.Providers
             session.IsOpen = false;
             try
             {
-                await _sessionRepository.Update(session.Id);
+                await _sessionRepository.Update(session);
             }
             catch (Exception exception)
             {
