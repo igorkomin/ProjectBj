@@ -11,6 +11,7 @@ import { Identifier } from '../models/identifier.model';
     selector: 'app-game',
     templateUrl: './../views/game.view.html',
     styleUrls: [
+        './../styles/game.style.css',
         './../styles/common/bootstrap.css',
         './../styles/common/slider.css',
         './../styles/common/cards.css'
