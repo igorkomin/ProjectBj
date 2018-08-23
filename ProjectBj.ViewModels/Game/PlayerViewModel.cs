@@ -9,10 +9,6 @@ namespace ProjectBj.ViewModels.Game
 {
     public class PlayerViewModel
     {
-        public PlayerViewModel()
-        {
-            GameResult = 0;
-        }
         public int Id { get; set; }
         public string Name { get; set; }
         public bool IsHuman { get; set; }
