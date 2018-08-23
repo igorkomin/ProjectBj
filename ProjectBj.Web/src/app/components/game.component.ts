@@ -38,7 +38,6 @@ export class GameComponent implements OnInit {
                 this.playerName = params['name'];
                 this.botsNumber = params['bots'];
             });
-        this.getGame();
     }
 
     updateSliderValue(value: number): void {
