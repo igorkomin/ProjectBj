@@ -34,8 +34,8 @@ namespace ProjectBj.BusinessLogic.Services
         {
             var player = await _playerProvider.GetPlayerViewModel(_playerName);
             var session = await _sessionProvider.GetSessionByPlayerId(player.Id);
-            var dealer = await _playerProvider.GetDealer();
             var bots = await _playerProvider.GetBotViewModels(_botNumber, session.Id);
+            var dealer = await _playerProvider.GetDealer();
             
             GameViewModel gameViewModel = new GameViewModel
             {
@@ -90,19 +90,17 @@ namespace ProjectBj.BusinessLogic.Services
             return gameViewModel;
         }
 
-        public async Task<GameViewModel> MakeBet(int playerId, int betValue)
+        public async Task<GameViewModel> MakeBet(int playerId, int sessionId, int betValue)
         {
-            var gameViewModel = await GetGameViewModel();
+            var gameViewModel = await UpdateViewModel(playerId, sessionId);
             gameViewModel.Player.Bet = betValue;
             return gameViewModel;
         }
 
-        public async Task UpdateGameResult()
+        public async Task<GameViewModel> UpdateGameResult(int playerId, int sessionId)
         {
-            var gameViewModel = await GetGameViewModel();
+            var gameViewModel = await UpdateViewModel(playerId, sessionId);
 
-            var playerId = gameViewModel.Player.Id;
-            
             var playerScore = gameViewModel.Player.Hand.Score;
             var dealerScore = gameViewModel.Dealer.Hand.Score;
 
@@ -118,6 +116,7 @@ namespace ProjectBj.BusinessLogic.Services
                 result = await _gameProvider.GetGameResult(bot.Id, botScore, dealerScore, botBet);
                 bot.GameResult = (int)result;
             }
+            return gameViewModel;
         }
 
         public async Task<GameViewModel> DealFirstCards()
@@ -150,10 +149,9 @@ namespace ProjectBj.BusinessLogic.Services
             await _deckProvider.DealCard(playerId, sessionId);
             GameViewModel gameViewModel = await UpdateViewModel(playerId, sessionId);
             int handValue = await _playerProvider.GetHandValue(playerId, sessionId);
-            if (handValue > ValueHelper.BlackjackValue)
+            if (handValue >= ValueHelper.BlackjackValue)
             {
                 gameViewModel = await BotsTurn(playerId, sessionId);
-                //await UpdateViewModel(gameViewModel);
             }
             return gameViewModel;
         }
@@ -161,7 +159,7 @@ namespace ProjectBj.BusinessLogic.Services
         public async Task<GameViewModel> Stand(int playerId, int sessionId)
         {
             await BotsTurn(playerId, sessionId);
-            var gameViewModel = await UpdateViewModel(playerId, sessionId);
+            var gameViewModel = await UpdateGameResult(playerId, sessionId);
             return gameViewModel;
         }
 
@@ -174,9 +172,9 @@ namespace ProjectBj.BusinessLogic.Services
                 await BotTurn(bot.Id, sessionId);
             }
             await DealerTurn(gameViewModel.Dealer.Id, sessionId);
-            //await UpdateGameResult();
+            await UpdateGameResult(playerId, sessionId);
             await CloseGameSession(sessionId);
-            gameViewModel = await UpdateViewModel(playerId, sessionId);
+            gameViewModel = await UpdateGameResult(playerId, sessionId);
             return gameViewModel;
         }
 

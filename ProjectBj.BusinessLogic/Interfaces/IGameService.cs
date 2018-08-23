@@ -12,12 +12,12 @@ namespace ProjectBj.BusinessLogic.Interfaces
         Task<GameViewModel> DealFirstCards();
         Task<GameViewModel> GetGameViewModel();
         Task<GameViewModel> Hit(int playerId, int sessionId);
-        Task<GameViewModel> MakeBet(int playerId, int betValue);
+        Task<GameViewModel> MakeBet(int playerId, int sessionId, int betValue);
         Task<GameViewModel> NewGame(string playerName, int botsNumber);
         Task<GameViewModel> Stand(int playerId, int sessionId);
+        Task<GameViewModel> UpdateGameResult(int playerId, int sessionId);
         Task<bool> DealerTurn(int dealerId, int sessionId);
         Task CloseGameSession(int sessionId);
-        Task UpdateGameResult();
         Task UpdateViewModel(GameViewModel gameViewModel);
     }
 }
