@@ -6,7 +6,7 @@ import { Settings } from '../models/settings.model';
 import { Game } from '../models/game.model';
 import { Identifier } from '../models/identifier.model';
 
-const apiUrl = '../api/main/';
+const apiUrl = '../api/game/';
 const requestOptions = {
     headers: new HttpHeaders({
         'Content-Type': 'application/json'
