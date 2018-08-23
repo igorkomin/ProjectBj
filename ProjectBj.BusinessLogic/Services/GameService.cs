@@ -100,12 +100,9 @@ namespace ProjectBj.BusinessLogic.Services
         public async Task<GameViewModel> UpdateGameResult(int playerId, int sessionId)
         {
             var gameViewModel = await UpdateViewModel(playerId, sessionId);
-
             var playerScore = gameViewModel.Player.Hand.Score;
             var dealerScore = gameViewModel.Dealer.Hand.Score;
-
             var bet = gameViewModel.Player.Bet;
-
             var result = await _gameProvider.GetGameResult(playerId, playerScore, dealerScore, bet);
             gameViewModel.Player.GameResult = (int)result;
 
