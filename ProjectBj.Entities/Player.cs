@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace ProjectBj.Entities
 {
-    public class Player
+    public class Player: BaseEntity
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public bool IsHuman { get; set; }
         public int Balance { get; set; }
