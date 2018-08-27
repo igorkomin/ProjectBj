@@ -14,6 +14,8 @@ using ProjectBj.BusinessLogic;
 using ProjectBj.BusinessLogic.Interfaces;
 using ProjectBj.BusinessLogic.Providers;
 using ProjectBj.BusinessLogic.Services;
+using ProjectBj.BusinessLogic.Utility;
+using System.Web.Configuration;
 
 namespace ProjectBj.Web.Utility
 {
@@ -23,15 +25,11 @@ namespace ProjectBj.Web.Utility
         {
             var builder = new ContainerBuilder();
             var config = GlobalConfiguration.Configuration;
+            var connectionString = WebConfigurationManager.ConnectionStrings["DBConnection"].ConnectionString;
 
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
-            
-            builder.RegisterType<DeckProvider>().As<IDeckProvider>();
-            builder.RegisterType<GameProvider>().As<IGameProvider>();
-            builder.RegisterType<LogProvider>().As<ILogProvider>();
-            builder.RegisterType<PlayerProvider>().As<IPlayerProvider>();
-            builder.RegisterType<SessionProvider>().As<ISessionProvider>();
-            builder.RegisterType<GameService>().As<IGameService>();
+
+            AutofacTypeRegistry.RegisterTypes(builder, connectionString);
             
             var container = builder.Build();
             config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
