@@ -15,11 +15,18 @@ namespace ProjectBj.DataAccess.Repositories
 {
     public class GameSessionRepository : IGameSessionRepository
     {
+        private string _connectionString;
+
+        public GameSessionRepository(string connectionString)
+        {
+            _connectionString = connectionString;
+        }
+
         public async Task<GameSession> Create(GameSession session)
         {
             try
             {
-                using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
+                using (IDbConnection db = new SqlConnection(_connectionString))
                 {
                     session.Id = await db.InsertAsync(session);
                     return session;
@@ -35,7 +42,7 @@ namespace ProjectBj.DataAccess.Repositories
         {
             try
             {
-                using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
+                using (IDbConnection db = new SqlConnection(_connectionString))
                 {
                     var session = await db.GetAsync<GameSession>(id);
                     return session;
@@ -51,7 +58,7 @@ namespace ProjectBj.DataAccess.Repositories
         {
             try
             {
-                using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
+                using (IDbConnection db = new SqlConnection(_connectionString))
                 {
                     await db.UpdateAsync(session);
                 }
@@ -66,7 +73,7 @@ namespace ProjectBj.DataAccess.Repositories
         {
             try
             {
-                using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
+                using (IDbConnection db = new SqlConnection(_connectionString))
                 {
                     await db.DeleteAsync(session);
                 }
@@ -81,7 +88,7 @@ namespace ProjectBj.DataAccess.Repositories
         {
             try
             {
-                using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
+                using (IDbConnection db = new SqlConnection(_connectionString))
                 {
                     var sqlQuery = "SELECT p.* FROM GameSessionPlayers gsp " +
                                    "JOIN Players p ON ( gsp.PlayerId = p.Id ) " +
@@ -101,7 +108,7 @@ namespace ProjectBj.DataAccess.Repositories
         {
             try
             {
-                using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
+                using (IDbConnection db = new SqlConnection(_connectionString))
                 {
                     var sqlQuery = "SELECT gs.* FROM PlayerHands ph " +
                                    "JOIN Players p ON ( ph.PlayerId = p.Id ) " +
@@ -122,7 +129,7 @@ namespace ProjectBj.DataAccess.Repositories
         {
             try
             {
-                using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
+                using (IDbConnection db = new SqlConnection(_connectionString))
                 {
                     var sqlQuery = "SELECT gs.* FROM PlayerHands ph " +
                                    "JOIN Players p ON ( ph.PlayerId = p.Id ) " +
