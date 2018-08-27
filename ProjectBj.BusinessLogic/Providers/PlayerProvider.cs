@@ -298,7 +298,7 @@ namespace ProjectBj.BusinessLogic.Providers
         {
             try
             {
-                await _playerRepository.DeleteNonHumanPlayers();
+                await _playerRepository.DeleteNonHumanPlayers(StringHelper.DealerName);
             }
             catch (Exception exception)
             {
