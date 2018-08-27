@@ -3,15 +3,15 @@
         <div class="col-lg-9">
             <div class="row h33">
                 <div class="col-md-3">
-                    <h1 *ngIf="!game">
-                        Welcome, {{ playerName }}!
-                    </h1>
+                    <div *ngIf="game">
+                        <img src="../../../Content/dealer.png"/>
+                        <p class="caption">{{ game?.dealer.name }} <span class="badge badge-secondary">{{ game?.dealer.hand.score }}</span></p>
+                    </div>
                 </div>
                 <div class="col-md-6">
-                    <p class="caption">{{ game?.dealer.name }} <span class="badge badge-secondary">{{ game?.dealer.hand.score }}</span></p>
                     <div class="playingCards simpleCards">
                         <ul class="hand">
-                            <li *ngFor="let card of game?.dealer.hand.cards">
+                            <li *ngFor="let card of game?.dealer.hand.cards; index as i; last as isLast">
                                 <span class="card rank-{{ card.rank }} {{ card.suit | lowercase }}">
                                     <span class="rank">{{ card.rank }}</span>
                                     <span class="suit"></span>
@@ -44,7 +44,7 @@
                     <div class="slidecontainer">
                         <input #betSlider (input)="updateSliderValue(betSlider.value)"
                                [disabled]="game && game?.player.gameResult == 0"
-                               type="range" min="50" max="100" value="50" step="5" class="slider" id="bet_range">
+                               type="range" min="50" max="100" value="50" step="5" class="slider">
                     </div>
                     <h3 id="bet_output">{{ sliderValue | currency }}</h3>
                     <button [disabled]="game && game?.player.gameResult == 0" (click)="getGame()" type="button" class="btn btn-primary">NEW GAME</button>
@@ -52,11 +52,11 @@
                 <div *ngIf="game" class="col-md-3">
                     <div class="caption">Actions</div>
                     <div class="btn-group-vertical">
-                        <button type="button" [disabled]="game?.player.gameResult != 0" (click)="hit()" class="btn btn-primary">HIT</button>
-                        <button type="button" [disabled]="game?.player.gameResult != 0" (click)="stand()" class="btn btn-secondary">STAND</button>
+                        <button [disabled]="game?.player.gameResult != 0" (click)="hit()" class="btn btn-primary">HIT</button>
+                        <button [disabled]="game?.player.gameResult != 0" (click)="stand()" class="btn btn-secondary">STAND</button>
                     </div>
                 </div>
-                <div class="col-md-3">
+                <div *ngIf="game" class="player-seat col-md-3">
                     <div *ngIf="game?.player.gameResult > 0" class="ribbon {{ game?.player.gameResultMessage | lowercase }}"><span>{{ game?.player.gameResultMessage }}</span></div>
                     <p class="caption">{{ game?.player.name }} <span class="badge badge-secondary">{{ game?.player.hand.score }}</span></p>
                     <div class="playingCards simpleCards rotateHand">
@@ -72,7 +72,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-1" *ngFor="let bot of game?.bots">
+                <div class="bot-seat col-md-1" *ngFor="let bot of game?.bots">
                     <div *ngIf="bot?.gameResult > 0" class="ribbon {{ bot?.gameResultMessage | lowercase }}"><span>{{ bot?.gameResultMessage }}</span></div>
                     <p class="caption">{{ bot?.name }} <span class="badge badge-secondary">{{ bot?.hand.score }}</span></p>
                     <div class="playingCards simpleCards rotateHand">
