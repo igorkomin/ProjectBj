@@ -7,8 +7,9 @@ using ProjectBj.Entities;
 
 namespace ProjectBj.DataAccess.Interfaces
 {
-    interface IGameSessionRepository
+    public interface IGameSessionRepository
     {
+        Task<GameSession> GetById(int id);
         Task<GameSession> Create(GameSession session);
         Task<GameSession> GetCurrentSession(Player player);
         Task<ICollection<Player>> GetSessionPlayers(GameSession session);
