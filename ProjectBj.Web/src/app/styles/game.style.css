@@ -10,19 +10,24 @@
     cursor: not-allowed;
 }
 
+.bots-input {
+    text-align: center;
+}
+
 .bot-seat {
-    border-right: 1px solid black;
-    border-top: 1px solid black;
+    background-image: url("../../../Content/robot.png");
+    background-repeat: no-repeat;
+    background-size: 65%;
+    background-position-x: 100%;
+    background-position-y: 100%;
 }
 
 .player-seat {
-    border-top: 1px solid black;
-    border-left: 1px solid black;
-    border-right: 1px solid black;
-}
-
-.bots-input {
-    text-align: center;
+    background-image: url("../../../Content/player.png");
+    background-repeat: no-repeat;
+    background-size: 50%;
+    background-position-x: 100%;
+    background-position-y: 70%;
 }
 
 .ribbon {
@@ -55,7 +60,7 @@
 }
 
 .blackjack span {
-    background: linear-gradient(#628008 0%, #394F05 100%);
+    background: linear-gradient(#62BD08 0%, #394F05 100%);
 }
 
 .won span {
