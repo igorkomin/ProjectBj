@@ -7,6 +7,7 @@ export class Player {
     inGame: boolean;
     balance: number;
     gameResult: number;
+    gameResultMessage: string;
     bet: number;
     hand: Hand;
 }

@@ -105,6 +105,7 @@ namespace ProjectBj.BusinessLogic.Services
             var bet = gameViewModel.Player.Bet;
             var result = await _gameProvider.GetGameResult(playerId, playerScore, dealerScore, bet);
             gameViewModel.Player.GameResult = (int)result;
+            gameViewModel.Player.GameResultMessage = result.ToString();
 
             foreach(var bot in gameViewModel.Bots)
             {
@@ -112,6 +113,7 @@ namespace ProjectBj.BusinessLogic.Services
                 var botBet = ValueHelper.BotBetValue;
                 result = await _gameProvider.GetGameResult(bot.Id, botScore, dealerScore, botBet);
                 bot.GameResult = (int)result;
+                bot.GameResultMessage = result.ToString();
             }
             return gameViewModel;
         }

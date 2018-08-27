@@ -15,6 +15,7 @@ namespace ProjectBj.ViewModels.Game
         public bool InGame { get; set; }
         public int Balance { get; set; }
         public int GameResult { get; set; }
+        public string GameResultMessage { get; set; }
         public int Bet { get; set; }
         public HandViewModel Hand { get; set; }
     }
