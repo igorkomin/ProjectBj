@@ -16,11 +16,18 @@ namespace ProjectBj.DataAccess.Repositories
 {
     public class PlayerRepository : IPlayerRepository
     {
+        private string _connectionString;
+
+        public PlayerRepository(string connectionString)
+        {
+            _connectionString = connectionString;
+        }
+
         public async Task<Player> CreateOne(Player player)
         {
             try
             {
-                using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
+                using (IDbConnection db = new SqlConnection(_connectionString))
                 {
                     player.Id = await db.InsertAsync(player);
                     return player;
@@ -36,7 +43,7 @@ namespace ProjectBj.DataAccess.Repositories
         {
             try
             {
-                using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
+                using (IDbConnection db = new SqlConnection(_connectionString))
                 {
                     foreach (var player in players)
                     {
@@ -55,7 +62,7 @@ namespace ProjectBj.DataAccess.Repositories
         {
             try
             {
-                using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
+                using (IDbConnection db = new SqlConnection(_connectionString))
                 {
                     await db.DeleteAsync(player);
                 }
@@ -70,7 +77,7 @@ namespace ProjectBj.DataAccess.Repositories
         {
             try
             {
-                using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
+                using (IDbConnection db = new SqlConnection(_connectionString))
                 {
                     var sqlQuery = "SELECT * FROM Players WHERE Name = @name";
                     var players = await db.QueryAsync<Player>(sqlQuery, new { name });
@@ -87,7 +94,7 @@ namespace ProjectBj.DataAccess.Repositories
         {
             try
             {
-                using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
+                using (IDbConnection db = new SqlConnection(_connectionString))
                 {
                     var player = await db.GetAsync<Player>(id);
                     return player;
@@ -103,7 +110,7 @@ namespace ProjectBj.DataAccess.Repositories
         {
             try
             {
-                using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
+                using (IDbConnection db = new SqlConnection(_connectionString))
                 {
                     var players = await db.GetAllAsync<Player>();
                     return players.AsList();
@@ -119,7 +126,7 @@ namespace ProjectBj.DataAccess.Repositories
         {
             try
             {
-                using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
+                using (IDbConnection db = new SqlConnection(_connectionString))
                 {
                     await db.UpdateAsync(player);
                 }
@@ -141,7 +148,7 @@ namespace ProjectBj.DataAccess.Repositories
                     CardId = card.Id,
                     SessionId = sessionId
                 };
-                using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
+                using (IDbConnection db = new SqlConnection(_connectionString))
                 {
                     await db.InsertAsync(playerHand);
                 }
@@ -156,7 +163,7 @@ namespace ProjectBj.DataAccess.Repositories
         {
             try
             {
-                using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
+                using (IDbConnection db = new SqlConnection(_connectionString))
                 {
                     var sqlQuery = "SELECT c.* FROM PlayerHands ph " +
                                    "JOIN Cards c ON ( ph.CardId = c.Id ) " +
@@ -175,7 +182,7 @@ namespace ProjectBj.DataAccess.Repositories
 
         public async Task<ICollection<Player>> GetSessionBots(int sessionId)
         {
-            using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
+            using (IDbConnection db = new SqlConnection(_connectionString))
             {
                 var sqlQuery = "SELECT DISTINCT p.* FROM PlayerHands ph " +
                                "JOIN Players p ON ( ph.PlayerId = p.Id ) " +
@@ -191,7 +198,7 @@ namespace ProjectBj.DataAccess.Repositories
         {
             try
             {
-                using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
+                using (IDbConnection db = new SqlConnection(_connectionString))
                 {
                     var sqlQuery = "DELETE FROM PlayerHands WHERE PlayerId = @Id";
                     await db.ExecuteAsync(sqlQuery, player);
@@ -207,7 +214,7 @@ namespace ProjectBj.DataAccess.Repositories
         {
             try
             {
-                using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
+                using (IDbConnection db = new SqlConnection(_connectionString))
                 {
                     var sqlQuery = "DELETE FROM Players WHERE IsHuman = 0";
                     await db.ExecuteAsync(sqlQuery);
@@ -223,7 +230,7 @@ namespace ProjectBj.DataAccess.Repositories
         {
             try
             {
-                using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
+                using (IDbConnection db = new SqlConnection(_connectionString))
                 {
                     var sqlQuery = "DELETE FROM Players WHERE Name = @name";
                     await db.ExecuteAsync(sqlQuery, new { name });
