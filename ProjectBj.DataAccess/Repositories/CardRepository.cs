@@ -16,9 +16,16 @@ namespace ProjectBj.DataAccess.Repositories
 {
     public class CardRepository : ICardRepository
     {
+        private string _connectionString;
+
+        public CardRepository(string connectionString)
+        {
+            _connectionString = connectionString;
+        }
+
         public async Task<ICollection<Card>> CreateDeck(ICollection<Card> deck)
         {
-            using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
+            using (IDbConnection db = new SqlConnection(_connectionString))
             {
                 await db.InsertAsync(deck);
             }
@@ -29,7 +36,7 @@ namespace ProjectBj.DataAccess.Repositories
         {
             try
             {
-                using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
+                using (IDbConnection db = new SqlConnection(_connectionString))
                 {
                     var cards = await db.GetAllAsync<Card>();
                     return cards.AsList();
