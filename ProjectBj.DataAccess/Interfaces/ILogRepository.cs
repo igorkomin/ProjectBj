@@ -7,7 +7,7 @@ using ProjectBj.Entities;
 
 namespace ProjectBj.DataAccess.Interfaces
 {
-    interface ILogRepository
+    public interface ILogRepository
     {
         Task<LogEntry> GetEntryById(int id);
         Task<ICollection<LogEntry>> GetAllLogs();
