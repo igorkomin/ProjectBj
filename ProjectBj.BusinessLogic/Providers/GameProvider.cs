@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ProjectBj.DataAccess;
+using ProjectBj.DataAccess.Interfaces;
 using ProjectBj.DataAccess.Repositories;
 using ProjectBj.Entities;
 using ProjectBj.BusinessLogic.Enums;
@@ -14,11 +15,11 @@ namespace ProjectBj.BusinessLogic.Providers
 {
     public class GameProvider : IGameProvider
     {
-        private PlayerRepository _playerRepository;
+        private IPlayerRepository _playerRepository;
 
-        public GameProvider()
+        public GameProvider(IPlayerRepository playerRepository)
         {
-            _playerRepository = new PlayerRepository();
+            _playerRepository = playerRepository;
         }
 
         public async Task<GameResults.Result> GetGameResult(int playerId, int playerScore, int dealerScore, int bet)

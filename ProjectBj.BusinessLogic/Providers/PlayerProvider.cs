@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using RandomNameGeneratorLibrary;
+using ProjectBj.DataAccess.Interfaces;
 using ProjectBj.DataAccess.Repositories;
 using ProjectBj.Entities;
 using ProjectBj.BusinessLogic.Interfaces;
@@ -15,14 +16,14 @@ namespace ProjectBj.BusinessLogic.Providers
 {
     public class PlayerProvider : IPlayerProvider
     {
-        private PlayerRepository _playerRepository;
-        private CardRepository _cardRepository;
+        private IPlayerRepository _playerRepository;
+        private ICardRepository _cardRepository;
         private PersonNameGenerator _nameGenerator;
 
-        public PlayerProvider()
+        public PlayerProvider(IPlayerRepository playerRepository, ICardRepository cardRepository)
         {
-            _playerRepository = new PlayerRepository();
-            _cardRepository = new CardRepository();
+            _playerRepository = playerRepository;
+            _cardRepository = cardRepository;
             _nameGenerator = new PersonNameGenerator();
         }
 

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ProjectBj.Entities;
+using ProjectBj.DataAccess.Interfaces;
 using ProjectBj.DataAccess.Repositories;
 using ProjectBj.BusinessLogic.Interfaces;
 
@@ -11,11 +12,11 @@ namespace ProjectBj.BusinessLogic.Providers
 {
     public class LogProvider : ILogProvider
     {
-        private LogRepository _logRepository;
+        private ILogRepository _logRepository;
 
-        public LogProvider()
+        public LogProvider(ILogRepository logRepository)
         {
-            _logRepository = new LogRepository();
+            _logRepository = logRepository;
         }
 
         public async Task CreateLogEntry(string message, int sessionId)

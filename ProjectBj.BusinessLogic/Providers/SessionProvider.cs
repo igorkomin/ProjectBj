@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ProjectBj.DataAccess;
+using ProjectBj.DataAccess.Interfaces;
 using ProjectBj.DataAccess.Repositories;
 using ProjectBj.Entities;
 using ProjectBj.BusinessLogic.Interfaces;
@@ -13,13 +13,13 @@ namespace ProjectBj.BusinessLogic.Providers
 {
     public class SessionProvider : ISessionProvider
     {
-        private GameSessionRepository _sessionRepository;
-        private PlayerRepository _playerRepository;
+        private IGameSessionRepository _sessionRepository;
+        private IPlayerRepository _playerRepository;
 
-        public SessionProvider()
+        public SessionProvider(IGameSessionRepository sessionRepository, IPlayerRepository playerRepository)
         {
-            _sessionRepository = new GameSessionRepository();
-            _playerRepository = new PlayerRepository();
+            _sessionRepository = sessionRepository;
+            _playerRepository = playerRepository;
         }
 
         private async Task<SessionViewModel> CreateSession()

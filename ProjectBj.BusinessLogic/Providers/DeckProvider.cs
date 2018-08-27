@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ProjectBj.Entities;
-using ProjectBj.DataAccess;
+using ProjectBj.DataAccess.Interfaces;
 using ProjectBj.DataAccess.Repositories;
 using ProjectBj.Logger;
 using ProjectBj.BusinessLogic.Enums;
@@ -18,13 +18,13 @@ namespace ProjectBj.BusinessLogic.Providers
     public class DeckProvider : IDeckProvider
     {
         private List<Card> _deck;
-        private CardRepository _cardRepository;
-        private PlayerRepository _playerRepository;
+        private ICardRepository _cardRepository;
+        private IPlayerRepository _playerRepository;
         
-        public DeckProvider()
+        public DeckProvider(ICardRepository cardRepository, IPlayerRepository playerRepository)
         {
-            _cardRepository = new CardRepository();
-            _playerRepository = new PlayerRepository();
+            _cardRepository = cardRepository;
+            _playerRepository = playerRepository;
         }
 
         private List<Card> NewDeck()
