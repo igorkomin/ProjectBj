@@ -21,6 +21,6 @@ namespace ProjectBj.DataAccess.Interfaces
         Task AddCard(Player player, Card card, int sessionId);
         Task DeleteCards(Player player);
         Task DeletePlayersByName(string name);
-        Task DeleteNonHumanPlayers();
+        Task DeleteNonHumanPlayers(string dealerName);
     }
 }

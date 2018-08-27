@@ -210,13 +210,13 @@ namespace ProjectBj.DataAccess.Repositories
             }
         }
 
-        public async Task DeleteNonHumanPlayers()
+        public async Task DeleteNonHumanPlayers(string dealerName)
         {
             try
             {
                 using (IDbConnection db = new SqlConnection(_connectionString))
                 {
-                    var sqlQuery = "DELETE FROM Players WHERE IsHuman = 0";
+                    var sqlQuery = $"DELETE FROM Players WHERE IsHuman = 0 AND Name <> '{dealerName}'";
                     await db.ExecuteAsync(sqlQuery);
                 }
             }
