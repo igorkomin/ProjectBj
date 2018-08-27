@@ -8,7 +8,7 @@ using ProjectBj.Entities;
 
 namespace ProjectBj.DataAccess.Interfaces
 {
-    interface ICardRepository
+    public interface ICardRepository
     {
         Task<ICollection<Card>> CreateDeck(ICollection<Card> deck);
         Task<ICollection<Card>> GetAllCards();
