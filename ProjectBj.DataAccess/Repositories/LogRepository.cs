@@ -15,11 +15,18 @@ namespace ProjectBj.DataAccess.Repositories
 {
     public class LogRepository : ILogRepository
     {
+        private string _connectionString;
+
+        public LogRepository(string connectionString)
+        {
+            _connectionString = connectionString;
+        }
+
         public async Task CreateEntry(LogEntry entry)
         {
             try
             {
-                using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
+                using (IDbConnection db = new SqlConnection(_connectionString))
                 {
                     await db.InsertAsync(entry);
                 }
@@ -34,7 +41,7 @@ namespace ProjectBj.DataAccess.Repositories
         {
             try
             {
-                using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
+                using (IDbConnection db = new SqlConnection(_connectionString))
                 {
                     var entry = await db.GetAsync<LogEntry>(id);
                     return entry;
@@ -50,7 +57,7 @@ namespace ProjectBj.DataAccess.Repositories
         {
             try
             {
-                using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
+                using (IDbConnection db = new SqlConnection(_connectionString))
                 {
                     var logs = await db.GetAllAsync<LogEntry>();
                     return logs.AsList();
@@ -66,7 +73,7 @@ namespace ProjectBj.DataAccess.Repositories
         {
             try
             {
-                using (IDbConnection db = new SqlConnection(DatabaseConfiguration.ConnectionString))
+                using (IDbConnection db = new SqlConnection(_connectionString))
                 {
                     await db.DeleteAsync(entry);
                 }
