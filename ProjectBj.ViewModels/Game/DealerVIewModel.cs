@@ -7,9 +7,8 @@ using ProjectBj.Entities;
 
 namespace ProjectBj.ViewModels.Game
 {
-    public class DealerViewModel
+    public class DealerViewModel : BaseViewModel
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public bool InGame { get; set; }
         public HandViewModel Hand { get; set; }
