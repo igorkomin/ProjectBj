@@ -49,7 +49,8 @@
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <p class="caption">{{ game?.player.name }} <span class="badge badge-secondary">{{ game?.player.hand.score }}</span> {{ game?.player.gameResult }}</p>
+                    <div *ngIf="game?.player.gameResult > 0" class="ribbon {{ game?.player.gameResultMessage | lowercase }}"><span>{{ game?.player.gameResultMessage }}</span></div>
+                    <p class="caption">{{ game?.player.name }} <span class="badge badge-secondary">{{ game?.player.hand.score }}</span></p>
                     <div class="playingCards simpleCards rotateHand">
                         <ul class="hand">
                             <li *ngFor="let card of game?.player.hand.cards">
@@ -64,7 +65,8 @@
             </div>
             <div class="row">
                 <div class="col-md-1" *ngFor="let bot of game?.bots">
-                    <p class="caption">{{ bot?.name }} <span class="badge badge-secondary">{{ bot?.hand.score }}</span> {{ bot?.gameResult }}</p>
+                    <div *ngIf="bot?.gameResult > 0" class="ribbon {{ bot?.gameResultMessage | lowercase }}"><span>{{ bot?.gameResultMessage }}</span></div>
+                    <p class="caption">{{ bot?.name }} <span class="badge badge-secondary">{{ bot?.hand.score }}</span></p>
                     <div class="playingCards simpleCards rotateHand">
                         <ul class="hand">
                             <li *ngFor="let card of bot?.hand.cards">
