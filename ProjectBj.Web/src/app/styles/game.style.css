@@ -21,6 +21,10 @@
     border-right: 1px solid black;
 }
 
+.bots-input {
+    text-align: center;
+}
+
 .ribbon {
     position: absolute;
     left: -5px;
