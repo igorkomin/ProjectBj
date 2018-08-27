@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace ProjectBj.ViewModels.Game
 {
-    public class SessionViewModel
+    public class SessionViewModel : BaseViewModel
     {
-        public int Id { get; set; }
         public bool IsOpen { get; set; }
         public DateTime TimeCreated { get; set; }
     }
