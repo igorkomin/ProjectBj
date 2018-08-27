@@ -256,7 +256,6 @@ namespace ProjectBj.BusinessLogic.Providers
                 {
                     CardViewModel cardViewModel = new CardViewModel
                     {
-                        Id = card.Id,
                         Suit = card.Suit,
                         Rank = StringHelper.GetRankName(card.Rank),
                         RankValue = card.Rank,

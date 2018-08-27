@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace ProjectBj.ViewModels.Game
 {
-    public class CardViewModel
+    public class BaseViewModel
     {
-        public string Suit { get; set; }
-        public string Rank { get; set; }
-        public int RankValue { get; set; }
+        public int Id { get; set; }
     }
 }

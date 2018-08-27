@@ -44,6 +44,7 @@ export class GameComponent implements OnInit {
     updateSliderValue(value: number): void {
         this.sliderValue = value;
     }
+
     getGame(): void {
         let gameSettings = new Settings();
         gameSettings.playerName = this.playerName;
@@ -59,6 +60,7 @@ export class GameComponent implements OnInit {
             }
         );
     }
+
     hit(): void {
         let identifier = new Identifier();
         identifier.playerId = this.playerId;
@@ -72,6 +74,7 @@ export class GameComponent implements OnInit {
             }
         );
     }
+
     stand(): void {
         let identifier = new Identifier();
         identifier.playerId = this.playerId;
