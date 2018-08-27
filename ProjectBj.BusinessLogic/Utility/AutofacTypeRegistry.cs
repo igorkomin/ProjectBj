@@ -17,8 +17,6 @@ namespace ProjectBj.BusinessLogic.Utility
     {
         public static ContainerBuilder RegisterTypes(ContainerBuilder builder, string connectionString)
         {
-            //string connectionString = ConfigurationManager.ConnectionStrings["DBConnection"].ConnectionString;
-
             builder.RegisterType<CardRepository>().As<ICardRepository>()
                 .WithParameter("connectionString", connectionString);
             builder.RegisterType<GameSessionRepository>().As<IGameSessionRepository>()
