@@ -197,6 +197,7 @@
     <Content Include="Content\Cards\Spades\8.png" />
     <Content Include="Content\Cards\Spades\9.png" />
     <Content Include="Content\jquery-ui.css" />
+    <Content Include="Content\loading.gif" />
     <Content Include="src\app\styles\common\cards.css" />
     <Content Include="src\app\styles\common\slider.css" />
     <Content Include="Content\style.css" />
