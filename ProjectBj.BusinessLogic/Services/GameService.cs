@@ -143,6 +143,12 @@ namespace ProjectBj.BusinessLogic.Services
             return gameViewModel;
         }
 
+        public async Task<GameViewModel> LoadGame(int playerId, int sessionId)
+        {
+            var gameViewModel = await UpdateViewModel(playerId, sessionId);
+            return gameViewModel;
+        }
+
         public async Task<GameViewModel> Hit(int playerId, int sessionId)
         {
             await _deckProvider.DealCard(playerId, sessionId);
