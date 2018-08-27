@@ -19,7 +19,7 @@ import { Identifier } from '../models/identifier.model';
 })
 export class GameComponent implements OnInit {
     playerName: string;
-    botsNumber: number;
+    botsNumber: number = 0;
     sliderValue: number = 50;
     sessionId: number;
     playerId: number;
@@ -37,12 +37,19 @@ export class GameComponent implements OnInit {
             .queryParams
             .subscribe(params => {
                 this.playerName = params['name'];
-                this.botsNumber = params['bots'];
             });
     }
 
     updateSliderValue(value: number): void {
         this.sliderValue = value;
+    }
+
+    IncBotsNumber(): void {
+        this.botsNumber++;
+    }
+
+    DecBotsNumber(): void {
+        this.botsNumber--;
     }
 
     getGame(): void {
