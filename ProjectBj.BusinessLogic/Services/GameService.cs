@@ -106,14 +106,17 @@ namespace ProjectBj.BusinessLogic.Services
             var result = await _gameProvider.GetGameResult(playerId, playerScore, dealerScore, bet);
             gameViewModel.Player.GameResult = (int)result;
             gameViewModel.Player.GameResultMessage = result.ToString();
+            await _logProvider.CreateLogEntry(StringHelper.PlayerScore(gameViewModel.Dealer.Name, dealerScore), sessionId);
+            await _logProvider.CreateLogEntry(StringHelper.PlayerScore(gameViewModel.Player.Name, playerScore), sessionId);
 
-            foreach(var bot in gameViewModel.Bots)
+            foreach (var bot in gameViewModel.Bots)
             {
                 var botScore = bot.Hand.Score;
                 var botBet = ValueHelper.BotBetValue;
                 result = await _gameProvider.GetGameResult(bot.Id, botScore, dealerScore, botBet);
                 bot.GameResult = (int)result;
                 bot.GameResultMessage = result.ToString();
+                await _logProvider.CreateLogEntry(StringHelper.PlayerScore(bot.Name, botScore), sessionId);
             }
             return gameViewModel;
         }
@@ -164,7 +167,7 @@ namespace ProjectBj.BusinessLogic.Services
         public async Task<GameViewModel> Stand(int playerId, int sessionId)
         {
             await BotsTurn(playerId, sessionId);
-            var gameViewModel = await UpdateGameResult(playerId, sessionId);
+            var gameViewModel = await UpdateViewModel(playerId, sessionId);
             return gameViewModel;
         }
 
@@ -177,7 +180,6 @@ namespace ProjectBj.BusinessLogic.Services
                 await BotTurn(bot.Id, sessionId);
             }
             await DealerTurn(gameViewModel.Dealer.Id, sessionId);
-            await UpdateGameResult(playerId, sessionId);
             await CloseGameSession(sessionId);
             gameViewModel = await UpdateGameResult(playerId, sessionId);
             return gameViewModel;
@@ -208,6 +210,23 @@ namespace ProjectBj.BusinessLogic.Services
         public async Task CloseGameSession(int sessionId)
         {
             await _sessionProvider.CloseSession(sessionId);
+        }
+
+        public async Task<List<LogEntryViewModel>> GetLogs(int sessionId)
+        {
+            var logEntryViewModels = new List<LogEntryViewModel>();
+            var logs = await _logProvider.GetLogs(sessionId);
+            foreach (var entry in logs)
+            {
+                LogEntryViewModel logEntryViewModel = new LogEntryViewModel
+                {
+                    SessionId = entry.SessionId,
+                    Time = entry.Time,
+                    Message = entry.Message
+                };
+                logEntryViewModels.Add(logEntryViewModel);
+            }
+            return logEntryViewModels;
         }
     }
 }
