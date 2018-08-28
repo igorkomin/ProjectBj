@@ -196,7 +196,11 @@
     <Content Include="Content\Cards\Spades\7.png" />
     <Content Include="Content\Cards\Spades\8.png" />
     <Content Include="Content\Cards\Spades\9.png" />
+    <Content Include="Content\dealer.png" />
     <Content Include="Content\jquery-ui.css" />
+    <Content Include="Content\loading.gif" />
+    <Content Include="Content\player.png" />
+    <Content Include="Content\robot.png" />
     <Content Include="src\app\styles\common\cards.css" />
     <Content Include="src\app\styles\common\slider.css" />
     <Content Include="Content\style.css" />
@@ -261,10 +265,6 @@
       <Project>{d8587967-8e91-44ed-851b-2fa11e44cc0a}</Project>
       <Name>ProjectBj.BusinessLogic</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ProjectBj.Logger\ProjectBj.Logger.csproj">
-      <Project>{b0f07411-1b51-4415-b5c5-095171b1d067}</Project>
-      <Name>ProjectBj.Logger</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ProjectBj.ViewModels\ProjectBj.ViewModels.csproj">
       <Project>{28004629-1a7a-4632-ab7d-a1857b170d46}</Project>
       <Name>ProjectBj.ViewModels</Name>
@@ -279,6 +279,7 @@
     <TypeScriptCompile Include="src\app\models\game.model.ts" />
     <TypeScriptCompile Include="src\app\models\hand.model.ts" />
     <TypeScriptCompile Include="src\app\models\identifier.model.ts" />
+    <TypeScriptCompile Include="src\app\models\log.model.ts" />
     <TypeScriptCompile Include="src\app\models\login.model.ts" />
     <TypeScriptCompile Include="src\app\models\player.model.ts" />
     <TypeScriptCompile Include="src\app\models\settings.model.ts" />
@@ -291,7 +292,7 @@
     <TypeScriptCompile Include="src\app\modules\game\game.module.ts" />
     <TypeScriptCompile Include="src\app\modules\login\login-routing.module.ts" />
     <TypeScriptCompile Include="src\app\modules\login\login.module.ts" />
-    <TypeScriptCompile Include="src\app\services\game.service.ts" />
+    <TypeScriptCompile Include="src\app\services\api.service.ts" />
     <TypeScriptCompile Include="src\environments\environment.prod.ts" />
     <TypeScriptCompile Include="src\environments\environment.ts" />
     <TypeScriptCompile Include="src\main.ts" />

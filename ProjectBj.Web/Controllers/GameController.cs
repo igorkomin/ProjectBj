@@ -4,7 +4,6 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
-using ProjectBj.Logger;
 using ProjectBj.BusinessLogic.Interfaces;
 using ProjectBj.ViewModels;
 using ProjectBj.ViewModels.Game;
@@ -57,6 +56,20 @@ namespace ProjectBj.Web.Controllers
                 return Ok(model);
             }
             catch(Exception exception)
+            {
+                return InternalServerError(exception);
+            }
+        }
+
+        [HttpPost]
+        public async Task<IHttpActionResult> Logs([FromBody]IdentifierViewModel identifier)
+        {
+            try
+            {
+                List<LogEntryViewModel> logs = await _service.GetLogs(identifier.SessionId);
+                return Ok(logs);
+            }
+            catch (Exception exception)
             {
                 return InternalServerError(exception);
             }

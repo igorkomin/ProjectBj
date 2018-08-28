@@ -7,17 +7,7 @@
             <input #playerName required [(ngModel)]="model.name"
                    type="text" id="player-name" name="playerName" class="form-control" />
         </div>
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text">Number of bots</span>
-            </div>
-            <input #botsSlider id="slider-bots" type="range" (input)="updateSliderValue(botsSlider.value)"
-                   min="0" max="5" value="0" step="1" class="slider" />
-            <div class="input-group-append">
-                <span id="bots-number" class="input-group-text">{{ sliderValue }}</span>
-            </div>
-        </div>
-        <input #loginButton routerLink="/game" id="play-button" [queryParams]="{ name: playerName.value, bots: botsSlider.value }"
-               [disabled]="!loginForm.form.valid" type="submit" class="btn btn-primary" value="PLAY" />
+        <input #loginButton routerLink="/game" id="play-button" [queryParams]="{ name: playerName.value }"
+               [disabled]="!loginForm.form.valid" type="submit" class="btn btn-primary" value="LOGIN" />
     </form>
 </div>

@@ -66,7 +66,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\GameService.cs" />
     <Compile Include="Providers\SessionProvider.cs" />
-    <Compile Include="Utility\AutofacTypeRegistry.cs" />
+    <Compile Include="Utility\AutofacProviderTypeRegistry.cs" />
+    <Compile Include="Utility\AutofacServiceTypeRegistry.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ProjectBj.DataAccess\ProjectBj.DataAccess.csproj">
@@ -76,10 +77,6 @@
     <ProjectReference Include="..\ProjectBj.Entities\ProjectBj.Entities.csproj">
       <Project>{fe68c0ab-c49b-4ad7-8675-493223b5f50c}</Project>
       <Name>ProjectBj.Entities</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ProjectBj.Logger\ProjectBj.Logger.csproj">
-      <Project>{b0f07411-1b51-4415-b5c5-095171b1d067}</Project>
-      <Name>ProjectBj.Logger</Name>
     </ProjectReference>
     <ProjectReference Include="..\ProjectBj.ViewModels\ProjectBj.ViewModels.csproj">
       <Project>{28004629-1a7a-4632-ab7d-a1857b170d46}</Project>

@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from '../../../node_modules/rxjs';
 
-import { GameService } from '../services/game.service';
+import { ApiService } from '../services/api.service';
 import { Settings } from '../models/settings.model';
 import { Identifier } from '../models/identifier.model';
 
@@ -19,14 +19,15 @@ import { Identifier } from '../models/identifier.model';
 })
 export class GameComponent implements OnInit {
     playerName: string;
-    botsNumber: number;
+    botsNumber: number = 0;
     sliderValue: number = 50;
     sessionId: number;
     playerId: number;
     game: any;
+    log: any;
 
     constructor(
-        private gameService: GameService,
+        private apiService: ApiService,
         private route: ActivatedRoute,
         private router: Router,
         private http: HttpClient
@@ -37,7 +38,6 @@ export class GameComponent implements OnInit {
             .queryParams
             .subscribe(params => {
                 this.playerName = params['name'];
-                this.botsNumber = params['bots'];
             });
     }
 
@@ -45,15 +45,24 @@ export class GameComponent implements OnInit {
         this.sliderValue = value;
     }
 
+    IncBotsNumber(): void {
+        this.botsNumber++;
+    }
+
+    DecBotsNumber(): void {
+        this.botsNumber--;
+    }
+
     getGame(): void {
         let gameSettings = new Settings();
         gameSettings.playerName = this.playerName;
         gameSettings.botsNumber = this.botsNumber;
-        this.gameService.getGameViewModel(gameSettings).subscribe(
+        this.apiService.getGame(gameSettings).subscribe(
             response => {
                 this.game = response;
                 this.sessionId = response.sessionId;
                 this.playerId = response.player.id;
+                this.getLogs();
             },
             exception => {
                 console.error(exception.error.exceptionMessage);
@@ -65,9 +74,10 @@ export class GameComponent implements OnInit {
         let identifier = new Identifier();
         identifier.playerId = this.playerId;
         identifier.sessionId = this.sessionId;
-        this.gameService.hit(identifier).subscribe(
+        this.apiService.hit(identifier).subscribe(
             response => {
                 this.game = response;
+                this.getLogs();
             },
             exception => {
                 console.error(exception.error.exceptionMessage);
@@ -79,13 +89,27 @@ export class GameComponent implements OnInit {
         let identifier = new Identifier();
         identifier.playerId = this.playerId;
         identifier.sessionId = this.sessionId;
-        this.gameService.stand(identifier).subscribe(
+        this.apiService.stand(identifier).subscribe(
             response => {
                 this.game = response;
+                this.getLogs();
             },
             exception => {
                 console.error(exception.error.exceptionMessage);
             }
-        )
+        );
+    }
+
+    getLogs(): void {
+        let identifier = new Identifier();
+        identifier.sessionId = this.sessionId;
+        this.apiService.getLogs(identifier).subscribe(
+            response => {
+                this.log = response;
+            },
+            exception => {
+                console.error(exception.error.exceptionMessage);
+            }
+        );
     }
 }

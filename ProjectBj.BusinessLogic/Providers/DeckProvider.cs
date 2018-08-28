@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using ProjectBj.Entities;
 using ProjectBj.DataAccess.Interfaces;
 using ProjectBj.DataAccess.Repositories;
-using ProjectBj.Logger;
 using ProjectBj.BusinessLogic.Enums;
 using ProjectBj.BusinessLogic.Helpers;
 using ProjectBj.BusinessLogic.Interfaces;
@@ -20,11 +19,13 @@ namespace ProjectBj.BusinessLogic.Providers
         private List<Card> _deck;
         private ICardRepository _cardRepository;
         private IPlayerRepository _playerRepository;
+        private ILogProvider _logProvider;
         
-        public DeckProvider(ICardRepository cardRepository, IPlayerRepository playerRepository)
+        public DeckProvider(ICardRepository cardRepository, IPlayerRepository playerRepository, ILogProvider logProvider)
         {
             _cardRepository = cardRepository;
             _playerRepository = playerRepository;
+            _logProvider = logProvider;
         }
 
         private List<Card> NewDeck()
@@ -129,6 +130,8 @@ namespace ProjectBj.BusinessLogic.Providers
             List<Card> deck = await GetShuffledDeck();
             Card card = deck[0];
             await GivePlayerCard(player, card, sessionId);
+            CardViewModel cardViewModel = await GetCardViewModel(card);
+            await _logProvider.CreateLogEntry(StringHelper.PlayerTakesCard(player.Name, cardViewModel.Rank, cardViewModel.Suit), sessionId);
             return card;
         }
 
@@ -141,9 +144,15 @@ namespace ProjectBj.BusinessLogic.Providers
             }
         }
 
-        public async Task Hit(int playerId, int sessionId)
+        public async Task<CardViewModel> GetCardViewModel(Card card)
         {
-            await DealCard(playerId, sessionId);
+            CardViewModel cardViewModel = new CardViewModel
+            {
+                Suit = card.Suit,
+                Rank = StringHelper.GetRankName(card.Rank),
+                RankValue = card.Rank
+            };
+            return cardViewModel;
         }
     }
 }

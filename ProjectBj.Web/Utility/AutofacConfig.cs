@@ -17,7 +17,7 @@ namespace ProjectBj.Web.Utility
 
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
 
-            AutofacTypeRegistry.RegisterTypes(builder, connectionString);
+            AutofacServiceTypeRegistry.RegisterTypes(builder, connectionString);
             
             var container = builder.Build();
             config.DependencyResolver = new AutofacWebApiDependencyResolver(container);

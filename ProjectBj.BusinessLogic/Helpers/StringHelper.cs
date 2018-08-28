@@ -10,7 +10,7 @@ namespace ProjectBj.BusinessLogic.Helpers
         #region Messages
         public static string PlayerScore(string playerName, int score)
         {
-            return $"{playerName} has total score: {score}";
+            return $"{playerName} hand's total score: {score}";
         }
         public static string PlayerTakesCard(string playerName, string cardRank, string cardSuit)
         {
@@ -20,9 +20,9 @@ namespace ProjectBj.BusinessLogic.Helpers
         {
             return $"{playerName} hits";
         }
-        public static string PlayerStays(string playerName)
+        public static string PlayerStands(string playerName)
         {
-            return $"{playerName} stays";
+            return $"{playerName} stands";
         }
         #endregion
         #region Other

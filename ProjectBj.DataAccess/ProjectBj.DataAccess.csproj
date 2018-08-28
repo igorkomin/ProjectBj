@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac, Version=4.8.1.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.4.8.1\lib\net45\Autofac.dll</HintPath>
+    </Reference>
     <Reference Include="Dapper, Version=1.50.5.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dapper.1.50.5\lib\net451\Dapper.dll</HintPath>
     </Reference>
@@ -68,6 +71,7 @@
     <Compile Include="Repositories\GameSessionRepository.cs" />
     <Compile Include="Repositories\LogRepository.cs" />
     <Compile Include="Repositories\PlayerRepository.cs" />
+    <Compile Include="Utility\AutofacDataAccessTypeRegistry.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -79,10 +83,6 @@
     <ProjectReference Include="..\ProjectBj.Entities\ProjectBj.Entities.csproj">
       <Project>{fe68c0ab-c49b-4ad7-8675-493223b5f50c}</Project>
       <Name>ProjectBj.Entities</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ProjectBj.Logger\ProjectBj.Logger.csproj">
-      <Project>{b0f07411-1b51-4415-b5c5-095171b1d067}</Project>
-      <Name>ProjectBj.Logger</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
