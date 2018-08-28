@@ -265,10 +265,6 @@
       <Project>{d8587967-8e91-44ed-851b-2fa11e44cc0a}</Project>
       <Name>ProjectBj.BusinessLogic</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ProjectBj.Logger\ProjectBj.Logger.csproj">
-      <Project>{b0f07411-1b51-4415-b5c5-095171b1d067}</Project>
-      <Name>ProjectBj.Logger</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ProjectBj.ViewModels\ProjectBj.ViewModels.csproj">
       <Project>{28004629-1a7a-4632-ab7d-a1857b170d46}</Project>
       <Name>ProjectBj.ViewModels</Name>
