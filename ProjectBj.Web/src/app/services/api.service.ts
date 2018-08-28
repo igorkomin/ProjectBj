@@ -22,22 +22,22 @@ export class ApiService {
     constructor(private http: HttpClient) { }
 
     getGame(settings: Settings): Observable<Game> {
-        let requestUrl = apiUrl + 'Start';
+        let requestUrl = `${apiUrl}/Start`;
         return this.http.post<Game>(requestUrl, settings, requestOptions);
     }
 
     hit(identifier: Identifier): Observable<Game> {
-        let requestUrl = apiUrl + 'Hit';
+        let requestUrl = `${apiUrl}/Hit`;
         return this.http.post<Game>(requestUrl, identifier, requestOptions);
     }
 
     stand(identifier: Identifier): Observable<Game> {
-        let requestUrl = apiUrl + 'Stand';
+        let requestUrl = `${apiUrl}/Stand`;
         return this.http.post<Game>(requestUrl, identifier, requestOptions);
     }
 
     getLogs(identifier: Identifier): Observable<Log> {
-        let requestUrl = apiUrl + 'Logs';
+        let requestUrl = `${apiUrl}/Logs`;
         return this.http.post<Log>(requestUrl, identifier, requestOptions);
     }
 }
