@@ -64,6 +64,19 @@ namespace ProjectBj.BusinessLogic.Providers
             }
         }
 
+        public async Task<List<LogEntry>> GetLogs(int sessionId)
+        {
+            try
+            {
+                var entries = await _logRepository.GetSessionLogs(sessionId);
+                return entries.ToList();
+            }
+            catch (Exception exception)
+            {
+                throw exception;
+            }
+        }
+
         public async Task DeleteLogEntry(LogEntry entry)
         {
             try
