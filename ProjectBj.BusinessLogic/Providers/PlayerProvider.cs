@@ -114,7 +114,6 @@ namespace ProjectBj.BusinessLogic.Providers
                 Id = player.Id,
                 Name = player.Name,
                 Balance = player.Balance,
-                InGame = player.InGame,
                 IsHuman = player.IsHuman
             };
             return playerViewModel;
@@ -126,7 +125,6 @@ namespace ProjectBj.BusinessLogic.Providers
             {
                 Id = dealer.Id,
                 Name = dealer.Name,
-                InGame = dealer.InGame
             };
             return dealerViewModel;
         }
@@ -142,7 +140,6 @@ namespace ProjectBj.BusinessLogic.Providers
                 {
                     Id = bot.Id,
                     Name = bot.Name,
-                    InGame = bot.InGame,
                     Balance = bot.Balance
                 };
                 botViewModels.Add(botViewModel);
@@ -167,7 +164,6 @@ namespace ProjectBj.BusinessLogic.Providers
                 {
                     Id = bot.Id,
                     Name = bot.Name,
-                    InGame = bot.InGame,
                     Balance = bot.Balance
                 };
                 botViewModels.Add(botViewModel);
