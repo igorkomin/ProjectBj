@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using ProjectBj.Entities;
 using ProjectBj.DataAccess.Interfaces;
 using ProjectBj.DataAccess.Repositories;
-using ProjectBj.Logger;
 using ProjectBj.BusinessLogic.Enums;
 using ProjectBj.BusinessLogic.Helpers;
 using ProjectBj.BusinessLogic.Interfaces;
