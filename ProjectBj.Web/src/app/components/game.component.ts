@@ -3,8 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from '../../../node_modules/rxjs';
 
-import { GameService } from '../services/game.service';
-import { LogService } from '../services/log.service';
+import { ApiService } from '../services/api.service';
 import { Settings } from '../models/settings.model';
 import { Identifier } from '../models/identifier.model';
 
@@ -28,8 +27,7 @@ export class GameComponent implements OnInit {
     log: any;
 
     constructor(
-        private gameService: GameService,
-        private logService: LogService,
+        private apiService: ApiService,
         private route: ActivatedRoute,
         private router: Router,
         private http: HttpClient
@@ -59,7 +57,7 @@ export class GameComponent implements OnInit {
         let gameSettings = new Settings();
         gameSettings.playerName = this.playerName;
         gameSettings.botsNumber = this.botsNumber;
-        this.gameService.getGameViewModel(gameSettings).subscribe(
+        this.apiService.getGame(gameSettings).subscribe(
             response => {
                 this.game = response;
                 this.sessionId = response.sessionId;
@@ -76,7 +74,7 @@ export class GameComponent implements OnInit {
         let identifier = new Identifier();
         identifier.playerId = this.playerId;
         identifier.sessionId = this.sessionId;
-        this.gameService.hit(identifier).subscribe(
+        this.apiService.hit(identifier).subscribe(
             response => {
                 this.game = response;
                 this.getLogs();
@@ -91,7 +89,7 @@ export class GameComponent implements OnInit {
         let identifier = new Identifier();
         identifier.playerId = this.playerId;
         identifier.sessionId = this.sessionId;
-        this.gameService.stand(identifier).subscribe(
+        this.apiService.stand(identifier).subscribe(
             response => {
                 this.game = response;
                 this.getLogs();
@@ -105,7 +103,7 @@ export class GameComponent implements OnInit {
     getLogs(): void {
         let identifier = new Identifier();
         identifier.sessionId = this.sessionId;
-        this.logService.getLogs(identifier).subscribe(
+        this.apiService.getLogs(identifier).subscribe(
             response => {
                 this.log = response;
             },

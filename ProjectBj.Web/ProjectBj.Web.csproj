@@ -296,8 +296,7 @@
     <TypeScriptCompile Include="src\app\modules\game\game.module.ts" />
     <TypeScriptCompile Include="src\app\modules\login\login-routing.module.ts" />
     <TypeScriptCompile Include="src\app\modules\login\login.module.ts" />
-    <TypeScriptCompile Include="src\app\services\game.service.ts" />
-    <TypeScriptCompile Include="src\app\services\log.service.ts" />
+    <TypeScriptCompile Include="src\app\services\api.service.ts" />
     <TypeScriptCompile Include="src\environments\environment.prod.ts" />
     <TypeScriptCompile Include="src\environments\environment.ts" />
     <TypeScriptCompile Include="src\main.ts" />
