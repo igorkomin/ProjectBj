@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from '../../../node_modules/rxjs';
 
 import { GameService } from '../services/game.service';
+import { LogService } from '../services/log.service';
 import { Settings } from '../models/settings.model';
 import { Identifier } from '../models/identifier.model';
 
@@ -24,9 +25,11 @@ export class GameComponent implements OnInit {
     sessionId: number;
     playerId: number;
     game: any;
+    log: any;
 
     constructor(
         private gameService: GameService,
+        private logService: LogService,
         private route: ActivatedRoute,
         private router: Router,
         private http: HttpClient
@@ -61,6 +64,7 @@ export class GameComponent implements OnInit {
                 this.game = response;
                 this.sessionId = response.sessionId;
                 this.playerId = response.player.id;
+                this.getLogs();
             },
             exception => {
                 console.error(exception.error.exceptionMessage);
@@ -75,6 +79,7 @@ export class GameComponent implements OnInit {
         this.gameService.hit(identifier).subscribe(
             response => {
                 this.game = response;
+                this.getLogs();
             },
             exception => {
                 console.error(exception.error.exceptionMessage);
@@ -89,10 +94,24 @@ export class GameComponent implements OnInit {
         this.gameService.stand(identifier).subscribe(
             response => {
                 this.game = response;
+                this.getLogs();
             },
             exception => {
                 console.error(exception.error.exceptionMessage);
             }
-        )
+        );
+    }
+
+    getLogs(): void {
+        let identifier = new Identifier();
+        identifier.sessionId = this.sessionId;
+        this.logService.getLogs(identifier).subscribe(
+            response => {
+                this.log = response;
+            },
+            exception => {
+                console.error(exception.error.exceptionMessage);
+            }
+        );
     }
 }
