@@ -61,5 +61,19 @@ namespace ProjectBj.Web.Controllers
                 return InternalServerError(exception);
             }
         }
+
+        [HttpPost]
+        public async Task<IHttpActionResult> Logs([FromBody]IdentifierViewModel identifier)
+        {
+            try
+            {
+                List<LogEntryViewModel> logs = await _service.GetLogs(identifier.SessionId);
+                return Ok(logs);
+            }
+            catch (Exception exception)
+            {
+                return InternalServerError(exception);
+            }
+        }
     }
 }
