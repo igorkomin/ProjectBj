@@ -88,10 +88,14 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-1">
-            <p>Game Log</p>
-            <div id="log-view">
-
+        <div class="col-lg-3">
+            <div *ngIf="log" id="log-view">
+                <div class="alert alert-primary" role="alert">
+                    <span>GAME LOG</span>
+                </div>
+                <div *ngFor="let entry of log">
+                    [{{ entry.time | date:'HH:mm:ss' }}] {{ entry.message }}
+                </div>
             </div>
         </div>
     </div>
