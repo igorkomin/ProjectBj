@@ -8,9 +8,8 @@ using System.Linq;
 using Dapper;
 using Dapper.Contrib.Extensions;
 using ProjectBj.DataAccess.Interfaces;
-using ProjectBj.Entities;
-using ProjectBj.Logger;
 using ProjectBj.DataAccess.ExceptionHandlers;
+using ProjectBj.Entities;
 
 namespace ProjectBj.DataAccess.Repositories
 {
