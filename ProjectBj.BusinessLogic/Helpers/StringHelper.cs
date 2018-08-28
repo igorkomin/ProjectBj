@@ -20,7 +20,7 @@ namespace ProjectBj.BusinessLogic.Helpers
         {
             return $"{playerName} hits";
         }
-        public static string PlayerStays(string playerName)
+        public static string PlayerStands(string playerName)
         {
             return $"{playerName} stands";
         }
