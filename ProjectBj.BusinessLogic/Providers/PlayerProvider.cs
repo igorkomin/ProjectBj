@@ -18,12 +18,14 @@ namespace ProjectBj.BusinessLogic.Providers
     {
         private IPlayerRepository _playerRepository;
         private ICardRepository _cardRepository;
+        private IDeckProvider _deckProvider;
         private PersonNameGenerator _nameGenerator;
 
-        public PlayerProvider(IPlayerRepository playerRepository, ICardRepository cardRepository)
+        public PlayerProvider(IPlayerRepository playerRepository, ICardRepository cardRepository, IDeckProvider deckProvider)
         {
             _playerRepository = playerRepository;
             _cardRepository = cardRepository;
+            _deckProvider = deckProvider;
             _nameGenerator = new PersonNameGenerator();
         }
 
@@ -254,12 +256,7 @@ namespace ProjectBj.BusinessLogic.Providers
                 List<CardViewModel> cardViewModels = new List<CardViewModel>();
                 foreach (var card in cards)
                 {
-                    CardViewModel cardViewModel = new CardViewModel
-                    {
-                        Suit = card.Suit,
-                        Rank = StringHelper.GetRankName(card.Rank),
-                        RankValue = card.Rank,
-                    };
+                    CardViewModel cardViewModel = await _deckProvider.GetCardViewModel(card);
                     cardViewModels.Add(cardViewModel);
                 }
                 return cardViewModels;
