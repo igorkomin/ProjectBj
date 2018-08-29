@@ -10,6 +10,7 @@ using ProjectBj.Entities;
 using ProjectBj.BusinessLogic.Interfaces;
 using ProjectBj.BusinessLogic.Helpers;
 using ProjectBj.BusinessLogic.Enums;
+using ProjectBj.Logger;
 using ProjectBj.ViewModels.Game;
 
 namespace ProjectBj.BusinessLogic.Providers
@@ -47,6 +48,7 @@ namespace ProjectBj.BusinessLogic.Providers
             }
             catch (Exception exception)
             {
+                Log.Error(exception.Message);
                 throw exception;
             }
         }
@@ -69,6 +71,7 @@ namespace ProjectBj.BusinessLogic.Providers
             }
             catch (Exception exception)
             {
+                Log.Error(exception.Message);
                 throw exception;
             }
         }
@@ -90,6 +93,7 @@ namespace ProjectBj.BusinessLogic.Providers
             }
             catch(Exception exception)
             {
+                Log.Error(exception.Message);
                 throw exception;
             }
         }
@@ -195,6 +199,7 @@ namespace ProjectBj.BusinessLogic.Providers
             }
             catch (Exception exception)
             {
+                Log.Error(exception.Message);
                 throw exception;
             }
         }
@@ -213,6 +218,7 @@ namespace ProjectBj.BusinessLogic.Providers
             }
             catch (Exception exception)
             {
+                Log.Error(exception.Message);
                 throw exception;
             }
         }
@@ -239,6 +245,7 @@ namespace ProjectBj.BusinessLogic.Providers
             }
             catch (Exception exception)
             {
+                Log.Error(exception.Message);
                 throw exception;
             }
         }
@@ -259,6 +266,7 @@ namespace ProjectBj.BusinessLogic.Providers
             }
             catch (Exception exception)
             {
+                Log.Error(exception.Message);
                 throw exception;
             }
         }
@@ -274,18 +282,6 @@ namespace ProjectBj.BusinessLogic.Providers
             return handViewModel;
         }
 
-        public async Task DeletePlayer(Player player)
-        {
-            try
-            {
-                await _playerRepository.Delete(player);
-            }
-            catch (Exception exception)
-            {
-                throw exception;
-            }
-        }
-
         private async Task DeleteAllBots()
         {
             try
@@ -294,6 +290,7 @@ namespace ProjectBj.BusinessLogic.Providers
             }
             catch (Exception exception)
             {
+                Log.Error(exception.Message);
                 throw exception;
             }
         }
@@ -336,6 +333,7 @@ namespace ProjectBj.BusinessLogic.Providers
             }
             catch (Exception exception)
             {
+                Log.Error(exception.Message);
                 throw exception;
             }
         }
@@ -370,6 +368,7 @@ namespace ProjectBj.BusinessLogic.Providers
             }
             catch (Exception exception)
             {
+                Log.Error(exception.Message);
                 throw exception;
             }
         }

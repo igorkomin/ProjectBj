@@ -9,6 +9,7 @@ using ProjectBj.DataAccess.Repositories;
 using ProjectBj.BusinessLogic.Enums;
 using ProjectBj.BusinessLogic.Helpers;
 using ProjectBj.BusinessLogic.Interfaces;
+using ProjectBj.Logger;
 using ProjectBj.ViewModels;
 using ProjectBj.ViewModels.Game;
 
@@ -26,6 +27,7 @@ namespace ProjectBj.BusinessLogic.Providers
 
         private List<Card> NewDeck()
         {
+            Log.Info(StringHelper.CreatingDeck);
             _deck = new List<Card>();
 
             foreach (var suit in Enum.GetValues(typeof(CardSuits.Suit)))
@@ -49,15 +51,18 @@ namespace ProjectBj.BusinessLogic.Providers
         {
             try
             {
+                Log.Info(StringHelper.PullingDeck);
                 var deckFromDb = await _cardRepository.GetAllCards();
                 if (deckFromDb.ToList().Count == 0)
                 {
+                    Log.Info(StringHelper.NoDeckInDb);
                     return null;
                 }
                 return deckFromDb.ToList();
             }
             catch (Exception exception)
             {
+                Log.Error(exception.Message);
                 throw exception;
             }
         }
@@ -66,6 +71,7 @@ namespace ProjectBj.BusinessLogic.Providers
         {
             try
             {
+                Log.Info(StringHelper.SavingDeck);
                 await _cardRepository.CreateDeck(localDeck);
             }
             catch (Exception exception)
@@ -98,6 +104,7 @@ namespace ProjectBj.BusinessLogic.Providers
                 shuffledDeck.Add(deck[randomIndex]);
                 deck.RemoveAt(randomIndex);
             }
+            Log.Info(StringHelper.DeckShuffled);
             return shuffledDeck;
         }
 
@@ -113,7 +120,7 @@ namespace ProjectBj.BusinessLogic.Providers
             CardViewModel cardViewModel = new CardViewModel
             {
                 Suit = card.Suit,
-                Rank = StringHelper.GetRankName(card.Rank),
+                Rank = StringHelper.RankName(card.Rank),
                 RankValue = card.Rank
             };
             return cardViewModel;
