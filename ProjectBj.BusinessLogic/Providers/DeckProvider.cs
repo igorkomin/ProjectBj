@@ -18,12 +18,10 @@ namespace ProjectBj.BusinessLogic.Providers
     {
         private List<Card> _deck;
         private ICardRepository _cardRepository;
-        private ILogProvider _logProvider;
         
-        public DeckProvider(ICardRepository cardRepository, ILogProvider logProvider)
+        public DeckProvider(ICardRepository cardRepository)
         {
             _cardRepository = cardRepository;
-            _logProvider = logProvider;
         }
 
         private List<Card> NewDeck()
