@@ -3,34 +3,62 @@ namespace ProjectBj.BusinessLogic.Helpers
 {
     public static class StringHelper
     {
-        #region Names
         public static readonly string DealerName = "Dealer";
-        public static readonly string BotName = "Bot"; 
-        #endregion
-        #region Messages
+        public static readonly string BotsTurn = "Bot players' turn";
+        public static readonly string DealerTurn = "Dealer's turn";
+        public static readonly string CreatingDeck = "Creating a new deck";
+        public static readonly string PullingDeck = "Pulling deck from database";
+        public static readonly string NoDeckInDb = "No cards in database";
+        public static readonly string SavingDeck = "Saving deck to database";
+        public static readonly string DeckShuffled = "Deck shuffled";
+        public static readonly string CreatingLogEntry = "Creating game log entry";
+        public static readonly string GettingLogEntry = "Getting game log entry";
+        public static readonly string GettingAllLogs = "Getting all game logs";
+
+        public static string GameStarted(int sessionId)
+        {
+            return $"Game id{sessionId} started";
+        }
+
+        public static string GameLoaded(int sessionId)
+        {
+            return $"Game id{sessionId} loaded";
+        }
+
+        public static string GameEnded(int sessionId)
+        {
+            return $"Game id{sessionId} ended";
+        }
+
+        public static string GettingSessionLog(int sessionId)
+        {
+            return $"Getting game id{sessionId} log";
+        }
+
         public static string PlayerScore(string playerName, int score)
         {
             return $"{playerName} hand's total score: {score}";
         }
+
         public static string PlayerTakesCard(string playerName, string cardRank, string cardSuit)
         {
             return $"{playerName} takes {cardRank} of {cardSuit}";
         }
-        public static string PlayerHits(string playerName)
+
+        public static string PlayerHits(int playerId)
         {
-            return $"{playerName} hits";
+            return $"Player id{playerId} hits";
         }
-        public static string PlayerStands(string playerName)
+
+        public static string PlayerStands(int playerId)
         {
-            return $"{playerName} stands";
+            return $"Player id{playerId} stands";
         }
-        #endregion
-        #region Other
-        public static string GetRankName(int rankId)
+
+        public static string RankName(int rankId)
         {
             string rankName = EnumHelper.GetEnumDescription((CardRanks.Rank)rankId);
             return rankName;
         }
-        #endregion
     }
 }
