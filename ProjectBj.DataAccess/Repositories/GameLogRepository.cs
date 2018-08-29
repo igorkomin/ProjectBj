@@ -14,11 +14,11 @@ using ProjectBj.Logger;
 
 namespace ProjectBj.DataAccess.Repositories
 {
-    public class LogRepository : ILogRepository
+    public class GameLogRepository : IGameLogRepository
     {
         private string _connectionString;
 
-        public LogRepository(string connectionString)
+        public GameLogRepository(string connectionString)
         {
             _connectionString = connectionString;
         }
@@ -74,22 +74,6 @@ namespace ProjectBj.DataAccess.Repositories
                 }
             }
             catch(SqlException exception)
-            {
-                Log.Error(exception.Message);
-                throw new DataSourceException(exception.Message, exception);
-            }
-        }
-
-        public async Task DeleteEntry(LogEntry entry)
-        {
-            try
-            {
-                using (IDbConnection db = new SqlConnection(_connectionString))
-                {
-                    await db.DeleteAsync(entry);
-                }
-            }
-            catch (SqlException exception)
             {
                 Log.Error(exception.Message);
                 throw new DataSourceException(exception.Message, exception);
