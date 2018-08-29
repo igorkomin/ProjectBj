@@ -18,13 +18,11 @@ namespace ProjectBj.BusinessLogic.Providers
     {
         private List<Card> _deck;
         private ICardRepository _cardRepository;
-        private IPlayerRepository _playerRepository;
         private ILogProvider _logProvider;
         
-        public DeckProvider(ICardRepository cardRepository, IPlayerRepository playerRepository, ILogProvider logProvider)
+        public DeckProvider(ICardRepository cardRepository, ILogProvider logProvider)
         {
             _cardRepository = cardRepository;
-            _playerRepository = playerRepository;
             _logProvider = logProvider;
         }
 
@@ -110,38 +108,6 @@ namespace ProjectBj.BusinessLogic.Providers
             List<Card> shuffledDeck = Shuffle(await GetDeck());
 
             return shuffledDeck;
-        }
-
-        private async Task GivePlayerCard(Player player, Card card, int sessionId)
-        {
-            try
-            {
-                await _playerRepository.AddCard(player, card, sessionId);
-            }
-            catch (Exception exception)
-            {
-                throw exception;
-            }
-        }
-
-        public async Task<Card> DealCard(int playerId, int sessionId)
-        {
-            Player player = await _playerRepository.GetById(playerId);
-            List<Card> deck = await GetShuffledDeck();
-            Card card = deck[0];
-            await GivePlayerCard(player, card, sessionId);
-            CardViewModel cardViewModel = await GetCardViewModel(card);
-            await _logProvider.CreateLogEntry(StringHelper.PlayerTakesCard(player.Name, cardViewModel.Rank, cardViewModel.Suit), sessionId);
-            return card;
-        }
-
-        public async Task DealFirstTwoCards(List<int> playerIds, int sessionId)
-        {
-            foreach (var playerId in playerIds)
-            {
-                await DealCard(playerId, sessionId);
-                await DealCard(playerId, sessionId);
-            }
         }
 
         public async Task<CardViewModel> GetCardViewModel(Card card)
