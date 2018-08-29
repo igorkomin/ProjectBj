@@ -26,6 +26,11 @@ export class ApiService {
         return this.http.post<Game>(requestUrl, settings, requestOptions);
     }
 
+    getLoadedGame(settings: Settings): Observable<Game> {
+        let requestUrl = `${apiUrl}/Load`;
+        return this.http.post<Game>(requestUrl, settings, requestOptions);
+    }
+
     hit(identifier: Identifier): Observable<Game> {
         let requestUrl = `${apiUrl}/Hit`;
         return this.http.post<Game>(requestUrl, identifier, requestOptions);

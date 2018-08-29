@@ -185,7 +185,7 @@ namespace ProjectBj.BusinessLogic.Providers
             return dealer;
         }
 
-        private async Task<PlayerViewModel> PullPlayer(string name)
+        public async Task<PlayerViewModel> PullPlayer(string name)
         {
             try
             {

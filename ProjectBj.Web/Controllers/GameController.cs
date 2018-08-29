@@ -34,6 +34,20 @@ namespace ProjectBj.Web.Controllers
         }
 
         [HttpPost]
+        public async Task<IHttpActionResult> Load([FromBody]GameSettings settings)
+        {
+            try
+            {
+                GameViewModel model = await _service.LoadGame(settings.PlayerName);
+                return Ok(model);
+            }
+            catch (Exception exception)
+            {
+                return InternalServerError(exception);
+            }
+        }
+
+        [HttpPost]
         public async Task<IHttpActionResult> Hit([FromBody]IdentifierViewModel identifier)
         {
             try

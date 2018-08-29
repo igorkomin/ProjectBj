@@ -32,7 +32,7 @@ namespace ProjectBj.BusinessLogic.Services
         public async Task<GameViewModel> GetGameViewModel()
         {
             var player = await _playerProvider.GetPlayerViewModel(_playerName);
-            var session = await _sessionProvider.GetSessionByPlayerId(player.Id);
+            var session = await _sessionProvider.CreateSession();
             var bots = await _playerProvider.GetBotViewModels(_botNumber, session.Id);
             var dealer = await _playerProvider.GetDealer();
             
@@ -139,6 +139,10 @@ namespace ProjectBj.BusinessLogic.Services
 
         public async Task<GameViewModel> NewGame(string playerName, int botsNumber)
         {
+            if (playerName == StringHelper.DealerName)
+            {
+                throw new Exception(StringHelper.NameReserved);
+            }
             _playerName = playerName;
             _botNumber = botsNumber;
             var gameViewModel = await DealFirstCards();
@@ -146,10 +150,16 @@ namespace ProjectBj.BusinessLogic.Services
             return gameViewModel;
         }
 
-        public async Task<GameViewModel> LoadGame(int playerId, int sessionId)
+        public async Task<GameViewModel> LoadGame(string playerName)
         {
-            var gameViewModel = await UpdateViewModel(playerId, sessionId);
-            Log.Info(StringHelper.GameLoaded(sessionId));
+            if(playerName == StringHelper.DealerName)
+            {
+                throw new Exception(StringHelper.NameReserved);
+            }
+            var player = await _playerProvider.PullPlayer(playerName);
+            var lastSession = await _sessionProvider.GetSessionByPlayerId(player.Id);
+            var gameViewModel = await UpdateViewModel(player.Id, lastSession.Id);
+            Log.Info(StringHelper.GameLoaded(lastSession.Id));
             return gameViewModel;
         }
 

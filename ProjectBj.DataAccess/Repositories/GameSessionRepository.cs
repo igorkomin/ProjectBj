@@ -140,7 +140,7 @@ namespace ProjectBj.DataAccess.Repositories
                 {
                     var sqlQuery = "SELECT gs.* FROM PlayerHands ph " +
                                    "JOIN Players p ON ( ph.PlayerId = p.Id ) " +
-                                   "JOIN GameSessions gs ON ( ph.PlayerId = gs.Id ) " +
+                                   "JOIN GameSessions gs ON ( ph.SessionId = gs.Id ) " +
                                    "WHERE gs.IsOpen = 1 AND p.Id = @Id";
 
                     var session = await db.QueryAsync<GameSession>(sqlQuery, player);

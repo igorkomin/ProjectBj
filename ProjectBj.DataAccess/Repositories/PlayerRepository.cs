@@ -236,22 +236,5 @@ namespace ProjectBj.DataAccess.Repositories
                 throw new DataSourceException(exception.Message, exception);
             }
         }
-
-        public async Task DeletePlayersByName(string name)
-        {
-            try
-            {
-                using (IDbConnection db = new SqlConnection(_connectionString))
-                {
-                    var sqlQuery = "DELETE FROM Players WHERE Name = @name";
-                    await db.ExecuteAsync(sqlQuery, new { name });
-                }
-            }
-            catch (SqlException exception)
-            {
-                Log.Error(exception.Message);
-                throw new DataSourceException(exception.Message, exception);
-            }
-        }
     }
 }

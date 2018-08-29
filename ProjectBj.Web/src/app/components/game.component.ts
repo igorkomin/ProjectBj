@@ -70,6 +70,22 @@ export class GameComponent implements OnInit {
         );
     }
 
+    getLoadedGame(): void {
+        let gameSettings = new Settings();
+        gameSettings.playerName = this.playerName;
+        this.apiService.getLoadedGame(gameSettings).subscribe(
+            response => {
+                this.game = response;
+                this.sessionId = response.sessionId;
+                this.playerId = response.player.id;
+                this.getLogs();
+            },
+            exception => {
+                console.error(exception.error.exceptionMessage);
+            }
+        );
+    }
+
     hit(): void {
         let identifier = new Identifier();
         identifier.playerId = this.playerId;

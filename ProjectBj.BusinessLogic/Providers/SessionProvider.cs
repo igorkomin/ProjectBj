@@ -5,8 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using ProjectBj.DataAccess.Interfaces;
 using ProjectBj.DataAccess.Repositories;
-using ProjectBj.Entities;
+using ProjectBj.BusinessLogic.Helpers;
 using ProjectBj.BusinessLogic.Interfaces;
+using ProjectBj.Entities;
 using ProjectBj.ViewModels.Game;
 
 namespace ProjectBj.BusinessLogic.Providers
@@ -22,7 +23,7 @@ namespace ProjectBj.BusinessLogic.Providers
             _playerRepository = playerRepository;
         }
 
-        private async Task<SessionViewModel> CreateSession()
+        public async Task<SessionViewModel> CreateSession()
         {
             SessionViewModel sessionViewModel;
             GameSession session = new GameSession
@@ -50,19 +51,19 @@ namespace ProjectBj.BusinessLogic.Providers
         {
             Player player = await _playerRepository.GetById(playerId);
             GameSession currentSession = await _sessionRepository.GetCurrentSession(player);
+            
             if (currentSession == null)
             {
-                SessionViewModel newSession = await CreateSession();
-                return newSession;
+                throw new Exception(StringHelper.NoGameToLoad);
             }
+            
             SessionViewModel currentSessionViewModel = new SessionViewModel
             {
                 Id = currentSession.Id,
                 IsOpen = currentSession.IsOpen,
                 TimeCreated = currentSession.TimeCreated
             };
-
-
+ 
             return currentSessionViewModel;
         }
 
