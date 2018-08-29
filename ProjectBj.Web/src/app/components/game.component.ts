@@ -23,6 +23,7 @@ export class GameComponent implements OnInit {
     sliderValue: number = 50;
     sessionId: number;
     playerId: number;
+    error: string;
     game: any;
     log: any;
 
@@ -54,6 +55,7 @@ export class GameComponent implements OnInit {
     }
 
     getGame(): void {
+        this.error = undefined;
         let gameSettings = new Settings();
         gameSettings.playerName = this.playerName;
         gameSettings.botsNumber = this.botsNumber;
@@ -66,11 +68,13 @@ export class GameComponent implements OnInit {
             },
             exception => {
                 console.error(exception.error.exceptionMessage);
+                this.error = exception.error.exceptionMessage;
             }
         );
     }
 
     getLoadedGame(): void {
+        this.error = undefined;
         let gameSettings = new Settings();
         gameSettings.playerName = this.playerName;
         this.apiService.getLoadedGame(gameSettings).subscribe(
@@ -82,11 +86,13 @@ export class GameComponent implements OnInit {
             },
             exception => {
                 console.error(exception.error.exceptionMessage);
+                this.error = exception.error.exceptionMessage;
             }
         );
     }
 
     hit(): void {
+        this.error = undefined;
         let identifier = new Identifier();
         identifier.playerId = this.playerId;
         identifier.sessionId = this.sessionId;
@@ -97,11 +103,13 @@ export class GameComponent implements OnInit {
             },
             exception => {
                 console.error(exception.error.exceptionMessage);
+                this.error = exception.error.exceptionMessage;
             }
         );
     }
 
     stand(): void {
+        this.error = undefined;
         let identifier = new Identifier();
         identifier.playerId = this.playerId;
         identifier.sessionId = this.sessionId;
@@ -112,11 +120,13 @@ export class GameComponent implements OnInit {
             },
             exception => {
                 console.error(exception.error.exceptionMessage);
+                this.error = exception.error.exceptionMessage;
             }
         );
     }
 
     getLogs(): void {
+        this.error = undefined;
         let identifier = new Identifier();
         identifier.sessionId = this.sessionId;
         this.apiService.getLogs(identifier).subscribe(
@@ -125,6 +135,7 @@ export class GameComponent implements OnInit {
             },
             exception => {
                 console.error(exception.error.exceptionMessage);
+                this.error = exception.error.exceptionMessage;
             }
         );
     }
