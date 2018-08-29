@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ProjectBj.Logger;
 using ProjectBj.ViewModels.Game;
 using ProjectBj.BusinessLogic.Enums;
 using ProjectBj.BusinessLogic.Helpers;
@@ -141,17 +142,20 @@ namespace ProjectBj.BusinessLogic.Services
             _playerName = playerName;
             _botNumber = botsNumber;
             var gameViewModel = await DealFirstCards();
+            Log.Info(StringHelper.GameStarted(gameViewModel.SessionId));
             return gameViewModel;
         }
 
         public async Task<GameViewModel> LoadGame(int playerId, int sessionId)
         {
             var gameViewModel = await UpdateViewModel(playerId, sessionId);
+            Log.Info(StringHelper.GameLoaded(sessionId));
             return gameViewModel;
         }
 
         public async Task<GameViewModel> Hit(int playerId, int sessionId)
         {
+            Log.Info(StringHelper.PlayerHits(playerId));
             await _playerProvider.DealCard(playerId, sessionId);
             GameViewModel gameViewModel = await UpdateViewModel(playerId, sessionId);
             int handValue = await _playerProvider.GetHandValue(playerId, sessionId);
@@ -164,13 +168,14 @@ namespace ProjectBj.BusinessLogic.Services
 
         public async Task<GameViewModel> Stand(int playerId, int sessionId)
         {
-            await BotsTurn(playerId, sessionId);
-            var gameViewModel = await UpdateViewModel(playerId, sessionId);
+            GameViewModel gameViewModel = await BotsTurn(playerId, sessionId);
+            Log.Info(StringHelper.PlayerStands(playerId));
             return gameViewModel;
         }
 
         private async Task<GameViewModel> BotsTurn(int playerId, int sessionId)
         {
+            Log.Info(StringHelper.BotsTurn);
             var gameViewModel = await UpdateViewModel(playerId, sessionId);
 
             foreach (var bot in gameViewModel.Bots)
@@ -196,6 +201,7 @@ namespace ProjectBj.BusinessLogic.Services
 
         public async Task<bool> DealerTurn(int dealerId, int sessionId)
         {
+            Log.Info(StringHelper.DealerTurn);
             int handValue = await _playerProvider.GetHandValue(dealerId, sessionId);
             if (handValue > ValueHelper.MinDealerHandValue)
             {
@@ -208,6 +214,7 @@ namespace ProjectBj.BusinessLogic.Services
         public async Task CloseGameSession(int sessionId)
         {
             await _sessionProvider.CloseSession(sessionId);
+            Log.Info(StringHelper.GameEnded(sessionId));
         }
 
         public async Task<List<LogEntryViewModel>> GetLogs(int sessionId)
