@@ -20,7 +20,11 @@
                         </ul>
                     </div>
                 </div>
-                <div clas="col-md-3"></div>
+                <div clas="col-md-3">
+                    <div *ngIf="error" class="alert alert-danger" role="alert">
+                        {{ error }}
+                    </div>
+                </div>
             </div>
             <div class="row h33">
                 <div class="col-md-3">
@@ -47,31 +51,33 @@
                                type="range" min="50" max="100" value="50" step="5" class="slider">
                     </div>
                     <h3 id="bet_output">{{ sliderValue | currency }}</h3>
-                    <button [disabled]="game && game?.player.gameResult == 0" (click)="getGame()" type="button" class="btn btn-primary">NEW GAME</button>
-                    <button [disabled]="game && game?.player.gameResult == 0" (click)="getLoadedGame()" type="button" class="btn btn-primary">LOAD GAME</button>
-                </div>
-                <div *ngIf="game" class="col-md-3">
-                    <div class="caption">Actions</div>
                     <div class="btn-group-vertical">
-                        <button [disabled]="game?.player.gameResult != 0" (click)="hit()" class="btn btn-primary">HIT</button>
-                        <button [disabled]="game?.player.gameResult != 0" (click)="stand()" class="btn btn-secondary">STAND</button>
+                        <button [disabled]="game && game?.player.gameResult == 0" (click)="getGame()" type="button" class="btn btn-primary">NEW GAME</button>
+                        <button [disabled]="game && game?.player.gameResult == 0" (click)="getLoadedGame()" type="button" class="btn btn-secondary">LOAD GAME</button>
+                    </div>
+                    </div>
+                    <div *ngIf="game" class="col-md-3">
+                        <div class="caption">Actions</div>
+                        <div class="btn-group-vertical">
+                            <button [disabled]="game?.player.gameResult != 0" (click)="hit()" class="btn btn-primary">HIT</button>
+                            <button [disabled]="game?.player.gameResult != 0" (click)="stand()" class="btn btn-secondary">STAND</button>
+                        </div>
+                    </div>
+                    <div *ngIf="game" class="player-seat col-md-3">
+                        <div *ngIf="game?.player.gameResult > 0" class="ribbon {{ game?.player.gameResultMessage | lowercase }}"><span>{{ game?.player.gameResultMessage }}</span></div>
+                        <p class="caption">{{ game?.player.name }} <span class="badge badge-secondary">{{ game?.player.hand.score }}</span></p>
+                        <div class="playingCards simpleCards rotateHand">
+                            <ul class="hand">
+                                <li *ngFor="let card of game?.player.hand.cards">
+                                    <span class="card rank-{{ card.rank }} {{ card.suit | lowercase }}">
+                                        <span class="rank">{{ card.rank }}</span>
+                                        <span class="suit"></span>
+                                    </span>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-                <div *ngIf="game" class="player-seat col-md-3">
-                    <div *ngIf="game?.player.gameResult > 0" class="ribbon {{ game?.player.gameResultMessage | lowercase }}"><span>{{ game?.player.gameResultMessage }}</span></div>
-                    <p class="caption">{{ game?.player.name }} <span class="badge badge-secondary">{{ game?.player.hand.score }}</span></p>
-                    <div class="playingCards simpleCards rotateHand">
-                        <ul class="hand">
-                            <li *ngFor="let card of game?.player.hand.cards">
-                                <span class="card rank-{{ card.rank }} {{ card.suit | lowercase }}">
-                                    <span class="rank">{{ card.rank }}</span>
-                                    <span class="suit"></span>
-                                </span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
             <div class="row">
                 <div class="bot-seat col-md-1" *ngFor="let bot of game?.bots">
                     <div *ngIf="bot?.gameResult > 0" class="ribbon {{ bot?.gameResultMessage | lowercase }}"><span>{{ bot?.gameResultMessage }}</span></div>
