@@ -13,6 +13,5 @@ namespace ProjectBj.BusinessLogic.Interfaces
         Task<LogEntry> GetLogEntry(int id);
         Task<List<LogEntry>> GetLogs();
         Task<List<LogEntry>> GetLogs(int sessionId);
-        Task DeleteLogEntry(LogEntry entry);
     }
 }

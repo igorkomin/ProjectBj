@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 using ProjectBj.Entities;
 using ProjectBj.DataAccess.Interfaces;
 using ProjectBj.DataAccess.Repositories;
+using ProjectBj.BusinessLogic.Helpers;
 using ProjectBj.BusinessLogic.Interfaces;
+using ProjectBj.Logger;
 
 namespace ProjectBj.BusinessLogic.Providers
 {
@@ -29,10 +31,12 @@ namespace ProjectBj.BusinessLogic.Providers
             };
             try
             {
+                Log.Info(StringHelper.CreatingLogEntry);
                 await _logRepository.CreateEntry(entry);
             }
             catch (Exception exception)
             {
+                Log.Error(exception.Message);
                 throw exception;
             }
         }
@@ -42,11 +46,13 @@ namespace ProjectBj.BusinessLogic.Providers
             LogEntry entry;
             try
             {
+                Log.Info(StringHelper.GettingLogEntry);
                 entry = await _logRepository.GetEntryById(id);
                 return entry;
             }
             catch (Exception exception)
             {
+                Log.Error(exception.Message);
                 throw exception;
             }
         }
@@ -55,11 +61,13 @@ namespace ProjectBj.BusinessLogic.Providers
         {
             try
             {
+                Log.Info(StringHelper.GettingAllLogs);
                 var entries = await _logRepository.GetAllLogs();
                 return entries.ToList();
             }
             catch (Exception exception)
             {
+                Log.Error(exception.Message);
                 throw exception;
             }
         }
@@ -68,20 +76,9 @@ namespace ProjectBj.BusinessLogic.Providers
         {
             try
             {
+                Log.Info(StringHelper.GettingSessionLog(sessionId));
                 var entries = await _logRepository.GetSessionLogs(sessionId);
                 return entries.ToList();
-            }
-            catch (Exception exception)
-            {
-                throw exception;
-            }
-        }
-
-        public async Task DeleteLogEntry(LogEntry entry)
-        {
-            try
-            {
-                await _logRepository.DeleteEntry(entry);
             }
             catch (Exception exception)
             {
