@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { Settings } from '../models/settings.model';
 import { Game } from '../models/game.model';
 import { Log } from '../models/log.model';
+import { GameLog } from '../models/gamelog.model';
 import { Identifier } from '../models/identifier.model';
 
 const apiUrl = '../api/game';
@@ -41,8 +42,8 @@ export class ApiService {
         return this.http.post<Game>(requestUrl, identifier, requestOptions);
     }
 
-    getLogs(identifier: Identifier): Observable<Log> {
+    getLogs(identifier: Identifier): Observable<GameLog> {
         let requestUrl = `${apiUrl}/Logs`;
-        return this.http.post<Log>(requestUrl, identifier, requestOptions);
+        return this.http.post<GameLog>(requestUrl, identifier, requestOptions);
     }
 }
