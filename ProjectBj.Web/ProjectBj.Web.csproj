@@ -197,7 +197,6 @@
     <Content Include="Content\Cards\Spades\8.png" />
     <Content Include="Content\Cards\Spades\9.png" />
     <Content Include="Content\dealer.png" />
-    <Content Include="Content\jquery-ui.css" />
     <Content Include="Content\loading.gif" />
     <Content Include="Content\player.png" />
     <Content Include="Content\robot.png" />
