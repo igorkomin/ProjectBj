@@ -17,14 +17,12 @@ namespace ProjectBj.BusinessLogic.Providers
     public class PlayerProvider : IPlayerProvider
     {
         private IPlayerRepository _playerRepository;
-        private ICardRepository _cardRepository;
         private IDeckProvider _deckProvider;
         private PersonNameGenerator _nameGenerator;
 
-        public PlayerProvider(IPlayerRepository playerRepository, ICardRepository cardRepository, IDeckProvider deckProvider)
+        public PlayerProvider(IPlayerRepository playerRepository, IDeckProvider deckProvider)
         {
             _playerRepository = playerRepository;
-            _cardRepository = cardRepository;
             _deckProvider = deckProvider;
             _nameGenerator = new PersonNameGenerator();
         }
