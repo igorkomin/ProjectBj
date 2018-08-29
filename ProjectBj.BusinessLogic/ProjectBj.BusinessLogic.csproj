@@ -51,13 +51,11 @@
     <Compile Include="Enums\CardRanks.cs" />
     <Compile Include="Enums\CardSuits.cs" />
     <Compile Include="Enums\GameResults.cs" />
-    <Compile Include="Providers\GameProvider.cs" />
     <Compile Include="Helpers\EnumHelper.cs" />
     <Compile Include="Helpers\StringHelper.cs" />
     <Compile Include="Helpers\ValueHelper.cs" />
     <Compile Include="Interfaces\IDeckProvider.cs" />
     <Compile Include="Interfaces\IGameService.cs" />
-    <Compile Include="Interfaces\IGameProvider.cs" />
     <Compile Include="Interfaces\ILogProvider.cs" />
     <Compile Include="Interfaces\ISessionProvider.cs" />
     <Compile Include="Interfaces\IPlayerProvider.cs" />
