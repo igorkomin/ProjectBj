@@ -10,6 +10,7 @@ using Dapper.Contrib.Extensions;
 using ProjectBj.DataAccess.Interfaces;
 using ProjectBj.DataAccess.ExceptionHandlers;
 using ProjectBj.Entities;
+using ProjectBj.Logger;
 
 namespace ProjectBj.DataAccess.Repositories
 {
@@ -34,6 +35,7 @@ namespace ProjectBj.DataAccess.Repositories
             }
             catch (SqlException exception)
             {
+                Log.Error(exception.Message);
                 throw new DataSourceException(exception.Message, exception);
             }
         }
@@ -53,6 +55,7 @@ namespace ProjectBj.DataAccess.Repositories
             }
             catch(SqlException exception)
             {
+                Log.Error(exception.Message);
                 throw new DataSourceException(exception.Message, exception);
             }
         }
@@ -68,6 +71,7 @@ namespace ProjectBj.DataAccess.Repositories
             }
             catch (SqlException exception)
             {
+                Log.Error(exception.Message);
                 throw new DataSourceException(exception.Message, exception);
             }
         }
@@ -85,6 +89,7 @@ namespace ProjectBj.DataAccess.Repositories
             }
             catch (SqlException exception)
             {
+                Log.Error(exception.Message);
                 throw new DataSourceException(exception.Message, exception);
             }
         }
@@ -101,6 +106,7 @@ namespace ProjectBj.DataAccess.Repositories
             }
             catch (SqlException exception)
             {
+                Log.Error(exception.Message);
                 throw new DataSourceException(exception.Message, exception);
             }
         }
@@ -117,6 +123,7 @@ namespace ProjectBj.DataAccess.Repositories
             }
             catch (SqlException exception)
             {
+                Log.Error(exception.Message);
                 throw new DataSourceException(exception.Message, exception);
             }
         }
@@ -132,6 +139,7 @@ namespace ProjectBj.DataAccess.Repositories
             }
             catch (SqlException exception)
             {
+                Log.Error(exception.Message);
                 throw new DataSourceException(exception.Message, exception);
             }
 
@@ -154,6 +162,7 @@ namespace ProjectBj.DataAccess.Repositories
             }
             catch (SqlException exception)
             {
+                Log.Error(exception.Message);
                 throw new DataSourceException(exception.Message, exception);
             }
         }
@@ -175,6 +184,7 @@ namespace ProjectBj.DataAccess.Repositories
             }
             catch (SqlException exception)
             {
+                Log.Error(exception.Message);
                 throw new DataSourceException(exception.Message, exception);
             }
         }
@@ -205,6 +215,7 @@ namespace ProjectBj.DataAccess.Repositories
             }
             catch (SqlException exception)
             {
+                Log.Error(exception.Message);
                 throw new DataSourceException(exception.Message, exception);
             }
         }
@@ -221,6 +232,7 @@ namespace ProjectBj.DataAccess.Repositories
             }
             catch (Exception exception)
             {
+                Log.Error(exception.Message);
                 throw new DataSourceException(exception.Message, exception);
             }
         }
@@ -237,6 +249,7 @@ namespace ProjectBj.DataAccess.Repositories
             }
             catch (SqlException exception)
             {
+                Log.Error(exception.Message);
                 throw new DataSourceException(exception.Message, exception);
             }
         }

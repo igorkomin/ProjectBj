@@ -10,6 +10,7 @@ using Dapper.Contrib.Extensions;
 using ProjectBj.Entities;
 using ProjectBj.DataAccess.Interfaces;
 using ProjectBj.DataAccess.ExceptionHandlers;
+using ProjectBj.Logger;
 
 namespace ProjectBj.DataAccess.Repositories
 {
@@ -34,6 +35,7 @@ namespace ProjectBj.DataAccess.Repositories
             }
             catch (SqlException exception)
             {
+                Log.Error(exception.Message);
                 throw new DataSourceException(exception.Message, exception);
             }
         }
@@ -50,6 +52,7 @@ namespace ProjectBj.DataAccess.Repositories
             }
             catch (SqlException exception)
             {
+                Log.Error(exception.Message);
                 throw new DataSourceException(exception.Message, exception);
             }
         }
@@ -65,6 +68,7 @@ namespace ProjectBj.DataAccess.Repositories
             }
             catch (SqlException exception)
             {
+                Log.Error(exception.Message);
                 throw new DataSourceException(exception.Message, exception);
             }
         }
@@ -80,6 +84,7 @@ namespace ProjectBj.DataAccess.Repositories
             }
             catch (SqlException exception)
             {
+                Log.Error(exception.Message);
                 throw new DataSourceException(exception.Message, exception);
             }
         }
@@ -100,6 +105,7 @@ namespace ProjectBj.DataAccess.Repositories
             }
             catch (SqlException exception)
             {
+                Log.Error(exception.Message);
                 throw new DataSourceException(exception.Message, exception);
             }
         }
@@ -121,6 +127,7 @@ namespace ProjectBj.DataAccess.Repositories
             }
             catch (SqlException exception)
             {
+                Log.Error(exception.Message);
                 throw new DataSourceException(exception.Message, exception);
             }
         }
@@ -142,6 +149,7 @@ namespace ProjectBj.DataAccess.Repositories
             }
             catch (SqlException exception)
             {
+                Log.Error(exception.Message);
                 throw new DataSourceException(exception.Message, exception);
             }
         }

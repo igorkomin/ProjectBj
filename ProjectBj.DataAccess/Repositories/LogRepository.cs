@@ -7,9 +7,10 @@ using System.Data;
 using System.Data.SqlClient;
 using Dapper;
 using Dapper.Contrib.Extensions;
-using ProjectBj.DataAccess.Interfaces;
 using ProjectBj.Entities;
+using ProjectBj.DataAccess.Interfaces;
 using ProjectBj.DataAccess.ExceptionHandlers;
+using ProjectBj.Logger;
 
 namespace ProjectBj.DataAccess.Repositories
 {
@@ -33,6 +34,7 @@ namespace ProjectBj.DataAccess.Repositories
             }
             catch (SqlException exception)
             {
+                Log.Error(exception.Message);
                 throw new DataSourceException(exception.Message, exception);
             }
         }
@@ -49,6 +51,7 @@ namespace ProjectBj.DataAccess.Repositories
             }
             catch (SqlException exception)
             {
+                Log.Error(exception.Message);
                 throw new DataSourceException(exception.Message, exception);
             }
         }
@@ -72,6 +75,7 @@ namespace ProjectBj.DataAccess.Repositories
             }
             catch(SqlException exception)
             {
+                Log.Error(exception.Message);
                 throw new DataSourceException(exception.Message, exception);
             }
         }
@@ -87,6 +91,7 @@ namespace ProjectBj.DataAccess.Repositories
             }
             catch (SqlException exception)
             {
+                Log.Error(exception.Message);
                 throw new DataSourceException(exception.Message, exception);
             }
         }
