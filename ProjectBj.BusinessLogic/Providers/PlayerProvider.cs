@@ -18,12 +18,14 @@ namespace ProjectBj.BusinessLogic.Providers
     {
         private IPlayerRepository _playerRepository;
         private IDeckProvider _deckProvider;
+        private ILogProvider _logProvider;
         private PersonNameGenerator _nameGenerator;
 
-        public PlayerProvider(IPlayerRepository playerRepository, IDeckProvider deckProvider)
+        public PlayerProvider(IPlayerRepository playerRepository, IDeckProvider deckProvider, ILogProvider logProvider)
         {
             _playerRepository = playerRepository;
             _deckProvider = deckProvider;
+            _logProvider = logProvider;
             _nameGenerator = new PersonNameGenerator();
         }
 
@@ -324,6 +326,52 @@ namespace ProjectBj.BusinessLogic.Providers
 
             return totalValue > ValueHelper.BlackjackValue ? 
                 totalValue - aceCount * ValueHelper.AceDelta : totalValue;
+        }
+
+        private async Task GivePlayerCard(Player player, Card card, int sessionId)
+        {
+            try
+            {
+                await _playerRepository.AddCard(player, card, sessionId);
+            }
+            catch (Exception exception)
+            {
+                throw exception;
+            }
+        }
+
+        public async Task<Card> DealCard(int playerId, int sessionId)
+        {
+            Player player = await _playerRepository.GetById(playerId);
+            List<Card> deck = await _deckProvider.GetShuffledDeck();
+            Card card = deck[0];
+            await GivePlayerCard(player, card, sessionId);
+            CardViewModel cardViewModel = await _deckProvider.GetCardViewModel(card);
+            await _logProvider.CreateLogEntry(StringHelper.PlayerTakesCard(player.Name, cardViewModel.Rank, cardViewModel.Suit), sessionId);
+            return card;
+        }
+
+        public async Task DealFirstTwoCards(List<int> playerIds, int sessionId)
+        {
+            foreach (var playerId in playerIds)
+            {
+                await DealCard(playerId, sessionId);
+                await DealCard(playerId, sessionId);
+            }
+        }
+
+        public async Task ChangePlayerBalance(int playerId, int balanceDelta)
+        {
+            Player player = await _playerRepository.GetById(playerId);
+            player.Balance += balanceDelta;
+            try
+            {
+                await _playerRepository.Update(player);
+            }
+            catch (Exception exception)
+            {
+                throw exception;
+            }
         }
     }
 }

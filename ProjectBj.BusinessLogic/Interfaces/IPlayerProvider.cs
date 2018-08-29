@@ -18,5 +18,8 @@ namespace ProjectBj.BusinessLogic.Interfaces
         Task<List<PlayerViewModel>> GetSessionBotViewModels(int sessionId);
         Task<int> GetHandValue(int playerId, int sessionId);
         Task DeletePlayer(Player player);
+        Task<Card> DealCard(int playerId, int sessionId);
+        Task DealFirstTwoCards(List<int> playerIds, int sessionId);
+        Task ChangePlayerBalance(int playerId, int balanceDelta);
     }
 }
