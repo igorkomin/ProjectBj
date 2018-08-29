@@ -200,6 +200,8 @@
     <Content Include="Content\loading.gif" />
     <Content Include="Content\player.png" />
     <Content Include="Content\robot.png" />
+    <Content Include="src\app\styles\logs.style.css" />
+    <Content Include="src\app\views\logs.view.html" />
     <Content Include="src\app\styles\common\cards.css" />
     <Content Include="src\app\styles\common\slider.css" />
     <Content Include="Content\style.css" />
@@ -273,11 +275,13 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="src\app\components\logs.component.ts" />
     <TypeScriptCompile Include="src\app\models\card.model.ts" />
     <TypeScriptCompile Include="src\app\models\dealer.model.ts" />
     <TypeScriptCompile Include="src\app\models\game.model.ts" />
     <TypeScriptCompile Include="src\app\models\hand.model.ts" />
     <TypeScriptCompile Include="src\app\models\identifier.model.ts" />
+    <TypeScriptCompile Include="src\app\models\gamelog.model.ts" />
     <TypeScriptCompile Include="src\app\models\log.model.ts" />
     <TypeScriptCompile Include="src\app\models\login.model.ts" />
     <TypeScriptCompile Include="src\app\models\player.model.ts" />
@@ -291,6 +295,8 @@
     <TypeScriptCompile Include="src\app\modules\game\game.module.ts" />
     <TypeScriptCompile Include="src\app\modules\login\login-routing.module.ts" />
     <TypeScriptCompile Include="src\app\modules\login\login.module.ts" />
+    <TypeScriptCompile Include="src\app\modules\logs\logs-routing.module.ts" />
+    <TypeScriptCompile Include="src\app\modules\logs\logs.module.ts" />
     <TypeScriptCompile Include="src\app\services\api.service.ts" />
     <TypeScriptCompile Include="src\environments\environment.prod.ts" />
     <TypeScriptCompile Include="src\environments\environment.ts" />
