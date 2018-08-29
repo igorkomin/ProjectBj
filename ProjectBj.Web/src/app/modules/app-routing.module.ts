@@ -2,17 +2,18 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { RouterModule, Routes } from "@angular/router";
 
-import { LoginComponent } from "../components/login.component";
-import { GameComponent } from "../components/game.component";
-
 const routes: Routes = [
     {
-        path: "login",
+        path: 'login',
         loadChildren: './login/login.module#LoginModule'
     },
     {
-        path: "game", 
+        path: 'game', 
         loadChildren: './game/game.module#GameModule'
+    },
+    {
+        path: 'logs',
+        loadChildren: './logs/logs.module#LogsModule'
     },
     { path: "", redirectTo: "/login", pathMatch: "full" },
     { path: "**", redirectTo: "/login" }
