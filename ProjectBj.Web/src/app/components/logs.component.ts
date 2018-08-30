@@ -2,11 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { GridDataResult, PageChangeEvent } from '@progress/kendo-angular-grid';
 import { ActivatedRoute, Router } from '@angular/router';
-import { State } from '@progress/kendo-data-query';
+import { State, SortDescriptor, orderBy } from '@progress/kendo-data-query';
 
 import { ApiService } from '../services/api.service';
 import { SystemLog } from '../models/system-log.model';
-import { customers } from './customers';
 
 @Component({
     selector: 'app-logs',
@@ -16,9 +15,14 @@ import { customers } from './customers';
 export class LogsComponent implements OnInit {
     logs: any;
     gridView: GridDataResult;
+    data: Object[];
     pageSize = 10;
     skip = 0;
-    data: Object[];
+    public allowUnsort = true;
+    public sort: SortDescriptor[] = [{
+        field: 'level',
+        dir: 'asc'
+    }];
 
     constructor(
         private router: Router,
@@ -46,9 +50,14 @@ export class LogsComponent implements OnInit {
         this.loadItems();
     }
 
+    sortChange(sort: SortDescriptor[]): void {
+        this.sort = sort;
+        this.loadItems();
+    }
+
     loadItems(): void {
         this.gridView = {
-            data: this.logs.slice(this.skip, this.skip + this.pageSize),
+            data: orderBy(this.logs, this.sort).slice(this.skip, this.skip + this.pageSize),
             total: this.logs.length
         };
     }

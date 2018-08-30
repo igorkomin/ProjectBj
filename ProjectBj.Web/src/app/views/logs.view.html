@@ -3,7 +3,13 @@
             [skip]="skip"
             [pageable]="true"
             [height]="500"
+            [sortable]="{
+                allowUnsort: allowUnsort,
+                mode: 'single'
+            }"
+            [sort]="sort"
             (pageChange)="pageChange($event)"
+            (sortChange)="sortChange($event)"
             >
     <kendo-grid-column field="id" title="ID" width="40">
     </kendo-grid-column>
