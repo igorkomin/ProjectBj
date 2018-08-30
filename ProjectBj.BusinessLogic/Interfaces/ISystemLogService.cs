@@ -9,6 +9,6 @@ namespace ProjectBj.BusinessLogic.Interfaces
 {
     public interface ISystemLogService
     {
-        Task<IEnumerable<SystemLogViewModel>> GetSystemLogs();
+        Task<List<SystemLogViewModel>> GetSystemLogs();
     }
 }

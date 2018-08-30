@@ -15,6 +15,7 @@ namespace ProjectBj.BusinessLogic.Services
     {
         public string _playerName { get; set; }
         public int _botNumber { get; set; }
+        public int _bet { get; set; }
         private readonly IDeckProvider _deckProvider;
         private readonly ILogProvider _logProvider;
         private readonly IPlayerProvider _playerProvider;
@@ -44,7 +45,6 @@ namespace ProjectBj.BusinessLogic.Services
                 SessionId = session.Id
             };
 
-            await UpdateViewModel(gameViewModel);
             return gameViewModel;
         }
 
@@ -89,20 +89,12 @@ namespace ProjectBj.BusinessLogic.Services
             return gameViewModel;
         }
 
-        public async Task<GameViewModel> MakeBet(int playerId, int sessionId, int betValue)
-        {
-            var gameViewModel = await UpdateViewModel(playerId, sessionId);
-            gameViewModel.Player.Bet = betValue;
-            return gameViewModel;
-        }
-
         public async Task<GameViewModel> UpdateGameResult(int playerId, int sessionId)
         {
             var gameViewModel = await UpdateViewModel(playerId, sessionId);
             var playerScore = gameViewModel.Player.Hand.Score;
             var dealerScore = gameViewModel.Dealer.Hand.Score;
-            var bet = gameViewModel.Player.Bet;
-            var result = await GetGameResult(playerId, playerScore, dealerScore, bet);
+            var result = await GetGameResult(playerId, playerScore, dealerScore, _bet);
             gameViewModel.Player.GameResult = (int)result;
             gameViewModel.Player.GameResultMessage = result.ToString();
             await _logProvider.CreateLogEntry(StringHelper.PlayerScore(gameViewModel.Dealer.Name, dealerScore), sessionId);
@@ -137,7 +129,7 @@ namespace ProjectBj.BusinessLogic.Services
             return model;
         }
 
-        public async Task<GameViewModel> NewGame(string playerName, int botsNumber)
+        public async Task<GameViewModel> NewGame(string playerName, int botsNumber, int bet)
         {
             if (playerName == StringHelper.DealerName)
             {
@@ -145,6 +137,7 @@ namespace ProjectBj.BusinessLogic.Services
             }
             _playerName = playerName;
             _botNumber = botsNumber;
+            _bet = bet;
             var gameViewModel = await DealFirstCards();
             Log.Info(StringHelper.GameStarted(gameViewModel.SessionId));
             return gameViewModel;

@@ -40,7 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Game\BaseViewModel.cs" />
+    <Compile Include="BaseViewModel.cs" />
     <Compile Include="Game\CardViewModel.cs" />
     <Compile Include="Game\DealerVIewModel.cs" />
     <Compile Include="Game\GameViewModel.cs" />

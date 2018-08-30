@@ -19,7 +19,7 @@ namespace ProjectBj.BusinessLogic.Services
             _systemLogRepository = systemLogRepository;
         }
 
-        public async Task<IEnumerable<SystemLogViewModel>> GetSystemLogs()
+        public async Task<List<SystemLogViewModel>> GetSystemLogs()
         {
             try
             {
@@ -29,6 +29,7 @@ namespace ProjectBj.BusinessLogic.Services
                 {
                     SystemLogViewModel systemLogViewModel = new SystemLogViewModel
                     {
+                        Id = log.Id,
                         CallSite = log.CallSite,
                         Exception = log.Exception,
                         Https = log.Https,
@@ -48,7 +49,7 @@ namespace ProjectBj.BusinessLogic.Services
                     };
                     systemLogViewModels.Add(systemLogViewModel);
                 }
-                return systemLogViewModels.ToList();
+                return systemLogViewModels;
             }
             catch (Exception exception)
             {
