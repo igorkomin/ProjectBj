@@ -145,14 +145,14 @@ namespace ProjectBj.DataAccess.Repositories
 
         }
 
-        public async Task AddCard(Player player, Card card, int sessionId)
+        public async Task AddCard(Player player, int cardId, int sessionId)
         {
             try
             {
                 PlayerHand playerHand = new PlayerHand
                 {
                     PlayerId = player.Id,
-                    CardId = card.Id,
+                    CardId = cardId,
                     SessionId = sessionId
                 };
                 using (IDbConnection db = new SqlConnection(_connectionString))

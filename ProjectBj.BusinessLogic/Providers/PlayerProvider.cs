@@ -18,15 +18,11 @@ namespace ProjectBj.BusinessLogic.Providers
     public class PlayerProvider : IPlayerProvider
     {
         private IPlayerRepository _playerRepository;
-        private IDeckProvider _deckProvider;
-        private ILogProvider _logProvider;
         private PersonNameGenerator _nameGenerator;
 
-        public PlayerProvider(IPlayerRepository playerRepository, IDeckProvider deckProvider, ILogProvider logProvider)
+        public PlayerProvider(IPlayerRepository playerRepository)
         {
             _playerRepository = playerRepository;
-            _deckProvider = deckProvider;
-            _logProvider = logProvider;
             _nameGenerator = new PersonNameGenerator();
         }
 
@@ -259,7 +255,12 @@ namespace ProjectBj.BusinessLogic.Providers
                 List<CardViewModel> cardViewModels = new List<CardViewModel>();
                 foreach (var card in cards)
                 {
-                    CardViewModel cardViewModel = await _deckProvider.GetCardViewModel(card);
+                    CardViewModel cardViewModel = new CardViewModel
+                    {
+                        Suit = card.Suit,
+                        Rank = StringHelper.RankName(card.Rank),
+                        RankValue = card.Rank
+                    };
                     cardViewModels.Add(cardViewModel);
                 }
                 return cardViewModels;
@@ -325,36 +326,17 @@ namespace ProjectBj.BusinessLogic.Providers
                 totalValue - aceCount * ValueHelper.AceDelta : totalValue;
         }
 
-        private async Task GivePlayerCard(Player player, Card card, int sessionId)
+        public async Task GivePlayerCard(int playerId, int sessionId, int cardId)
         {
             try
             {
-                await _playerRepository.AddCard(player, card, sessionId);
+                Player player = await _playerRepository.GetById(playerId);
+                await _playerRepository.AddCard(player, cardId, sessionId);
             }
             catch (Exception exception)
             {
                 Log.Error(exception.Message);
                 throw exception;
-            }
-        }
-
-        public async Task<Card> DealCard(int playerId, int sessionId)
-        {
-            Player player = await _playerRepository.GetById(playerId);
-            List<Card> deck = await _deckProvider.GetShuffledDeck();
-            Card card = deck[0];
-            await GivePlayerCard(player, card, sessionId);
-            CardViewModel cardViewModel = await _deckProvider.GetCardViewModel(card);
-            await _logProvider.CreateLogEntry(StringHelper.PlayerTakesCard(player.Name, cardViewModel.Rank, cardViewModel.Suit), sessionId);
-            return card;
-        }
-
-        public async Task DealFirstTwoCards(List<int> playerIds, int sessionId)
-        {
-            foreach (var playerId in playerIds)
-            {
-                await DealCard(playerId, sessionId);
-                await DealCard(playerId, sessionId);
             }
         }
 

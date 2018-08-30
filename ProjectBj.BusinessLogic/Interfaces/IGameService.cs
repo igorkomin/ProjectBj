@@ -17,6 +17,8 @@ namespace ProjectBj.BusinessLogic.Interfaces
         Task<GameViewModel> LoadGame(string playerName);
         Task<GameViewModel> Stand(int playerId, int sessionId);
         Task<GameViewModel> UpdateGameResult(int playerId, int sessionId);
+        Task DealCard(int playerId, int sessionId);
+        Task DealFirstTwoCards(List<int> playerIds, int sessionId);
         Task<List<LogEntryViewModel>> GetLogs(int sessionId);
         Task<bool> DealerTurn(int dealerId, int sessionId);
         Task CloseGameSession(int sessionId);

@@ -89,49 +89,6 @@ namespace ProjectBj.DataAccess.Repositories
             }
         }
 
-        public async Task<ICollection<Player>> GetSessionPlayers(GameSession session)
-        {
-            try
-            {
-                using (IDbConnection db = new SqlConnection(_connectionString))
-                {
-                    var sqlQuery = "SELECT p.* FROM GameSessionPlayers gsp " +
-                                   "JOIN Players p ON ( gsp.PlayerId = p.Id ) " +
-                                   "JOIN GameSessions gs ON ( gsp.SessionId = gs.Id ) " +
-                                   "WHERE gs.Id = @Id";
-                    var players = await db.QueryAsync<Player>(sqlQuery, session);
-                    return players.AsList();
-                }
-            }
-            catch (SqlException exception)
-            {
-                Log.Error(exception.Message);
-                throw new DataSourceException(exception.Message, exception);
-            }
-        }
-
-        public async Task<ICollection<GameSession>> GetPlayerSessions(Player player)
-        {
-            try
-            {
-                using (IDbConnection db = new SqlConnection(_connectionString))
-                {
-                    var sqlQuery = "SELECT gs.* FROM PlayerHands ph " +
-                                   "JOIN Players p ON ( ph.PlayerId = p.Id ) " +
-                                   "JOIN GameSessions gs ON ( ph.PlayerId = gs.Id ) " +
-                                   "WHERE p.Id = @Id";
-
-                    var sessions = await db.QueryAsync<GameSession>(sqlQuery, player);
-                    return sessions.AsList();
-                }
-            }
-            catch (SqlException exception)
-            {
-                Log.Error(exception.Message);
-                throw new DataSourceException(exception.Message, exception);
-            }
-        }
-
         public async Task<GameSession> GetCurrentSession(Player player)
         {
             try

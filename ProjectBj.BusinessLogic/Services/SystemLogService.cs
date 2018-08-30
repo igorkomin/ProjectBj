@@ -48,7 +48,7 @@ namespace ProjectBj.BusinessLogic.Services
                     };
                     systemLogViewModels.Add(systemLogViewModel);
                 }
-                return systemLogViewModels;
+                return systemLogViewModels.ToList();
             }
             catch (Exception exception)
             {

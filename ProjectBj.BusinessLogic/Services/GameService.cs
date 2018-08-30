@@ -132,7 +132,7 @@ namespace ProjectBj.BusinessLogic.Services
             {
                 playerIds.Add(bot.Id);
             }
-            await _playerProvider.DealFirstTwoCards(playerIds, model.SessionId);
+            await DealFirstTwoCards(playerIds, model.SessionId);
             await UpdateViewModel(model);
             return model;
         }
@@ -166,7 +166,7 @@ namespace ProjectBj.BusinessLogic.Services
         public async Task<GameViewModel> Hit(int playerId, int sessionId)
         {
             Log.Info(StringHelper.PlayerHits(playerId));
-            await _playerProvider.DealCard(playerId, sessionId);
+            await DealCard(playerId, sessionId);
             GameViewModel gameViewModel = await UpdateViewModel(playerId, sessionId);
             int handValue = await _playerProvider.GetHandValue(playerId, sessionId);
             if (handValue >= ValueHelper.BlackjackValue)
@@ -205,7 +205,7 @@ namespace ProjectBj.BusinessLogic.Services
             {
                 return false;
             }
-            await _playerProvider.DealCard(botId, sessionId);
+            await DealCard(botId, sessionId);
             return await BotTurn(botId, sessionId);
         }
 
@@ -217,8 +217,24 @@ namespace ProjectBj.BusinessLogic.Services
             {
                 return false;
             }
-            await _playerProvider.DealCard(dealerId, sessionId);
+            await DealCard(dealerId, sessionId);
             return await DealerTurn(dealerId, sessionId);
+        }
+
+        public async Task DealFirstTwoCards(List<int> playerIds, int sessionId)
+        {
+            foreach (var playerId in playerIds)
+            {
+                await DealCard(playerId, sessionId);
+                await DealCard(playerId, sessionId);
+            }
+        }
+
+        public async Task DealCard(int playerId, int sessionId)
+        {
+            var deck = await _deckProvider.GetShuffledDeck();
+            int cardId = deck[0].Id;
+            await _playerProvider.GivePlayerCard(playerId, sessionId, cardId);
         }
 
         public async Task CloseGameSession(int sessionId)

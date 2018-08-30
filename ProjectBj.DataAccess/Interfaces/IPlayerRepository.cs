@@ -18,7 +18,7 @@ namespace ProjectBj.DataAccess.Interfaces
         Task<ICollection<Card>> GetCards(Player player, int sessionId);
         Task Delete(Player player);
         Task Update(Player player);
-        Task AddCard(Player player, Card card, int sessionId);
+        Task AddCard(Player player, int cardId, int sessionId);
         Task DeleteCards(Player player);
         Task DeleteNonHumanPlayers(string dealerName);
     }
