@@ -49,6 +49,7 @@
     <Compile Include="Game\SessionViewModel.cs" />
     <Compile Include="Home\GameSettings.cs" />
     <Compile Include="Game\PlayerViewModel.cs" />
+    <Compile Include="Logs\SystemLogViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
