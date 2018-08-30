@@ -46,4 +46,9 @@ export class ApiService {
         let requestUrl = `${apiUrl}/Logs`;
         return this.http.post<GameLog>(requestUrl, identifier, requestOptions);
     }
+
+    getSystemLogs(): Observable<any> {
+        let requestUrl = `${apiUrl}/../Log/SystemLogs`;
+        return this.http.get<SystemLog>(requestUrl, requestOptions);
+    }
 }
