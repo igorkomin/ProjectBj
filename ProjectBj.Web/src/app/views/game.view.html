@@ -50,7 +50,7 @@
                                [disabled]="game && game?.player.gameResult == 0"
                                type="range" min="50" max="100" value="50" step="5" class="slider">
                     </div>
-                    <h3 id="bet_output">{{ sliderValue | currency }}</h3>
+                    <h3 id="bet_output">{{ sliderBetValue | currency }}</h3>
                     <div class="btn-group-vertical">
                         <button [disabled]="game && game?.player.gameResult == 0" (click)="getGame()" type="button" class="btn btn-primary">NEW GAME</button>
                         <button [disabled]="game && game?.player.gameResult == 0" (click)="getLoadedGame()" type="button" class="btn btn-secondary">LOAD GAME</button>

@@ -20,7 +20,7 @@ import { Identifier } from '../models/identifier.model';
 export class GameComponent implements OnInit {
     playerName: string;
     botsNumber: number = 0;
-    sliderValue: number = 50;
+    sliderBetValue: number = 50;
     sessionId: number;
     playerId: number;
     error: string;
@@ -43,7 +43,7 @@ export class GameComponent implements OnInit {
     }
 
     updateSliderValue(value: number): void {
-        this.sliderValue = value;
+        this.sliderBetValue = value;
     }
 
     IncBotsNumber(): void {
@@ -59,7 +59,7 @@ export class GameComponent implements OnInit {
         let gameSettings = new Settings();
         gameSettings.playerName = this.playerName;
         gameSettings.botsNumber = this.botsNumber;
-        gameSettings.bet = this.sliderValue;
+        gameSettings.bet = this.sliderBetValue;
         this.apiService.getGame(gameSettings).subscribe(
             response => {
                 this.game = response;
