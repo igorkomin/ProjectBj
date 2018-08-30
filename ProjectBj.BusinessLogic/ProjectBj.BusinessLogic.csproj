@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\ISystemLogService.cs" />
     <Compile Include="Providers\DeckProvider.cs" />
     <Compile Include="Enums\CardRanks.cs" />
     <Compile Include="Enums\CardSuits.cs" />
@@ -64,6 +65,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\GameService.cs" />
     <Compile Include="Providers\SessionProvider.cs" />
+    <Compile Include="Services\SystemLogService.cs" />
     <Compile Include="Utility\AutofacProviderTypeRegistry.cs" />
     <Compile Include="Utility\AutofacServiceTypeRegistry.cs" />
   </ItemGroup>
