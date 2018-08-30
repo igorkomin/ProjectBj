@@ -1,15 +1,15 @@
 <kendo-grid [data]="gridView"
-            [pageSize]="pageSize"
-            [skip]="skip"
+            [pageSize]="state.take"
+            [skip]="state.skip"
             [pageable]="true"
             [height]="500"
+            [filterable]="true"
             [sortable]="{
                 allowUnsort: allowUnsort,
                 mode: 'single'
             }"
-            [sort]="sort"
-            (pageChange)="pageChange($event)"
-            (sortChange)="sortChange($event)"
+            [sort]="state.sort"
+            (dataStateChange)="dataStateChange($event)"
             >
     <kendo-grid-column field="id" title="ID" width="40">
     </kendo-grid-column>

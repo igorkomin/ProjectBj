@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { GridDataResult, PageChangeEvent } from '@progress/kendo-angular-grid';
+import { GridDataResult, PageChangeEvent, DataStateChangeEvent } from '@progress/kendo-angular-grid';
 import { ActivatedRoute, Router } from '@angular/router';
-import { State, SortDescriptor, orderBy } from '@progress/kendo-data-query';
+import { State, SortDescriptor, orderBy, process } from '@progress/kendo-data-query';
 
 import { ApiService } from '../services/api.service';
 import { SystemLog } from '../models/system-log.model';
@@ -14,15 +14,25 @@ import { SystemLog } from '../models/system-log.model';
 })
 export class LogsComponent implements OnInit {
     logs: any;
-    gridView: GridDataResult;
     data: Object[];
-    pageSize = 10;
-    skip = 0;
+
     public allowUnsort = true;
     public sort: SortDescriptor[] = [{
         field: 'level',
         dir: 'asc'
     }];
+
+    public state: State = {
+        skip: 0,
+        take: 10,
+
+        filter: {
+            logic: 'and',
+            filters: [{ field: 'level', operator: 'contains', value: 'Info' }]
+        },
+    };
+    gridView: GridDataResult;
+
 
     constructor(
         private router: Router,
@@ -37,7 +47,7 @@ export class LogsComponent implements OnInit {
         this.apiService.getSystemLogs().subscribe(
             response => {
                 this.logs = response;
-                this.loadItems();
+                this.gridView = process(this.logs, this.state);
             },
             exception => {
                 console.error(exception);
@@ -45,20 +55,8 @@ export class LogsComponent implements OnInit {
         );
     }
 
-    pageChange(event: PageChangeEvent): void {
-        this.skip = event.skip;
-        this.loadItems();
-    }
-
-    sortChange(sort: SortDescriptor[]): void {
-        this.sort = sort;
-        this.loadItems();
-    }
-
-    loadItems(): void {
-        this.gridView = {
-            data: orderBy(this.logs, this.sort).slice(this.skip, this.skip + this.pageSize),
-            total: this.logs.length
-        };
+    public dataStateChange(state: DataStateChangeEvent): void {
+        this.state = state;
+        this.gridView = process(this.logs, this.state);
     }
 }
