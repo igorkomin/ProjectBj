@@ -1,12 +1,9 @@
-<h1>Logs</h1>
-<kendo-grid [data]="logs"
-            [pageSize]="state.take"
-            [skip]="state.skip"
+<kendo-grid [data]="gridView"
+            [pageSize]="pageSize"
+            [skip]="skip"
             [pageable]="true"
-            [sortable]="true"
-            [filterable]="true"
-            [height]="400"
-            (dataStateChange)="dataStateChange($event)"
+            [height]="500"
+            (pageChange)="pageChange($event)"
             >
     <kendo-grid-column field="id" title="ID" width="40">
     </kendo-grid-column>
@@ -15,8 +12,6 @@
     <kendo-grid-column field="logged" title="Logged">
     </kendo-grid-column>
     <kendo-grid-column field="level" title="Level">
-    </kendo-grid-column>
-    <kendo-grid-column field="userName" title="UserName">
     </kendo-grid-column>
     <kendo-grid-column field="message" title="Message">
     </kendo-grid-column>
