@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { GridDataResult, PageChangeEvent } from '@progress/kendo-angular-grid';
 import { ActivatedRoute, Router } from '@angular/router';
+import { State } from '@progress/kendo-data-query';
+
 import { ApiService } from '../services/api.service';
-import { State, process } from '@progress/kendo-data-query';
-import { PageChangeEvent, GridDataResult, DataStateChangeEvent } from '@progress/kendo-angular-grid';
+import { SystemLog } from '../models/system-log.model';
+import { customers } from './customers';
 
 @Component({
     selector: 'app-logs',
@@ -10,18 +14,15 @@ import { PageChangeEvent, GridDataResult, DataStateChangeEvent } from '@progress
     styleUrls: ['./../styles/logs.style.css']
 })
 export class LogsComponent implements OnInit {
-
-    logs: any[];
-
-    state: State = {
-        skip: 0,
-        take: 10
-    };
+    logs: any;
     gridView: GridDataResult;
+    pageSize = 10;
+    skip = 0;
+    data: Object[];
 
     constructor(
         private router: Router,
-        private apiService: ApiService
+        private apiService: ApiService,
     ) { }
 
     ngOnInit() {
@@ -32,7 +33,7 @@ export class LogsComponent implements OnInit {
         this.apiService.getSystemLogs().subscribe(
             response => {
                 this.logs = response;
-                this.gridView = process(this.logs, this.state);
+                this.loadItems();
             },
             exception => {
                 console.error(exception);
@@ -40,8 +41,15 @@ export class LogsComponent implements OnInit {
         );
     }
 
-    public dataStateChange(state: DataStateChangeEvent): void {
-        this.state = state;
-        this.gridView = process(this.logs, this.state);
+    pageChange(event: PageChangeEvent): void {
+        this.skip = event.skip;
+        this.loadItems();
+    }
+
+    loadItems(): void {
+        this.gridView = {
+            data: this.logs.slice(this.skip, this.skip + this.pageSize),
+            total: this.logs.length
+        };
     }
 }
