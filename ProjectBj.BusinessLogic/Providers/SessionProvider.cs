@@ -15,12 +15,10 @@ namespace ProjectBj.BusinessLogic.Providers
     public class SessionProvider : ISessionProvider
     {
         private IGameSessionRepository _sessionRepository;
-        private IPlayerRepository _playerRepository;
 
-        public SessionProvider(IGameSessionRepository sessionRepository, IPlayerRepository playerRepository)
+        public SessionProvider(IGameSessionRepository sessionRepository)
         {
             _sessionRepository = sessionRepository;
-            _playerRepository = playerRepository;
         }
 
         public async Task<SessionViewModel> CreateSession()
@@ -49,8 +47,7 @@ namespace ProjectBj.BusinessLogic.Providers
 
         public async Task<SessionViewModel> GetSessionByPlayerId(int playerId)
         {
-            Player player = await _playerRepository.GetById(playerId);
-            GameSession currentSession = await _sessionRepository.GetCurrentSession(player);
+            GameSession currentSession = await _sessionRepository.GetCurrentSession(playerId);
             
             if (currentSession == null)
             {

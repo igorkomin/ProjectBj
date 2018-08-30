@@ -166,6 +166,7 @@ namespace ProjectBj.BusinessLogic.Services
         public async Task<GameViewModel> Hit(int playerId, int sessionId)
         {
             Log.Info(StringHelper.PlayerHits(playerId));
+            await _logProvider.CreateLogEntry(StringHelper.HumanTakesCard, sessionId);
             await DealCard(playerId, sessionId);
             GameViewModel gameViewModel = await UpdateViewModel(playerId, sessionId);
             int handValue = await _playerProvider.GetHandValue(playerId, sessionId);
@@ -218,6 +219,7 @@ namespace ProjectBj.BusinessLogic.Services
                 return false;
             }
             await DealCard(dealerId, sessionId);
+            await _logProvider.CreateLogEntry(StringHelper.DealerTakesCard, sessionId);
             return await DealerTurn(dealerId, sessionId);
         }
 

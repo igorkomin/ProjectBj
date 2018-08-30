@@ -89,7 +89,7 @@ namespace ProjectBj.DataAccess.Repositories
             }
         }
 
-        public async Task<GameSession> GetCurrentSession(Player player)
+        public async Task<GameSession> GetCurrentSession(int playerId)
         {
             try
             {
@@ -98,9 +98,9 @@ namespace ProjectBj.DataAccess.Repositories
                     var sqlQuery = "SELECT gs.* FROM PlayerHands ph " +
                                    "JOIN Players p ON ( ph.PlayerId = p.Id ) " +
                                    "JOIN GameSessions gs ON ( ph.SessionId = gs.Id ) " +
-                                   "WHERE gs.IsOpen = 1 AND p.Id = @Id";
+                                   $"WHERE gs.IsOpen = 1 AND p.Id = {playerId}";
 
-                    var session = await db.QueryAsync<GameSession>(sqlQuery, player);
+                    var session = await db.QueryAsync<GameSession>(sqlQuery);
                     return session.FirstOrDefault();
                 }
             }

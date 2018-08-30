@@ -16,6 +16,9 @@ namespace ProjectBj.BusinessLogic.Helpers
         public static readonly string GettingAllLogs = "Getting all game logs";
         public static readonly string NameReserved = "This name is reserved";
         public static readonly string NoGameToLoad = "No game to load";
+        public static readonly string DealerTakesCard = "Dealer takes another card";
+        public static readonly string HumanTakesCard = "Human takes another card";
+
 
         public static string GameStarted(int sessionId)
         {
