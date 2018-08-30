@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProjectBj.ViewModels.Game
+namespace ProjectBj.Web
 {
-    public class IdentifierViewModel
+    public class Identifier
     {
         public int PlayerId { get; set; }
         public int SessionId { get; set; }
