@@ -24,7 +24,7 @@ namespace ProjectBj.Web.Controllers
         {
             try
             {
-                GameViewModel model = await _service.NewGame(settings.PlayerName, settings.BotsNumber);
+                GameViewModel model = await _service.NewGame(settings.PlayerName, settings.BotsNumber, settings.Bet);
                 return Ok(model);
             }
             catch (Exception exception)
