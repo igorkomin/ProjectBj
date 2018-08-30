@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 import { Settings } from '../models/settings.model';
 import { Game } from '../models/game.model';
-import { Log } from '../models/log.model';
+import { SystemLog } from '../models/system-log.model';
 import { GameLog } from '../models/gamelog.model';
 import { Identifier } from '../models/identifier.model';
 

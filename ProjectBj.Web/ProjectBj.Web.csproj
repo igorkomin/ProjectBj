@@ -282,7 +282,7 @@
     <TypeScriptCompile Include="src\app\models\hand.model.ts" />
     <TypeScriptCompile Include="src\app\models\identifier.model.ts" />
     <TypeScriptCompile Include="src\app\models\gamelog.model.ts" />
-    <TypeScriptCompile Include="src\app\models\log.model.ts" />
+    <TypeScriptCompile Include="src\app\models\system-log.model.ts" />
     <TypeScriptCompile Include="src\app\models\login.model.ts" />
     <TypeScriptCompile Include="src\app\models\player.model.ts" />
     <TypeScriptCompile Include="src\app\models\settings.model.ts" />
