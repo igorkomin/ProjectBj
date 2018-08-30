@@ -17,6 +17,7 @@ namespace ProjectBj.BusinessLogic.Utility
         public static ContainerBuilder RegisterTypes(ContainerBuilder builder, string connectionString)
         {
             builder.RegisterType<GameService>().As<IGameService>();
+            builder.RegisterType<SystemLogService>().As<ISystemLogService>();
 
             AutofacProviderTypeRegistry.RegisterTypes(builder, connectionString);
 
