@@ -29,7 +29,6 @@ export class LogsComponent implements OnInit {
     };
     gridView: GridDataResult;
 
-
     constructor(
         private router: Router,
         private apiService: ApiService,
