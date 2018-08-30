@@ -1,0 +1,30 @@
+<h1>Logs</h1>
+<kendo-grid [data]="logs"
+            [pageSize]="state.take"
+            [skip]="state.skip"
+            [pageable]="true"
+            [sortable]="true"
+            [filterable]="true"
+            [height]="400"
+            (dataStateChange)="dataStateChange($event)"
+            >
+    <kendo-grid-column field="id" title="ID" width="40">
+    </kendo-grid-column>
+    <kendo-grid-column field="machineName" title="Machine Name">
+    </kendo-grid-column>
+    <kendo-grid-column field="logged" title="Logged">
+    </kendo-grid-column>
+    <kendo-grid-column field="level" title="Level">
+    </kendo-grid-column>
+    <kendo-grid-column field="userName" title="UserName">
+    </kendo-grid-column>
+    <kendo-grid-column field="message" title="Message">
+    </kendo-grid-column>
+    <kendo-grid-column field="logger" title="Logger">
+    </kendo-grid-column>
+    <kendo-grid-column field="callSite" title="Call Site">
+    </kendo-grid-column>
+    <kendo-grid-column field="exception" title="Exception">
+    </kendo-grid-column>
+
+</kendo-grid>
