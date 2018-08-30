@@ -276,6 +276,7 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="src\app\components\customers.ts" />
     <TypeScriptCompile Include="src\app\components\logs.component.ts" />
     <TypeScriptCompile Include="src\app\models\card.model.ts" />
     <TypeScriptCompile Include="src\app\models\dealer.model.ts" />
