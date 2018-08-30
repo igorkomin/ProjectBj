@@ -17,10 +17,6 @@ export class LogsComponent implements OnInit {
     data: Object[];
 
     public allowUnsort = true;
-    public sort: SortDescriptor[] = [{
-        field: 'level',
-        dir: 'asc'
-    }];
 
     public state: State = {
         skip: 0,
