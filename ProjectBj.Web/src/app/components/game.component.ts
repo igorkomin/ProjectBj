@@ -68,7 +68,7 @@ export class GameComponent implements OnInit {
                 this.getLogs();
             },
             exception => {
-                console.error(exception.error.exceptionMessage);
+                console.error(exception);
                 this.error = exception.error.exceptionMessage;
             }
         );
@@ -86,7 +86,7 @@ export class GameComponent implements OnInit {
                 this.getLogs();
             },
             exception => {
-                console.error(exception.error.exceptionMessage);
+                console.error(exception);
                 this.error = exception.error.exceptionMessage;
             }
         );
@@ -103,7 +103,7 @@ export class GameComponent implements OnInit {
                 this.getLogs();
             },
             exception => {
-                console.error(exception.error.exceptionMessage);
+                console.error(exception);
                 this.error = exception.error.exceptionMessage;
             }
         );
@@ -120,7 +120,7 @@ export class GameComponent implements OnInit {
                 this.getLogs();
             },
             exception => {
-                console.error(exception.error.exceptionMessage);
+                console.error(exception);
                 this.error = exception.error.exceptionMessage;
             }
         );
@@ -135,7 +135,7 @@ export class GameComponent implements OnInit {
                 this.log = response;
             },
             exception => {
-                console.error(exception.error.exceptionMessage);
+                console.error(exception);
                 this.error = exception.error.exceptionMessage;
             }
         );
