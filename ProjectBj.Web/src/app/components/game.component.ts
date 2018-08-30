@@ -59,6 +59,7 @@ export class GameComponent implements OnInit {
         let gameSettings = new Settings();
         gameSettings.playerName = this.playerName;
         gameSettings.botsNumber = this.botsNumber;
+        gameSettings.bet = this.sliderValue;
         this.apiService.getGame(gameSettings).subscribe(
             response => {
                 this.game = response;
