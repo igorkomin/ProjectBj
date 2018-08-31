@@ -5,11 +5,11 @@ import { LogsComponent } from '../../components/logs.component';
 import { SharedModule } from './../shared.module';
 
 @NgModule({
-  imports: [
-      SharedModule,
-      LogsRoutingModule,
-      GridModule 
-  ],
+    imports: [
+        SharedModule,
+        LogsRoutingModule,
+        GridModule 
+    ],
   declarations: [LogsComponent]
 })
 export class LogsModule { }
