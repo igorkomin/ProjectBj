@@ -16,8 +16,6 @@ namespace ProjectBj.BusinessLogic.Helpers
         public static readonly string GettingAllLogs = "Getting all game logs";
         public static readonly string NameReserved = "This name is reserved";
         public static readonly string NoGameToLoad = "No game to load";
-        public static readonly string DealerTakesCard = "Dealer takes another card";
-        public static readonly string HumanTakesCard = "Human takes another card";
 
 
         public static string GetGameStartedMessage(int sessionId)
@@ -40,14 +38,14 @@ namespace ProjectBj.BusinessLogic.Helpers
             return $"Getting game id{sessionId} log";
         }
 
-        public static string GetPlayerScoreMessage(string playerName, int score)
+        public static string GetPlayerScoreMessage(int score)
         {
-            return $"{playerName} hand's total score: {score}";
+            return $"hand's total score: {score}";
         }
 
-        public static string GetPlayerTakesCardMessage(string playerName, string cardRank, string cardSuit)
+        public static string GetPlayerTakesCardMessage(string cardRank, string cardSuit)
         {
-            return $"{playerName} takes {cardRank} of {cardSuit}";
+            return $"takes {cardRank} of {cardSuit}";
         }
 
         public static string GetPlayerHitsMessage(int playerId)

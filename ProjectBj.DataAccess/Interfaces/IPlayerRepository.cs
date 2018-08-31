@@ -11,15 +11,12 @@ namespace ProjectBj.DataAccess.Interfaces
     {
         Task<Player> CreateOne(Player player);
         Task<Player> GetById(int id);
+        Task<ICollection<Card>> GetCards(Player player, int sessionId);
         Task<ICollection<Player>> CreateMany(ICollection<Player> players);
         Task<ICollection<Player>> FindPlayers(string name);
-        Task<ICollection<Player>> GetAllPlayers();
         Task<ICollection<Player>> GetSessionBots(int sessionId);
-        Task<ICollection<Card>> GetCards(Player player, int sessionId);
-        Task Delete(Player player);
         Task Update(Player player);
         Task AddCard(Player player, int cardId, int sessionId);
-        Task DeleteCards(Player player);
         Task DeleteNonHumanPlayers(string dealerName);
     }
 }

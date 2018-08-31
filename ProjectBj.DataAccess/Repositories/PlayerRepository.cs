@@ -46,30 +46,11 @@ namespace ProjectBj.DataAccess.Repositories
             {
                 using (IDbConnection db = new SqlConnection(_connectionString))
                 {
-                    foreach (var player in players)
-                    {
-                        player.Id = await db.InsertAsync(player);
-                    }
+                    await db.InsertAsync(players);
                     return players;
                 }
             }
             catch(SqlException exception)
-            {
-                Log.Error(exception.Message);
-                throw new DataSourceException(exception.Message, exception);
-            }
-        }
-
-        public async Task Delete(Player player)
-        {
-            try
-            {
-                using (IDbConnection db = new SqlConnection(_connectionString))
-                {
-                    await db.DeleteAsync(player);
-                }
-            }
-            catch (SqlException exception)
             {
                 Log.Error(exception.Message);
                 throw new DataSourceException(exception.Message, exception);
@@ -102,23 +83,6 @@ namespace ProjectBj.DataAccess.Repositories
                 {
                     var player = await db.GetAsync<Player>(id);
                     return player;
-                }
-            }
-            catch (SqlException exception)
-            {
-                Log.Error(exception.Message);
-                throw new DataSourceException(exception.Message, exception);
-            }
-        }
-
-        public async Task<ICollection<Player>> GetAllPlayers()
-        {
-            try
-            {
-                using (IDbConnection db = new SqlConnection(_connectionString))
-                {
-                    var players = await db.GetAllAsync<Player>();
-                    return players.AsList();
                 }
             }
             catch (SqlException exception)
@@ -200,23 +164,6 @@ namespace ProjectBj.DataAccess.Repositories
                                "AND p.InGame = 1";
                 var bots = await db.QueryAsync<Player>(sqlQuery, new { sessionId });
                 return bots.AsList();
-            }
-        }
-
-        public async Task DeleteCards(Player player)
-        {
-            try
-            {
-                using (IDbConnection db = new SqlConnection(_connectionString))
-                {
-                    var sqlQuery = "DELETE FROM PlayerHands WHERE PlayerId = @Id";
-                    await db.ExecuteAsync(sqlQuery, player);
-                }
-            }
-            catch (SqlException exception)
-            {
-                Log.Error(exception.Message);
-                throw new DataSourceException(exception.Message, exception);
             }
         }
 

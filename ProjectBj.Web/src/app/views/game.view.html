@@ -101,7 +101,7 @@
                     <span>GAME LOG</span>
                 </div>
                 <div *ngFor="let entry of log">
-                    [{{ entry.time | date:'HH:mm:ss' }}] {{ entry.message }}
+                    [{{ entry.time | date:'HH:mm:ss' }}] <b>{{ entry.player }}</b> {{ entry.message }}
                 </div>
             </div>
         </div>

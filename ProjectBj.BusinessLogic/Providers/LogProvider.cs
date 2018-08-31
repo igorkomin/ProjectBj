@@ -21,10 +21,11 @@ namespace ProjectBj.BusinessLogic.Providers
             _logRepository = logRepository;
         }
 
-        public async Task CreateLogEntry(string message, int sessionId)
+        public async Task CreateLogEntry(string player, string message, int sessionId)
         {
             LogEntry entry = new LogEntry
             {
+                Player = player,
                 SessionId = sessionId,
                 Message = message,
                 Time = DateTime.Now
@@ -33,37 +34,6 @@ namespace ProjectBj.BusinessLogic.Providers
             {
                 Log.Info(StringHelper.CreatingLogEntry);
                 await _logRepository.CreateEntry(entry);
-            }
-            catch (Exception exception)
-            {
-                Log.Error(exception.Message);
-                throw exception;
-            }
-        }
-
-        public async Task<LogEntry> GetLogEntry(int id)
-        {
-            LogEntry entry;
-            try
-            {
-                Log.Info(StringHelper.GettingLogEntry);
-                entry = await _logRepository.GetEntryById(id);
-                return entry;
-            }
-            catch (Exception exception)
-            {
-                Log.Error(exception.Message);
-                throw exception;
-            }
-        }
-
-        public async Task<List<LogEntry>> GetLogs()
-        {
-            try
-            {
-                Log.Info(StringHelper.GettingAllLogs);
-                var entries = await _logRepository.GetAllLogs();
-                return entries.ToList();
             }
             catch (Exception exception)
             {

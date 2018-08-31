@@ -73,23 +73,7 @@ namespace ProjectBj.DataAccess.Repositories
             }
         }
 
-        public async Task Delete(GameSession session)
-        {
-            try
-            {
-                using (IDbConnection db = new SqlConnection(_connectionString))
-                {
-                    await db.DeleteAsync(session);
-                }
-            }
-            catch (SqlException exception)
-            {
-                Log.Error(exception.Message);
-                throw new DataSourceException(exception.Message, exception);
-            }
-        }
-
-        public async Task<GameSession> GetCurrentSession(int playerId)
+        public async Task<GameSession> GetUnfinishedSession(int playerId)
         {
             try
             {

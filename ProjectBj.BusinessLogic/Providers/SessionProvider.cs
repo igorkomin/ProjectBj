@@ -47,7 +47,7 @@ namespace ProjectBj.BusinessLogic.Providers
 
         public async Task<SessionViewModel> GetSessionByPlayerId(int playerId)
         {
-            GameSession currentSession = await _sessionRepository.GetCurrentSession(playerId);
+            GameSession currentSession = await _sessionRepository.GetUnfinishedSession(playerId);
             
             if (currentSession == null)
             {

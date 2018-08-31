@@ -30,7 +30,7 @@ namespace ProjectBj.BusinessLogic.Services
             _sessionProvider = sessionProvider;
         }
         
-        public async Task<GameViewModel> GetGameViewModel()
+        public async Task<GameViewModel> CreateGameViewModel()
         {
             var player = await _playerProvider.GetPlayerViewModel(_playerName);
             var session = await _sessionProvider.CreateSession();
@@ -97,8 +97,8 @@ namespace ProjectBj.BusinessLogic.Services
             var result = await GetGameResult(playerId, playerScore, dealerScore, _bet);
             gameViewModel.Player.GameResult = (int)result;
             gameViewModel.Player.GameResultMessage = result.ToString();
-            await _logProvider.CreateLogEntry(StringHelper.GetPlayerScoreMessage(gameViewModel.Dealer.Name, dealerScore), sessionId);
-            await _logProvider.CreateLogEntry(StringHelper.GetPlayerScoreMessage(gameViewModel.Player.Name, playerScore), sessionId);
+            await _logProvider.CreateLogEntry(gameViewModel.Dealer.Name, StringHelper.GetPlayerScoreMessage(dealerScore), sessionId);
+            await _logProvider.CreateLogEntry(gameViewModel.Player.Name, StringHelper.GetPlayerScoreMessage(playerScore), sessionId);
 
             foreach (var bot in gameViewModel.Bots)
             {
@@ -107,14 +107,14 @@ namespace ProjectBj.BusinessLogic.Services
                 result = await GetGameResult(bot.Id, botScore, dealerScore, botBet);
                 bot.GameResult = (int)result;
                 bot.GameResultMessage = result.ToString();
-                await _logProvider.CreateLogEntry(StringHelper.GetPlayerScoreMessage(bot.Name, botScore), sessionId);
+                await _logProvider.CreateLogEntry(bot.Name, StringHelper.GetPlayerScoreMessage(botScore), sessionId);
             }
             return gameViewModel;
         }
 
         public async Task<GameViewModel> DealFirstCards()
         {
-            GameViewModel model = await GetGameViewModel();
+            GameViewModel model = await CreateGameViewModel();
             List<int> playerIds = new List<int>
             {
                 model.Player.Id,
@@ -228,8 +228,9 @@ namespace ProjectBj.BusinessLogic.Services
             var deck = await _deckProvider.GetShuffledDeck();
             var card = deck[0];
             var player = await _playerProvider.GetPlayerById(playerId);
-            await _logProvider.CreateLogEntry(StringHelper.GetPlayerTakesCardMessage(
-                player.Name, EnumHelper.GetRankName(card.Rank), card.Suit), sessionId);
+            await _logProvider.CreateLogEntry(
+                player.Name, StringHelper.GetPlayerTakesCardMessage(
+                    EnumHelper.GetRankName(card.Rank), card.Suit), sessionId);
             await _playerProvider.GivePlayerCard(playerId, sessionId, card.Id);
         }
 
@@ -249,6 +250,7 @@ namespace ProjectBj.BusinessLogic.Services
                 {
                     SessionId = entry.SessionId,
                     Time = entry.Time,
+                    Player = entry.Player,
                     Message = entry.Message
                 };
                 logEntryViewModels.Add(logEntryViewModel);

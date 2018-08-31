@@ -39,23 +39,6 @@ namespace ProjectBj.DataAccess.Repositories
             }
         }
 
-        public async Task<LogEntry> GetEntryById(int id)
-        {
-            try
-            {
-                using (IDbConnection db = new SqlConnection(_connectionString))
-                {
-                    var entry = await db.GetAsync<LogEntry>(id);
-                    return entry;
-                }
-            }
-            catch (SqlException exception)
-            {
-                Log.Error(exception.Message);
-                throw new DataSourceException(exception.Message, exception);
-            }
-        }
-
         public async Task<ICollection<LogEntry>> GetSessionLogs(int sessionId)
         {
             var allLogs = await GetAllLogs();

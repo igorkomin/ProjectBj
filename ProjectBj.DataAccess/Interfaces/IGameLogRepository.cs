@@ -9,9 +9,8 @@ namespace ProjectBj.DataAccess.Interfaces
 {
     public interface IGameLogRepository
     {
-        Task<LogEntry> GetEntryById(int id);
+        Task CreateEntry(LogEntry entry);
         Task<ICollection<LogEntry>> GetAllLogs();
         Task<ICollection<LogEntry>> GetSessionLogs(int sessionId);
-        Task CreateEntry(LogEntry entry);
     }
 }

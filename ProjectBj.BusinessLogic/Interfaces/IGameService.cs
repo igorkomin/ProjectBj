@@ -9,7 +9,7 @@ namespace ProjectBj.BusinessLogic.Interfaces
 {
     public interface IGameService
     {
-        Task<GameViewModel> GetGameViewModel();
+        Task<GameViewModel> CreateGameViewModel();
         Task<GameViewModel> DealFirstCards();
         Task<GameViewModel> Hit(int playerId, int sessionId);
         Task<GameViewModel> NewGame(string playerName, int botsNumber, int bet);
