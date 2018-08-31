@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Dapper;
+using Dapper.Contrib.Extensions;
+using ProjectBj.DataAccess.ExceptionHandlers;
+using ProjectBj.DataAccess.Interfaces;
+using ProjectBj.Entities;
+using ProjectBj.Logger;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Dapper;
-using Dapper.Contrib.Extensions;
-using ProjectBj.Entities;
-using ProjectBj.DataAccess.Interfaces;
-using ProjectBj.DataAccess.ExceptionHandlers;
-using ProjectBj.Logger;
 
 namespace ProjectBj.DataAccess.Repositories
 {

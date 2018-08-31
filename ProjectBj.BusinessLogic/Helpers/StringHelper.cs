@@ -1,5 +1,4 @@
-﻿using ProjectBj.BusinessLogic.Enums;
-namespace ProjectBj.BusinessLogic.Helpers
+﻿namespace ProjectBj.BusinessLogic.Helpers
 {
     public static class StringHelper
     {
@@ -16,7 +15,6 @@ namespace ProjectBj.BusinessLogic.Helpers
         public static readonly string GettingAllLogs = "Getting all game logs";
         public static readonly string NameReserved = "This name is reserved";
         public static readonly string NoGameToLoad = "No game to load";
-
 
         public static string GetGameStartedMessage(int sessionId)
         {

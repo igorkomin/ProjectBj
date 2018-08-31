@@ -1,9 +1,6 @@
-﻿using System;
+﻿using ProjectBj.ViewModels.Logs;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using ProjectBj.ViewModels.Logs;
 
 namespace ProjectBj.BusinessLogic.Interfaces
 {

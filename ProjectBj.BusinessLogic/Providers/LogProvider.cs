@@ -1,14 +1,12 @@
-﻿using System;
+﻿using ProjectBj.BusinessLogic.Helpers;
+using ProjectBj.BusinessLogic.Interfaces;
+using ProjectBj.DataAccess.Interfaces;
+using ProjectBj.Entities;
+using ProjectBj.Logger;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using ProjectBj.Entities;
-using ProjectBj.DataAccess.Interfaces;
-using ProjectBj.DataAccess.Repositories;
-using ProjectBj.BusinessLogic.Helpers;
-using ProjectBj.BusinessLogic.Interfaces;
-using ProjectBj.Logger;
 
 namespace ProjectBj.BusinessLogic.Providers
 {

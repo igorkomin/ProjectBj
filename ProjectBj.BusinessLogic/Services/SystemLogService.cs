@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ProjectBj.BusinessLogic.Interfaces;
+﻿using ProjectBj.BusinessLogic.Interfaces;
 using ProjectBj.DataAccess.Interfaces;
-using ProjectBj.ViewModels.Logs;
 using ProjectBj.Logger;
+using ProjectBj.ViewModels.Logs;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace ProjectBj.BusinessLogic.Services
 {

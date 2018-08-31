@@ -1,9 +1,6 @@
-﻿using System;
+﻿using ProjectBj.ViewModels.Game;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using ProjectBj.ViewModels.Game;
 
 namespace ProjectBj.BusinessLogic.Interfaces
 {

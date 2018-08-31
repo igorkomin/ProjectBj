@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ProjectBj.Logger;
-using ProjectBj.ViewModels.Game;
-using ProjectBj.BusinessLogic.Enums;
+﻿using ProjectBj.BusinessLogic.Enums;
 using ProjectBj.BusinessLogic.Helpers;
 using ProjectBj.BusinessLogic.Interfaces;
+using ProjectBj.Logger;
+using ProjectBj.ViewModels.Game;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace ProjectBj.BusinessLogic.Services
 {

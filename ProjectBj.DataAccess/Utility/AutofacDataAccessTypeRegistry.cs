@@ -1,11 +1,6 @@
 ﻿using Autofac;
 using ProjectBj.DataAccess.Interfaces;
 using ProjectBj.DataAccess.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ProjectBj.DataAccess.Utility
 {

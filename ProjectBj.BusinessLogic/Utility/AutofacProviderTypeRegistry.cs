@@ -1,12 +1,7 @@
 ﻿using Autofac;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ProjectBj.DataAccess.Utility;
 using ProjectBj.BusinessLogic.Interfaces;
 using ProjectBj.BusinessLogic.Providers;
+using ProjectBj.DataAccess.Utility;
 
 namespace ProjectBj.BusinessLogic.Utility
 {
