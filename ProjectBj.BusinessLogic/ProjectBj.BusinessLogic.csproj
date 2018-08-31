@@ -55,7 +55,7 @@
     <Compile Include="Helpers\EnumHelper.cs" />
     <Compile Include="Helpers\StringHelper.cs" />
     <Compile Include="Helpers\ValueHelper.cs" />
-    <Compile Include="Interfaces\IDeckProvider.cs" />
+    <Compile Include="Interfaces\ICardProvider.cs" />
     <Compile Include="Interfaces\IGameService.cs" />
     <Compile Include="Interfaces\ILogProvider.cs" />
     <Compile Include="Interfaces\ISessionProvider.cs" />
