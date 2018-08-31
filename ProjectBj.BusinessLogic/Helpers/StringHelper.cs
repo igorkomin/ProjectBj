@@ -38,7 +38,7 @@
 
         public static string GetPlayerScoreMessage(int score)
         {
-            return $"hand's total score: {score}";
+            return $"hand's score: {score}";
         }
 
         public static string GetPlayerTakesCardMessage(string cardRank, string cardSuit)
