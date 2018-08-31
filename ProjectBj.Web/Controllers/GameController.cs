@@ -48,7 +48,7 @@ namespace ProjectBj.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<IHttpActionResult> Hit([FromBody]Identifier identifier)
+        public async Task<IHttpActionResult> Hit([FromBody]IdentifierViewModel identifier)
         {
             try
             {
@@ -62,7 +62,7 @@ namespace ProjectBj.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<IHttpActionResult> Stand([FromBody]Identifier identifier)
+        public async Task<IHttpActionResult> Stand([FromBody]IdentifierViewModel identifier)
         {
             try
             {
@@ -76,7 +76,7 @@ namespace ProjectBj.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<IHttpActionResult> Logs([FromBody]Identifier identifier)
+        public async Task<IHttpActionResult> Logs([FromBody]IdentifierViewModel identifier)
         {
             try
             {
