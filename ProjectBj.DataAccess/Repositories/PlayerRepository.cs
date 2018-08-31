@@ -137,7 +137,6 @@ namespace ProjectBj.DataAccess.Repositories
                 {
                     var sqlQuery = "SELECT c.* FROM PlayerHands ph " +
                                    "JOIN Cards c ON ( ph.CardId = c.Id ) " +
-                                   //"JOIN Players p ON ( ph.PlayerId = p.Id ) " +
                                    "WHERE ph.PlayerId = @Id " +
                                    $"AND ph.SessionId = {sessionId}";
                     var cards = await db.QueryAsync<Card>(sqlQuery, player);
