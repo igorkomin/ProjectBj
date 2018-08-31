@@ -4,7 +4,6 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { GridModule } from '@progress/kendo-angular-grid';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { SharedModule } from './shared.module';
 import { AppComponent } from './../components/app.component';
 import { LoginComponent } from '../components/login.component';

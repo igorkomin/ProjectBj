@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-
 import { Game } from '../models/game.model';
 import { GameLog } from '../models/gamelog.model';
 import { Identifier } from '../models/identifier.model';
