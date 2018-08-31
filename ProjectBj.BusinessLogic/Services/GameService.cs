@@ -133,7 +133,7 @@ namespace ProjectBj.BusinessLogic.Services
         {
             if (playerName == StringHelper.DealerName)
             {
-                throw new Exception(StringHelper.NameReserved);
+                throw new ArgumentException(StringHelper.NameReserved);
             }
             _playerName = playerName;
             _botNumber = botsNumber;
@@ -147,7 +147,7 @@ namespace ProjectBj.BusinessLogic.Services
         {
             if(playerName == StringHelper.DealerName)
             {
-                throw new Exception(StringHelper.NameReserved);
+                throw new ArgumentException(StringHelper.NameReserved);
             }
             var player = await _playerProvider.PullPlayer(playerName);
             var lastSession = await _sessionProvider.GetSessionByPlayerId(player.Id);
