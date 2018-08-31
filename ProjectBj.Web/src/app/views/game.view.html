@@ -101,12 +101,14 @@
         </div>
         <div class="col-lg-3">
             <div *ngIf="log" id="log-view">
-                <div class="alert alert-primary" role="alert">
-                    <span>GAME LOG</span>
-                </div>
-                <div *ngFor="let entry of log">
-                    [{{ entry.time | date:'HH:mm:ss' }}] <b>{{ entry.player }}</b> {{ entry.message }}
-                </div>
+                <ul class="list-group">
+                    <li class="list-group-item active">GAME LOG</li>
+                    <li class="list-group-item">
+                        <div *ngFor="let entry of log">
+                            [{{ entry.time | date:'HH:mm:ss' }}] <b>{{ entry.player }}</b> {{ entry.message }}
+                        </div>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
