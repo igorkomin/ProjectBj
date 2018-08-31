@@ -1,10 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Game } from '../models/game.model';
+import { GameLog } from '../models/gamelog.model';
 import { Identifier } from '../models/identifier.model';
 import { Settings } from '../models/settings.model';
 import { ApiService } from '../services/api.service';
-
 
 @Component({
     selector: 'app-game',
@@ -23,8 +24,8 @@ export class GameComponent implements OnInit {
     sessionId: number;
     playerId: number;
     error: string;
-    game: any;
-    log: any;
+    game: Game;
+    log: GameLog;
 
     constructor(
         private apiService: ApiService,
