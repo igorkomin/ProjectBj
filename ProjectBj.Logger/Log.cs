@@ -9,7 +9,7 @@ namespace ProjectBj.Logger
 {
     public static class Log
     {
-        private static NLog.Logger _logger;// = NLog.LogManager.GetCurrentClassLogger();
+        private static NLog.Logger _logger;
 
         static Log()
         {
