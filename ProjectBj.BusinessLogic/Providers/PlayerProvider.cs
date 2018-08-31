@@ -36,7 +36,7 @@ namespace ProjectBj.BusinessLogic.Providers
             };
             try
             {
-                player = await _playerRepository.CreateOne(player);
+                player = await _playerRepository.Create(player);
                 playerViewModel = await GetPlayerViewModel(player);
                 return playerViewModel;
             }
@@ -59,7 +59,7 @@ namespace ProjectBj.BusinessLogic.Providers
             };
             try
             {
-                bot = await _playerRepository.CreateOne(bot);
+                bot = await _playerRepository.Create(bot);
                 botViewModel = await GetPlayerViewModel(bot);
                 return botViewModel;
             }
@@ -81,7 +81,7 @@ namespace ProjectBj.BusinessLogic.Providers
             };
             try
             {
-                dealer = await _playerRepository.CreateOne(dealer);
+                dealer = await _playerRepository.Create(dealer);
                 dealerViewModel = await GetDealerViewModel(dealer);
                 return dealerViewModel;
             }

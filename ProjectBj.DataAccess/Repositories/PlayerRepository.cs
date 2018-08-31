@@ -21,13 +21,13 @@ namespace ProjectBj.DataAccess.Repositories
             _connectionString = connectionString;
         }
 
-        public async Task<Player> CreateOne(Player player)
+        public async Task<Player> Create(Player player)
         {
             try
             {
                 using (IDbConnection db = new SqlConnection(_connectionString))
                 {
-                    player.Id = await db.InsertAsync(player);
+                    await db.InsertAsync(player);
                     return player;
                 }
             }
@@ -38,7 +38,7 @@ namespace ProjectBj.DataAccess.Repositories
             }
         }
 
-        public async Task<ICollection<Player>> CreateMany(ICollection<Player> players)
+        public async Task<ICollection<Player>> Create(ICollection<Player> players)
         {
             try
             {
