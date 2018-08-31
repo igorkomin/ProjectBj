@@ -114,16 +114,5 @@ namespace ProjectBj.BusinessLogic.Providers
 
             return shuffledDeck;
         }
-
-        public async Task<CardViewModel> GetCardViewModel(Card card)
-        {
-            CardViewModel cardViewModel = new CardViewModel
-            {
-                Suit = card.Suit,
-                Rank = EnumHelper.GetRankName(card.Rank),
-                RankValue = card.Rank
-            };
-            return cardViewModel;
-        }
     }
 }

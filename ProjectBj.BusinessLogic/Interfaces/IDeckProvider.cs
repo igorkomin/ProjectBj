@@ -12,6 +12,5 @@ namespace ProjectBj.BusinessLogic.Interfaces
     {
         Task<List<Card>> GetDeck();
         Task<List<Card>> GetShuffledDeck();
-        Task<CardViewModel> GetCardViewModel(Card card);
     }
 }
