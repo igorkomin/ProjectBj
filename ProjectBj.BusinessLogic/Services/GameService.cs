@@ -97,8 +97,8 @@ namespace ProjectBj.BusinessLogic.Services
             var result = await GetGameResult(playerId, playerScore, dealerScore, _bet);
             gameViewModel.Player.GameResult = (int)result;
             gameViewModel.Player.GameResultMessage = result.ToString();
-            await _logProvider.CreateLogEntry(StringHelper.PlayerScore(gameViewModel.Dealer.Name, dealerScore), sessionId);
-            await _logProvider.CreateLogEntry(StringHelper.PlayerScore(gameViewModel.Player.Name, playerScore), sessionId);
+            await _logProvider.CreateLogEntry(StringHelper.GetPlayerScoreMessage(gameViewModel.Dealer.Name, dealerScore), sessionId);
+            await _logProvider.CreateLogEntry(StringHelper.GetPlayerScoreMessage(gameViewModel.Player.Name, playerScore), sessionId);
 
             foreach (var bot in gameViewModel.Bots)
             {
@@ -107,7 +107,7 @@ namespace ProjectBj.BusinessLogic.Services
                 result = await GetGameResult(bot.Id, botScore, dealerScore, botBet);
                 bot.GameResult = (int)result;
                 bot.GameResultMessage = result.ToString();
-                await _logProvider.CreateLogEntry(StringHelper.PlayerScore(bot.Name, botScore), sessionId);
+                await _logProvider.CreateLogEntry(StringHelper.GetPlayerScoreMessage(bot.Name, botScore), sessionId);
             }
             return gameViewModel;
         }
@@ -139,7 +139,7 @@ namespace ProjectBj.BusinessLogic.Services
             _botNumber = botsNumber;
             _bet = bet;
             var gameViewModel = await DealFirstCards();
-            Log.Info(StringHelper.GameStarted(gameViewModel.SessionId));
+            Log.Info(StringHelper.GetGameStartedMessage(gameViewModel.SessionId));
             return gameViewModel;
         }
 
@@ -152,13 +152,13 @@ namespace ProjectBj.BusinessLogic.Services
             var player = await _playerProvider.PullPlayer(playerName);
             var lastSession = await _sessionProvider.GetSessionByPlayerId(player.Id);
             var gameViewModel = await UpdateViewModel(player.Id, lastSession.Id);
-            Log.Info(StringHelper.GameLoaded(lastSession.Id));
+            Log.Info(StringHelper.GetGameLoadedMessage(lastSession.Id));
             return gameViewModel;
         }
 
         public async Task<GameViewModel> Hit(int playerId, int sessionId)
         {
-            Log.Info(StringHelper.PlayerHits(playerId));
+            Log.Info(StringHelper.GetPlayerHitsMessage(playerId));
             await _logProvider.CreateLogEntry(StringHelper.HumanTakesCard, sessionId);
             await DealCard(playerId, sessionId);
             GameViewModel gameViewModel = await UpdateViewModel(playerId, sessionId);
@@ -173,7 +173,7 @@ namespace ProjectBj.BusinessLogic.Services
         public async Task<GameViewModel> Stand(int playerId, int sessionId)
         {
             GameViewModel gameViewModel = await BotsTurn(playerId, sessionId);
-            Log.Info(StringHelper.PlayerStands(playerId));
+            Log.Info(StringHelper.GetPlayerStandsMessage(playerId));
             return gameViewModel;
         }
 
@@ -235,7 +235,7 @@ namespace ProjectBj.BusinessLogic.Services
         public async Task CloseGameSession(int sessionId)
         {
             await _sessionProvider.CloseSession(sessionId);
-            Log.Info(StringHelper.GameEnded(sessionId));
+            Log.Info(StringHelper.GetGameEndedMessage(sessionId));
         }
 
         public async Task<List<LogEntryViewModel>> GetLogs(int sessionId)

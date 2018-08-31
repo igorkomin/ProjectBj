@@ -20,42 +20,42 @@ namespace ProjectBj.BusinessLogic.Helpers
         public static readonly string HumanTakesCard = "Human takes another card";
 
 
-        public static string GameStarted(int sessionId)
+        public static string GetGameStartedMessage(int sessionId)
         {
             return $"Game id{sessionId} started";
         }
 
-        public static string GameLoaded(int sessionId)
+        public static string GetGameLoadedMessage(int sessionId)
         {
             return $"Game id{sessionId} loaded";
         }
 
-        public static string GameEnded(int sessionId)
+        public static string GetGameEndedMessage(int sessionId)
         {
             return $"Game id{sessionId} ended";
         }
 
-        public static string GettingSessionLog(int sessionId)
+        public static string GetGettingSessionLogMessage(int sessionId)
         {
             return $"Getting game id{sessionId} log";
         }
 
-        public static string PlayerScore(string playerName, int score)
+        public static string GetPlayerScoreMessage(string playerName, int score)
         {
             return $"{playerName} hand's total score: {score}";
         }
 
-        public static string PlayerTakesCard(string playerName, string cardRank, string cardSuit)
+        public static string GetPlayerTakesCardMessage(string playerName, string cardRank, string cardSuit)
         {
             return $"{playerName} takes {cardRank} of {cardSuit}";
         }
 
-        public static string PlayerHits(int playerId)
+        public static string GetPlayerHitsMessage(int playerId)
         {
             return $"Player id{playerId} hits";
         }
 
-        public static string PlayerStands(int playerId)
+        public static string GetPlayerStandsMessage(int playerId)
         {
             return $"Player id{playerId} stands";
         }

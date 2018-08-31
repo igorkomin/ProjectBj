@@ -76,7 +76,7 @@ namespace ProjectBj.BusinessLogic.Providers
         {
             try
             {
-                Log.Info(StringHelper.GettingSessionLog(sessionId));
+                Log.Info(StringHelper.GetGettingSessionLogMessage(sessionId));
                 var entries = await _logRepository.GetSessionLogs(sessionId);
                 return entries.ToList();
             }
