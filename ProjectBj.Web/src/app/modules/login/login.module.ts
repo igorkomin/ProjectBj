@@ -5,10 +5,10 @@ import { LoginRoutingModule } from './login-routing.module';
 import { LoginComponent } from '../../components/login.component';
 
 @NgModule({
-  imports: [
-      LoginRoutingModule,
-      SharedModule
-   ],
+    imports: [
+        LoginRoutingModule,
+        SharedModule
+    ],
     declarations: [LoginComponent]
 })
 export class LoginModule { }
