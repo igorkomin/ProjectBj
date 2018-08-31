@@ -47,7 +47,7 @@ export class LogsComponent implements OnInit {
         );
     }
 
-    public dataStateChange(state: DataStateChangeEvent): void {
+    dataStateChange(state: DataStateChangeEvent): void {
         this.state = state;
         this.gridView = process(this.logs, this.state);
     }
