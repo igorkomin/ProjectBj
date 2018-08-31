@@ -17,7 +17,7 @@ namespace ProjectBj.DataAccess.Repositories
 {
     public class CardRepository : ICardRepository
     {
-        private string _connectionString;
+        private readonly string _connectionString;
 
         public CardRepository(string connectionString)
         {

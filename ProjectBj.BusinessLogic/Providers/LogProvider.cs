@@ -14,7 +14,7 @@ namespace ProjectBj.BusinessLogic.Providers
 {
     public class LogProvider : ILogProvider
     {
-        private IGameLogRepository _logRepository;
+        private readonly IGameLogRepository _logRepository;
 
         public LogProvider(IGameLogRepository logRepository)
         {

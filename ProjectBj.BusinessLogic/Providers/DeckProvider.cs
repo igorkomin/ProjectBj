@@ -18,7 +18,7 @@ namespace ProjectBj.BusinessLogic.Providers
     public class DeckProvider : IDeckProvider
     {
         private List<Card> _deck;
-        private ICardRepository _cardRepository;
+        private readonly ICardRepository _cardRepository;
         
         public DeckProvider(ICardRepository cardRepository)
         {

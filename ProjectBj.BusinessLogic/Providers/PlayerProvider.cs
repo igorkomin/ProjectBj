@@ -17,7 +17,7 @@ namespace ProjectBj.BusinessLogic.Providers
 {
     public class PlayerProvider : IPlayerProvider
     {
-        private IPlayerRepository _playerRepository;
+        private readonly IPlayerRepository _playerRepository;
         private PersonNameGenerator _nameGenerator;
 
         public PlayerProvider(IPlayerRepository playerRepository)

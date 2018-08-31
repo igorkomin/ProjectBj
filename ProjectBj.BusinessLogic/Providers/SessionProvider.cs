@@ -14,7 +14,7 @@ namespace ProjectBj.BusinessLogic.Providers
 {
     public class SessionProvider : ISessionProvider
     {
-        private IGameSessionRepository _sessionRepository;
+        private readonly IGameSessionRepository _sessionRepository;
 
         public SessionProvider(IGameSessionRepository sessionRepository)
         {

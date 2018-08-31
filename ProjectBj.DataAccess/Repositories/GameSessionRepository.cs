@@ -16,7 +16,7 @@ namespace ProjectBj.DataAccess.Repositories
 {
     public class GameSessionRepository : IGameSessionRepository
     {
-        private string _connectionString;
+        private readonly string _connectionString;
 
         public GameSessionRepository(string connectionString)
         {
