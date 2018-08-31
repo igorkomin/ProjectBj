@@ -172,7 +172,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -206,9 +205,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\ProjectBj.BusinessLogic\ProjectBj.BusinessLogic.csproj">
       <Project>{d8587967-8e91-44ed-851b-2fa11e44cc0a}</Project>
