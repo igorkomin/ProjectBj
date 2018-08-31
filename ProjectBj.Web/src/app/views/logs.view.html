@@ -1,9 +1,11 @@
 <kendo-grid [data]="gridView"
             [pageSize]="state.take"
             [skip]="state.skip"
-            [pageable]="true"
             [height]="500"
             [filterable]="true"
+            [pageable]="true"
+            [reorderable]="true"
+            [resizable]="true"
             [sortable]="{
                 allowUnsort: allowUnsort,
                 mode: 'single'
