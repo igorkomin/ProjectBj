@@ -1,6 +1,9 @@
-﻿namespace ProjectBj.Entities
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace ProjectBj.Entities
 {
-    public class Player: BaseEntity
+    [Table("Players")]
+    public class Player : BaseEntity
     {
         public string Name { get; set; }
         public bool IsHuman { get; set; }

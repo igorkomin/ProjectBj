@@ -1,7 +1,9 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProjectBj.Entities
 {
+    [Table("GameSessions")]
     public class GameSession : BaseEntity
     {
         public GameSession()
