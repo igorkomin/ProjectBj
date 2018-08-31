@@ -31,13 +31,13 @@
                     <div class="caption">Choose the number of bots</div>
                     <div class="input-group">
                         <span class="input-group-btn">
-                            <button [disabled]="botsNumber == 0" type="button" (click)="DecBotsNumber()" class="btn btn-danger btn-number">
+                            <button [disabled]="botsNumber == 0" type="button" (click)="decBotsNumber()" class="btn btn-danger btn-number">
                                 <span>-</span>
                             </button>
                         </span>
                         <input disabled type="text" class="bots-input form-control input-number" value="{{ botsNumber }}">
                         <span class="input-group-btn">
-                            <button [disabled]="botsNumber == 5" type="button" (click)="IncBotsNumber()" class="btn btn-success btn-number">
+                            <button [disabled]="botsNumber == 5" type="button" (click)="incBotsNumber()" class="btn btn-success btn-number">
                                 <span>+</span>
                             </button>
                         </span>

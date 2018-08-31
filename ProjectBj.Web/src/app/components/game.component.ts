@@ -46,11 +46,11 @@ export class GameComponent implements OnInit {
         this.sliderBetValue = value;
     }
 
-    IncBotsNumber(): void {
+    incBotsNumber(): void {
         this.botsNumber++;
     }
 
-    DecBotsNumber(): void {
+    decBotsNumber(): void {
         this.botsNumber--;
     }
 
