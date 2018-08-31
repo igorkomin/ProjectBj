@@ -258,7 +258,7 @@ namespace ProjectBj.BusinessLogic.Providers
                     CardViewModel cardViewModel = new CardViewModel
                     {
                         Suit = card.Suit,
-                        Rank = StringHelper.RankName(card.Rank),
+                        Rank = EnumHelper.GetRankName(card.Rank),
                         RankValue = card.Rank
                     };
                     cardViewModels.Add(cardViewModel);

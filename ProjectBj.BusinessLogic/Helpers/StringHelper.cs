@@ -59,11 +59,5 @@ namespace ProjectBj.BusinessLogic.Helpers
         {
             return $"Player id{playerId} stands";
         }
-
-        public static string RankName(int rankId)
-        {
-            string rankName = EnumHelper.GetEnumDescription((CardRanks.Rank)rankId);
-            return rankName;
-        }
     }
 }
