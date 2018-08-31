@@ -11,12 +11,12 @@ using System.Threading.Tasks;
 
 namespace ProjectBj.BusinessLogic.Providers
 {
-    public class DeckProvider : IDeckProvider
+    public class CardProvider : ICardProvider
     {
         private List<Card> _deck;
         private readonly ICardRepository _cardRepository;
         
-        public DeckProvider(ICardRepository cardRepository)
+        public CardProvider(ICardRepository cardRepository)
         {
             _cardRepository = cardRepository;
         }

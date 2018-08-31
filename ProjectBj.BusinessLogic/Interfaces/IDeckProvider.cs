@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace ProjectBj.BusinessLogic.Interfaces
 {
-    public interface IDeckProvider
+    public interface ICardProvider
     {
         Task<List<Card>> GetDeck();
         Task<List<Card>> GetShuffledDeck();

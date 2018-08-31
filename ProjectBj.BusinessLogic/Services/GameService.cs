@@ -14,12 +14,12 @@ namespace ProjectBj.BusinessLogic.Services
         public string _playerName { get; set; }
         public int _botNumber { get; set; }
         public int _bet { get; set; }
-        private readonly IDeckProvider _deckProvider;
+        private readonly ICardProvider _deckProvider;
         private readonly ILogProvider _logProvider;
         private readonly IPlayerProvider _playerProvider;
         private readonly ISessionProvider _sessionProvider;
         
-        public GameService(IDeckProvider deckProvider, ILogProvider logProvider, 
+        public GameService(ICardProvider deckProvider, ILogProvider logProvider, 
             IPlayerProvider playerProvider, ISessionProvider sessionProvider)
         {
             _deckProvider = deckProvider;

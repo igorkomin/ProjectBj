@@ -48,7 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Interfaces\ISystemLogService.cs" />
-    <Compile Include="Providers\DeckProvider.cs" />
+    <Compile Include="Providers\CardProvider.cs" />
     <Compile Include="Enums\CardRanks.cs" />
     <Compile Include="Enums\CardSuits.cs" />
     <Compile Include="Enums\GameResults.cs" />
