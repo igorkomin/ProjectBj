@@ -21,8 +21,6 @@ namespace ProjectBj.DataAccess.Utility
                 .WithParameter("connectionString", connectionString);
             builder.RegisterType<PlayerRepository>().As<IPlayerRepository>()
                 .WithParameter("connectionString", connectionString);
-            builder.RegisterType<PlayerHandRepository>().As<IPlayerHandRepository>()
-                .WithParameter("connectionString", connectionString);
             builder.RegisterType<SystemLogRepository>().As<ISystemLogRepository>()
                 .WithParameter("connectionString", connectionString);
 
