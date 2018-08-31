@@ -160,8 +160,6 @@
     <Content Include="src\app\views\login.view.html" />
     <Content Include="src\app\styles\app.style.css" />
     <Content Include="src\app\views\app.view.html" />
-    <Content Include="src\favicon.ico" />
-    <Content Include="src\index.html" />
     <Content Include="src\karma.conf.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
