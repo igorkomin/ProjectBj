@@ -128,31 +128,28 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bg.jpg" />
-    <Content Include="Content\Cards\faces\JC.gif" />
-    <Content Include="Content\Cards\faces\JD.gif" />
-    <Content Include="Content\Cards\faces\JH.gif" />
-    <Content Include="Content\Cards\faces\joker.gif" />
-    <Content Include="Content\Cards\faces\JS.gif" />
-    <Content Include="Content\Cards\faces\KC.gif" />
-    <Content Include="Content\Cards\faces\KD.gif" />
-    <Content Include="Content\Cards\faces\KH.gif" />
-    <Content Include="Content\Cards\faces\KS.gif" />
-    <Content Include="Content\Cards\faces\QC.gif" />
-    <Content Include="Content\Cards\faces\QD.gif" />
-    <Content Include="Content\Cards\faces\QH.gif" />
-    <Content Include="Content\Cards\faces\QS.gif" />
-    <Content Include="Content\Cards\shirt_horisontal.png" />
-    <Content Include="Content\Cards\shirt_vertical.png" />
-    <Content Include="Content\dealer.png" />
-    <Content Include="Content\loading.gif" />
-    <Content Include="Content\player.png" />
-    <Content Include="Content\robot.png" />
+    <Content Include="src\assets\bg.jpg" />
+    <Content Include="src\assets\Cards\faces\JC.gif" />
+    <Content Include="src\assets\Cards\faces\JD.gif" />
+    <Content Include="src\assets\Cards\faces\JH.gif" />
+    <Content Include="src\assets\Cards\faces\joker.gif" />
+    <Content Include="src\assets\Cards\faces\JS.gif" />
+    <Content Include="src\assets\Cards\faces\KC.gif" />
+    <Content Include="src\assets\Cards\faces\KD.gif" />
+    <Content Include="src\assets\Cards\faces\KH.gif" />
+    <Content Include="src\assets\Cards\faces\KS.gif" />
+    <Content Include="src\assets\Cards\faces\QC.gif" />
+    <Content Include="src\assets\Cards\faces\QD.gif" />
+    <Content Include="src\assets\Cards\faces\QH.gif" />
+    <Content Include="src\assets\Cards\faces\QS.gif" />
+    <Content Include="src\assets\dealer.png" />
+    <Content Include="src\assets\loading.gif" />
+    <Content Include="src\assets\player.png" />
+    <Content Include="src\assets\robot.png" />
     <Content Include="src\app\styles\logs.style.css" />
     <Content Include="src\app\views\logs.view.html" />
     <Content Include="src\app\styles\common\cards.css" />
     <Content Include="src\app\styles\common\slider.css" />
-    <Content Include="Content\style.css" />
     <Content Include="Global.asax" />
     <Content Include="angular.json" />
     <Content Include="package.json" />
@@ -166,7 +163,6 @@
     <Content Include="src\favicon.ico" />
     <Content Include="src\index.html" />
     <Content Include="src\karma.conf.js" />
-    <Content Include="src\styles.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -185,12 +181,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
-    <Content Include="Content\Cards\faces\README" />
+    <Content Include="src\assets\Cards\faces\README" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
     <Content Include="Views\Home\index.cshtml" />
-    <Content Include="Views\Game\play.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="tsconfig.json" />
     <Content Include="src\assets\.gitkeep" />
@@ -242,6 +237,7 @@
     <TypeScriptCompile Include="src\app\modules\login\login.module.ts" />
     <TypeScriptCompile Include="src\app\modules\logs\logs-routing.module.ts" />
     <TypeScriptCompile Include="src\app\modules\logs\logs.module.ts" />
+    <TypeScriptCompile Include="src\app\modules\shared.module.ts" />
     <TypeScriptCompile Include="src\app\services\api.service.ts" />
     <TypeScriptCompile Include="src\environments\environment.prod.ts" />
     <TypeScriptCompile Include="src\environments\environment.ts" />
