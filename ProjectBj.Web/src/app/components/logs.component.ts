@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { DataStateChangeEvent, GridDataResult } from '@progress/kendo-angular-grid';
 import { State, process } from '@progress/kendo-data-query';
+import { Router } from '@angular/router';
+
 import { ApiService } from '../services/api.service';
 
 @Component({
