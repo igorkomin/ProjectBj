@@ -7,7 +7,7 @@ using System.Web.Configuration;
 
 namespace ProjectBj.Web.Utility
 {
-    public class AutofacConfig
+    public static class AutofacConfig
     {
         public static void ConfigureContainer()
         {

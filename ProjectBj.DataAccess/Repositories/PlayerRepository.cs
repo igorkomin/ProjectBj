@@ -16,7 +16,7 @@ namespace ProjectBj.DataAccess.Repositories
 {
     public class PlayerRepository : IPlayerRepository
     {
-        private string _connectionString;
+        private readonly string _connectionString;
 
         public PlayerRepository(string connectionString)
         {

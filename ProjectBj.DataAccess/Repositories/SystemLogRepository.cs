@@ -16,7 +16,7 @@ namespace ProjectBj.DataAccess.Repositories
 {
     public class SystemLogRepository : ISystemLogRepository
     {
-        public string _connectionString;
+        private readonly string _connectionString;
 
         public SystemLogRepository(string connectionString)
         {

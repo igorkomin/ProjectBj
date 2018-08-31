@@ -10,7 +10,7 @@ using ProjectBj.BusinessLogic.Providers;
 
 namespace ProjectBj.BusinessLogic.Utility
 {
-    public class AutofacProviderTypeRegistry
+    public static class AutofacProviderTypeRegistry
     {
         public static ContainerBuilder RegisterTypes(ContainerBuilder builder, string connectionString)
         {

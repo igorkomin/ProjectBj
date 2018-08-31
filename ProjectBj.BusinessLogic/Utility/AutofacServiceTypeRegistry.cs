@@ -12,7 +12,7 @@ using ProjectBj.BusinessLogic.Services;
 
 namespace ProjectBj.BusinessLogic.Utility
 {
-    public class AutofacServiceTypeRegistry
+    public static class AutofacServiceTypeRegistry
     {
         public static ContainerBuilder RegisterTypes(ContainerBuilder builder, string connectionString)
         {

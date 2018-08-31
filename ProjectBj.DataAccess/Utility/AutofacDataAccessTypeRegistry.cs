@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ProjectBj.DataAccess.Utility
 {
-    public class AutofacDataAccessTypeRegistry
+    public static class AutofacDataAccessTypeRegistry
     {
         public static ContainerBuilder RegisterTypes(ContainerBuilder builder, string connectionString)
         {
