@@ -23,7 +23,6 @@ bld/
 [Ll]og/
 out-tsc/
 dist/
-logs/
 
 # Visual Studio 2015 cache/options directory
 .vs/
