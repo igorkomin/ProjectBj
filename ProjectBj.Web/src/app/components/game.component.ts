@@ -1,11 +1,10 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from '../../../node_modules/rxjs';
-
-import { ApiService } from '../services/api.service';
-import { Settings } from '../models/settings.model';
 import { Identifier } from '../models/identifier.model';
+import { Settings } from '../models/settings.model';
+import { ApiService } from '../services/api.service';
+
 
 @Component({
     selector: 'app-game',
