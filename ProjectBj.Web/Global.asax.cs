@@ -1,12 +1,7 @@
-﻿using ProjectBj.Web.App_Start;
-using ProjectBj.Web.Utility;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using ProjectBj.Web.Utility;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
-using System.Web.Optimization;
 using System.Web.Routing;
 
 namespace ProjectBj.Web
