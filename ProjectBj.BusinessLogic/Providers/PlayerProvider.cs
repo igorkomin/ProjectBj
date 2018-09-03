@@ -37,7 +37,7 @@ namespace ProjectBj.BusinessLogic.Providers
             try
             {
                 player = await _playerRepository.Create(player);
-                playerViewModel = await GetPlayerViewModel(player);
+                playerViewModel = GetPlayerViewModel(player);
                 return playerViewModel;
             }
             catch (Exception exception)
@@ -60,7 +60,7 @@ namespace ProjectBj.BusinessLogic.Providers
             try
             {
                 bot = await _playerRepository.Create(bot);
-                botViewModel = await GetPlayerViewModel(bot);
+                botViewModel = GetPlayerViewModel(bot);
                 return botViewModel;
             }
             catch (Exception exception)
@@ -82,7 +82,7 @@ namespace ProjectBj.BusinessLogic.Providers
             try
             {
                 dealer = await _playerRepository.Create(dealer);
-                dealerViewModel = await GetDealerViewModel(dealer);
+                dealerViewModel = GetDealerViewModel(dealer);
                 return dealerViewModel;
             }
             catch(Exception exception)
@@ -105,7 +105,7 @@ namespace ProjectBj.BusinessLogic.Providers
             return bots;
         }
 
-        private async Task<PlayerViewModel> GetPlayerViewModel(Player player)
+        private PlayerViewModel GetPlayerViewModel(Player player)
         {
             PlayerViewModel playerViewModel = new PlayerViewModel
             {
@@ -117,7 +117,7 @@ namespace ProjectBj.BusinessLogic.Providers
             return playerViewModel;
         }
 
-        private async Task<DealerViewModel> GetDealerViewModel(Player dealer)
+        private DealerViewModel GetDealerViewModel(Player dealer)
         {
             DealerViewModel dealerViewModel = new DealerViewModel
             {
@@ -188,7 +188,7 @@ namespace ProjectBj.BusinessLogic.Providers
                 {
                     return null;
                 }
-                var playerViewModel = await GetPlayerViewModel(searchResults.FirstOrDefault());
+                var playerViewModel = GetPlayerViewModel(searchResults.FirstOrDefault());
                 return playerViewModel;
             }
             catch (Exception exception)
@@ -207,7 +207,7 @@ namespace ProjectBj.BusinessLogic.Providers
                 {
                     return null;
                 }
-                var dealerViewModel = await GetDealerViewModel(searchResults.FirstOrDefault());
+                var dealerViewModel = GetDealerViewModel(searchResults.FirstOrDefault());
                 return dealerViewModel;
             }
             catch (Exception exception)
@@ -234,7 +234,7 @@ namespace ProjectBj.BusinessLogic.Providers
             try
             {
                 player = await _playerRepository.GetById(id);
-                playerViewModel = await GetPlayerViewModel(player);
+                playerViewModel = GetPlayerViewModel(player);
                 return playerViewModel;
             }
             catch (Exception exception)
