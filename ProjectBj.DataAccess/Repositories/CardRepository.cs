@@ -29,6 +29,27 @@ namespace ProjectBj.DataAccess.Repositories
             return deck;
         }
 
+        public async Task<ICollection<Card>> GetCards(int playerId, int sessionId)
+        {
+            try
+            {
+                using (IDbConnection db = new SqlConnection(_connectionString))
+                {
+                    var sqlQuery = "SELECT c.* FROM PlayerHands ph " +
+                                   "JOIN Cards c ON ( ph.CardId = c.Id ) " +
+                                   $"WHERE ph.PlayerId = {playerId} " +
+                                   $"AND ph.SessionId = {sessionId}";
+                    var cards = await db.QueryAsync<Card>(sqlQuery);
+                    return cards.AsList();
+                }
+            }
+            catch (SqlException exception)
+            {
+                Log.Error(exception.Message);
+                throw new DataSourceException(exception.Message, exception);
+            }
+        }
+
         public async Task<ICollection<Card>> GetAllCards()
         {
             try

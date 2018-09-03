@@ -8,7 +8,6 @@ namespace ProjectBj.DataAccess.Interfaces
     {
         Task<Player> Create(Player player);
         Task<Player> GetById(int id);
-        Task<ICollection<Card>> GetCards(Player player, int sessionId);
         Task<ICollection<Player>> Create(ICollection<Player> players);
         Task<ICollection<Player>> FindPlayers(string name);
         Task<ICollection<Player>> GetSessionBots(int sessionId);

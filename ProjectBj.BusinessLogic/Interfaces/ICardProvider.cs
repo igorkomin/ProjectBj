@@ -8,5 +8,6 @@ namespace ProjectBj.BusinessLogic.Interfaces
     {
         Task<List<Card>> GetDeck();
         Task<List<Card>> GetShuffledDeck();
+        Task<List<Card>> GetPlayerCards(int playerId, int sessionId);
     }
 }

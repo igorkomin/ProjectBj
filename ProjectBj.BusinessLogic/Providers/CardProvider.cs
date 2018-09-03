@@ -110,5 +110,11 @@ namespace ProjectBj.BusinessLogic.Providers
 
             return shuffledDeck;
         }
+
+        public async Task<List<Card>> GetPlayerCards(int playerId, int sessionId)
+        {
+            var cards = await _cardRepository.GetCards(playerId, sessionId);
+            return cards.ToList();
+        }
     }
 }

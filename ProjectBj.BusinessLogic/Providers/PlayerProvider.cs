@@ -244,43 +244,6 @@ namespace ProjectBj.BusinessLogic.Providers
             }
         }
 
-        private async Task<List<CardViewModel>> GetCardViewModels(int playerId, int sessionId)
-        {
-            try
-            {
-                Player player = await _playerRepository.GetById(playerId);
-                var cards = await _playerRepository.GetCards(player, sessionId);
-                List<CardViewModel> cardViewModels = new List<CardViewModel>();
-                foreach (var card in cards)
-                {
-                    CardViewModel cardViewModel = new CardViewModel
-                    {
-                        Suit = card.Suit,
-                        Rank = EnumHelper.GetRankName(card.Rank),
-                        RankValue = card.Rank
-                    };
-                    cardViewModels.Add(cardViewModel);
-                }
-                return cardViewModels;
-            }
-            catch (Exception exception)
-            {
-                Log.Error(exception.Message);
-                throw exception;
-            }
-        }
-
-        public async Task<HandViewModel> GetHandViewModel(int playerId, int sessionId)
-        {
-            List<CardViewModel> cardViewModels = await GetCardViewModels(playerId, sessionId);
-            HandViewModel handViewModel = new HandViewModel
-            {
-                Cards = cardViewModels,
-                Score = await GetHandValue(playerId, sessionId)
-            };
-            return handViewModel;
-        }
-
         private async Task DeleteAllBots()
         {
             try
@@ -292,36 +255,6 @@ namespace ProjectBj.BusinessLogic.Providers
                 Log.Error(exception.Message);
                 throw exception;
             }
-        }
-
-        public async Task<int> GetHandValue(int playerId, int sessionId)
-        {
-            int totalValue = 0;
-            int aceCount = 0;
-
-            List<CardViewModel> cards = await GetCardViewModels(playerId, sessionId);
-
-            foreach (var card in cards)
-            {
-                int aceCardRank = (int)CardRanks.Rank.Ace;
-                int tenCardRank = (int)CardRanks.Rank.Ten;
-
-                if (card.RankValue == aceCardRank)
-                {
-                    totalValue += ValueHelper.AceCardValue;
-                    aceCount++;
-                    continue;
-                }
-                if (card.RankValue > tenCardRank)
-                {
-                    totalValue += ValueHelper.FaceCardValue;
-                    continue;
-                }
-                totalValue += card.RankValue;
-            }
-
-            return totalValue > ValueHelper.BlackjackValue ? 
-                totalValue - aceCount * ValueHelper.AceDelta : totalValue;
         }
 
         public async Task GivePlayerCard(int playerId, int sessionId, int cardId)

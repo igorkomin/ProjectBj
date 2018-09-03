@@ -14,15 +14,15 @@ namespace ProjectBj.BusinessLogic.Services
         public string _playerName { get; set; }
         public int _botNumber { get; set; }
         public int _bet { get; set; }
-        private readonly ICardProvider _deckProvider;
+        private readonly ICardProvider _cardProvider;
         private readonly ILogProvider _logProvider;
         private readonly IPlayerProvider _playerProvider;
         private readonly ISessionProvider _sessionProvider;
         
-        public GameService(ICardProvider deckProvider, ILogProvider logProvider, 
+        public GameService(ICardProvider cardProvider, ILogProvider logProvider, 
             IPlayerProvider playerProvider, ISessionProvider sessionProvider)
         {
-            _deckProvider = deckProvider;
+            _cardProvider = cardProvider;
             _logProvider = logProvider;
             _playerProvider = playerProvider;
             _sessionProvider = sessionProvider;
@@ -53,12 +53,12 @@ namespace ProjectBj.BusinessLogic.Services
             var dealer = gameViewModel.Dealer;
             var bots = gameViewModel.Bots;
 
-            gameViewModel.Player.Hand = await _playerProvider.GetHandViewModel(player.Id, session);
-            gameViewModel.Dealer.Hand = await _playerProvider.GetHandViewModel(dealer.Id, session);
+            gameViewModel.Player.Hand = await GetHandViewModel(player.Id, session);
+            gameViewModel.Dealer.Hand = await GetHandViewModel(dealer.Id, session);
 
             foreach (var bot in bots)
             {
-                bot.Hand = await _playerProvider.GetHandViewModel(bot.Id, session);
+                bot.Hand = await GetHandViewModel(bot.Id, session);
             }
         }
 
@@ -69,12 +69,12 @@ namespace ProjectBj.BusinessLogic.Services
             var dealer = await _playerProvider.GetDealer();
             var bots = await _playerProvider.GetSessionBotViewModels(session);
 
-            player.Hand = await _playerProvider.GetHandViewModel(player.Id, session);
-            dealer.Hand = await _playerProvider.GetHandViewModel(dealer.Id, session);
+            player.Hand = await GetHandViewModel(player.Id, session);
+            dealer.Hand = await GetHandViewModel(dealer.Id, session);
 
             foreach (var bot in bots)
             {
-                bot.Hand = await _playerProvider.GetHandViewModel(bot.Id, session);
+                bot.Hand = await GetHandViewModel(bot.Id, session);
             }
 
             GameViewModel gameViewModel = new GameViewModel
@@ -159,7 +159,7 @@ namespace ProjectBj.BusinessLogic.Services
             Log.Info(StringHelper.GetPlayerHitsMessage(playerId));
             await DealCard(playerId, sessionId);
             GameViewModel gameViewModel = await UpdateViewModel(playerId, sessionId);
-            int handValue = await _playerProvider.GetHandValue(playerId, sessionId);
+            int handValue = await GetHandValue(playerId, sessionId);
             if (handValue >= ValueHelper.BlackjackValue)
             {
                 gameViewModel = await BotsTurn(playerId, sessionId);
@@ -191,7 +191,7 @@ namespace ProjectBj.BusinessLogic.Services
 
         private async Task<bool> BotTurn(int botId, int sessionId)
         {
-            int handValue = await _playerProvider.GetHandValue(botId, sessionId);
+            int handValue = await GetHandValue(botId, sessionId);
             if (handValue > ValueHelper.MinBotHandValue)
             {
                 return false;
@@ -203,7 +203,7 @@ namespace ProjectBj.BusinessLogic.Services
         public async Task<bool> DealerTurn(int dealerId, int sessionId)
         {
             Log.Info(StringHelper.DealerTurn);
-            int handValue = await _playerProvider.GetHandValue(dealerId, sessionId);
+            int handValue = await GetHandValue(dealerId, sessionId);
             if (handValue > ValueHelper.MinDealerHandValue)
             {
                 return false;
@@ -223,7 +223,7 @@ namespace ProjectBj.BusinessLogic.Services
 
         public async Task DealCard(int playerId, int sessionId)
         {
-            var deck = await _deckProvider.GetShuffledDeck();
+            var deck = await _cardProvider.GetShuffledDeck();
             var card = deck[0];
             var player = await _playerProvider.GetPlayerById(playerId);
             await _logProvider.CreateLogEntry(
@@ -254,6 +254,73 @@ namespace ProjectBj.BusinessLogic.Services
                 logEntryViewModels.Add(logEntryViewModel);
             }
             return logEntryViewModels;
+        }
+
+        private async Task<List<CardViewModel>> GetCardViewModels(int playerId, int sessionId)
+        {
+            try
+            {
+                var player = await _playerProvider.GetPlayerById(playerId);
+                var cards = await _cardProvider.GetPlayerCards(playerId, sessionId);
+                List<CardViewModel> cardViewModels = new List<CardViewModel>();
+                foreach (var card in cards)
+                {
+                    CardViewModel cardViewModel = new CardViewModel
+                    {
+                        Suit = card.Suit,
+                        Rank = EnumHelper.GetRankName(card.Rank),
+                        RankValue = card.Rank
+                    };
+                    cardViewModels.Add(cardViewModel);
+                }
+                return cardViewModels;
+            }
+            catch (Exception exception)
+            {
+                Log.Error(exception.Message);
+                throw exception;
+            }
+        }
+
+        public async Task<HandViewModel> GetHandViewModel(int playerId, int sessionId)
+        {
+            List<CardViewModel> cardViewModels = await GetCardViewModels(playerId, sessionId);
+            HandViewModel handViewModel = new HandViewModel
+            {
+                Cards = cardViewModels,
+                Score = await GetHandValue(playerId, sessionId)
+            };
+            return handViewModel;
+        }
+
+        public async Task<int> GetHandValue(int playerId, int sessionId)
+        {
+            int totalValue = 0;
+            int aceCount = 0;
+
+            List<CardViewModel> cards = await GetCardViewModels(playerId, sessionId);
+
+            foreach (var card in cards)
+            {
+                int aceCardRank = (int)CardRanks.Rank.Ace;
+                int tenCardRank = (int)CardRanks.Rank.Ten;
+
+                if (card.RankValue == aceCardRank)
+                {
+                    totalValue += ValueHelper.AceCardValue;
+                    aceCount++;
+                    continue;
+                }
+                if (card.RankValue > tenCardRank)
+                {
+                    totalValue += ValueHelper.FaceCardValue;
+                    continue;
+                }
+                totalValue += card.RankValue;
+            }
+
+            return totalValue > ValueHelper.BlackjackValue ?
+                totalValue - aceCount * ValueHelper.AceDelta : totalValue;
         }
 
         public async Task<GameResults.Result> GetGameResult(int playerId, int playerScore, int dealerScore, int bet)

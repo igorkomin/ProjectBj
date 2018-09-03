@@ -128,27 +128,6 @@ namespace ProjectBj.DataAccess.Repositories
             }
         }
 
-        public async Task<ICollection<Card>> GetCards(Player player, int sessionId)
-        {
-            try
-            {
-                using (IDbConnection db = new SqlConnection(_connectionString))
-                {
-                    var sqlQuery = "SELECT c.* FROM PlayerHands ph " +
-                                   "JOIN Cards c ON ( ph.CardId = c.Id ) " +
-                                   "WHERE ph.PlayerId = @Id " +
-                                   $"AND ph.SessionId = {sessionId}";
-                    var cards = await db.QueryAsync<Card>(sqlQuery, player);
-                    return cards.AsList();
-                }
-            }
-            catch (SqlException exception)
-            {
-                Log.Error(exception.Message);
-                throw new DataSourceException(exception.Message, exception);
-            }
-        }
-
         public async Task<ICollection<Player>> GetSessionBots(int sessionId)
         {
             try
