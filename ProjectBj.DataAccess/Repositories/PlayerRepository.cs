@@ -152,15 +152,23 @@ namespace ProjectBj.DataAccess.Repositories
 
         public async Task<ICollection<Player>> GetSessionBots(int sessionId)
         {
-            using (IDbConnection db = new SqlConnection(_connectionString))
+            try
             {
-                var sqlQuery = "SELECT DISTINCT p.* FROM PlayerHands ph " +
-                               "JOIN Players p ON ( ph.PlayerId = p.Id ) " +
-                               "WHERE ph.SessionId = @sessionId " +
-                               "AND p.IsHuman = 0 " +
-                               "AND p.InGame = 1";
-                var bots = await db.QueryAsync<Player>(sqlQuery, new { sessionId });
-                return bots.AsList();
+                using (IDbConnection db = new SqlConnection(_connectionString))
+                {
+                    var sqlQuery = "SELECT DISTINCT p.* FROM PlayerHands ph " +
+                                   "JOIN Players p ON ( ph.PlayerId = p.Id ) " +
+                                   "WHERE ph.SessionId = @sessionId " +
+                                   "AND p.IsHuman = 0 " +
+                                   "AND p.InGame = 1";
+                    var bots = await db.QueryAsync<Player>(sqlQuery, new { sessionId });
+                    return bots.AsList();
+                }
+            }
+            catch (Exception exception)
+            {
+                Log.Error(exception.Message);
+                throw new DataSourceException(exception.Message, exception);
             }
         }
 
