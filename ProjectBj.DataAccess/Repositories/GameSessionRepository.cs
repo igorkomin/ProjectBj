@@ -70,7 +70,7 @@ namespace ProjectBj.DataAccess.Repositories
             }
         }
 
-        public async Task<GameSession> GetUnfinishedSession(int playerId)
+        public async Task<GameSession> GetFirstUnfinishedSession(int playerId)
         {
             try
             {

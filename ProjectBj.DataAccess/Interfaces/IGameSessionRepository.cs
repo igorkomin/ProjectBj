@@ -7,7 +7,7 @@ namespace ProjectBj.DataAccess.Interfaces
     {
         Task<GameSession> GetById(int id);
         Task<GameSession> Create(GameSession session);
-        Task<GameSession> GetUnfinishedSession(int playerId);
+        Task<GameSession> GetFirstUnfinishedSession(int playerId);
         Task Update(GameSession session);
     }
 }
