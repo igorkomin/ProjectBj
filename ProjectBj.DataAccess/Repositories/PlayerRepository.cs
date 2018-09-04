@@ -136,10 +136,10 @@ namespace ProjectBj.DataAccess.Repositories
                 {
                     var sqlQuery = "SELECT DISTINCT p.* FROM PlayerHands ph " +
                                    "JOIN Players p ON ( ph.PlayerId = p.Id ) " +
-                                   $"WHERE ph.SessionId = {sessionId} " +
+                                   "WHERE ph.SessionId = @sessionId " +
                                    "AND p.IsHuman = 0 " +
                                    "AND p.InGame = 1";
-                    var bots = await db.QueryAsync<Player>(sqlQuery);
+                    var bots = await db.QueryAsync<Player>(sqlQuery, new { sessionId });
                     return bots.AsList();
                 }
             }
@@ -156,8 +156,8 @@ namespace ProjectBj.DataAccess.Repositories
             {
                 using (IDbConnection db = new SqlConnection(_connectionString))
                 {
-                    var sqlQuery = $"DELETE FROM Players WHERE IsHuman = 0 AND Name <> '{dealerName}'";
-                    await db.ExecuteAsync(sqlQuery);
+                    var sqlQuery = "DELETE FROM Players WHERE IsHuman = 0 AND Name <> @dealerName";
+                    await db.ExecuteAsync(sqlQuery, new { dealerName });
                 }
             }
             catch (Exception exception)
