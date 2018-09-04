@@ -7,5 +7,6 @@
         public int GameResult { get; set; }
         public string GameResultMessage { get; set; }
         public int Bet { get; set; }
+        public int BalanceDelta { get; set; }
     }
 }
