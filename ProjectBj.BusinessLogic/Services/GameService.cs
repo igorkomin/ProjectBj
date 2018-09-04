@@ -99,9 +99,10 @@ namespace ProjectBj.BusinessLogic.Services
             var playerScore = gameViewModel.Player.Hand.Score;
             var dealerScore = gameViewModel.Dealer.Hand.Score;
             var playerBet = gameViewModel.Player.Bet;
-            var result = await GetGameResult(playerId, playerScore, dealerScore, playerBet);
-            gameViewModel.Player.GameResult = (int)result;
-            gameViewModel.Player.GameResultMessage = result.ToString();
+            var gameResult = await GetGameResult(playerId, playerScore, dealerScore, playerBet);
+            gameViewModel.Player.BalanceDelta = gameResult.balanceDelta;
+            gameViewModel.Player.GameResult = (int)gameResult.result;
+            gameViewModel.Player.GameResultMessage = gameResult.result.ToString();
             await _logProvider.CreateLogEntry(gameViewModel.Dealer.Name, StringHelper.GetPlayerScoreMessage(dealerScore), sessionId);
             await _logProvider.CreateLogEntry(gameViewModel.Player.Name, StringHelper.GetPlayerScoreMessage(playerScore), sessionId);
 
@@ -109,9 +110,10 @@ namespace ProjectBj.BusinessLogic.Services
             {
                 var botScore = bot.Hand.Score;
                 var botBet = ValueHelper.BotBetValue;
-                result = await GetGameResult(bot.Id, botScore, dealerScore, botBet);
-                bot.GameResult = (int)result;
-                bot.GameResultMessage = result.ToString();
+                gameResult = await GetGameResult(bot.Id, botScore, dealerScore, botBet);
+                bot.BalanceDelta = gameResult.balanceDelta;
+                bot.GameResult = (int)gameResult.result;
+                bot.GameResultMessage = gameResult.result.ToString();
                 await _logProvider.CreateLogEntry(bot.Name, StringHelper.GetPlayerScoreMessage(botScore), sessionId);
             }
             return gameViewModel;
@@ -349,45 +351,45 @@ namespace ProjectBj.BusinessLogic.Services
                 totalValue - aceCount * ValueHelper.AceDelta : totalValue;
         }
 
-        public async Task<GameResults.Result> GetGameResult(int playerId, int playerScore, int dealerScore, int bet)
+        private async Task<(GameResults.Result result, int balanceDelta)> GetGameResult(int playerId, int playerScore, int dealerScore, int bet)
         {
-            int winAmount = bet;
+            int balanceDelta = bet;
             if (playerScore == ValueHelper.BlackjackValue)
             {
-                winAmount = (bet * 2) + (bet / 2);
-                await _playerProvider.ChangePlayerBalance(playerId, winAmount);
-                return GameResults.Result.Blackjack;
+                balanceDelta = (bet * 2) + (bet / 2);
+                await _playerProvider.ChangePlayerBalance(playerId, balanceDelta);
+                return (GameResults.Result.Blackjack, balanceDelta);
             }
 
             if (playerScore == dealerScore)
             {
-                await _playerProvider.ChangePlayerBalance(playerId, winAmount);
-                return GameResults.Result.Win;
+                await _playerProvider.ChangePlayerBalance(playerId, balanceDelta);
+                return (GameResults.Result.Win, balanceDelta);
             }
 
             if (playerScore == 0)
             {
-                winAmount = bet / 2;
-                await _playerProvider.ChangePlayerBalance(playerId, winAmount);
-                return GameResults.Result.Surrender;
+                balanceDelta = bet / 2;
+                await _playerProvider.ChangePlayerBalance(playerId, balanceDelta);
+                return (GameResults.Result.Surrender, balanceDelta);
             }
 
             if (playerScore > ValueHelper.BlackjackValue)
             {
-                winAmount = -bet;
-                await _playerProvider.ChangePlayerBalance(playerId, winAmount);
-                return GameResults.Result.Bust;
+                balanceDelta = -bet;
+                await _playerProvider.ChangePlayerBalance(playerId, balanceDelta);
+                return (GameResults.Result.Bust, balanceDelta);
             }
 
             if (playerScore > dealerScore || dealerScore > ValueHelper.BlackjackValue)
             {
-                await _playerProvider.ChangePlayerBalance(playerId, winAmount);
-                return GameResults.Result.Win;
+                await _playerProvider.ChangePlayerBalance(playerId, balanceDelta);
+                return (GameResults.Result.Win, balanceDelta);
             }
 
-            winAmount = -bet;
-            await _playerProvider.ChangePlayerBalance(playerId, winAmount);
-            return GameResults.Result.Lose;
+            balanceDelta = -bet;
+            await _playerProvider.ChangePlayerBalance(playerId, balanceDelta);
+            return (GameResults.Result.Lose, balanceDelta);
         }
     }
 }
