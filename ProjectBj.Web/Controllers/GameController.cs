@@ -76,6 +76,20 @@ namespace ProjectBj.Web.Controllers
         }
 
         [HttpPost]
+        public async Task<IHttpActionResult> Double([FromBody]IdentifierViewModel identifier)
+        {
+            try
+            {
+                GameViewModel model = await _service.DoubleDown(identifier.PlayerId, identifier.SessionId);
+                return Ok(model);
+            }
+            catch (Exception exception)
+            {
+                return InternalServerError(exception);
+            }
+        }
+
+        [HttpPost]
         public async Task<IHttpActionResult> Logs([FromBody]IdentifierViewModel identifier)
         {
             try

@@ -60,6 +60,7 @@
                     <div class="caption">Actions</div>
                     <div class="btn-group-vertical">
                         <button [disabled]="game?.player.gameResult != 0" (click)="hit()" class="btn btn-primary">HIT</button>
+                        <button [disabled]="game?.player.gameResult != 0" (click)="doubleDown()" class="btn btn-info">DOUBLE</button>
                         <button [disabled]="game?.player.gameResult != 0" (click)="stand()" class="btn btn-secondary">STAND</button>
                     </div>
                 </div>

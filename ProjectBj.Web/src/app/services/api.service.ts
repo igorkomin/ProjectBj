@@ -41,6 +41,11 @@ export class ApiService {
         return this.http.post<Game>(requestUrl, identifier, requestOptions);
     }
 
+    double(identifier: Identifier): Observable<Game> {
+        let requestUrl = `${apiUrl}/Double`;
+        return this.http.post<Game>(requestUrl, identifier, requestOptions);
+    }
+
     getLogs(identifier: Identifier): Observable<GameLog> {
         let requestUrl = `${apiUrl}/Logs`;
         return this.http.post<GameLog>(requestUrl, identifier, requestOptions);

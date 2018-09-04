@@ -293,5 +293,11 @@ namespace ProjectBj.BusinessLogic.Providers
             player.Bet = bet;
             await _playerRepository.Update(player);
         }
+
+        public async Task<int> GetBet(int playerId)
+        {
+            Player player = await _playerRepository.GetById(playerId);
+            return player.Bet;
+        }
     }
 }

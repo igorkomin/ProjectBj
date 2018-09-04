@@ -177,6 +177,15 @@ namespace ProjectBj.BusinessLogic.Services
             return gameViewModel;
         }
 
+        public async Task<GameViewModel> DoubleDown(int playerId, int sessionId)
+        {
+            int playerBet = await _playerProvider.GetBet(playerId);
+            await _playerProvider.SetBet(playerId, playerBet * 2);
+            await DealCard(playerId, sessionId);
+            GameViewModel gameViewModel = await BotsTurn(playerId, sessionId);
+            return gameViewModel;
+        }
+
         private async Task<GameViewModel> BotsTurn(int playerId, int sessionId)
         {
             Log.Info(StringHelper.BotsTurn);
