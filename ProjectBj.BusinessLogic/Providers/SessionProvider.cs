@@ -17,9 +17,8 @@ namespace ProjectBj.BusinessLogic.Providers
             _sessionRepository = sessionRepository;
         }
 
-        public async Task<SessionViewModel> CreateSession()
+        public async Task<GameSession> CreateSession()
         {
-            SessionViewModel sessionViewModel;
             GameSession session = new GameSession
             {
                 TimeCreated = DateTime.Now
@@ -27,13 +26,7 @@ namespace ProjectBj.BusinessLogic.Providers
             try
             {
                 session = await _sessionRepository.Create(session);
-                sessionViewModel = new SessionViewModel
-                {
-                    Id = session.Id,
-                    IsOpen = session.IsOpen,
-                    TimeCreated = session.TimeCreated
-                };
-                return sessionViewModel;
+                return session;
             }
             catch (Exception exception)
             {
@@ -41,7 +34,7 @@ namespace ProjectBj.BusinessLogic.Providers
             }
         }
 
-        public async Task<SessionViewModel> GetSessionByPlayerId(int playerId)
+        public async Task<GameSession> GetSessionByPlayerId(int playerId)
         {
             GameSession currentSession = await _sessionRepository.GetFirstUnfinishedSession(playerId);
             
@@ -49,15 +42,8 @@ namespace ProjectBj.BusinessLogic.Providers
             {
                 throw new Exception(StringHelper.NoGameToLoad);
             }
-            
-            SessionViewModel currentSessionViewModel = new SessionViewModel
-            {
-                Id = currentSession.Id,
-                IsOpen = currentSession.IsOpen,
-                TimeCreated = currentSession.TimeCreated
-            };
  
-            return currentSessionViewModel;
+            return currentSession;
         }
 
         public async Task<GameSession> GetSessionById(int id)
