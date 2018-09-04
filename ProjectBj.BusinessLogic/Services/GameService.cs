@@ -37,15 +37,11 @@ namespace ProjectBj.BusinessLogic.Services
 
             await _playerProvider.SetBet(player.Id, _bet);
 
-            PlayerViewModel playerViewModel = ModelViewModelConverter.GetPlayerViewModel(player);
-            DealerViewModel dealerViewModel = ModelViewModelConverter.GetDealerViewModel(dealer);
-            List<PlayerViewModel> botViewModels = ModelViewModelConverter.GetBotViewModels(bots);
-
             GameViewModel gameViewModel = new GameViewModel
             {
-                Player = playerViewModel,
-                Dealer = dealerViewModel,
-                Bots = botViewModels,
+                Player = ModelViewModelConverter.GetPlayerViewModel(player),
+                Dealer = ModelViewModelConverter.GetDealerViewModel(dealer),
+                Bots = ModelViewModelConverter.GetBotViewModels(bots),
                 SessionId = session.Id
             };
 
@@ -75,9 +71,9 @@ namespace ProjectBj.BusinessLogic.Services
             var dealer = await _playerProvider.GetDealer();
             var bots = await _playerProvider.GetSessionBots(session);
 
-            PlayerViewModel playerViewModel = ModelViewModelConverter.GetPlayerViewModel(player);
-            DealerViewModel dealerViewModel = ModelViewModelConverter.GetDealerViewModel(dealer);
-            List<PlayerViewModel> botViewModels = ModelViewModelConverter.GetBotViewModels(bots);
+            var playerViewModel = ModelViewModelConverter.GetPlayerViewModel(player);
+            var dealerViewModel = ModelViewModelConverter.GetDealerViewModel(dealer);
+            var botViewModels = ModelViewModelConverter.GetBotViewModels(bots);
 
             playerViewModel.Hand = await GetHandViewModel(player.Id, session);
             dealerViewModel.Hand = await GetHandViewModel(dealer.Id, session);
