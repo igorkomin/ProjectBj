@@ -1,10 +1,8 @@
-﻿using ProjectBj.BusinessLogic.Enums;
-using ProjectBj.BusinessLogic.Helpers;
+﻿using ProjectBj.BusinessLogic.Helpers;
 using ProjectBj.BusinessLogic.Interfaces;
 using ProjectBj.DataAccess.Interfaces;
 using ProjectBj.Entities;
 using ProjectBj.Logger;
-using ProjectBj.ViewModels.Game;
 using RandomNameGeneratorLibrary;
 using System;
 using System.Collections.Generic;

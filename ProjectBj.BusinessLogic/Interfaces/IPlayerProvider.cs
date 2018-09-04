@@ -1,5 +1,4 @@
 ﻿using ProjectBj.Entities;
-using ProjectBj.ViewModels.Game;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
