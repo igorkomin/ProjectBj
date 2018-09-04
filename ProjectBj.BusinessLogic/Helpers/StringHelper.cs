@@ -31,11 +31,6 @@
             return $"Game id{sessionId} ended";
         }
 
-        public static string GetGettingSessionLogMessage(int sessionId)
-        {
-            return $"Getting game id{sessionId} log";
-        }
-
         public static string GetPlayerScoreMessage(int score)
         {
             return $"hand's score: {score}";
