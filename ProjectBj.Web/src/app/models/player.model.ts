@@ -9,5 +9,6 @@ export class Player {
     gameResult: number;
     gameResultMessage: string;
     bet: number;
+    balanceDelta: number;
     hand: Hand;
 }
