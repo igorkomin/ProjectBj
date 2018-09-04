@@ -53,9 +53,6 @@
     <Compile Include="Helpers\ModelViewModelConverter.cs" />
     <Compile Include="Interfaces\ISystemLogService.cs" />
     <Compile Include="Providers\CardProvider.cs" />
-    <Compile Include="Enums\CardRanks.cs" />
-    <Compile Include="Enums\CardSuits.cs" />
-    <Compile Include="Enums\GameResults.cs" />
     <Compile Include="Helpers\EnumHelper.cs" />
     <Compile Include="Helpers\StringHelper.cs" />
     <Compile Include="Helpers\ValueHelper.cs" />
@@ -70,8 +67,8 @@
     <Compile Include="Services\GameService.cs" />
     <Compile Include="Providers\SessionProvider.cs" />
     <Compile Include="Services\SystemLogService.cs" />
-    <Compile Include="Utility\AutofacProviderTypeRegistry.cs" />
-    <Compile Include="Utility\AutofacServiceTypeRegistry.cs" />
+    <Compile Include="Configs\AutofacProviderTypeRegistry.cs" />
+    <Compile Include="Configs\AutofacServiceTypeRegistry.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ProjectBj.DataAccess\ProjectBj.DataAccess.csproj">
