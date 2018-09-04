@@ -52,8 +52,13 @@ export class ApiService {
     }
 
     getLogs(identifier: Identifier): Observable<GameLog> {
-        let requestUrl = `${apiUrl}/Logs`;
+        let requestUrl = `${apiUrl}/History`;
         return this.http.post<GameLog>(requestUrl, identifier, requestOptions);
+    }
+
+    getAllLogs(): Observable<GameLog> {
+        let requestUrl = `${apiUrl}/FullHistory`;
+        return this.http.get<GameLog>(requestUrl, requestOptions);
     }
 
     getSystemLogs(): Observable<SystemLog> {

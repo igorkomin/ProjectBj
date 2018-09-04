@@ -268,19 +268,15 @@ namespace ProjectBj.BusinessLogic.Services
 
         public async Task<List<LogEntryViewModel>> GetLogs(int sessionId)
         {
-            var logEntryViewModels = new List<LogEntryViewModel>();
-            var logs = await _logProvider.GetLogs(sessionId);
-            foreach (var entry in logs)
-            {
-                LogEntryViewModel logEntryViewModel = new LogEntryViewModel
-                {
-                    SessionId = entry.SessionId,
-                    Time = entry.Time,
-                    PlayerName = entry.PlayerName,
-                    Message = entry.Message
-                };
-                logEntryViewModels.Add(logEntryViewModel);
-            }
+            var logs = await _logProvider.GetSessionLogs(sessionId);
+            var logEntryViewModels = ModelViewModelConverter.GetLogEntryViewModels(logs);
+            return logEntryViewModels;
+        }
+
+        public async Task<List<LogEntryViewModel>> GetAllLogs()
+        {
+            var logs = await _logProvider.GetAllLogs();
+            var logEntryViewModels = ModelViewModelConverter.GetLogEntryViewModels(logs);
             return logEntryViewModels;
         }
 

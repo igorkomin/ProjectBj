@@ -7,6 +7,7 @@ namespace ProjectBj.BusinessLogic.Interfaces
     public interface ILogProvider
     {
         Task CreateLogEntry(string player, string message, int sessionId);
-        Task<List<LogEntry>> GetLogs(int sessionId);
+        Task<List<LogEntry>> GetSessionLogs(int sessionId);
+        Task<List<LogEntry>> GetAllLogs();
     }
 }

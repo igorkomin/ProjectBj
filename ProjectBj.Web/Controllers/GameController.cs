@@ -104,11 +104,25 @@ namespace ProjectBj.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<IHttpActionResult> Logs([FromBody]IdentifierViewModel identifier)
+        public async Task<IHttpActionResult> History([FromBody]IdentifierViewModel identifier)
         {
             try
             {
                 List<LogEntryViewModel> logs = await _service.GetLogs(identifier.SessionId);
+                return Ok(logs);
+            }
+            catch (Exception exception)
+            {
+                return InternalServerError(exception);
+            }
+        }
+
+        [HttpGet]
+        public async Task<IHttpActionResult> FullHistory()
+        {
+            try
+            {
+                List<LogEntryViewModel> logs = await _service.GetAllLogs();
                 return Ok(logs);
             }
             catch (Exception exception)

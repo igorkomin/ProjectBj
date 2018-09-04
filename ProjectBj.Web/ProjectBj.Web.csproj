@@ -128,6 +128,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="src\app\styles\gamelogs.style.css" />
+    <Content Include="src\app\views\gamelogs.view.html" />
     <Content Include="src\assets\bg.jpg" />
     <Content Include="src\assets\Cards\faces\JC.gif" />
     <Content Include="src\assets\Cards\faces\JD.gif" />
@@ -214,6 +216,7 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="src\app\components\logs.component.ts" />
+    <TypeScriptCompile Include="src\app\components\gamelogs.component.ts" />
     <TypeScriptCompile Include="src\app\models\card.model.ts" />
     <TypeScriptCompile Include="src\app\models\dealer.model.ts" />
     <TypeScriptCompile Include="src\app\models\game.model.ts" />
@@ -229,6 +232,8 @@
     <TypeScriptCompile Include="src\app\components\game.component.ts" />
     <TypeScriptCompile Include="src\app\components\login.component.ts" />
     <TypeScriptCompile Include="src\app\modules\app.module.ts" />
+    <TypeScriptCompile Include="src\app\modules\gamelogs\gamelogs-routing.module.ts" />
+    <TypeScriptCompile Include="src\app\modules\gamelogs\gamelogs.module.ts" />
     <TypeScriptCompile Include="src\app\modules\game\game-routing.module.ts" />
     <TypeScriptCompile Include="src\app\modules\game\game.module.ts" />
     <TypeScriptCompile Include="src\app\modules\login\login-routing.module.ts" />
@@ -259,7 +264,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>54822</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:54830/</IISUrl>
+          <IISUrl>http://localhost:54890/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

@@ -18,6 +18,7 @@ namespace ProjectBj.BusinessLogic.Interfaces
         Task DealCard(int playerId, int sessionId);
         Task DealFirstTwoCards(List<int> playerIds, int sessionId);
         Task<List<LogEntryViewModel>> GetLogs(int sessionId);
+        Task<List<LogEntryViewModel>> GetAllLogs();
         Task<bool> DealerTurn(int dealerId, int sessionId);
         Task CloseGameSession(int sessionId);
         Task UpdateViewModel(GameViewModel gameViewModel);

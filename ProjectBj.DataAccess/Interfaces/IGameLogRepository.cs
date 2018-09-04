@@ -8,6 +8,6 @@ namespace ProjectBj.DataAccess.Interfaces
     {
         Task CreateEntry(LogEntry entry);
         Task<ICollection<LogEntry>> GetAllLogs();
-        Task<ICollection<LogEntry>> GetSessionLogs(int sessionId);
+        Task<ICollection<LogEntry>> GetLogsBySessionId(int sessionId);
     }
 }

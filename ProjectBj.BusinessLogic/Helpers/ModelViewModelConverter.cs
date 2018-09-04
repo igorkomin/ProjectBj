@@ -44,5 +44,22 @@ namespace ProjectBj.BusinessLogic.Helpers
             }
             return botViewModels;
         }
+
+        public static List<LogEntryViewModel> GetLogEntryViewModels(List<LogEntry> logEntries)
+        {
+            var logEntryViewModels = new List<LogEntryViewModel>();
+            foreach (var entry in logEntries)
+            {
+                LogEntryViewModel logEntryViewModel = new LogEntryViewModel
+                {
+                    SessionId = entry.SessionId,
+                    Time = entry.Time,
+                    PlayerName = entry.PlayerName,
+                    Message = entry.Message
+                };
+                logEntryViewModels.Add(logEntryViewModel); 
+            }
+            return logEntryViewModels;
+        }
     }
 }

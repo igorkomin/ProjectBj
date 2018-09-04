@@ -1,0 +1,23 @@
+<kendo-grid [data]="gridView"
+            [pageSize]="state.take"
+            [skip]="state.skip"
+            [height]="auto"
+            [filterable]="true"
+            [pageable]="true"
+            [reorderable]="true"
+            [resizable]="true"
+            [sortable]="{
+                allowUnsort: allowUnsort,
+                mode: 'single'
+            }"
+            [sort]="state.sort"
+            (dataStateChange)="dataStateChange($event)">
+    <kendo-grid-column field="sessionId" title="Session ID" width="150">
+    </kendo-grid-column>
+    <kendo-grid-column field="time" title="Date and time" width="250">
+    </kendo-grid-column>
+    <kendo-grid-column field="playerName" title="Player" width="150">
+    </kendo-grid-column>
+    <kendo-grid-column field="message" title="Event">
+    </kendo-grid-column>
+</kendo-grid>
