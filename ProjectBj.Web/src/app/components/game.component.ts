@@ -143,6 +143,23 @@ export class GameComponent implements OnInit {
         );
     }
 
+    surrender(): void {
+        this.error;
+        let identifier = new Identifier();
+        identifier.playerId = this.playerId;
+        identifier.sessionId = this.sessionId;
+        this.apiService.surrender(identifier).subscribe(
+            response => {
+                this.game = response;
+                this.getLogs();
+            },
+            exception => {
+                console.log(exception);
+                this.error = exception.error.exceptionMessage;
+            }
+        );
+    }
+
     getLogs(): void {
         this.error = undefined;
         let identifier = new Identifier();

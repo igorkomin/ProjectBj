@@ -62,6 +62,7 @@
                         <button [disabled]="game?.player.gameResult != 0" (click)="hit()" class="btn btn-primary">HIT</button>
                         <button [disabled]="game?.player.gameResult != 0" (click)="doubleDown()" class="btn btn-info">DOUBLE</button>
                         <button [disabled]="game?.player.gameResult != 0" (click)="stand()" class="btn btn-secondary">STAND</button>
+                        <button [disabled]="game?.player.gameResult != 0" (click)="surrender()" class="btn btn-danger">SURRENDER</button>
                     </div>
                 </div>
                 <div *ngIf="game" class="player-seat col-md-3">
