@@ -1,6 +1,7 @@
 ﻿using ProjectBj.BusinessLogic.Enums;
 using ProjectBj.BusinessLogic.Helpers;
 using ProjectBj.BusinessLogic.Interfaces;
+using ProjectBj.Entities;
 using ProjectBj.Logger;
 using ProjectBj.ViewModels.Game;
 using System;
@@ -28,7 +29,7 @@ namespace ProjectBj.BusinessLogic.Services
             _sessionProvider = sessionProvider;
         }
         
-        public async Task<GameViewModel> CreateGameViewModel()
+        private async Task<GameViewModel> CreateGameViewModel()
         {
             var player = await _playerProvider.GetPlayerByName(_playerName);
             var session = await _sessionProvider.CreateSession();
@@ -48,7 +49,7 @@ namespace ProjectBj.BusinessLogic.Services
             return gameViewModel;
         }
 
-        public async Task UpdateViewModel(GameViewModel gameViewModel)
+        private async Task UpdateViewModel(GameViewModel gameViewModel)
         {
             var session = gameViewModel.SessionId;
             var player = gameViewModel.Player;
@@ -64,7 +65,7 @@ namespace ProjectBj.BusinessLogic.Services
             }
         }
 
-        public async Task<GameViewModel> UpdateViewModel(int playerId, int sessionId)
+        private async Task<GameViewModel> UpdateViewModel(int playerId, int sessionId)
         {
             var session = sessionId;
             var player = await _playerProvider.GetPlayerById(playerId);
@@ -93,13 +94,13 @@ namespace ProjectBj.BusinessLogic.Services
             return gameViewModel;
         }
 
-        public async Task<GameViewModel> UpdateGameResult(int playerId, int sessionId)
+        private async Task<GameViewModel> UpdateGameResult(int playerId, int sessionId)
         {
             var gameViewModel = await UpdateViewModel(playerId, sessionId);
             var playerScore = gameViewModel.Player.Hand.Score;
             var dealerScore = gameViewModel.Dealer.Hand.Score;
             var playerBet = gameViewModel.Player.Bet;
-            var gameResult = await GetGameResult(playerId, playerScore, dealerScore, playerBet);
+            var gameResult = await GetGameResult(playerId, sessionId, playerScore, dealerScore, playerBet);
             gameViewModel.Player.BalanceDelta = gameResult.balanceDelta;
             gameViewModel.Player.GameResult = (int)gameResult.result;
             gameViewModel.Player.GameResultMessage = gameResult.result.ToString();
@@ -110,7 +111,7 @@ namespace ProjectBj.BusinessLogic.Services
             {
                 var botScore = bot.Hand.Score;
                 var botBet = ValueHelper.BotBetValue;
-                gameResult = await GetGameResult(bot.Id, botScore, dealerScore, botBet);
+                gameResult = await GetGameResult(bot.Id, sessionId, botScore, dealerScore, botBet);
                 bot.BalanceDelta = gameResult.balanceDelta;
                 bot.GameResult = (int)gameResult.result;
                 bot.GameResultMessage = gameResult.result.ToString();
@@ -119,7 +120,7 @@ namespace ProjectBj.BusinessLogic.Services
             return gameViewModel;
         }
 
-        public async Task<GameViewModel> DealFirstCards()
+        private async Task<GameViewModel> DealFirstCards()
         {
             GameViewModel model = await CreateGameViewModel();
             List<int> playerIds = new List<int>
@@ -165,7 +166,9 @@ namespace ProjectBj.BusinessLogic.Services
 
         public async Task<GameViewModel> Hit(int playerId, int sessionId)
         {
-            Log.Info(StringHelper.GetPlayerHitsMessage(playerId));
+            Player player = await _playerProvider.GetPlayerById(playerId);
+            await _logProvider.CreateLogEntry(player.Name, StringHelper.ChoseToHit, sessionId);
+            Log.Info(StringHelper.GetPlayerIdHitsMessage(playerId));
             await DealCard(playerId, sessionId);
             GameViewModel gameViewModel = await UpdateViewModel(playerId, sessionId);
             int handValue = await GetHandValue(playerId, sessionId);
@@ -178,26 +181,32 @@ namespace ProjectBj.BusinessLogic.Services
 
         public async Task<GameViewModel> Stand(int playerId, int sessionId)
         {
+            Player player = await _playerProvider.GetPlayerById(playerId);
+            await _logProvider.CreateLogEntry(player.Name, StringHelper.ChoseToStand, sessionId);
+            Log.Info(StringHelper.GetPlayerIdStandsMessage(playerId));
             GameViewModel gameViewModel = await BotsTurn(playerId, sessionId);
-            Log.Info(StringHelper.GetPlayerStandsMessage(playerId));
             return gameViewModel;
         }
 
         public async Task<GameViewModel> DoubleDown(int playerId, int sessionId)
         {
+            Player player = await _playerProvider.GetPlayerById(playerId);
+            await _logProvider.CreateLogEntry(player.Name, StringHelper.ChoseToDouble, sessionId);
+            Log.Info(StringHelper.GetPlayerIdDoubleDownMessage(playerId));
             int playerBet = await _playerProvider.GetBet(playerId);
             await _playerProvider.SetBet(playerId, playerBet * 2);
             await DealCard(playerId, sessionId);
             GameViewModel gameViewModel = await BotsTurn(playerId, sessionId);
-            Log.Info(StringHelper.GetPlayerDoubleDownMessage(playerId));
             return gameViewModel;
         }
 
         public async Task<GameViewModel> Surrender(int playerId, int sessionId)
         {
+            Player player = await _playerProvider.GetPlayerById(playerId);
+            await _logProvider.CreateLogEntry(player.Name, StringHelper.ChoseToSurrender, sessionId);
+            Log.Info(StringHelper.GetPlayerIdSurrenderMessage(playerId));
             await _cardProvider.ThrowCards(playerId, sessionId);
             GameViewModel gameViewModel = await BotsTurn(playerId, sessionId);
-            Log.Info(StringHelper.GetPlayerSurrenderMessage(playerId));
             return gameViewModel;
         }
 
@@ -228,7 +237,7 @@ namespace ProjectBj.BusinessLogic.Services
             return await BotTurn(botId, sessionId);
         }
 
-        public async Task<bool> DealerTurn(int dealerId, int sessionId)
+        private async Task<bool> DealerTurn(int dealerId, int sessionId)
         {
             Log.Info(StringHelper.DealerTurn);
             int handValue = await GetHandValue(dealerId, sessionId);
@@ -240,7 +249,7 @@ namespace ProjectBj.BusinessLogic.Services
             return await DealerTurn(dealerId, sessionId);
         }
 
-        public async Task DealFirstTwoCards(List<int> playerIds, int sessionId)
+        private async Task DealFirstTwoCards(List<int> playerIds, int sessionId)
         {
             foreach (var playerId in playerIds)
             {
@@ -249,7 +258,7 @@ namespace ProjectBj.BusinessLogic.Services
             }
         }
 
-        public async Task DealCard(int playerId, int sessionId)
+        private async Task DealCard(int playerId, int sessionId)
         {
             var deck = await _cardProvider.GetShuffledDeck();
             var card = deck[0];
@@ -260,7 +269,7 @@ namespace ProjectBj.BusinessLogic.Services
             await _playerProvider.GivePlayerCard(playerId, sessionId, card.Id);
         }
 
-        public async Task CloseGameSession(int sessionId)
+        private async Task CloseGameSession(int sessionId)
         {
             await _sessionProvider.CloseSession(sessionId);
             Log.Info(StringHelper.GetGameEndedMessage(sessionId));
@@ -306,7 +315,7 @@ namespace ProjectBj.BusinessLogic.Services
             }
         }
 
-        public async Task<HandViewModel> GetHandViewModel(int playerId, int sessionId)
+        private async Task<HandViewModel> GetHandViewModel(int playerId, int sessionId)
         {
             List<CardViewModel> cardViewModels = await GetCardViewModels(playerId, sessionId);
             HandViewModel handViewModel = new HandViewModel
@@ -317,7 +326,7 @@ namespace ProjectBj.BusinessLogic.Services
             return handViewModel;
         }
 
-        public async Task<int> GetHandValue(int playerId, int sessionId)
+        private async Task<int> GetHandValue(int playerId, int sessionId)
         {
             int totalValue = 0;
             int aceCount = 0;
@@ -347,18 +356,21 @@ namespace ProjectBj.BusinessLogic.Services
                 totalValue - aceCount * ValueHelper.AceDelta : totalValue;
         }
 
-        private async Task<(GameResults.Result result, int balanceDelta)> GetGameResult(int playerId, int playerScore, int dealerScore, int bet)
+        private async Task<(GameResults.Result result, int balanceDelta)> GetGameResult(int playerId, int sessionId, int playerScore, int dealerScore, int bet)
         {
+            Player player = await _playerProvider.GetPlayerById(playerId);
             int balanceDelta = bet;
             if (playerScore == ValueHelper.BlackjackValue)
             {
                 balanceDelta = (bet * 2) + (bet / 2);
+                await _logProvider.CreateLogEntry(player.Name, StringHelper.GetWinsMoneyMessage(balanceDelta), sessionId);
                 await _playerProvider.ChangePlayerBalance(playerId, balanceDelta);
                 return (GameResults.Result.Blackjack, balanceDelta);
             }
 
             if (playerScore == dealerScore)
             {
+                await _logProvider.CreateLogEntry(player.Name, StringHelper.GetWinsMoneyMessage(balanceDelta), sessionId);
                 await _playerProvider.ChangePlayerBalance(playerId, balanceDelta);
                 return (GameResults.Result.Win, balanceDelta);
             }
@@ -366,6 +378,7 @@ namespace ProjectBj.BusinessLogic.Services
             if (playerScore == 0)
             {
                 balanceDelta = bet / 2;
+                await _logProvider.CreateLogEntry(player.Name, StringHelper.GetWinsMoneyMessage(balanceDelta), sessionId);
                 await _playerProvider.ChangePlayerBalance(playerId, balanceDelta);
                 return (GameResults.Result.Surrender, balanceDelta);
             }
@@ -373,17 +386,20 @@ namespace ProjectBj.BusinessLogic.Services
             if (playerScore > ValueHelper.BlackjackValue)
             {
                 balanceDelta = -bet;
+                await _logProvider.CreateLogEntry(player.Name, StringHelper.GetLosesMoneyMessage(balanceDelta), sessionId);
                 await _playerProvider.ChangePlayerBalance(playerId, balanceDelta);
                 return (GameResults.Result.Bust, balanceDelta);
             }
 
             if (playerScore > dealerScore || dealerScore > ValueHelper.BlackjackValue)
             {
+                await _logProvider.CreateLogEntry(player.Name, StringHelper.GetWinsMoneyMessage(balanceDelta), sessionId);
                 await _playerProvider.ChangePlayerBalance(playerId, balanceDelta);
                 return (GameResults.Result.Win, balanceDelta);
             }
 
             balanceDelta = -bet;
+            await _logProvider.CreateLogEntry(player.Name, StringHelper.GetLosesMoneyMessage(balanceDelta), sessionId);
             await _playerProvider.ChangePlayerBalance(playerId, balanceDelta);
             return (GameResults.Result.Lose, balanceDelta);
         }

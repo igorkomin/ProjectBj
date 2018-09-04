@@ -3,6 +3,10 @@
     public static class StringHelper
     {
         public static readonly string DealerName = "Dealer";
+        public static readonly string ChoseToHit = "chose to hit";
+        public static readonly string ChoseToStand = "chose to stand";
+        public static readonly string ChoseToDouble = "chose to double";
+        public static readonly string ChoseToSurrender = "chose to surrender";
         public static readonly string BotsTurn = "Bot players' turn";
         public static readonly string DealerTurn = "Dealer's turn";
         public static readonly string CreatingDeck = "Creating a new deck";
@@ -41,24 +45,34 @@
             return $"takes {cardRank} of {cardSuit}";
         }
 
-        public static string GetPlayerHitsMessage(int playerId)
+        public static string GetPlayerIdHitsMessage(int playerId)
         {
-            return $"Player id{playerId} chose to hit";
+            return $"Player id{playerId} {ChoseToHit}";
         }
 
-        public static string GetPlayerStandsMessage(int playerId)
+        public static string GetPlayerIdStandsMessage(int playerId)
         {
-            return $"Player id{playerId} chose to stand";
+            return $"Player id{playerId} {ChoseToStand}";
         }
 
-        public static string GetPlayerDoubleDownMessage(int playerId)
+        public static string GetPlayerIdDoubleDownMessage(int playerId)
         {
-            return $"Player id{playerId} chose to double down";
+            return $"Player id{playerId} {ChoseToDouble}";
         }
 
-        public static string GetPlayerSurrenderMessage(int playerId)
+        public static string GetPlayerIdSurrenderMessage(int playerId)
         {
-            return $"Player id{playerId} chose to surrender";
+            return $"Player id{playerId} {ChoseToSurrender}";
+        }
+
+        public static string GetWinsMoneyMessage(int amount)
+        {
+            return $"wins {amount}$";
+        }
+
+        public static string GetLosesMoneyMessage(int amount)
+        {
+            return $"loses {amount}$";
         }
     }
 }
