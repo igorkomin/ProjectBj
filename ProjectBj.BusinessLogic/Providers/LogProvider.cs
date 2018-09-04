@@ -42,15 +42,8 @@ namespace ProjectBj.BusinessLogic.Providers
 
         public async Task<List<LogEntry>> GetSessionLogs(int sessionId)
         {
-            try
-            {
-                var logs = await _logRepository.GetLogsBySessionId(sessionId);
-                return logs.ToList();
-            }
-            catch (Exception exception)
-            {
-                throw exception;
-            }
+            var logs = await _logRepository.GetLogsBySessionId(sessionId);
+            return logs.ToList();
         }
 
         public async Task<List<LogEntry>> GetAllLogs()

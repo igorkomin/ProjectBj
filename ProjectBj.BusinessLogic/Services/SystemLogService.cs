@@ -19,41 +19,33 @@ namespace ProjectBj.BusinessLogic.Services
 
         public async Task<List<SystemLogViewModel>> GetSystemLogs()
         {
-            try
+            var systemLogs = await _systemLogRepository.GetAllLogs();
+            var systemLogViewModels = new List<SystemLogViewModel>();
+            foreach (var log in systemLogs)
             {
-                var systemLogs = await _systemLogRepository.GetAllLogs();
-                var systemLogViewModels = new List<SystemLogViewModel>();
-                foreach (var log in systemLogs)
+                SystemLogViewModel systemLogViewModel = new SystemLogViewModel
                 {
-                    SystemLogViewModel systemLogViewModel = new SystemLogViewModel
-                    {
-                        Id = log.Id,
-                        CallSite = log.CallSite,
-                        Exception = log.Exception,
-                        Https = log.Https,
-                        Level = log.Level,
-                        Logged = log.Logged,
-                        Logger = log.Logger,
-                        MachineName = log.MachineName,
-                        Message = log.Message,
-                        Port = log.Port,
-                        Properties = log.Properties,
-                        RemoteAddress = log.RemoteAddress,
-                        ServerAddress = log.ServerAddress,
-                        ServerName = log.ServerName,
-                        SiteName = log.SiteName,
-                        Url = log.Url,
-                        UserName = log.UserName
-                    };
-                    systemLogViewModels.Add(systemLogViewModel);
-                }
-                return systemLogViewModels;
+                    Id = log.Id,
+                    CallSite = log.CallSite,
+                    Exception = log.Exception,
+                    Https = log.Https,
+                    Level = log.Level,
+                    Logged = log.Logged,
+                    Logger = log.Logger,
+                    MachineName = log.MachineName,
+                    Message = log.Message,
+                    Port = log.Port,
+                    Properties = log.Properties,
+                    RemoteAddress = log.RemoteAddress,
+                    ServerAddress = log.ServerAddress,
+                    ServerName = log.ServerName,
+                    SiteName = log.SiteName,
+                    Url = log.Url,
+                    UserName = log.UserName
+                };
+                systemLogViewModels.Add(systemLogViewModel);
             }
-            catch (Exception exception)
-            {
-                Log.Error(exception.Message);
-                throw exception;
-            }
+            return systemLogViewModels;
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using ProjectBj.BusinessLogic.Enums;
+﻿using ProjectBj.Entities.Enums;
 using System;
 using System.ComponentModel;
 

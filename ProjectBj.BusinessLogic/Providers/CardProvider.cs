@@ -1,8 +1,8 @@
-﻿using ProjectBj.BusinessLogic.Enums;
-using ProjectBj.BusinessLogic.Helpers;
+﻿using ProjectBj.BusinessLogic.Helpers;
 using ProjectBj.BusinessLogic.Interfaces;
 using ProjectBj.DataAccess.Interfaces;
 using ProjectBj.Entities;
+using ProjectBj.Entities.Enums;
 using ProjectBj.Logger;
 using System;
 using System.Collections.Generic;
@@ -42,38 +42,23 @@ namespace ProjectBj.BusinessLogic.Providers
                 _deck.Add(card);
             }
         }
-        
+
         private async Task<List<Card>> PullDeck()
         {
-            try
+            Log.Info(StringHelper.PullingDeck);
+            var deckFromDb = await _cardRepository.GetAllCards();
+            if (deckFromDb.ToList().Count == 0)
             {
-                Log.Info(StringHelper.PullingDeck);
-                var deckFromDb = await _cardRepository.GetAllCards();
-                if (deckFromDb.ToList().Count == 0)
-                {
-                    Log.Info(StringHelper.NoDeckInDb);
-                    return null;
-                }
-                return deckFromDb.ToList();
+                Log.Info(StringHelper.NoDeckInDb);
+                return null;
             }
-            catch (Exception exception)
-            {
-                Log.Error(exception.Message);
-                throw exception;
-            }
+            return deckFromDb.ToList();
         }
 
         private async Task PushDeck(List<Card> localDeck)
         {
-            try
-            {
-                Log.Info(StringHelper.SavingDeck);
-                await _cardRepository.CreateDeck(localDeck);
-            }
-            catch (Exception exception)
-            {
-                throw exception;
-            }
+            Log.Info(StringHelper.SavingDeck);
+            await _cardRepository.CreateDeck(localDeck);
         }
 
         public async Task<List<Card>> GetDeck()

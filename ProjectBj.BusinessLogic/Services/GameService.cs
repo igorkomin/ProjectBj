@@ -1,7 +1,7 @@
-﻿using ProjectBj.BusinessLogic.Enums;
-using ProjectBj.BusinessLogic.Helpers;
+﻿using ProjectBj.BusinessLogic.Helpers;
 using ProjectBj.BusinessLogic.Interfaces;
 using ProjectBj.Entities;
+using ProjectBj.Entities.Enums;
 using ProjectBj.Logger;
 using ProjectBj.ViewModels.Game;
 using System;
@@ -291,28 +291,20 @@ namespace ProjectBj.BusinessLogic.Services
 
         private async Task<List<CardViewModel>> GetCardViewModels(int playerId, int sessionId)
         {
-            try
+            var player = await _playerProvider.GetPlayerById(playerId);
+            var cards = await _cardProvider.GetPlayerCards(playerId, sessionId);
+            List<CardViewModel> cardViewModels = new List<CardViewModel>();
+            foreach (var card in cards)
             {
-                var player = await _playerProvider.GetPlayerById(playerId);
-                var cards = await _cardProvider.GetPlayerCards(playerId, sessionId);
-                List<CardViewModel> cardViewModels = new List<CardViewModel>();
-                foreach (var card in cards)
+                CardViewModel cardViewModel = new CardViewModel
                 {
-                    CardViewModel cardViewModel = new CardViewModel
-                    {
-                        Suit = card.Suit,
-                        Rank = EnumHelper.GetRankName(card.Rank),
-                        RankValue = card.Rank
-                    };
-                    cardViewModels.Add(cardViewModel);
-                }
-                return cardViewModels;
+                    Suit = card.Suit,
+                    Rank = EnumHelper.GetRankName(card.Rank),
+                    RankValue = card.Rank
+                };
+                cardViewModels.Add(cardViewModel);
             }
-            catch (Exception exception)
-            {
-                Log.Error(exception.Message);
-                throw exception;
-            }
+            return cardViewModels;
         }
 
         private async Task<HandViewModel> GetHandViewModel(int playerId, int sessionId)

@@ -31,16 +31,8 @@ namespace ProjectBj.BusinessLogic.Providers
                 InGame = true,
                 IsHuman = true
             };
-            try
-            {
-                player = await _playerRepository.Create(player);
-                return player;
-            }
-            catch (Exception exception)
-            {
-                Log.Error(exception.Message);
-                throw exception;
-            }
+            player = await _playerRepository.Create(player);
+            return player;
         }
 
         private async Task<Player> NewBot()
@@ -52,16 +44,8 @@ namespace ProjectBj.BusinessLogic.Providers
                 IsHuman = false,
                 InGame = true
             };
-            try
-            {
-                bot = await _playerRepository.Create(bot);
-                return bot;
-            }
-            catch (Exception exception)
-            {
-                Log.Error(exception.Message);
-                throw exception;
-            }
+            bot = await _playerRepository.Create(bot);
+            return bot;
         }
 
         private async Task<Player> NewDealer()
@@ -72,16 +56,8 @@ namespace ProjectBj.BusinessLogic.Providers
                 InGame = false,
                 IsHuman = false
             };
-            try
-            {
-                dealer = await _playerRepository.Create(dealer);
-                return dealer;
-            }
-            catch(Exception exception)
-            {
-                Log.Error(exception.Message);
-                throw exception;
-            }
+            dealer = await _playerRepository.Create(dealer);
+            return dealer;
         }
 
         private async Task<List<Player>> CreateBots(int number)
@@ -126,38 +102,22 @@ namespace ProjectBj.BusinessLogic.Providers
 
         public async Task<Player> PullPlayer(string name)
         {
-            try
+            var searchResults = await _playerRepository.FindPlayers(name);
+            if (searchResults.Count == 0)
             {
-                var searchResults = await _playerRepository.FindPlayers(name);
-                if(searchResults.Count == 0)
-                {
-                    return null;
-                }
-                return searchResults.FirstOrDefault();
+                return null;
             }
-            catch (Exception exception)
-            {
-                Log.Error(exception.Message);
-                throw exception;
-            }
+            return searchResults.FirstOrDefault();
         }
 
         private async Task<Player> PullDealer()
         {
-            try
+            var searchResults = await _playerRepository.FindPlayers(StringHelper.DealerName);
+            if (searchResults.Count == 0)
             {
-                var searchResults = await _playerRepository.FindPlayers(StringHelper.DealerName);
-                if(searchResults.Count == 0)
-                {
-                    return null;
-                }
-                return searchResults.FirstOrDefault();
+                return null;
             }
-            catch (Exception exception)
-            {
-                Log.Error(exception.Message);
-                throw exception;
-            }
+            return searchResults.FirstOrDefault();
         }
 
         public async Task<Player> GetPlayerByName(string name)
@@ -172,59 +132,26 @@ namespace ProjectBj.BusinessLogic.Providers
 
         public async Task<Player> GetPlayerById(int id)
         {
-            Player player;
-            try
-            {
-                player = await _playerRepository.GetById(id);
-                return player;
-            }
-            catch (Exception exception)
-            {
-                Log.Error(exception.Message);
-                throw exception;
-            }
+            Player player = await _playerRepository.GetById(id);
+            return player;
         }
 
         public async Task DeleteSessionBots(int sessionId)
         {
-            try
-            {
-                await _playerRepository.DeleteNonHumanPlayers(sessionId);
-            }
-            catch (Exception exception)
-            {
-                Log.Error(exception.Message);
-                throw exception;
-            }
+            await _playerRepository.DeleteNonHumanPlayers(sessionId);
         }
 
         public async Task GivePlayerCard(int playerId, int sessionId, int cardId)
         {
-            try
-            {
-                Player player = await _playerRepository.GetById(playerId);
-                await _playerRepository.AddCard(player, cardId, sessionId);
-            }
-            catch (Exception exception)
-            {
-                Log.Error(exception.Message);
-                throw exception;
-            }
+            Player player = await _playerRepository.GetById(playerId);
+            await _playerRepository.AddCard(player, cardId, sessionId);
         }
 
         public async Task ChangePlayerBalance(int playerId, int balanceDelta)
         {
             Player player = await _playerRepository.GetById(playerId);
             player.Balance += balanceDelta;
-            try
-            {
-                await _playerRepository.Update(player);
-            }
-            catch (Exception exception)
-            {
-                Log.Error(exception.Message);
-                throw exception;
-            }
+            await _playerRepository.Update(player);
         }
 
         public async Task SetBet(int playerId, int bet)

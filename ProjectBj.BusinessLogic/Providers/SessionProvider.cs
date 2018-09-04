@@ -23,15 +23,8 @@ namespace ProjectBj.BusinessLogic.Providers
             {
                 TimeCreated = DateTime.Now
             };
-            try
-            {
-                session = await _sessionRepository.Create(session);
-                return session;
-            }
-            catch (Exception exception)
-            {
-                throw exception;
-            }
+            session = await _sessionRepository.Create(session);
+            return session;
         }
 
         public async Task<GameSession> GetSessionByPlayerId(int playerId)
@@ -56,14 +49,7 @@ namespace ProjectBj.BusinessLogic.Providers
         {
             GameSession session = await GetSessionById(sessionId);
             session.IsOpen = false;
-            try
-            {
-                await _sessionRepository.Update(session);
-            }
-            catch (Exception exception)
-            {
-                throw exception;
-            }
+            await _sessionRepository.Update(session);
         }
     }
 }
