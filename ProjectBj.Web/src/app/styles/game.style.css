@@ -3,7 +3,8 @@
 }
 
 .caption {
-    font-weight: bold;
+    font-weight: bolder;
+    margin-bottom: 0;
 }
 
 .btn:disabled {
@@ -83,4 +84,11 @@
     overflow-y: auto;
     text-align: left;
     padding-top: 5px;
+}
+
+.balance {
+    font-weight: bold;
+    color: green;
+    text-shadow: 1px 0px 2px #000;
+    margin-bottom: 0;
 }

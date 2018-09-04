@@ -112,7 +112,8 @@ namespace ProjectBj.BusinessLogic.Providers
                 Id = player.Id,
                 Name = player.Name,
                 Balance = player.Balance,
-                IsHuman = player.IsHuman
+                IsHuman = player.IsHuman,
+                Bet = player.Bet
             };
             return playerViewModel;
         }
@@ -284,6 +285,13 @@ namespace ProjectBj.BusinessLogic.Providers
                 Log.Error(exception.Message);
                 throw exception;
             }
+        }
+
+        public async Task SetBet(int playerId, int bet)
+        {
+            Player player = await _playerRepository.GetById(playerId);
+            player.Bet = bet;
+            await _playerRepository.Update(player);
         }
     }
 }

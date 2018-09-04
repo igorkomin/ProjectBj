@@ -34,7 +34,9 @@ namespace ProjectBj.BusinessLogic.Services
             var session = await _sessionProvider.CreateSession();
             var bots = await _playerProvider.GetBotViewModels(_botNumber, session.Id);
             var dealer = await _playerProvider.GetDealer();
-            
+
+            await _playerProvider.SetBet(player.Id, _bet);
+
             GameViewModel gameViewModel = new GameViewModel
             {
                 Player = player,
@@ -92,7 +94,8 @@ namespace ProjectBj.BusinessLogic.Services
             var gameViewModel = await UpdateViewModel(playerId, sessionId);
             var playerScore = gameViewModel.Player.Hand.Score;
             var dealerScore = gameViewModel.Dealer.Hand.Score;
-            var result = await GetGameResult(playerId, playerScore, dealerScore, _bet);
+            var playerBet = gameViewModel.Player.Bet;
+            var result = await GetGameResult(playerId, playerScore, dealerScore, playerBet);
             gameViewModel.Player.GameResult = (int)result;
             gameViewModel.Player.GameResultMessage = result.ToString();
             await _logProvider.CreateLogEntry(gameViewModel.Dealer.Name, StringHelper.GetPlayerScoreMessage(dealerScore), sessionId);

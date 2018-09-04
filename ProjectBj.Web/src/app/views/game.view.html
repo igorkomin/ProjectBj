@@ -68,6 +68,7 @@
                         <span>{{ game?.player.gameResultMessage }}</span>
                     </div>
                     <p class="caption">{{ game?.player.name }} <span class="badge badge-secondary">{{ game?.player.hand.score }}</span></p>
+                    <p class="balance">{{ game?.player.balance | currency }}</p>
                     <div class="playingCards simpleCards rotateHand">
                         <ul class="hand">
                             <li *ngFor="let card of game?.player.hand.cards">
@@ -86,6 +87,7 @@
                         <span>{{ bot?.gameResultMessage }}</span>
                     </div>
                     <p class="caption">{{ bot?.name }} <span class="badge badge-secondary">{{ bot?.hand.score }}</span></p>
+                    <p class="balance">{{ bot?.balance | currency }}</p>
                     <div class="playingCards simpleCards rotateHand">
                         <ul class="hand">
                             <li *ngFor="let card of bot?.hand.cards">

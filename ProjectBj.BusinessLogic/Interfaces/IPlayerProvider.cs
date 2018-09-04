@@ -14,5 +14,6 @@ namespace ProjectBj.BusinessLogic.Interfaces
         Task<List<PlayerViewModel>> GetSessionBotViewModels(int sessionId);
         Task GivePlayerCard(int playerId, int sessionId, int cardId);
         Task ChangePlayerBalance(int playerId, int balanceDelta);
+        Task SetBet(int playerId, int bet);
     }
 }
