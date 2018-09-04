@@ -53,11 +53,5 @@
     <Compile Include="Logs\SystemLogViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ProjectBj.Entities\ProjectBj.Entities.csproj">
-      <Project>{fe68c0ab-c49b-4ad7-8675-493223b5f50c}</Project>
-      <Name>ProjectBj.Entities</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
