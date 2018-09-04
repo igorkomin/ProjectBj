@@ -73,7 +73,7 @@
     <Compile Include="Repositories\GameLogRepository.cs" />
     <Compile Include="Repositories\PlayerRepository.cs" />
     <Compile Include="Repositories\SystemLogRepository.cs" />
-    <Compile Include="Utility\AutofacDataAccessTypeRegistry.cs" />
+    <Compile Include="Configs\AutofacDataAccessTypeRegistry.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
