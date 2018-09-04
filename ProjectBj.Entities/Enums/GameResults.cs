@@ -1,4 +1,4 @@
-﻿namespace ProjectBj.BusinessLogic.Enums
+﻿namespace ProjectBj.Entities.Enums
 {
     public class GameResults
     {
