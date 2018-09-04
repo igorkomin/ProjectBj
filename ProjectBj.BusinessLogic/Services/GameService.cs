@@ -276,7 +276,7 @@ namespace ProjectBj.BusinessLogic.Services
                 {
                     SessionId = entry.SessionId,
                     Time = entry.Time,
-                    Player = entry.Player,
+                    PlayerName = entry.PlayerName,
                     Message = entry.Message
                 };
                 logEntryViewModels.Add(logEntryViewModel);

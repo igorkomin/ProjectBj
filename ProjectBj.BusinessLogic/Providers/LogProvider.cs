@@ -19,11 +19,11 @@ namespace ProjectBj.BusinessLogic.Providers
             _logRepository = logRepository;
         }
 
-        public async Task CreateLogEntry(string player, string message, int sessionId)
+        public async Task CreateLogEntry(string playerName, string message, int sessionId)
         {
             LogEntry entry = new LogEntry
             {
-                Player = player,
+                PlayerName = playerName,
                 SessionId = sessionId,
                 Message = message,
                 Time = DateTime.Now

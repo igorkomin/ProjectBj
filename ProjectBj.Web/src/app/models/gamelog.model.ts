@@ -1,6 +1,6 @@
 export class GameLog {
     sessionId: number;
     time: Date;
-    player: string;
+    playerName: string;
     message: string;
 }

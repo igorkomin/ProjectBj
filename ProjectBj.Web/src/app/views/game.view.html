@@ -123,7 +123,7 @@
                     <li class="list-group-item active">GAME LOG</li>
                     <li class="list-group-item">
                         <div *ngFor="let entry of log">
-                            [{{ entry.time | date:'HH:mm:ss' }}] <b>{{ entry.player }}</b> {{ entry.message }}
+                            [{{ entry.time | date:'HH:mm:ss' }}] <b>{{ entry.playerName }}</b> {{ entry.message }}
                         </div>
                     </li>
                 </ul>
