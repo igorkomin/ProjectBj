@@ -1,4 +1,5 @@
-﻿using ProjectBj.ViewModels.Game;
+﻿using ProjectBj.Entities;
+using ProjectBj.ViewModels.Game;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -6,12 +7,12 @@ namespace ProjectBj.BusinessLogic.Interfaces
 {
     public interface IPlayerProvider
     {
-        Task<DealerViewModel> GetDealer();
-        Task<PlayerViewModel> GetPlayerViewModel(string name);
-        Task<PlayerViewModel> GetPlayerById(int id);
-        Task<PlayerViewModel> PullPlayer(string name);
-        Task<List<PlayerViewModel>> GetBotViewModels(int botnumber, int sessionId);
-        Task<List<PlayerViewModel>> GetSessionBotViewModels(int sessionId);
+        Task<Player> GetDealer();
+        Task<Player> GetPlayerByName(string name);
+        Task<Player> GetPlayerById(int id);
+        Task<Player> PullPlayer(string name);
+        Task<List<Player>> GetBots(int botnumber, int sessionId);
+        Task<List<Player>> GetSessionBots(int sessionId);
         Task<int> GetBet(int playerId);
         Task GivePlayerCard(int playerId, int sessionId, int cardId);
         Task ChangePlayerBalance(int playerId, int balanceDelta);

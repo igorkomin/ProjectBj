@@ -24,9 +24,8 @@ namespace ProjectBj.BusinessLogic.Providers
             _nameGenerator = new PersonNameGenerator();
         }
 
-        private async Task<PlayerViewModel> NewPlayer(string name)
+        private async Task<Player> NewPlayer(string name)
         {
-            PlayerViewModel playerViewModel;
             Player player = new Player
             {
                 Name = name,
@@ -37,8 +36,7 @@ namespace ProjectBj.BusinessLogic.Providers
             try
             {
                 player = await _playerRepository.Create(player);
-                playerViewModel = GetPlayerViewModel(player);
-                return playerViewModel;
+                return player;
             }
             catch (Exception exception)
             {
@@ -47,9 +45,8 @@ namespace ProjectBj.BusinessLogic.Providers
             }
         }
 
-        private async Task<PlayerViewModel> NewBot()
+        private async Task<Player> NewBot()
         {
-            PlayerViewModel botViewModel;
             Player bot = new Player
             {
                 Name = _nameGenerator.GenerateRandomFirstAndLastName(),
@@ -60,8 +57,7 @@ namespace ProjectBj.BusinessLogic.Providers
             try
             {
                 bot = await _playerRepository.Create(bot);
-                botViewModel = GetPlayerViewModel(bot);
-                return botViewModel;
+                return bot;
             }
             catch (Exception exception)
             {
@@ -70,9 +66,8 @@ namespace ProjectBj.BusinessLogic.Providers
             }
         }
 
-        private async Task<DealerViewModel> NewDealer()
+        private async Task<Player> NewDealer()
         {
-            DealerViewModel dealerViewModel;
             Player dealer = new Player
             {
                 Name = StringHelper.DealerName,
@@ -82,8 +77,7 @@ namespace ProjectBj.BusinessLogic.Providers
             try
             {
                 dealer = await _playerRepository.Create(dealer);
-                dealerViewModel = GetDealerViewModel(dealer);
-                return dealerViewModel;
+                return dealer;
             }
             catch(Exception exception)
             {
@@ -92,87 +86,40 @@ namespace ProjectBj.BusinessLogic.Providers
             }
         }
 
-        private async Task<List<PlayerViewModel>> CreateBots(int number)
+        private async Task<List<Player>> CreateBots(int number)
         {
             await DeleteAllBots();
-            List<PlayerViewModel> bots = new List<PlayerViewModel>();
+            List<Player> bots = new List<Player>();
             for(int i = 0; i < number; i++)
             {
-                PlayerViewModel bot = await NewBot();
+                Player bot = await NewBot();
                 bots.Add(bot);
             }
 
             return bots;
         }
 
-        private PlayerViewModel GetPlayerViewModel(Player player)
-        {
-            PlayerViewModel playerViewModel = new PlayerViewModel
-            {
-                Id = player.Id,
-                Name = player.Name,
-                Balance = player.Balance,
-                IsHuman = player.IsHuman,
-                Bet = player.Bet
-            };
-            return playerViewModel;
-        }
-
-        private DealerViewModel GetDealerViewModel(Player dealer)
-        {
-            DealerViewModel dealerViewModel = new DealerViewModel
-            {
-                Id = dealer.Id,
-                Name = dealer.Name,
-            };
-            return dealerViewModel;
-        }
-
-        public async Task<List<PlayerViewModel>> GetBotViewModels(int botnumber, int sessionId)
+        public async Task<List<Player>> GetBots(int botnumber, int sessionId)
         {
             var bots = await _playerRepository.GetSessionBots(sessionId);
-            var botViewModels = new List<PlayerViewModel>();
 
-            foreach (var bot in bots)
+            if (bots.Count == 0 || bots == null)
             {
-                PlayerViewModel botViewModel = new PlayerViewModel
-                {
-                    Id = bot.Id,
-                    Name = bot.Name,
-                    Balance = bot.Balance
-                };
-                botViewModels.Add(botViewModel);
-            }
-
-            if (botViewModels.Count == 0 || botViewModels == null)
-            {
-                botViewModels = await CreateBots(botnumber);
+                bots = await CreateBots(botnumber);
             }
             
-            return botViewModels;
+            return bots.ToList();
         }
 
-        public async Task<List<PlayerViewModel>> GetSessionBotViewModels(int sessionId)
+        public async Task<List<Player>> GetSessionBots(int sessionId)
         {
             var bots = await _playerRepository.GetSessionBots(sessionId);
-            var botViewModels = new List<PlayerViewModel>();
-
-            foreach (var bot in bots)
-            {
-                PlayerViewModel botViewModel = new PlayerViewModel
-                {
-                    Id = bot.Id,
-                    Name = bot.Name,
-                    Balance = bot.Balance
-                };
-                botViewModels.Add(botViewModel);
-            }
-            return botViewModels;
+            return bots.ToList();
         }
 
-        public async Task<DealerViewModel> GetDealer()
+        public async Task<Player> GetDealer()
         {
-            DealerViewModel dealer = await PullDealer();
+            Player dealer = await PullDealer();
             if(dealer == null)
             {
                 dealer = await NewDealer();
@@ -180,7 +127,7 @@ namespace ProjectBj.BusinessLogic.Providers
             return dealer;
         }
 
-        public async Task<PlayerViewModel> PullPlayer(string name)
+        public async Task<Player> PullPlayer(string name)
         {
             try
             {
@@ -189,8 +136,7 @@ namespace ProjectBj.BusinessLogic.Providers
                 {
                     return null;
                 }
-                var playerViewModel = GetPlayerViewModel(searchResults.FirstOrDefault());
-                return playerViewModel;
+                return searchResults.FirstOrDefault();
             }
             catch (Exception exception)
             {
@@ -199,7 +145,7 @@ namespace ProjectBj.BusinessLogic.Providers
             }
         }
 
-        private async Task<DealerViewModel> PullDealer()
+        private async Task<Player> PullDealer()
         {
             try
             {
@@ -208,8 +154,7 @@ namespace ProjectBj.BusinessLogic.Providers
                 {
                     return null;
                 }
-                var dealerViewModel = GetDealerViewModel(searchResults.FirstOrDefault());
-                return dealerViewModel;
+                return searchResults.FirstOrDefault();
             }
             catch (Exception exception)
             {
@@ -218,9 +163,9 @@ namespace ProjectBj.BusinessLogic.Providers
             }
         }
 
-        public async Task<PlayerViewModel> GetPlayerViewModel(string name)
+        public async Task<Player> GetPlayerByName(string name)
         {
-            PlayerViewModel player = await PullPlayer(name);
+            Player player = await PullPlayer(name);
             if(player == null)
             {
                 player = await NewPlayer(name);
@@ -228,15 +173,13 @@ namespace ProjectBj.BusinessLogic.Providers
             return player;
         }
 
-        public async Task<PlayerViewModel> GetPlayerById(int id)
+        public async Task<Player> GetPlayerById(int id)
         {
             Player player;
-            PlayerViewModel playerViewModel;
             try
             {
                 player = await _playerRepository.GetById(id);
-                playerViewModel = GetPlayerViewModel(player);
-                return playerViewModel;
+                return player;
             }
             catch (Exception exception)
             {
