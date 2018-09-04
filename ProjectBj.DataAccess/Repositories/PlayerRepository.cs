@@ -134,11 +134,11 @@ namespace ProjectBj.DataAccess.Repositories
             {
                 using (IDbConnection db = new SqlConnection(_connectionString))
                 {
-                    var sqlQuery = "SELECT DISTINCT p.* FROM PlayerHands ph " +
-                                   "JOIN Players p ON ( ph.PlayerId = p.Id ) " +
-                                   "WHERE ph.SessionId = @sessionId " +
-                                   "AND p.IsHuman = 0 " +
-                                   "AND p.InGame = 1";
+                    var sqlQuery = @"SELECT DISTINCT p.* FROM PlayerHands ph
+                                     JOIN Players p ON ( ph.PlayerId = p.Id )
+                                     WHERE ph.SessionId = @sessionId
+                                     AND p.IsHuman = 0
+                                     AND p.InGame = 1";
                     var bots = await db.QueryAsync<Player>(sqlQuery, new { sessionId });
                     return bots.AsList();
                 }

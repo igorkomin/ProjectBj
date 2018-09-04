@@ -39,9 +39,20 @@ namespace ProjectBj.DataAccess.Repositories
 
         public async Task<ICollection<LogEntry>> GetLogsBySessionId(int sessionId)
         {
-            var allLogs = await GetAllLogs();
-            var sessionLogs = allLogs.Where(x => x.SessionId == sessionId);
-            return sessionLogs.AsList();
+            try
+            {
+                using (IDbConnection db = new SqlConnection(_connectionString))
+                {
+                    var sqlQuery = @"SELECT * FROM Logs WHERE SessionId = @sessionId";
+                    var logs = await db.QueryAsync<LogEntry>(sqlQuery, new { sessionId });
+                    return logs.AsList();
+                }
+            }
+            catch (SqlException exception)
+            {
+                Log.Error(exception.Message);
+                throw new DataSourceException(exception.Message, exception);
+            }
         }
 
         public async Task<ICollection<LogEntry>> GetAllLogs()

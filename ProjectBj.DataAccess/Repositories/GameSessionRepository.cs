@@ -76,9 +76,9 @@ namespace ProjectBj.DataAccess.Repositories
             {
                 using (IDbConnection db = new SqlConnection(_connectionString))
                 {
-                    var sqlQuery = "SELECT DISTINCT gs.* FROM PlayerHands ph " +
-                                   "JOIN GameSessions gs ON ( ph.SessionId = gs.Id ) " +
-                                   "WHERE gs.IsOpen = 1 AND ph.PlayerId = @playerId";
+                    var sqlQuery = @"SELECT DISTINCT gs.* FROM PlayerHands ph
+                                     JOIN GameSessions gs ON ( ph.SessionId = gs.Id )
+                                     WHERE gs.IsOpen = 1 AND ph.PlayerId = @playerId";
 
                     var session = await db.QueryAsync<GameSession>(sqlQuery, new { playerId });
                     return session.FirstOrDefault();
