@@ -183,6 +183,15 @@ namespace ProjectBj.BusinessLogic.Services
             await _playerProvider.SetBet(playerId, playerBet * 2);
             await DealCard(playerId, sessionId);
             GameViewModel gameViewModel = await BotsTurn(playerId, sessionId);
+            Log.Info(StringHelper.GetPlayerDoubleDownMessage(playerId));
+            return gameViewModel;
+        }
+
+        public async Task<GameViewModel> Surrender(int playerId, int sessionId)
+        {
+            await _cardProvider.ThrowCards(playerId, sessionId);
+            GameViewModel gameViewModel = await BotsTurn(playerId, sessionId);
+            Log.Info(StringHelper.GetPlayerSurrenderMessage(playerId));
             return gameViewModel;
         }
 
@@ -342,6 +351,13 @@ namespace ProjectBj.BusinessLogic.Services
                 int winAmount = (bet * 2) + (bet / 2);
                 await _playerProvider.ChangePlayerBalance(playerId, winAmount);
                 return GameResults.Result.Blackjack;
+            }
+
+            if (playerScore == 0)
+            {
+                int winAmount = bet / 2;
+                await _playerProvider.ChangePlayerBalance(playerId, winAmount);
+                return GameResults.Result.Lost;
             }
 
             if (playerScore > ValueHelper.BlackjackValue)
