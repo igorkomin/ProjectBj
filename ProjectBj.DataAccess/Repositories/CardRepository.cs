@@ -73,8 +73,9 @@ namespace ProjectBj.DataAccess.Repositories
             {
                 using (IDbConnection db = new SqlConnection(_connectionString))
                 {
-                    var sqlQuery = "DELETE FROM PlayerHands WHERE PlayerId = @playerId AND SessionId = @sessionId";
-                    await db.QueryAsync(sqlQuery, new { playerId, sessionId });
+                    var playerHand = (await db.GetAllAsync<PlayerHand>()).AsList()
+                        .FindAll(x => x.PlayerId == playerId && x.SessionId == sessionId);
+                    await db.DeleteAsync(playerHand);
                 }
             }
             catch (SqlException exception)
