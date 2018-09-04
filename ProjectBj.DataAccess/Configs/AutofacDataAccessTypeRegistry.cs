@@ -2,7 +2,7 @@
 using ProjectBj.DataAccess.Interfaces;
 using ProjectBj.DataAccess.Repositories;
 
-namespace ProjectBj.DataAccess.Utility
+namespace ProjectBj.DataAccess.Configs
 {
     public static class AutofacDataAccessTypeRegistry
     {

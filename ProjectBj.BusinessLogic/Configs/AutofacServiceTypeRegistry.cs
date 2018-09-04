@@ -2,7 +2,7 @@
 using ProjectBj.BusinessLogic.Interfaces;
 using ProjectBj.BusinessLogic.Services;
 
-namespace ProjectBj.BusinessLogic.Utility
+namespace ProjectBj.BusinessLogic.Configs
 {
     public static class AutofacServiceTypeRegistry
     {

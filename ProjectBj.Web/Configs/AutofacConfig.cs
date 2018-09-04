@@ -2,10 +2,10 @@
 using Autofac.Integration.WebApi;
 using System.Reflection;
 using System.Web.Http;
-using ProjectBj.BusinessLogic.Utility;
+using ProjectBj.BusinessLogic.Configs;
 using System.Web.Configuration;
 
-namespace ProjectBj.Web.Utility
+namespace ProjectBj.Web.Configs
 {
     public static class AutofacConfig
     {

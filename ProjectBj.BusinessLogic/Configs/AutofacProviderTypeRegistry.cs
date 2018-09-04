@@ -1,9 +1,9 @@
 ﻿using Autofac;
 using ProjectBj.BusinessLogic.Interfaces;
 using ProjectBj.BusinessLogic.Providers;
-using ProjectBj.DataAccess.Utility;
+using ProjectBj.DataAccess.Configs;
 
-namespace ProjectBj.BusinessLogic.Utility
+namespace ProjectBj.BusinessLogic.Configs
 {
     public static class AutofacProviderTypeRegistry
     {
