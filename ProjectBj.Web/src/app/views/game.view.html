@@ -73,8 +73,7 @@
                     <p class="balance">
                         {{ game?.player.balance | currency }}
                         <span *ngIf="game?.player.gameResult > 0">
-                            (
-                            <span [class.winMoney]="game?.player.balanceDelta > 0" [class.loseMoney]="game?.player.balanceDelta < 0">
+                            (<span [class.winMoney]="game?.player.balanceDelta > 0" [class.loseMoney]="game?.player.balanceDelta < 0">
                                 {{ game?.player.balanceDelta | currency }}
                             </span>)
                         </span>
@@ -100,8 +99,7 @@
                     <p class="balance">
                         {{ bot?.balance | currency }}
                         <span *ngIf="game?.player.gameResult > 0">
-                            (
-                            <span [class.winMoney]="game?.player.balanceDelta > 0" [class.loseMoney]="game?.player.balanceDelta < 0">
+                            (<span [class.winMoney]="bot?.balanceDelta > 0" [class.loseMoney]="bot?.balanceDelta < 0">
                                 {{ bot?.balanceDelta | currency }}
                             </span>)
                         </span>
