@@ -116,5 +116,10 @@ namespace ProjectBj.BusinessLogic.Providers
             var cards = await _cardRepository.GetCards(playerId, sessionId);
             return cards.ToList();
         }
+
+        public async Task ThrowCards(int playerId, int sessionId)
+        {
+            await _cardRepository.ClearPlayerHand(playerId, sessionId);
+        }
     }
 }
