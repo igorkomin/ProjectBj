@@ -255,6 +255,7 @@ namespace ProjectBj.BusinessLogic.Services
             await DealerTurn(gameViewModel.Dealer.Id, sessionId);
             await CloseGameSession(sessionId);
             gameViewModel = await UpdateGameResult(playerId, sessionId);
+            await _playerProvider.DeleteSessionBots(sessionId);
             return gameViewModel;
         }
 

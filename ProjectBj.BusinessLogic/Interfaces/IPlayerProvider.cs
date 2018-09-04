@@ -16,5 +16,6 @@ namespace ProjectBj.BusinessLogic.Interfaces
         Task GivePlayerCard(int playerId, int sessionId, int cardId);
         Task ChangePlayerBalance(int playerId, int balanceDelta);
         Task SetBet(int playerId, int bet);
+        Task DeleteSessionBots(int sessionId);
     }
 }

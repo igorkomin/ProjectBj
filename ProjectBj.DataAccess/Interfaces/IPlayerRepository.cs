@@ -13,6 +13,6 @@ namespace ProjectBj.DataAccess.Interfaces
         Task<ICollection<Player>> GetSessionBots(int sessionId);
         Task Update(Player player);
         Task AddCard(Player player, int cardId, int sessionId);
-        Task DeleteNonHumanPlayers(string dealerName);
+        Task DeleteNonHumanPlayers(int sessionId);
     }
 }

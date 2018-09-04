@@ -86,7 +86,6 @@ namespace ProjectBj.BusinessLogic.Providers
 
         private async Task<List<Player>> CreateBots(int number)
         {
-            await DeleteAllBots();
             List<Player> bots = new List<Player>();
             for(int i = 0; i < number; i++)
             {
@@ -186,11 +185,11 @@ namespace ProjectBj.BusinessLogic.Providers
             }
         }
 
-        private async Task DeleteAllBots()
+        public async Task DeleteSessionBots(int sessionId)
         {
             try
             {
-                await _playerRepository.DeleteNonHumanPlayers(StringHelper.DealerName);
+                await _playerRepository.DeleteNonHumanPlayers(sessionId);
             }
             catch (Exception exception)
             {

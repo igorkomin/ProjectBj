@@ -150,14 +150,14 @@ namespace ProjectBj.DataAccess.Repositories
             }
         }
 
-        public async Task DeleteNonHumanPlayers(string dealerName)
+        public async Task DeleteNonHumanPlayers(int sessionId)
         {
             try
             {
                 using (IDbConnection db = new SqlConnection(_connectionString))
                 {
-                    var sqlQuery = "DELETE FROM Players WHERE IsHuman = 0 AND Name <> @dealerName";
-                    await db.ExecuteAsync(sqlQuery, new { dealerName });
+                    var sessionBots = await GetSessionBots(sessionId);
+                    await db.DeleteAsync(sessionBots);
                 }
             }
             catch (Exception exception)
