@@ -90,6 +90,20 @@ namespace ProjectBj.Web.Controllers
         }
 
         [HttpPost]
+        public async Task<IHttpActionResult> Surrender([FromBody]IdentifierViewModel identifier)
+        {
+            try
+            {
+                GameViewModel model = await _service.Surrender(identifier.PlayerId, identifier.SessionId);
+                return Ok(model);
+            }
+            catch (Exception exception)
+            {
+                return InternalServerError(exception);
+            }
+        }
+
+        [HttpPost]
         public async Task<IHttpActionResult> Logs([FromBody]IdentifierViewModel identifier)
         {
             try
