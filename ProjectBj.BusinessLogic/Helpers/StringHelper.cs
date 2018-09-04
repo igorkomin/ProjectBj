@@ -48,12 +48,22 @@
 
         public static string GetPlayerHitsMessage(int playerId)
         {
-            return $"Player id{playerId} hits";
+            return $"Player id{playerId} chose to hit";
         }
 
         public static string GetPlayerStandsMessage(int playerId)
         {
-            return $"Player id{playerId} stands";
+            return $"Player id{playerId} chose to stand";
+        }
+
+        public static string GetPlayerDoubleDownMessage(int playerId)
+        {
+            return $"Player id{playerId} chose to double down";
+        }
+
+        public static string GetPlayerSurrenderMessage(int playerId)
+        {
+            return $"Player id{playerId} chose to surrender";
         }
     }
 }
