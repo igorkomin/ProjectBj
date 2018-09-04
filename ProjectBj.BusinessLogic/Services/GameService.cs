@@ -351,34 +351,43 @@ namespace ProjectBj.BusinessLogic.Services
 
         public async Task<GameResults.Result> GetGameResult(int playerId, int playerScore, int dealerScore, int bet)
         {
+            int winAmount = bet;
             if (playerScore == ValueHelper.BlackjackValue)
             {
-                int winAmount = (bet * 2) + (bet / 2);
+                winAmount = (bet * 2) + (bet / 2);
                 await _playerProvider.ChangePlayerBalance(playerId, winAmount);
                 return GameResults.Result.Blackjack;
             }
 
+            if (playerScore == dealerScore)
+            {
+                await _playerProvider.ChangePlayerBalance(playerId, winAmount);
+                return GameResults.Result.Win;
+            }
+
             if (playerScore == 0)
             {
-                int winAmount = bet / 2;
+                winAmount = bet / 2;
                 await _playerProvider.ChangePlayerBalance(playerId, winAmount);
-                return GameResults.Result.Lost;
+                return GameResults.Result.Surrender;
             }
 
             if (playerScore > ValueHelper.BlackjackValue)
             {
-                await _playerProvider.ChangePlayerBalance(playerId, -bet);
+                winAmount = -bet;
+                await _playerProvider.ChangePlayerBalance(playerId, winAmount);
                 return GameResults.Result.Bust;
             }
 
             if (playerScore > dealerScore || dealerScore > ValueHelper.BlackjackValue)
             {
-                await _playerProvider.ChangePlayerBalance(playerId, bet);
-                return GameResults.Result.Won;
+                await _playerProvider.ChangePlayerBalance(playerId, winAmount);
+                return GameResults.Result.Win;
             }
 
-            await _playerProvider.ChangePlayerBalance(playerId, -bet);
-            return GameResults.Result.Lost;
+            winAmount = -bet;
+            await _playerProvider.ChangePlayerBalance(playerId, winAmount);
+            return GameResults.Result.Lose;
         }
     }
 }

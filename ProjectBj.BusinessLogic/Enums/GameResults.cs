@@ -7,8 +7,9 @@
             Unfinished = 0,
             Blackjack = 1,
             Bust = 2,
-            Won = 3,
-            Lost = 4
+            Win = 3,
+            Lose = 4,
+            Surrender = 5
         }
     }
 }

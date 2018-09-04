@@ -64,7 +64,7 @@
     background: linear-gradient(#62BD08 0%, #394F05 100%);
 }
 
-.won span {
+.win span {
     background: linear-gradient(#628008 0%, #394F05 100%);
     font-size: 16px;
 }
@@ -74,9 +74,13 @@
     font-size: 16px;
 }
 
-.lost span {
+.lose span {
     background: linear-gradient(#F79E05 0%, #8F5408 100%);
     font-size: 16px;
+}
+
+.surrender span {
+    background-color: #000;
 }
 
 #log-view {
