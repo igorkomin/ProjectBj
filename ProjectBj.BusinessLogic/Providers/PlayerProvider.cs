@@ -47,7 +47,7 @@ namespace ProjectBj.BusinessLogic.Providers
         {
             Player bot = new Player
             {
-                Name = _nameGenerator.GenerateRandomFirstAndLastName(),
+                Name = _nameGenerator.GenerateRandomFirstName(),
                 Balance = ValueHelper.StartBalance,
                 IsHuman = false,
                 InGame = true
