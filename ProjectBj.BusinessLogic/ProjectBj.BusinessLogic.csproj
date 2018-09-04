@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers\ModelViewModelConverter.cs" />
     <Compile Include="Interfaces\ISystemLogService.cs" />
     <Compile Include="Providers\CardProvider.cs" />
     <Compile Include="Enums\CardRanks.cs" />

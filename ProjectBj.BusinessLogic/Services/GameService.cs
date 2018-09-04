@@ -1,7 +1,6 @@
 ﻿using ProjectBj.BusinessLogic.Enums;
 using ProjectBj.BusinessLogic.Helpers;
 using ProjectBj.BusinessLogic.Interfaces;
-using ProjectBj.Entities;
 using ProjectBj.Logger;
 using ProjectBj.ViewModels.Game;
 using System;
@@ -38,9 +37,9 @@ namespace ProjectBj.BusinessLogic.Services
 
             await _playerProvider.SetBet(player.Id, _bet);
 
-            PlayerViewModel playerViewModel = GetPlayerViewModel(player);
-            DealerViewModel dealerViewModel = GetDealerViewModel(dealer);
-            List<PlayerViewModel> botViewModels = GetBotViewModels(bots);
+            PlayerViewModel playerViewModel = ModelViewModelConverter.GetPlayerViewModel(player);
+            DealerViewModel dealerViewModel = ModelViewModelConverter.GetDealerViewModel(dealer);
+            List<PlayerViewModel> botViewModels = ModelViewModelConverter.GetBotViewModels(bots);
 
             GameViewModel gameViewModel = new GameViewModel
             {
@@ -51,45 +50,6 @@ namespace ProjectBj.BusinessLogic.Services
             };
 
             return gameViewModel;
-        }
-
-        private PlayerViewModel GetPlayerViewModel(Player player)
-        {
-            PlayerViewModel playerViewModel = new PlayerViewModel
-            {
-                Id = player.Id,
-                Name = player.Name,
-                Balance = player.Balance,
-                IsHuman = player.IsHuman,
-                Bet = player.Bet
-            };
-            return playerViewModel;
-        }
-
-        private DealerViewModel GetDealerViewModel(Player dealer)
-        {
-            DealerViewModel dealerViewModel = new DealerViewModel
-            {
-                Id = dealer.Id,
-                Name = dealer.Name,
-            };
-            return dealerViewModel;
-        }
-
-        private List<PlayerViewModel> GetBotViewModels(List<Player> bots)
-        {
-            var botViewModels = new List<PlayerViewModel>();
-            foreach (var bot in bots)
-            {
-                PlayerViewModel botViewModel = new PlayerViewModel
-                {
-                    Id = bot.Id,
-                    Name = bot.Name,
-                    Balance = bot.Balance
-                };
-                botViewModels.Add(botViewModel);
-            }
-            return botViewModels;
         }
 
         public async Task UpdateViewModel(GameViewModel gameViewModel)
@@ -115,9 +75,9 @@ namespace ProjectBj.BusinessLogic.Services
             var dealer = await _playerProvider.GetDealer();
             var bots = await _playerProvider.GetSessionBots(session);
 
-            PlayerViewModel playerViewModel = GetPlayerViewModel(player);
-            DealerViewModel dealerViewModel = GetDealerViewModel(dealer);
-            List<PlayerViewModel> botViewModels = GetBotViewModels(bots);
+            PlayerViewModel playerViewModel = ModelViewModelConverter.GetPlayerViewModel(player);
+            DealerViewModel dealerViewModel = ModelViewModelConverter.GetDealerViewModel(dealer);
+            List<PlayerViewModel> botViewModels = ModelViewModelConverter.GetBotViewModels(bots);
 
             playerViewModel.Hand = await GetHandViewModel(player.Id, session);
             dealerViewModel.Hand = await GetHandViewModel(dealer.Id, session);
