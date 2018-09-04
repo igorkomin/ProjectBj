@@ -386,7 +386,7 @@ namespace ProjectBj.BusinessLogic.Services
             if (playerScore > ValueHelper.BlackjackValue)
             {
                 balanceDelta = -bet;
-                await _logProvider.CreateLogEntry(player.Name, StringHelper.GetLosesMoneyMessage(balanceDelta), sessionId);
+                await _logProvider.CreateLogEntry(player.Name, StringHelper.GetLosesMoneyMessage(Math.Abs(balanceDelta)), sessionId);
                 await _playerProvider.ChangePlayerBalance(playerId, balanceDelta);
                 return (GameResults.Result.Bust, balanceDelta);
             }
@@ -399,7 +399,7 @@ namespace ProjectBj.BusinessLogic.Services
             }
 
             balanceDelta = -bet;
-            await _logProvider.CreateLogEntry(player.Name, StringHelper.GetLosesMoneyMessage(balanceDelta), sessionId);
+            await _logProvider.CreateLogEntry(player.Name, StringHelper.GetLosesMoneyMessage(Math.Abs(balanceDelta)), sessionId);
             await _playerProvider.ChangePlayerBalance(playerId, balanceDelta);
             return (GameResults.Result.Lose, balanceDelta);
         }
