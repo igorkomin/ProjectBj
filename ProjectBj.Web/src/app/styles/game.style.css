@@ -92,7 +92,14 @@
 
 .balance {
     font-weight: bold;
-    color: green;
-    text-shadow: 1px 0px 2px #000;
+    color: black;
     margin-bottom: 0;
+}
+
+.winMoney {
+    color: #528a1d;
+}
+
+.loseMoney {
+    color: red;
 }
