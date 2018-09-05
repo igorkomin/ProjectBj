@@ -348,16 +348,26 @@ namespace ProjectBj.BusinessLogic.Services
                 totalValue - aceCount * ValueHelper.AceDelta : totalValue;
         }
 
-        private async Task<(GameResults.Result result, int balanceDelta)> GetGameResult(int playerId, int sessionId, int playerScore, int dealerScore, int bet)
+        private async Task<(GameResults.Result result, int balanceDelta)> GetGameResult
+            (int playerId, int sessionId, int playerScore, int dealerScore, int bet)
         {
             Player player = await _playerProvider.GetPlayerById(playerId);
             int balanceDelta = bet;
+
             if (playerScore == ValueHelper.BlackjackValue)
             {
                 balanceDelta = (bet * 2) + (bet / 2);
                 await _logProvider.CreateLogEntry(player.Name, StringHelper.GetWinsMoneyMessage(balanceDelta), sessionId);
                 await _playerProvider.ChangePlayerBalance(playerId, balanceDelta);
                 return (GameResults.Result.Blackjack, balanceDelta);
+            }
+
+            if (playerScore > ValueHelper.BlackjackValue)
+            {
+                balanceDelta = -bet;
+                await _logProvider.CreateLogEntry(player.Name, StringHelper.GetLosesMoneyMessage(Math.Abs(balanceDelta)), sessionId);
+                await _playerProvider.ChangePlayerBalance(playerId, balanceDelta);
+                return (GameResults.Result.Bust, balanceDelta);
             }
 
             if (playerScore == dealerScore)
@@ -373,14 +383,6 @@ namespace ProjectBj.BusinessLogic.Services
                 await _logProvider.CreateLogEntry(player.Name, StringHelper.GetWinsMoneyMessage(balanceDelta), sessionId);
                 await _playerProvider.ChangePlayerBalance(playerId, balanceDelta);
                 return (GameResults.Result.Surrender, balanceDelta);
-            }
-
-            if (playerScore > ValueHelper.BlackjackValue)
-            {
-                balanceDelta = -bet;
-                await _logProvider.CreateLogEntry(player.Name, StringHelper.GetLosesMoneyMessage(Math.Abs(balanceDelta)), sessionId);
-                await _playerProvider.ChangePlayerBalance(playerId, balanceDelta);
-                return (GameResults.Result.Bust, balanceDelta);
             }
 
             if (playerScore > dealerScore || dealerScore > ValueHelper.BlackjackValue)
