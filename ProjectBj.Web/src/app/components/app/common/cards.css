@@ -338,24 +338,23 @@
     background-size: contain;
     */
 }
+   
+.playingCards.faceImages .card.rank-j.diamonds  { background-image: url(/src/assets/Cards/faces/JD.gif); }
+.playingCards.faceImages .card.rank-j.hearts { background-image: url(/src/assets/Cards/faces/JH.gif); }
+.playingCards.faceImages .card.rank-j.spades { background-image: url(/src/assets/Cards/faces/JS.gif); }
+.playingCards.faceImages .card.rank-j.clubs  { background-image: url(/src/assets/Cards/faces/JC.gif); }
 
-.playingCards.faceImages .card.rank-j.diamonds  { background-image: url(../../../assets/Cards/faces/JD.gif); }
-.playingCards.faceImages .card.rank-j.diamonds  { background-image: url(../../../assets/Cards/faces/JD.gif); }
-.playingCards.faceImages .card.rank-j.hearts { background-image: url(../../../assets/Cards/faces/JH.gif); }
-.playingCards.faceImages .card.rank-j.spades { background-image: url(../../../assets/Cards/faces/JS.gif); }
-.playingCards.faceImages .card.rank-j.clubs  { background-image: url(../../../assets/Cards/faces/JC.gif); }
+.playingCards.faceImages .card.rank-q.diamonds  { background-image: url(/src/assets/Cards/faces/QD.gif); }
+.playingCards.faceImages .card.rank-q.hearts { background-image: url(/src/assets/Cards/faces/QH.gif); }
+.playingCards.faceImages .card.rank-q.spades { background-image: url(/src/assets/Cards/faces/QS.gif); }
+.playingCards.faceImages .card.rank-q.clubs  { background-image: url(/src/assets/Cards/faces/QC.gif); }
 
-.playingCards.faceImages .card.rank-q.diamonds  { background-image: url(../../../assets/Cards/faces/QD.gif); }
-.playingCards.faceImages .card.rank-q.hearts { background-image: url(../../../assets/Cards/faces/QH.gif); }
-.playingCards.faceImages .card.rank-q.spades { background-image: url(../../../assets/Cards/faces/QS.gif); }
-.playingCards.faceImages .card.rank-q.clubs  { background-image: url(../../../assets/Cards/faces/QC.gif); }
+.playingCards.faceImages .card.rank-k.diamonds  { background-image: url(/src/assets/Cards/faces/KD.gif); }
+.playingCards.faceImages .card.rank-k.hearts { background-image: url(/src/assets/Cards/faces/KH.gif); }
+.playingCards.faceImages .card.rank-k.spades { background-image: url(/src/assets/Cards/faces/KS.gif); }
+.playingCards.faceImages .card.rank-k.clubs  { background-image: url(/src/assets/Cards/faces/KC.gif); }
 
-.playingCards.faceImages .card.rank-k.diamonds  { background-image: url(../../../assets/Cards/faces/KD.gif); }
-.playingCards.faceImages .card.rank-k.hearts { background-image: url(../../../assets/Cards/faces/KH.gif); }
-.playingCards.faceImages .card.rank-k.spades { background-image: url(../../../assets/Cards/faces/KS.gif); }
-.playingCards.faceImages .card.rank-k.clubs  { background-image: url(../../../assets/Cards/faces/KC.gif); }
-
-.playingCards.faceImages .card.joker         { background-image: url(../../../assets/Cards/faces/joker.gif); }
+.playingCards.faceImages .card.joker         { background-image: url(/src/assets/Cards/faces/joker.gif); }
 .playingCards.simpleCards .card.rank-j,
 .playingCards.simpleCards .card.rank-q,
 .playingCards.simpleCards .card.rank-k       { background-image: none !important; }

@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { DataStateChangeEvent, GridDataResult } from '@progress/kendo-angular-grid';
 import { State, process } from '@progress/kendo-data-query';
 import { Router } from '@angular/router';
-import { ApiService } from '../services/api.service';
+import { ApiService } from '../../services/api.service';
 
 @Component({
-    selector: 'app-gamelogs',
-    templateUrl: './../views/gamelogs.view.html',
-    styleUrls: ['./../styles/gamelogs.style.css']
+    selector: 'app-logs',
+    templateUrl: 'logs.view.html',
+    styleUrls: ['logs.style.css']
 })
-export class GamelogsComponent implements OnInit {
+export class LogsComponent implements OnInit {
     logs: any;
     data: Object[];
 
@@ -17,11 +17,11 @@ export class GamelogsComponent implements OnInit {
 
     public state: State = {
         skip: 0,
-        take: 15,
+        take: 10,
 
         filter: {
             logic: 'and',
-            filters: [{ field: 'message', operator: 'contains', value: '' }]
+            filters: [{ field: 'level', operator: 'contains', value: 'Info' }]
         },
     };
     gridView: GridDataResult;
@@ -36,7 +36,7 @@ export class GamelogsComponent implements OnInit {
     }
 
     getLogs() {
-        this.apiService.getAllLogs().subscribe(
+        this.apiService.getSystemLogs().subscribe(
             response => {
                 this.logs = response;
                 this.gridView = process(this.logs, this.state);

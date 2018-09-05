@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from './../shared.module';
 import { GameRoutingModule } from './game-routing.module';
-import { GameComponent } from '../../components/game.component';
+import { GameComponent } from '../../components/game/game.component';
 
 @NgModule({
     imports: [
