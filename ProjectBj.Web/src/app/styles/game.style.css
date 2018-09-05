@@ -1,5 +1,9 @@
-﻿.h33 {
-    height: 33vh;
+﻿.h32 {
+    height: 32vh;
+}
+
+.player-name {
+    font-size: 16pt;
 }
 
 .caption {
@@ -84,7 +88,7 @@
 }
 
 #log-view {
-    height: 100%;
+    max-height: 780px;
     overflow-y: auto;
     text-align: left;
     padding-top: 5px;
