@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Game } from '../models/game.model';
 import { GameLog } from '../models/gamelog.model';
 import { Identifier } from '../models/identifier.model';
@@ -30,7 +30,6 @@ export class GameComponent implements OnInit {
     constructor(
         private apiService: ApiService,
         private route: ActivatedRoute,
-        private router: Router,
         private http: HttpClient
     ) { }
 
