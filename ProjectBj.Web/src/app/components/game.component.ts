@@ -54,13 +54,13 @@ export class GameComponent implements OnInit {
         this.botsNumber--;
     }
 
-    getGame(): void {
+    newGame(): void {
         this.error = undefined;
         let gameSettings = new Settings();
         gameSettings.playerName = this.playerName;
         gameSettings.botsNumber = this.botsNumber;
         gameSettings.bet = this.sliderBetValue;
-        this.apiService.getGame(gameSettings).subscribe(
+        this.apiService.newGame(gameSettings).subscribe(
             response => {
                 this.game = response;
                 this.sessionId = response.sessionId;
@@ -74,11 +74,11 @@ export class GameComponent implements OnInit {
         );
     }
 
-    getLoadedGame(): void {
+    loadGame(): void {
         this.error = undefined;
         let gameSettings = new Settings();
         gameSettings.playerName = this.playerName;
-        this.apiService.getLoadedGame(gameSettings).subscribe(
+        this.apiService.loadGame(gameSettings).subscribe(
             response => {
                 this.game = response;
                 this.sessionId = response.sessionId;

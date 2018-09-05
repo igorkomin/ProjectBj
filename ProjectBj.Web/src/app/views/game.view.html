@@ -52,8 +52,8 @@
                     </div>
                     <h3 id="bet_output">{{ sliderBetValue | currency }}</h3>
                     <div class="btn-group-vertical">
-                        <button [disabled]="game && game?.player.gameResult == 0" (click)="getGame()" type="button" class="btn btn-primary">NEW GAME</button>
-                        <button [disabled]="game && game?.player.gameResult == 0" (click)="getLoadedGame()" type="button" class="btn btn-secondary">LOAD GAME</button>
+                        <button [disabled]="game && game?.player.gameResult == 0" (click)="newGame()" type="button" class="btn btn-primary">NEW GAME</button>
+                        <button [disabled]="game && game?.player.gameResult == 0" (click)="loadGame()" type="button" class="btn btn-secondary">LOAD GAME</button>
                     </div>
                 </div>
                 <div *ngIf="game" class="col-md-3">

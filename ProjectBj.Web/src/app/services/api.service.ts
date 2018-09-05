@@ -21,12 +21,12 @@ const requestOptions = {
 export class ApiService {
     constructor(private http: HttpClient) { }
 
-    getGame(settings: Settings): Observable<Game> {
+    newGame(settings: Settings): Observable<Game> {
         let requestUrl = `${apiUrl}/Start`;
         return this.http.post<Game>(requestUrl, settings, requestOptions);
     }
 
-    getLoadedGame(settings: Settings): Observable<Game> {
+    loadGame(settings: Settings): Observable<Game> {
         let requestUrl = `${apiUrl}/Load`;
         return this.http.post<Game>(requestUrl, settings, requestOptions);
     }
