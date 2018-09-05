@@ -144,7 +144,7 @@ export class GameComponent implements OnInit {
     }
 
     surrender(): void {
-        this.error;
+        this.error = undefined;
         let identifier = new Identifier();
         identifier.playerId = this.playerId;
         identifier.sessionId = this.sessionId;
