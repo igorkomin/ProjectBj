@@ -137,8 +137,7 @@ namespace ProjectBj.DataAccess.Repositories
                     var sqlQuery = @"SELECT DISTINCT p.* FROM PlayerHands ph
                                      JOIN Players p ON ( ph.PlayerId = p.Id )
                                      WHERE ph.SessionId = @sessionId
-                                     AND p.IsHuman = 0
-                                     AND p.InGame = 1";
+                                     AND p.IsHuman = 0 AND p.InGame = 1";
                     var bots = await db.QueryAsync<Player>(sqlQuery, new { sessionId });
                     return bots.AsList();
                 }
