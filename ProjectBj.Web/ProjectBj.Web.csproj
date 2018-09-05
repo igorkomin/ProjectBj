@@ -128,8 +128,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="src\app\styles\gamelogs.style.css" />
-    <Content Include="src\app\views\gamelogs.view.html" />
+    <Content Include="src\app\components\gamelogs\gamelogs.style.css" />
+    <Content Include="src\app\components\gamelogs\gamelogs.view.html" />
+    <Content Include="src\app\components\login\login.view.html" />
     <Content Include="src\assets\bg.jpg" />
     <Content Include="src\assets\Cards\faces\JC.gif" />
     <Content Include="src\assets\Cards\faces\JD.gif" />
@@ -148,20 +149,19 @@
     <Content Include="src\assets\loading.gif" />
     <Content Include="src\assets\player.png" />
     <Content Include="src\assets\robot.png" />
-    <Content Include="src\app\styles\logs.style.css" />
-    <Content Include="src\app\views\logs.view.html" />
-    <Content Include="src\app\styles\common\cards.css" />
-    <Content Include="src\app\styles\common\slider.css" />
+    <Content Include="src\app\components\logs\logs.style.css" />
+    <Content Include="src\app\components\logs\logs.view.html" />
+    <Content Include="src\app\components\app\common\cards.css" />
+    <Content Include="src\app\components\app\common\slider.css" />
     <Content Include="Global.asax" />
     <Content Include="angular.json" />
     <Content Include="package.json" />
-    <Content Include="src\app\styles\common\bootstrap.css" />
-    <Content Include="src\app\styles\game.style.css" />
-    <Content Include="src\app\views\game.view.html" />
-    <Content Include="src\app\styles\login.style.css" />
-    <Content Include="src\app\views\login.view.html" />
-    <Content Include="src\app\styles\app.style.css" />
-    <Content Include="src\app\views\app.view.html" />
+    <Content Include="src\app\components\app\common\bootstrap.css" />
+    <Content Include="src\app\components\game\game.style.css" />
+    <Content Include="src\app\components\game\game.view.html" />
+    <Content Include="src\app\components\login\login.style.css" />
+    <Content Include="src\app\components\app\app.style.css" />
+    <Content Include="src\app\components\app\app.view.html" />
     <Content Include="src\karma.conf.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -200,7 +200,9 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="src\app\views\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ProjectBj.BusinessLogic\ProjectBj.BusinessLogic.csproj">
       <Project>{d8587967-8e91-44ed-851b-2fa11e44cc0a}</Project>
@@ -215,8 +217,8 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="src\app\components\logs.component.ts" />
-    <TypeScriptCompile Include="src\app\components\gamelogs.component.ts" />
+    <TypeScriptCompile Include="src\app\components\logs\logs.component.ts" />
+    <TypeScriptCompile Include="src\app\components\gamelogs\gamelogs.component.ts" />
     <TypeScriptCompile Include="src\app\models\card.model.ts" />
     <TypeScriptCompile Include="src\app\models\dealer.model.ts" />
     <TypeScriptCompile Include="src\app\models\game.model.ts" />
@@ -228,9 +230,9 @@
     <TypeScriptCompile Include="src\app\models\player.model.ts" />
     <TypeScriptCompile Include="src\app\models\settings.model.ts" />
     <TypeScriptCompile Include="src\app\modules\app-routing.module.ts" />
-    <TypeScriptCompile Include="src\app\components\app.component.ts" />
-    <TypeScriptCompile Include="src\app\components\game.component.ts" />
-    <TypeScriptCompile Include="src\app\components\login.component.ts" />
+    <TypeScriptCompile Include="src\app\components\app\app.component.ts" />
+    <TypeScriptCompile Include="src\app\components\game\game.component.ts" />
+    <TypeScriptCompile Include="src\app\components\login\login.component.ts" />
     <TypeScriptCompile Include="src\app\modules\app.module.ts" />
     <TypeScriptCompile Include="src\app\modules\gamelogs\gamelogs-routing.module.ts" />
     <TypeScriptCompile Include="src\app\modules\gamelogs\gamelogs.module.ts" />
