@@ -1,11 +1,11 @@
 <div class="container-fluid text-center mt-3">
     <div class="row">
         <div class="col-lg-9">
-            <div class="row h33">
+            <div class="row h32">
                 <div class="col-md-3">
                     <div *ngIf="game">
                         <img src="../../dist/assets/dealer.png" />
-                        <p class="caption">{{ game?.dealer.name }} <span class="badge badge-secondary">{{ game?.dealer.hand.score }}</span></p>
+                        <p class="caption player-name">{{ game?.dealer.name }} <span class="badge badge-secondary">{{ game?.dealer.hand.score }}</span></p>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -26,7 +26,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row h33">
+            <div class="row h32">
                 <div class="col-md-3">
                     <div class="caption">Choose the number of bots</div>
                     <div class="input-group">
@@ -69,7 +69,7 @@
                     <div *ngIf="game?.player.gameResult > 0" class="ribbon {{ game?.player.gameResultMessage | lowercase }}">
                         <span>{{ game?.player.gameResultMessage }}</span>
                     </div>
-                    <p class="caption">{{ game?.player.name }} <span class="badge badge-secondary">{{ game?.player.hand.score }}</span></p>
+                    <p class="caption player-name">{{ game?.player.name }} <span class="badge badge-secondary">{{ game?.player.hand.score }}</span></p>
                     <p class="balance">
                         {{ game?.player.balance | currency }}
                         <span *ngIf="game?.player.gameResult > 0">
@@ -95,7 +95,7 @@
                     <div *ngIf="bot?.gameResult > 0" class="ribbon {{ bot?.gameResultMessage | lowercase }}">
                         <span>{{ bot?.gameResultMessage }}</span>
                     </div>
-                    <p class="caption">{{ bot?.name }} <span class="badge badge-secondary">{{ bot?.hand.score }}</span></p>
+                    <p class="caption player-name">{{ bot?.name }} <span class="badge badge-secondary">{{ bot?.hand.score }}</span></p>
                     <p class="balance">
                         {{ bot?.balance | currency }}
                         <span *ngIf="game?.player.gameResult > 0">
