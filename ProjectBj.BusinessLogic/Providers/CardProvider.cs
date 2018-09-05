@@ -74,15 +74,8 @@ namespace ProjectBj.BusinessLogic.Providers
 
         private static List<Card> Shuffle(List<Card> deck)
         {
-            List<Card> shuffledDeck = new List<Card>();
-            Random random = new Random(Guid.NewGuid().GetHashCode()); 
-            int randomIndex = 0;
-            while (deck.Count > 0)
-            {
-                randomIndex = random.Next(0, deck.Count);
-                shuffledDeck.Add(deck[randomIndex]);
-                deck.RemoveAt(randomIndex);
-            }
+            Random random = new Random(Guid.NewGuid().GetHashCode());
+            List<Card> shuffledDeck = deck.OrderBy(item => random.Next(0, deck.Count)).ToList();
             Log.Info(StringHelper.DeckShuffled);
             return shuffledDeck;
         }
