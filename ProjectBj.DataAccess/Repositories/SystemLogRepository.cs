@@ -1,9 +1,7 @@
 ﻿using Dapper;
 using Dapper.Contrib.Extensions;
-using ProjectBj.DataAccess.ExceptionHandlers;
 using ProjectBj.DataAccess.Interfaces;
 using ProjectBj.Entities;
-using ProjectBj.Logger;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -22,18 +20,10 @@ namespace ProjectBj.DataAccess.Repositories
 
         public async Task<IEnumerable<SystemLog>> GetAllLogs()
         {
-            try
+            using (IDbConnection db = new SqlConnection(_connectionString))
             {
-                using (IDbConnection db = new SqlConnection(_connectionString))
-                {
-                    var systemLogs = await db.GetAllAsync<SystemLog>();
-                    return systemLogs.AsList();
-                }
-            }
-            catch (SqlException exception)
-            {
-                Log.Error(exception.Message);
-                throw new DataSourceException(exception.Message, exception);
+                var systemLogs = await db.GetAllAsync<SystemLog>();
+                return systemLogs.AsList();
             }
         }
     }

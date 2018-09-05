@@ -1,9 +1,7 @@
 ﻿using Dapper;
 using Dapper.Contrib.Extensions;
-using ProjectBj.DataAccess.ExceptionHandlers;
 using ProjectBj.DataAccess.Interfaces;
 using ProjectBj.Entities;
-using ProjectBj.Logger;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -31,56 +29,32 @@ namespace ProjectBj.DataAccess.Repositories
 
         public async Task<ICollection<Card>> GetCards(int playerId, int sessionId)
         {
-            try
+            using (IDbConnection db = new SqlConnection(_connectionString))
             {
-                using (IDbConnection db = new SqlConnection(_connectionString))
-                {
-                    var sqlQuery = @"SELECT c.* FROM PlayerHands ph 
+                var sqlQuery = @"SELECT c.* FROM PlayerHands ph 
                                      JOIN Cards c ON (ph.CardId = c.Id) 
                                      WHERE ph.PlayerId = @playerId AND ph.SessionId = @sessionId";
-                    var cards = await db.QueryAsync<Card>(sqlQuery, new { playerId, sessionId });
-                    return cards.AsList();
-                }
-            }
-            catch (SqlException exception)
-            {
-                Log.Error(exception.Message);
-                throw new DataSourceException(exception.Message, exception);
+                var cards = await db.QueryAsync<Card>(sqlQuery, new { playerId, sessionId });
+                return cards.AsList();
             }
         }
 
         public async Task<ICollection<Card>> GetAllCards()
         {
-            try
+            using (IDbConnection db = new SqlConnection(_connectionString))
             {
-                using (IDbConnection db = new SqlConnection(_connectionString))
-                {
-                    var cards = await db.GetAllAsync<Card>();
-                    return cards.AsList();
-                }
-            }
-            catch (SqlException exception)
-            {
-                Log.Error(exception.Message);
-                throw new DataSourceException(exception.Message, exception);
+                var cards = await db.GetAllAsync<Card>();
+                return cards.AsList();
             }
         }
 
         public async Task ClearPlayerHand(int playerId, int sessionId)
         {
-            try
+            using (IDbConnection db = new SqlConnection(_connectionString))
             {
-                using (IDbConnection db = new SqlConnection(_connectionString))
-                {
-                    var playerHand = (await db.GetAllAsync<PlayerHand>()).AsList()
-                        .FindAll(x => x.PlayerId == playerId && x.SessionId == sessionId);
-                    await db.DeleteAsync(playerHand);
-                }
-            }
-            catch (SqlException exception)
-            {
-                Log.Error(exception.Message);
-                throw new DataSourceException(exception.Message, exception);
+                var playerHand = (await db.GetAllAsync<PlayerHand>()).AsList()
+                    .FindAll(x => x.PlayerId == playerId && x.SessionId == sessionId);
+                await db.DeleteAsync(playerHand);
             }
         }
     }
