@@ -64,17 +64,15 @@ namespace ProjectBj.BusinessLogic.Providers
         public async Task<List<Card>> GetDeck()
         {
             List<Card> deck = await PullDeck();
-
             if(deck == null)
             {
                 deck = NewDeck();
                 await PushDeck(deck);
             }
-
             return deck;
         }
 
-        private List<Card> Shuffle(List<Card> deck)
+        private static List<Card> Shuffle(List<Card> deck)
         {
             List<Card> shuffledDeck = new List<Card>();
             Random random = new Random(Guid.NewGuid().GetHashCode()); 
@@ -92,7 +90,6 @@ namespace ProjectBj.BusinessLogic.Providers
         public async Task<List<Card>> GetShuffledDeck()
         {
             List<Card> shuffledDeck = Shuffle(await GetDeck());
-
             return shuffledDeck;
         }
 
