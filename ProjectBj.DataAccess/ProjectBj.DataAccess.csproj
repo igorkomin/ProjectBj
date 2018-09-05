@@ -61,7 +61,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ExceptionHandlers\DataSourceException.cs" />
     <Compile Include="Interfaces\ICardRepository.cs" />
     <Compile Include="Interfaces\IGameSessionRepository.cs" />
     <Compile Include="Interfaces\IGameLogRepository.cs" />
