@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
-using System.Web.Http;
-using ProjectBj.BusinessLogic.Interfaces;
+﻿using ProjectBj.BusinessLogic.Interfaces;
 using ProjectBj.ViewModels;
 using ProjectBj.ViewModels.Game;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Web.Http;
 
 namespace ProjectBj.Web.Controllers
 {
