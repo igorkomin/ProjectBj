@@ -20,7 +20,7 @@ import { ApiService } from 'src/app/services/api.service';
 export class GameComponent implements OnInit {
     playerName: string;
     botsNumber: number = 0;
-    sliderBetValue: number = 50;
+    playerBet: number = 50;
     sessionId: number;
     playerId: number;
     error: string;
@@ -42,7 +42,7 @@ export class GameComponent implements OnInit {
     }
 
     updateSliderValue(value: number): void {
-        this.sliderBetValue = value;
+        this.playerBet = value;
     }
 
     incBotsNumber(): void {
@@ -58,7 +58,7 @@ export class GameComponent implements OnInit {
         let gameSettings = new Settings();
         gameSettings.playerName = this.playerName;
         gameSettings.botsNumber = this.botsNumber;
-        gameSettings.bet = this.sliderBetValue;
+        gameSettings.bet = this.playerBet;
         this.apiService.newGame(gameSettings).subscribe(
             response => {
                 this.game = response;
