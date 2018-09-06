@@ -13,7 +13,6 @@ import { Login } from 'src/app/models/login.model';
 })
 export class LoginComponent implements OnInit {
     sliderValue = 0;
-    loginLinkEnabled = false;
     constructor(private router: Router) { }
 
     ngOnInit() {
