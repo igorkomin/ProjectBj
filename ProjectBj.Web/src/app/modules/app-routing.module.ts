@@ -5,19 +5,19 @@ import { RouterModule, Routes } from "@angular/router";
 const routes: Routes = [
     {
         path: 'login',
-        loadChildren: './login/login.module#LoginModule'
+        loadChildren: 'src/app/modules/login/login.module#LoginModule'
     },
     {
         path: 'game', 
-        loadChildren: './game/game.module#GameModule'
+        loadChildren: 'src/app/modules/game/game.module#GameModule'
     },
     {
         path: 'logs',
-        loadChildren: './logs/logs.module#LogsModule'
+        loadChildren: 'src/app/modules/logs/logs.module#LogsModule'
     },
     {
         path: 'history',
-        loadChildren: './gamelogs/gamelogs.module#GamelogsModule'
+        loadChildren: 'src/app/modules/gamelogs/gamelogs.module#GamelogsModule'
     },
     { path: "", redirectTo: "/login", pathMatch: "full" },
     { path: "**", redirectTo: "/login" }

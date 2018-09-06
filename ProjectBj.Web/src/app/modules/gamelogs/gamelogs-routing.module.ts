@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { GamelogsComponent } from './../../components/gamelogs/gamelogs.component';
+import { GamelogsComponent } from 'src/app/components/gamelogs/gamelogs.component';
 
 const routes: Routes = [
     {

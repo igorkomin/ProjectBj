@@ -1,11 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Game } from '../../models/game.model';
-import { GameLog } from '../../models/gamelog.model';
-import { Identifier } from '../../models/identifier.model';
-import { Settings } from '../../models/settings.model';
-import { ApiService } from '../../services/api.service';
+import { Game } from 'src/app/models/game.model';
+import { GameLog } from 'src/app/models/gamelog.model';
+import { Identifier } from 'src/app/models/identifier.model';
+import { Settings } from 'src/app/models/settings.model';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
     selector: 'app-game',
