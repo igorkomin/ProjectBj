@@ -1,10 +1,8 @@
-﻿using System;
-using System.Threading.Tasks;
-using System.Web.Http;
-using System.Web.Routing;
-using Microsoft.Owin;
+﻿using Microsoft.Owin;
 using Owin;
 using ProjectBj.Web.Configs;
+using System.Web.Http;
+using System.Web.Routing;
 
 [assembly: OwinStartup(typeof(ProjectBj.Web.Startup))]
 
