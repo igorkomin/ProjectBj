@@ -28,16 +28,8 @@ namespace ProjectBj.BusinessLogic.Providers
                 Message = message,
                 Time = DateTime.Now
             };
-            try
-            {
-                Log.Info(StringHelper.CreatingLogEntry);
-                await _logRepository.CreateEntry(entry);
-            }
-            catch (Exception exception)
-            {
-                Log.Error(exception.Message);
-                throw exception;
-            }
+            Log.Info(StringHelper.CreatingLogEntry);
+            await _logRepository.CreateEntry(entry);
         }
 
         public async Task<List<LogEntry>> GetSessionLogs(int sessionId)
@@ -48,15 +40,8 @@ namespace ProjectBj.BusinessLogic.Providers
 
         public async Task<List<LogEntry>> GetAllLogs()
         {
-            try
-            {
-                var logs = await _logRepository.GetAllLogs();
-                return logs.ToList();
-            }
-            catch (Exception exception)
-            {
-                throw exception;
-            }
+            var logs = await _logRepository.GetAllLogs();
+            return logs.ToList();
         }
     }
 }
