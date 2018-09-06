@@ -9,18 +9,18 @@ namespace ProjectBj.Web.Configs
 {
     public static class AutofacConfig
     {
-        public static void ConfigureContainer()
+        public static IContainer ConfigureContainer()
         {
             var builder = new ContainerBuilder();
             var config = GlobalConfiguration.Configuration;
-            var connectionString = WebConfigurationManager.ConnectionStrings["DBConnection"].ConnectionString;
-
+            
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
 
-            AutofacServiceTypeRegistry.RegisterTypes(builder, connectionString);
+            AutofacServiceTypeRegistry.RegisterTypes(builder);
             
             var container = builder.Build();
             config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
+            return container;
         }
     }
 }
