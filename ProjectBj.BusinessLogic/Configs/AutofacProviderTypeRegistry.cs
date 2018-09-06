@@ -7,14 +7,14 @@ namespace ProjectBj.BusinessLogic.Configs
 {
     public static class AutofacProviderTypeRegistry
     {
-        public static ContainerBuilder RegisterTypes(ContainerBuilder builder, string connectionString)
+        public static ContainerBuilder RegisterTypes(ContainerBuilder builder)
         {
             builder.RegisterType<CardProvider>().As<ICardProvider>();
             builder.RegisterType<LogProvider>().As<ILogProvider>();
             builder.RegisterType<PlayerProvider>().As<IPlayerProvider>();
             builder.RegisterType<SessionProvider>().As<ISessionProvider>();
 
-            builder = AutofacDataAccessTypeRegistry.RegisterTypes(builder, connectionString);
+            AutofacDataAccessTypeRegistry.RegisterTypes(builder);
             return builder;
         }
     }
