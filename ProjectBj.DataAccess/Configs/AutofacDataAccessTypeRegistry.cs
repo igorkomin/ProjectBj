@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using ProjectBj.Configuration;
 using ProjectBj.DataAccess.Interfaces;
 using ProjectBj.DataAccess.Repositories;
 
@@ -6,8 +7,10 @@ namespace ProjectBj.DataAccess.Configs
 {
     public static class AutofacDataAccessTypeRegistry
     {
-        public static ContainerBuilder RegisterTypes(ContainerBuilder builder, string connectionString)
+        public static ContainerBuilder RegisterTypes(ContainerBuilder builder)
         {
+            string connectionString = DbConfig.ConnectionString;
+
             builder.RegisterType<CardRepository>().As<ICardRepository>()
                 .WithParameter("connectionString", connectionString);
             builder.RegisterType<GameSessionRepository>().As<IGameSessionRepository>()
