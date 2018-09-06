@@ -12,13 +12,8 @@ import { Login } from 'src/app/models/login.model';
     ]
 })
 export class LoginComponent implements OnInit {
-    sliderValue = 0;
     constructor(private router: Router) { }
 
     ngOnInit() {
-    }
-
-    updateSliderValue(value: number): void {
-        this.sliderValue = value;
     }
 }
