@@ -12,8 +12,6 @@ import { Login } from 'src/app/models/login.model';
     ]
 })
 export class LoginComponent implements OnInit {
-    model = new Login("", 0);
-
     sliderValue = 0;
     loginLinkEnabled = false;
     constructor(private router: Router) { }
