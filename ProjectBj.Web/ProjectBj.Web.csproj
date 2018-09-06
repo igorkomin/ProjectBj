@@ -250,11 +250,11 @@
     <TypeScriptCompile Include="src\app\models\login.model.ts" />
     <TypeScriptCompile Include="src\app\models\player.model.ts" />
     <TypeScriptCompile Include="src\app\models\settings.model.ts" />
-    <TypeScriptCompile Include="src\app\modules\app-routing.module.ts" />
+    <TypeScriptCompile Include="src\app\modules\app\app-routing.module.ts" />
     <TypeScriptCompile Include="src\app\components\app\app.component.ts" />
     <TypeScriptCompile Include="src\app\components\game\game.component.ts" />
     <TypeScriptCompile Include="src\app\components\login\login.component.ts" />
-    <TypeScriptCompile Include="src\app\modules\app.module.ts" />
+    <TypeScriptCompile Include="src\app\modules\app\app.module.ts" />
     <TypeScriptCompile Include="src\app\modules\gamelogs\gamelogs-routing.module.ts" />
     <TypeScriptCompile Include="src\app\modules\gamelogs\gamelogs.module.ts" />
     <TypeScriptCompile Include="src\app\modules\game\game-routing.module.ts" />
@@ -263,7 +263,7 @@
     <TypeScriptCompile Include="src\app\modules\login\login.module.ts" />
     <TypeScriptCompile Include="src\app\modules\logs\logs-routing.module.ts" />
     <TypeScriptCompile Include="src\app\modules\logs\logs.module.ts" />
-    <TypeScriptCompile Include="src\app\modules\shared.module.ts" />
+    <TypeScriptCompile Include="src\app\modules\shared\shared.module.ts" />
     <TypeScriptCompile Include="src\app\services\api.service.ts" />
     <TypeScriptCompile Include="src\environments\environment.prod.ts" />
     <TypeScriptCompile Include="src\environments\environment.ts" />
