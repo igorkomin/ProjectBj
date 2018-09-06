@@ -7,8 +7,7 @@ import { Login } from 'src/app/models/login.model';
   templateUrl: "login.view.html",
     styleUrls: [
         "login.style.css",
-        '../app/common/bootstrap.css',
-        '../app/common/slider.css'
+        '../app/common/bootstrap.css'
     ]
 })
 export class LoginComponent implements OnInit {
