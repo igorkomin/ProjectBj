@@ -19,8 +19,8 @@ namespace ProjectBj.BusinessLogic.Services
         private readonly ILogProvider _logProvider;
         private readonly IPlayerProvider _playerProvider;
         private readonly ISessionProvider _sessionProvider;
-        
-        public GameService(ICardProvider cardProvider, ILogProvider logProvider, 
+
+        public GameService(ICardProvider cardProvider, ILogProvider logProvider,
             IPlayerProvider playerProvider, ISessionProvider sessionProvider)
         {
             _cardProvider = cardProvider;
@@ -28,7 +28,7 @@ namespace ProjectBj.BusinessLogic.Services
             _playerProvider = playerProvider;
             _sessionProvider = sessionProvider;
         }
-        
+
         private async Task<GameViewModel> CreateGameViewModel()
         {
             var player = await _playerProvider.GetPlayerByName(_playerName);
@@ -153,7 +153,7 @@ namespace ProjectBj.BusinessLogic.Services
 
         public async Task<GameViewModel> LoadGame(string playerName)
         {
-            if(playerName == StringHelper.DealerName)
+            if (playerName == StringHelper.DealerName)
             {
                 throw new ArgumentException(StringHelper.NameReserved);
             }
@@ -357,7 +357,8 @@ namespace ProjectBj.BusinessLogic.Services
             if (playerScore == ValueHelper.BlackjackValue)
             {
                 balanceDelta = (bet * 2) + (bet / 2);
-                await _logProvider.CreateLogEntry(player.Name, StringHelper.GetWinsMoneyMessage(balanceDelta), sessionId);
+                await _logProvider.CreateLogEntry(player.Name,
+                    StringHelper.GetWinsMoneyMessage(balanceDelta), sessionId);
                 await _playerProvider.ChangePlayerBalance(playerId, balanceDelta);
                 return (GameResults.Result.Blackjack, balanceDelta);
             }
@@ -365,14 +366,16 @@ namespace ProjectBj.BusinessLogic.Services
             if (playerScore > ValueHelper.BlackjackValue)
             {
                 balanceDelta = -bet;
-                await _logProvider.CreateLogEntry(player.Name, StringHelper.GetLosesMoneyMessage(Math.Abs(balanceDelta)), sessionId);
+                await _logProvider.CreateLogEntry(player.Name,
+                    StringHelper.GetLosesMoneyMessage(Math.Abs(balanceDelta)), sessionId);
                 await _playerProvider.ChangePlayerBalance(playerId, balanceDelta);
                 return (GameResults.Result.Bust, balanceDelta);
             }
 
             if (playerScore == dealerScore)
             {
-                await _logProvider.CreateLogEntry(player.Name, StringHelper.GetWinsMoneyMessage(balanceDelta), sessionId);
+                await _logProvider.CreateLogEntry(player.Name,
+                    StringHelper.GetWinsMoneyMessage(balanceDelta), sessionId);
                 await _playerProvider.ChangePlayerBalance(playerId, balanceDelta);
                 return (GameResults.Result.Win, balanceDelta);
             }
@@ -380,20 +383,23 @@ namespace ProjectBj.BusinessLogic.Services
             if (playerScore == 0)
             {
                 balanceDelta = bet / 2;
-                await _logProvider.CreateLogEntry(player.Name, StringHelper.GetWinsMoneyMessage(balanceDelta), sessionId);
+                await _logProvider.CreateLogEntry(player.Name,
+                    StringHelper.GetWinsMoneyMessage(balanceDelta), sessionId);
                 await _playerProvider.ChangePlayerBalance(playerId, balanceDelta);
                 return (GameResults.Result.Surrender, balanceDelta);
             }
 
             if (playerScore > dealerScore || dealerScore > ValueHelper.BlackjackValue)
             {
-                await _logProvider.CreateLogEntry(player.Name, StringHelper.GetWinsMoneyMessage(balanceDelta), sessionId);
+                await _logProvider.CreateLogEntry(player.Name,
+                    StringHelper.GetWinsMoneyMessage(balanceDelta), sessionId);
                 await _playerProvider.ChangePlayerBalance(playerId, balanceDelta);
                 return (GameResults.Result.Win, balanceDelta);
             }
 
             balanceDelta = -bet;
-            await _logProvider.CreateLogEntry(player.Name, StringHelper.GetLosesMoneyMessage(Math.Abs(balanceDelta)), sessionId);
+            await _logProvider.CreateLogEntry(player.Name,
+                StringHelper.GetLosesMoneyMessage(Math.Abs(balanceDelta)), sessionId);
             await _playerProvider.ChangePlayerBalance(playerId, balanceDelta);
             return (GameResults.Result.Lose, balanceDelta);
         }
