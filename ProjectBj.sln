@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectBj.ViewModels", "Pro
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectBj.Logger", "ProjectBj.Logger\ProjectBj.Logger.csproj", "{3E65020D-0401-4E2C-9073-09BB17602629}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectBj.Configuration", "ProjectBj.Configuration\ProjectBj.Configuration.csproj", "{B4673553-DE45-498C-AC6E-C02EC24EFB68}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{3E65020D-0401-4E2C-9073-09BB17602629}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3E65020D-0401-4E2C-9073-09BB17602629}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3E65020D-0401-4E2C-9073-09BB17602629}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4673553-DE45-498C-AC6E-C02EC24EFB68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4673553-DE45-498C-AC6E-C02EC24EFB68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4673553-DE45-498C-AC6E-C02EC24EFB68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4673553-DE45-498C-AC6E-C02EC24EFB68}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
