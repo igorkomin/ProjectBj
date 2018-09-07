@@ -14,7 +14,7 @@ namespace ProjectBj.MVC.Configs
         {
             var builder = new ContainerBuilder();
             var config = GlobalConfiguration.Configuration;
-            builder.RegisterControllers(typeof(MvcApplication).Assembly);
+            builder.RegisterControllers(Assembly.GetExecutingAssembly());
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
             AutofacServiceTypeRegistry.RegisterTypes(builder);
             var container = builder.Build();
