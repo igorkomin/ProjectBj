@@ -20,7 +20,6 @@ namespace ProjectBj.MVC
             HttpConfiguration config = new HttpConfiguration();
             WebApiConfig.Register(config);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-
             AreaRegistration.RegisterAllAreas();
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
