@@ -1,0 +1,114 @@
+﻿body {
+    background-image: url('~/Content/Images/bg.jpg');
+    background-repeat: repeat;
+}
+
+.h32 {
+    height: 32vh;
+}
+
+.player-name {
+    font-size: 16pt;
+}
+
+.caption {
+    font-weight: bolder;
+    margin-bottom: 0;
+}
+
+.btn:disabled {
+    cursor: not-allowed;
+}
+
+.bots-input {
+    text-align: center;
+}
+
+.bot-seat {
+    background-image: url("../../../assets/robot.png");
+    background-repeat: no-repeat;
+    background-size: 65%;
+    background-position-x: 100%;
+    background-position-y: 100%;
+}
+
+.player-seat {
+    background-image: url("../../../assets/player.png");
+    background-repeat: no-repeat;
+    background-size: 50%;
+    background-position-x: 100%;
+    background-position-y: 70%;
+}
+
+.ribbon {
+    position: absolute;
+    left: -5px;
+    top: -5px;
+    z-index: 1;
+    overflow: hidden;
+    width: 75px;
+    height: 75px;
+    text-align: right;
+}
+
+    .ribbon span {
+        font-size: 11px;
+        font-weight: bold;
+        color: #FFF;
+        text-transform: uppercase;
+        text-align: center;
+        line-height: 20px;
+        transform: rotate(-45deg);
+        -webkit-transform: rotate(-45deg);
+        width: 100px;
+        display: block;
+        background: #79A70A;
+        box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
+        position: absolute;
+        top: 19px;
+        left: -21px;
+    }
+
+.blackjack span {
+    background: linear-gradient(#62BD08 0%, #394F05 100%);
+}
+
+.win span {
+    background: linear-gradient(#628008 0%, #394F05 100%);
+    font-size: 16px;
+}
+
+.bust span {
+    background: linear-gradient(#F70505 0%, #8F0808 100%);
+    font-size: 16px;
+}
+
+.lose span {
+    background: linear-gradient(#F79E05 0%, #8F5408 100%);
+    font-size: 16px;
+}
+
+.surrender span {
+    background-color: #000;
+}
+
+#log-view {
+    max-height: 780px;
+    overflow-y: auto;
+    text-align: left;
+    padding-top: 5px;
+}
+
+.balance {
+    font-weight: bold;
+    color: black;
+    margin-bottom: 0;
+}
+
+.winMoney {
+    color: #528a1d;
+}
+
+.loseMoney {
+    color: red;
+}

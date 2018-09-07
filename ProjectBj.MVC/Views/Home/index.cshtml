@@ -1,0 +1,18 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (@Html.BeginForm("Index", "Game", FormMethod.Post, new { id = "game-form" }))
+{
+    <div class="container w-50 mt-5">
+        <div id="player-name-block" class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Enter your name</span>
+            </div>
+            <input required type="text" id="player-name" name="playername" class="form-control" />
+        </div>
+        <input id="play-button" type="submit" class="btn btn-primary" value="LOGIN" />
+    </div>
+}
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/login")
