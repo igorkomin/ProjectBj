@@ -150,7 +150,8 @@ function showData(game) {
 }
 
 function showDealerData(game) {
-    $("#dealer-name").html(game.dealer.name + " <span class='badge badge-secondary'>" + game.dealer.hand.score + "</span>");
+    $("#dealer-name").html(game.dealer.name + " <span class='badge badge-secondary'>"
+        + game.dealer.hand.score + "</span>");
     var cards = "";
     $.each(game.dealer.hand.cards, function (index, card) {
         cards += "<li><span class='card rank-" + card.rank + " " + card.suit + "'><span class='rank'>"
@@ -160,7 +161,8 @@ function showDealerData(game) {
 }
 
 function showPlayerData(game) {
-    $("#player-name").html(game.player.name + " <span class='badge badge-secondary'>" + game.player.hand.score + "</span>");
+    $("#player-name").html(game.player.name + " <span class='badge badge-secondary'>"
+        + game.player.hand.score + "</span>");
 
     if (game.player.gameResult > 0) {
         $("#player-result-message").text(game.player.gameResultMessage);
@@ -181,11 +183,13 @@ function showBotsData(game) {
         if (bot.gameResult > 0) {
             innerHtml += "<span>" + bot.gameResultMessage + "</span>";
         }
-        innerHtml += "<p class='caption player-name'>"+bot.name+" <span class='badge badge-secondary'>"+bot.hand.score+"</span></p>";
+        innerHtml += "<p class='caption player-name'>" + bot.name + " <span class='badge badge-secondary'>"
+            + bot.hand.score + "</span></p>";
         innerHtml += "<div class='playingCards simpleCards rotateHand'>";
         innerHtml += "<ul class='hand'>";
         $.each(bot.hand.cards, function (index, card) {
-            innerHtml += "<li><span class='card rank-" + card.rank + " " + card.suit + "'><span class='rank'>" + card.rank + "</span><span class='suit'></span></span></li>";
+            innerHtml += "<li><span class='card rank-" + card.rank + " " + card.suit + "'><span class='rank'>"
+                + card.rank + "</span><span class='suit'></span></span></li>";
         });
         innerHtml += "</ul></div></div>";
     });
