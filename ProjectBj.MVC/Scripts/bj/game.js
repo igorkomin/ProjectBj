@@ -1,6 +1,7 @@
 ﻿var playerId = 0;
 var sessionId = 0;
 $(document).ready(function () {
+    $("#player-seat").hide();
     var playerName = $.cookie("playerName");
 
     $("#inc-bots-btn").click(function () {
@@ -153,6 +154,7 @@ function showData(game) {
 }
 
 function showDealerData(game) {
+    $("#player-seat").show();
     $("#dealer-name").html(game.dealer.name + " <span class='badge badge-secondary'>"
         + game.dealer.hand.score + "</span>");
     var cards = "";
