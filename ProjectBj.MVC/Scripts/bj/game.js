@@ -184,7 +184,7 @@ function showPlayerData(game) {
 }
 
 function showBotsData(game) {
-    var innerHtml="";
+    var innerHtml = "";
     $.each(game.bots, function (index, bot) {
         innerHtml += "<div class='bot-seat col-md-1'>";
         if (bot.gameResult > 0) {
