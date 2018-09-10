@@ -6,6 +6,7 @@ $(document).ready(function () {
     $("#inc-bots-btn").click(function () {
         var number = $("#bots-number").val();
         if (number == 5) {
+            enableBotDecrease();
             return;
         }
         number++;
@@ -15,6 +16,7 @@ $(document).ready(function () {
     $("#dec-bots-btn").click(function () {
         var number = $("#bots-number").val();
         if (number == 0) {
+            enableBotIncrease();
             return;
         }
         number--;
@@ -204,6 +206,16 @@ function checkGameStatus(game) {
     if (game && game.player.gameResult == 0) {
         switchToGameControls();
     }
+}
+
+function enableBotIncrease() {
+    $("#inc-bots-btn").attr("disabled", false);
+    $("#dec-bots-btn").attr("disabled", true);
+}
+
+function enableBotDecrease() {
+    $("#dec-bots-btn").attr("disabled", false);
+    $("#inc-bots-btn").attr("disabled", true);
 }
 
 function switchToGameControls() {
