@@ -1,12 +1,10 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using Microsoft.Owin;
+using Owin;
+using ProjectBj.MVC.Configs;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using Microsoft.Owin;
-using Owin;
-using ProjectBj.MVC.Configs;
 
 [assembly: OwinStartup(typeof(ProjectBj.MVC.Startup))]
 
