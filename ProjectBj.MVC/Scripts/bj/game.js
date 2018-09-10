@@ -21,8 +21,8 @@ $(document).ready(function () {
         $("#bots-number").val(number);
     });
 
-    $("#bet-slider").change(function () {
-        var number = $("#bet-slider").val();
+    $("#bet-slider").on("input change", function () {
+        var number = $(this).val();
         $("#bet-output").text(number);
     });
 
