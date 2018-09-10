@@ -154,7 +154,6 @@ function showData(game) {
 }
 
 function showDealerData(game) {
-    $("#player-seat").show();
     $("#dealer-name").html(game.dealer.name + " <span class='badge badge-secondary'>"
         + game.dealer.hand.score + "</span>");
     var cards = "";
@@ -166,6 +165,7 @@ function showDealerData(game) {
 }
 
 function showPlayerData(game) {
+    $("#player-seat").show();
     $("#player-name").html(game.player.name + " <span class='badge badge-secondary'>"
         + game.player.hand.score + "</span>");
 
