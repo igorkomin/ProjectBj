@@ -144,6 +144,7 @@ function surrender() {
 }
 
 function showData(game) {
+    checkGameStatus(game);
     showDealerData(game);
     showPlayerData(game);
     showBotsData(game);
@@ -164,9 +165,11 @@ function showPlayerData(game) {
     $("#player-name").html(game.player.name + " <span class='badge badge-secondary'>"
         + game.player.hand.score + "</span>");
 
+    var resultMessage = "";
     if (game.player.gameResult > 0) {
-        $("#player-result-message").text(game.player.gameResultMessage);
+        resultMessage = game.player.gameResultMessage;
     }
+    $("#player-result-message").text(resultMessage);
 
     var cards = "";
     $.each(game.player.hand.cards, function (index, card) {
@@ -194,4 +197,34 @@ function showBotsData(game) {
         innerHtml += "</ul></div></div>";
     });
     $("#bot-seats").html(innerHtml);
+}
+
+function checkGameStatus(game) {
+    switchToMainMenu();
+    if (game && game.player.gameResult == 0) {
+        switchToGameControls();
+    }
+}
+
+function switchToGameControls() {
+    $("#bet-slider").attr("disabled", true);
+    $("#new-game-btn").attr("disabled", true);
+    $("#load-game-btn").attr("disabled", true);
+
+    $("#actions-block").attr("disabled", false);
+    $("#hit-btn").attr("disabled", false);
+    $("#double-btn").attr("disabled", false);
+    $("#stand-btn").attr("disabled", false);
+    $("#surrender-btn").attr("disabled", false);
+}
+
+function switchToMainMenu() {
+    $("#bet-slider").attr("disabled", false);
+    $("#new-game-btn").attr("disabled", false);
+    $("#load-game-btn").attr("disabled", false);
+
+    $("#hit-btn").attr("disabled", true);
+    $("#double-btn").attr("disabled", true);
+    $("#stand-btn").attr("disabled", true);
+    $("#surrender-btn").attr("disabled", true);
 }
