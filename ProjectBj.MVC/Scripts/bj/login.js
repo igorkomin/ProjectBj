@@ -1,7 +1,7 @@
 ﻿$(document).ready(function (event) {
     $("#play-button").click(function (event) {
         event.preventDefault();
-        if ($("#player-name").val().length > 0) {
+        if ($("#player-name").val().trim().length > 0) {
             login();
         }
         else {
