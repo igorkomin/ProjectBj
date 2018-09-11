@@ -67,21 +67,20 @@ namespace ProjectBj.BusinessLogic.Services
 
         private async Task<GameViewModel> UpdateViewModel(int playerId, int sessionId)
         {
-            var session = sessionId;
             var player = await _playerProvider.GetPlayerById(playerId);
             var dealer = await _playerProvider.GetDealer();
-            var bots = await _playerProvider.GetSessionBots(session);
+            var bots = await _playerProvider.GetSessionBots(sessionId);
 
             var playerViewModel = ModelViewModelConverter.GetPlayerViewModel(player);
             var dealerViewModel = ModelViewModelConverter.GetDealerViewModel(dealer);
             var botViewModels = ModelViewModelConverter.GetBotViewModels(bots);
 
-            playerViewModel.Hand = await GetHandViewModel(player.Id, session);
-            dealerViewModel.Hand = await GetHandViewModel(dealer.Id, session);
+            playerViewModel.Hand = await GetHandViewModel(player.Id, sessionId);
+            dealerViewModel.Hand = await GetHandViewModel(dealer.Id, sessionId);
 
             foreach (var bot in botViewModels)
             {
-                bot.Hand = await GetHandViewModel(bot.Id, session);
+                bot.Hand = await GetHandViewModel(bot.Id, sessionId);
             }
 
             GameViewModel gameViewModel = new GameViewModel
@@ -89,7 +88,7 @@ namespace ProjectBj.BusinessLogic.Services
                 Bots = botViewModels,
                 Dealer = dealerViewModel,
                 Player = playerViewModel,
-                SessionId = session
+                SessionId = sessionId
             };
             return gameViewModel;
         }
