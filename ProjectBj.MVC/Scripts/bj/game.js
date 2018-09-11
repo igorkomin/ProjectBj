@@ -6,7 +6,7 @@ $(document).ready(function () {
 
     $("#inc-bots-btn").click(function () {
         var number = $("#bots-number").val();
-        if (number == 5) {
+        if (number === 5) {
             enableBotDecrease();
             return;
         }
@@ -205,7 +205,7 @@ function showBotsData(game) {
 
 function checkGameStatus(game) {
     switchToMainMenu();
-    if (game && game.player.gameResult == 0) {
+    if (game && game.player.gameResult === 0) {
         switchToGameControls();
     }
 }
