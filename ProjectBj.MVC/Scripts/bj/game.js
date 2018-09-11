@@ -188,7 +188,8 @@ function showDealerData(game) {
 
 function showPlayerData(game) {
     $("#player-seat").show();
-    $("#player-name").html(`${game.player.name} <span class='badge badge-secondary'>${game.player.hand.score}</span>`);
+    $("#player-name").html(`${game.player.name} <span class='badge badge-secondary'>
+        ${game.player.hand.score}</span>`);
 
     var resultMessage = "";
     if (game.player.gameResult > 0) {
