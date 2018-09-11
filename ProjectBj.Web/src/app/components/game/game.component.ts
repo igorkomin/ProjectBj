@@ -30,7 +30,6 @@ export class GameComponent implements OnInit {
     constructor(
         private apiService: ApiService,
         private route: ActivatedRoute,
-        private http: HttpClient
     ) { }
 
     ngOnInit() {
