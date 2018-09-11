@@ -16,7 +16,7 @@ $(document).ready(function () {
 
     $("#dec-bots-btn").click(function () {
         var number = $("#bots-number").val();
-        if (number == 0) {
+        if (number === 0) {
             enableBotIncrease();
             return;
         }
