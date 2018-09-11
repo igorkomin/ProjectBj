@@ -154,14 +154,14 @@ function showData(game) {
 }
 
 function showDealerData(game) {
-    $("#dealer-name").html(game.dealer.name + " <span class='badge badge-secondary'>"
-        + game.dealer.hand.score + "</span>");
+    $("#dealer-name").html(`${game.dealer.name} <span class='badge badge-secondary'>
+        ${game.dealer.hand.score}</span>`);
     var cards = "";
     $.each(game.dealer.hand.cards, function (index, card) {
-        cards += "<li><span class='card rank-" + card.rank + " " + card.suit + "'><span class='rank'>"
-            + card.rank + "</span><span class='suit'></span></span></li>";
+        cards += `<li><span class='card rank-${card.rank} ${card.suit}'><span class='rank'>
+            ${card.rank}</span><span class='suit'></span></span></li>`;
     });
-    $("#dealer-hand").html("<ul class='hand'>" + cards + "</ul>");
+    $("#dealer-hand").html(`<ul class='hand'>${cards}</ul>`);
 }
 
 function showPlayerData(game) {
@@ -195,7 +195,7 @@ function showBotsData(game) {
             <ul class='hand'>`;
         $.each(bot.hand.cards, function (index, card) {
             innerHtml += `<li><span class='card rank-${card.rank} ${card.suit}'><span class='rank'>
-                ${card.rank}"</span><span class='suit'></span></span></li>`;
+                ${card.rank}</span><span class='suit'></span></span></li>`;
         });
         innerHtml += "</ul></div></div>";
     });
