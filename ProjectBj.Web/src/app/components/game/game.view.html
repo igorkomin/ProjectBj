@@ -31,13 +31,13 @@
                     <div class="caption">Choose the number of bots</div>
                     <div class="input-group">
                         <span class="input-group-btn">
-                            <button [disabled]="botsNumber == 0" type="button" (click)="decBotsNumber()" class="btn btn-danger btn-number">
+                            <button [disabled]="botsNumber == 0" (click)="decBotsNumber()" class="btn btn-danger btn-number">
                                 <span>-</span>
                             </button>
                         </span>
                         <input disabled type="text" class="bots-input form-control input-number" value="{{ botsNumber }}">
                         <span class="input-group-btn">
-                            <button [disabled]="botsNumber == 5" type="button" (click)="incBotsNumber()" class="btn btn-success btn-number">
+                            <button [disabled]="botsNumber == 5" (click)="incBotsNumber()" class="btn btn-success btn-number">
                                 <span>+</span>
                             </button>
                         </span>
@@ -52,8 +52,8 @@
                     </div>
                     <h3 id="bet_output">{{ playerBet | currency }}</h3>
                     <div class="btn-group-vertical">
-                        <button [disabled]="game && game?.player.gameResult == 0" (click)="newGame()" type="button" class="btn btn-primary">NEW GAME</button>
-                        <button [disabled]="game && game?.player.gameResult == 0" (click)="loadGame()" type="button" class="btn btn-secondary">LOAD GAME</button>
+                        <button [disabled]="game && game?.player.gameResult == 0" (click)="newGame()" class="btn btn-primary">NEW GAME</button>
+                        <button [disabled]="game && game?.player.gameResult == 0" (click)="loadGame()" class="btn btn-secondary">LOAD GAME</button>
                     </div>
                 </div>
                 <div *ngIf="game" class="col-md-3">
