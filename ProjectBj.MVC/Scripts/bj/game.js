@@ -57,7 +57,11 @@ function newGame(playerName, botsNumber, playerBet) {
         url: "/api/gameapi/start",
         type: "POST",
         contentType: "application/json",
-        data: JSON.stringify({ PlayerName: playerName, BotsNumber: botsNumber, Bet: playerBet }),
+        data: JSON.stringify({
+            PlayerName: playerName,
+            BotsNumber: botsNumber,
+            Bet: playerBet
+        }),
         success: function (response) {
             showData(response);
             playerId = response.player.id;
@@ -74,7 +78,9 @@ function loadGame(playerName) {
         url: "/api/gameapi/load",
         type: "POST",
         contentType: "application/json",
-        data: JSON.stringify({ PlayerName: playerName }),
+        data: JSON.stringify({
+            PlayerName: playerName
+        }),
         success: function (response) {
             showData(response);
             playerId = response.player.id;
@@ -91,7 +97,10 @@ function hit() {
         url: "/api/gameapi/hit",
         type: "POST",
         contentType: "application/json",
-        data: JSON.stringify({ PlayerId: playerId, SessionId: sessionId }),
+        data: JSON.stringify({
+            PlayerId: playerId,
+            SessionId: sessionId
+        }),
         success: function (response) {
             showData(response);
         },
@@ -106,7 +115,10 @@ function stand() {
         url: "/api/gameapi/stand",
         type: "POST",
         contentType: "application/json",
-        data: JSON.stringify({ PlayerId: playerId, SessionId: sessionId }),
+        data: JSON.stringify({
+            PlayerId: playerId,
+            SessionId: sessionId
+        }),
         success: function (response) {
             showData(response);
         },
@@ -121,7 +133,10 @@ function double() {
         url: "/api/gameapi/double",
         type: "POST",
         contentType: "application/json",
-        data: JSON.stringify({ PlayerId: playerId, SessionId: sessionId }),
+        data: JSON.stringify({
+            PlayerId: playerId,
+            SessionId: sessionId
+        }),
         success: function (response) {
             showData(response);
         },
@@ -136,7 +151,10 @@ function surrender() {
         url: "/api/gameapi/surrender",
         type: "POST",
         contentType: "application/json",
-        data: JSON.stringify({ PlayerId: playerId, SessionId: sessionId }),
+        data: JSON.stringify({
+                PlayerId: playerId,
+                SessionId: sessionId
+            }),
         success: function (response) {
             showData(response);
         },
@@ -158,8 +176,12 @@ function showDealerData(game) {
         ${game.dealer.hand.score}</span>`);
     var cards = "";
     $.each(game.dealer.hand.cards, function (index, card) {
-        cards += `<li><span class='card rank-${card.rank} ${card.suit}'><span class='rank'>
-            ${card.rank}</span><span class='suit'></span></span></li>`;
+        cards += `<li>
+            <span class='card rank-${card.rank} ${card.suit}'>
+                <span class='rank'>${card.rank}</span>
+                <span class='suit'></span>
+            </span>
+        </li>`;
     });
     $("#dealer-hand").html(`<ul class='hand'>${cards}</ul>`);
 }
@@ -176,8 +198,12 @@ function showPlayerData(game) {
 
     var cards = "";
     $.each(game.player.hand.cards, function (index, card) {
-        cards += `<li><span class='card rank-${card.rank} ${card.suit}'><span class='rank'>
-            ${card.rank}</span><span class='suit'></span></span></li>`;
+        cards += `<li>
+            <span class='card rank-${card.rank} ${card.suit}'>
+                <span class='rank'>${card.rank}</span>
+                <span class='suit'></span>
+            </span>
+        </li>`;
     });
     $("#player-hand").html(`<ul class='hand'>${cards}</ul>`);
 }
@@ -189,15 +215,22 @@ function showBotsData(game) {
         if (bot.gameResult > 0) {
             innerHtml += `<span>${bot.gameResultMessage}</span>`;
         }
-        innerHtml += `<p class='caption player-name'>${bot.name}<span class='badge badge-secondary'>
-            ${bot.hand.score}</span></p>
-            <div class='playingCards simpleCards rotateHand'>
+        innerHtml += `<p class='caption player-name'>${bot.name}
+            <span class='badge badge-secondary'>${bot.hand.score}</span>
+        </p>
+        <div class='playingCards simpleCards rotateHand'>
             <ul class='hand'>`;
         $.each(bot.hand.cards, function (index, card) {
-            innerHtml += `<li><span class='card rank-${card.rank} ${card.suit}'><span class='rank'>
-                ${card.rank}</span><span class='suit'></span></span></li>`;
+            innerHtml += `<li>
+                <span class='card rank-${card.rank} ${card.suit}'>
+                    <span class='rank'>${card.rank}</span>
+                    <span class='suit'></span>
+                </span>
+            </li>`;
         });
-        innerHtml += "</ul></div></div>";
+        innerHtml += `</ul>
+            </div>
+        </div>`;
     });
     $("#bot-seats").html(innerHtml);
 }
