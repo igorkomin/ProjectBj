@@ -166,8 +166,7 @@ function showDealerData(game) {
 
 function showPlayerData(game) {
     $("#player-seat").show();
-    $("#player-name").html(game.player.name + " <span class='badge badge-secondary'>"
-        + game.player.hand.score + "</span>");
+    $("#player-name").html(`${game.player.name} <span class='badge badge-secondary'>${game.player.hand.score}</span>`);
 
     var resultMessage = "";
     if (game.player.gameResult > 0) {
@@ -177,10 +176,10 @@ function showPlayerData(game) {
 
     var cards = "";
     $.each(game.player.hand.cards, function (index, card) {
-        cards += "<li><span class='card rank-" + card.rank + " " + card.suit + "'><span class='rank'>"
-            + card.rank + "</span><span class='suit'></span></span></li>";
+        cards += `<li><span class='card rank-${card.rank} ${card.suit}'><span class='rank'>
+            ${card.rank}</span><span class='suit'></span></span></li>`;
     });
-    $("#player-hand").html("<ul class='hand'>" + cards + "</ul>");
+    $("#player-hand").html(`<ul class='hand'>${cards}</ul>`);
 }
 
 function showBotsData(game) {
@@ -188,15 +187,15 @@ function showBotsData(game) {
     $.each(game.bots, function (index, bot) {
         innerHtml += "<div class='bot-seat col-md-1'>";
         if (bot.gameResult > 0) {
-            innerHtml += "<span>" + bot.gameResultMessage + "</span>";
+            innerHtml += `<span>${bot.gameResultMessage}</span>`;
         }
-        innerHtml += "<p class='caption player-name'>" + bot.name + " <span class='badge badge-secondary'>"
-            + bot.hand.score + "</span></p>";
-        innerHtml += "<div class='playingCards simpleCards rotateHand'>";
-        innerHtml += "<ul class='hand'>";
+        innerHtml += `<p class='caption player-name'>${bot.name}<span class='badge badge-secondary'>
+            ${bot.hand.score}</span></p>
+            <div class='playingCards simpleCards rotateHand'>
+            <ul class='hand'>`;
         $.each(bot.hand.cards, function (index, card) {
-            innerHtml += "<li><span class='card rank-" + card.rank + " " + card.suit + "'><span class='rank'>"
-                + card.rank + "</span><span class='suit'></span></span></li>";
+            innerHtml += `<li><span class='card rank-${card.rank} ${card.suit}'><span class='rank'>
+                ${card.rank}"</span><span class='suit'></span></span></li>`;
         });
         innerHtml += "</ul></div></div>";
     });
