@@ -8,7 +8,7 @@ import { SharedModule } from 'src/app/modules/shared/shared.module';
     imports: [
         SharedModule,
         LogsRoutingModule,
-        GridModule 
+        GridModule
     ],
   declarations: [LogsComponent]
 })

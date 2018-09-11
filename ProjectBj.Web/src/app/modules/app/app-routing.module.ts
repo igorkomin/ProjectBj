@@ -8,7 +8,7 @@ const routes: Routes = [
         loadChildren: 'src/app/modules/login/login.module#LoginModule'
     },
     {
-        path: 'game', 
+        path: 'game',
         loadChildren: 'src/app/modules/game/game.module#GameModule'
     },
     {
