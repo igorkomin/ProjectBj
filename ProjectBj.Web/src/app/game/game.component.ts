@@ -4,7 +4,7 @@ import { Game } from 'src/app/shared/models/game.model';
 import { GameLog } from 'src/app/shared/models/gamelog.model';
 import { Identifier } from 'src/app/shared/models/identifier.model';
 import { Settings } from 'src/app/shared/models/settings.model';
-import { ApiService } from 'src/app/shared/api.service';
+import { ApiService } from 'src/app/core/api.service';
 
 @Component({
     selector: 'app-game',

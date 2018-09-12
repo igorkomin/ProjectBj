@@ -264,7 +264,7 @@
     <TypeScriptCompile Include="src\app\logs\logs-routing.module.ts" />
     <TypeScriptCompile Include="src\app\logs\logs.module.ts" />
     <TypeScriptCompile Include="src\app\shared\shared.module.ts" />
-    <TypeScriptCompile Include="src\app\shared\api.service.ts" />
+    <TypeScriptCompile Include="src\app\core\api.service.ts" />
     <TypeScriptCompile Include="src\environments\environment.prod.ts" />
     <TypeScriptCompile Include="src\environments\environment.ts" />
     <TypeScriptCompile Include="src\main.ts" />
