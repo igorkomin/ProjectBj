@@ -18,7 +18,7 @@ namespace ProjectBj.DataAccess.Repositories
             _connectionString = connectionString;
         }
 
-        public async Task<Player> Create(Player player)
+        public async Task<Player> Insert(Player player)
         {
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
@@ -27,7 +27,7 @@ namespace ProjectBj.DataAccess.Repositories
             }
         }
 
-        public async Task<ICollection<Player>> Create(ICollection<Player> players)
+        public async Task<ICollection<Player>> Insert(ICollection<Player> players)
         {
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
@@ -36,7 +36,7 @@ namespace ProjectBj.DataAccess.Repositories
             }
         }
 
-        public async Task<ICollection<Player>> FindPlayers(string name)
+        public async Task<ICollection<Player>> Find(string name)
         {
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
@@ -62,7 +62,7 @@ namespace ProjectBj.DataAccess.Repositories
             }
         }
 
-        public async Task AddCard(Player player, int cardId, int sessionId)
+        public async Task AddCardToPlayerHand(Player player, int cardId, int sessionId)
         {
             PlayerHand playerHand = new PlayerHand
             {
@@ -89,7 +89,7 @@ namespace ProjectBj.DataAccess.Repositories
             }
         }
 
-        public async Task DeleteNonHumanPlayers(int sessionId)
+        public async Task DeleteBotsFromSession(int sessionId)
         {
             using (IDbConnection db = new SqlConnection(_connectionString))
             {

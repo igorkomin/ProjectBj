@@ -13,7 +13,7 @@ namespace ProjectBj.BusinessLogic.Helpers
             return attributes[0].Description;
         }
 
-        public static string GetRankName(int rankId)
+        public static string GetCardRankName(int rankId)
         {
             string rankName = GetEnumDescription((CardRanks.Rank)rankId);
             return rankName;

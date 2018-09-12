@@ -22,33 +22,33 @@ namespace ProjectBj.BusinessLogic.Providers
             _nameGenerator = new PersonNameGenerator();
         }
 
-        private async Task<Player> NewPlayer(string name)
+        private async Task<Player> GetNewPlayer(string name)
         {
             Player player = new Player
             {
                 Name = name,
-                Balance = ValueHelper.StartBalance,
+                Balance = ValueHelper.PlayerInitialBalance,
                 InGame = true,
                 IsHuman = true
             };
-            player = await _playerRepository.Create(player);
+            player = await _playerRepository.Insert(player);
             return player;
         }
 
-        private async Task<Player> NewBot()
+        private async Task<Player> GetNewBot()
         {
             Player bot = new Player
             {
                 Name = _nameGenerator.GenerateRandomFirstName(),
-                Balance = ValueHelper.StartBalance,
+                Balance = ValueHelper.PlayerInitialBalance,
                 IsHuman = false,
                 InGame = true
             };
-            bot = await _playerRepository.Create(bot);
+            bot = await _playerRepository.Insert(bot);
             return bot;
         }
 
-        private async Task<Player> NewDealer()
+        private async Task<Player> GetNewDealer()
         {
             Player dealer = new Player
             {
@@ -56,16 +56,16 @@ namespace ProjectBj.BusinessLogic.Providers
                 InGame = false,
                 IsHuman = false
             };
-            dealer = await _playerRepository.Create(dealer);
+            dealer = await _playerRepository.Insert(dealer);
             return dealer;
         }
 
-        private async Task<List<Player>> CreateBots(int number)
+        private async Task<List<Player>> GetNewBotList(int number)
         {
             List<Player> bots = new List<Player>();
             for(int i = 0; i < number; i++)
             {
-                Player bot = await NewBot();
+                Player bot = await GetNewBot();
                 bots.Add(bot);
             }
 
@@ -78,7 +78,7 @@ namespace ProjectBj.BusinessLogic.Providers
 
             if (bots.Count == 0 || bots == null)
             {
-                bots = await CreateBots(botnumber);
+                bots = await GetNewBotList(botnumber);
             }
             
             return bots.ToList();
@@ -92,17 +92,17 @@ namespace ProjectBj.BusinessLogic.Providers
 
         public async Task<Player> GetDealer()
         {
-            Player dealer = await PullDealer();
+            Player dealer = await GetDealerFromDb();
             if(dealer == null)
             {
-                dealer = await NewDealer();
+                dealer = await GetNewDealer();
             }
             return dealer;
         }
 
-        public async Task<Player> PullPlayer(string name)
+        public async Task<Player> GetPlayerFromDb(string name)
         {
-            var searchResults = await _playerRepository.FindPlayers(name);
+            var searchResults = await _playerRepository.Find(name);
             if (searchResults.Count == 0)
             {
                 return null;
@@ -110,9 +110,9 @@ namespace ProjectBj.BusinessLogic.Providers
             return searchResults.FirstOrDefault();
         }
 
-        private async Task<Player> PullDealer()
+        private async Task<Player> GetDealerFromDb()
         {
-            var searchResults = await _playerRepository.FindPlayers(StringHelper.DealerName);
+            var searchResults = await _playerRepository.Find(StringHelper.DealerName);
             if (searchResults.Count == 0)
             {
                 return null;
@@ -122,10 +122,10 @@ namespace ProjectBj.BusinessLogic.Providers
 
         public async Task<Player> GetPlayerByName(string name)
         {
-            Player player = await PullPlayer(name);
+            Player player = await GetPlayerFromDb(name);
             if(player == null)
             {
-                player = await NewPlayer(name);
+                player = await GetNewPlayer(name);
             }
             return player;
         }
@@ -138,13 +138,13 @@ namespace ProjectBj.BusinessLogic.Providers
 
         public async Task DeleteSessionBots(int sessionId)
         {
-            await _playerRepository.DeleteNonHumanPlayers(sessionId);
+            await _playerRepository.DeleteBotsFromSession(sessionId);
         }
 
-        public async Task GivePlayerCard(int playerId, int sessionId, int cardId)
+        public async Task GiveCardToPlayer(int playerId, int sessionId, int cardId)
         {
             Player player = await _playerRepository.GetById(playerId);
-            await _playerRepository.AddCard(player, cardId, sessionId);
+            await _playerRepository.AddCardToPlayerHand(player, cardId, sessionId);
         }
 
         public async Task ChangePlayerBalance(int playerId, int balanceDelta)

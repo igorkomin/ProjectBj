@@ -22,7 +22,7 @@ namespace ProjectBj.Web.Controllers
         {
             try
             {
-                GameViewModel model = await _service.NewGame(settings.PlayerName, settings.BotsNumber, settings.Bet);
+                GameViewModel model = await _service.GetNewGame(settings.PlayerName, settings.BotsNumber, settings.Bet);
                 return Ok(model);
             }
             catch (Exception exception)
@@ -36,7 +36,7 @@ namespace ProjectBj.Web.Controllers
         {
             try
             {
-                GameViewModel model = await _service.LoadGame(settings.PlayerName);
+                GameViewModel model = await _service.GetUnfinishedGame(settings.PlayerName);
                 return Ok(model);
             }
             catch (Exception exception)
@@ -50,7 +50,7 @@ namespace ProjectBj.Web.Controllers
         {
             try
             {
-                GameViewModel model = await _service.Hit(identifier.PlayerId, identifier.SessionId);
+                GameViewModel model = await _service.MakeHitDecision(identifier.PlayerId, identifier.SessionId);
                 return Ok(model);
             }
             catch (Exception exception)
@@ -64,7 +64,7 @@ namespace ProjectBj.Web.Controllers
         {
             try
             {
-                GameViewModel model = await _service.Stand(identifier.PlayerId, identifier.SessionId);
+                GameViewModel model = await _service.MakeStandDecision(identifier.PlayerId, identifier.SessionId);
                 return Ok(model);
             }
             catch(Exception exception)
@@ -78,7 +78,7 @@ namespace ProjectBj.Web.Controllers
         {
             try
             {
-                GameViewModel model = await _service.DoubleDown(identifier.PlayerId, identifier.SessionId);
+                GameViewModel model = await _service.MakeDoubleDownDecision(identifier.PlayerId, identifier.SessionId);
                 return Ok(model);
             }
             catch (Exception exception)
@@ -92,7 +92,7 @@ namespace ProjectBj.Web.Controllers
         {
             try
             {
-                GameViewModel model = await _service.Surrender(identifier.PlayerId, identifier.SessionId);
+                GameViewModel model = await _service.MakeSurrenderDecision(identifier.PlayerId, identifier.SessionId);
                 return Ok(model);
             }
             catch (Exception exception)
@@ -106,7 +106,7 @@ namespace ProjectBj.Web.Controllers
         {
             try
             {
-                List<LogEntryViewModel> logs = await _service.GetLogs(identifier.SessionId);
+                List<LogEntryViewModel> logs = await _service.GetSessionLogs(identifier.SessionId);
                 return Ok(logs);
             }
             catch (Exception exception)

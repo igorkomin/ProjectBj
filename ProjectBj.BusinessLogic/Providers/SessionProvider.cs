@@ -17,23 +17,23 @@ namespace ProjectBj.BusinessLogic.Providers
             _sessionRepository = sessionRepository;
         }
 
-        public async Task<GameSession> CreateSession()
+        public async Task<GameSession> GetNewSession()
         {
             GameSession session = new GameSession
             {
                 TimeCreated = DateTime.Now
             };
-            session = await _sessionRepository.Create(session);
+            session = await _sessionRepository.Insert(session);
             return session;
         }
 
         public async Task<GameSession> GetSessionByPlayerId(int playerId)
         {
-            GameSession currentSession = await _sessionRepository.GetFirstUnfinishedSession(playerId);
+            GameSession currentSession = await _sessionRepository.GetFirstOpenSession(playerId);
             
             if (currentSession == null)
             {
-                throw new Exception(StringHelper.NoGameToLoad);
+                throw new Exception(StringHelper.NoGameToLoadMessage);
             }
  
             return currentSession;

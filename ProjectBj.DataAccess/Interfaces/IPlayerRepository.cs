@@ -6,13 +6,13 @@ namespace ProjectBj.DataAccess.Interfaces
 {
     public interface IPlayerRepository
     {
-        Task<Player> Create(Player player);
+        Task<Player> Insert(Player player);
         Task<Player> GetById(int id);
-        Task<ICollection<Player>> Create(ICollection<Player> players);
-        Task<ICollection<Player>> FindPlayers(string name);
+        Task<ICollection<Player>> Insert(ICollection<Player> players);
+        Task<ICollection<Player>> Find(string name);
         Task<ICollection<Player>> GetSessionBots(int sessionId);
         Task Update(Player player);
-        Task AddCard(Player player, int cardId, int sessionId);
-        Task DeleteNonHumanPlayers(int sessionId);
+        Task AddCardToPlayerHand(Player player, int cardId, int sessionId);
+        Task DeleteBotsFromSession(int sessionId);
     }
 }

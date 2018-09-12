@@ -18,7 +18,7 @@ namespace ProjectBj.DataAccess.Repositories
             _connectionString = connectionString;
         }
 
-        public async Task<GameSession> Create(GameSession session)
+        public async Task<GameSession> Insert(GameSession session)
         {
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
@@ -44,7 +44,7 @@ namespace ProjectBj.DataAccess.Repositories
             }
         }
 
-        public async Task<GameSession> GetFirstUnfinishedSession(int playerId)
+        public async Task<GameSession> GetFirstOpenSession(int playerId)
         {
             using (IDbConnection db = new SqlConnection(_connectionString))
             {

@@ -18,7 +18,7 @@ namespace ProjectBj.DataAccess.Repositories
             _connectionString = connectionString;
         }
 
-        public async Task<ICollection<Card>> CreateDeck(ICollection<Card> deck)
+        public async Task<ICollection<Card>> InsertList(ICollection<Card> deck)
         {
             using (IDbConnection db = new SqlConnection(_connectionString))
             {

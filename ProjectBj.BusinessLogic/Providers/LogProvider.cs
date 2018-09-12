@@ -28,7 +28,7 @@ namespace ProjectBj.BusinessLogic.Providers
                 Message = message,
                 Time = DateTime.Now
             };
-            Log.Info(StringHelper.CreatingLogEntry);
+            Log.Info(StringHelper.CreatingLogEntryMessage);
             await _logRepository.CreateEntry(entry);
         }
 
