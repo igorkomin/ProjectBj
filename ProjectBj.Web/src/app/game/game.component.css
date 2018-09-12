@@ -20,7 +20,7 @@
 }
 
 .bot-seat {
-    background-image: url("../../../assets/robot.png");
+    background-image: url("../../assets/robot.png");
     background-repeat: no-repeat;
     background-size: 65%;
     background-position-x: 100%;
@@ -28,7 +28,7 @@
 }
 
 .player-seat {
-    background-image: url("../../../assets/player.png");
+    background-image: url("../../assets/player.png");
     background-repeat: no-repeat;
     background-size: 50%;
     background-position-x: 100%;

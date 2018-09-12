@@ -1,19 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Game } from 'src/app/models/game.model';
-import { GameLog } from 'src/app/models/gamelog.model';
-import { Identifier } from 'src/app/models/identifier.model';
-import { Settings } from 'src/app/models/settings.model';
-import { ApiService } from 'src/app/services/api.service';
+import { Game } from 'src/app/shared/models/game.model';
+import { GameLog } from 'src/app/shared/models/gamelog.model';
+import { Identifier } from 'src/app/shared/models/identifier.model';
+import { Settings } from 'src/app/shared/models/settings.model';
+import { ApiService } from 'src/app/shared/api.service';
 
 @Component({
     selector: 'app-game',
-    templateUrl: 'game.view.html',
+    templateUrl: 'game.component.html',
     styleUrls: [
-        'game.style.css',
-        '../app/common/bootstrap.css',
-        '../app/common/slider.css',
-        '../app/common/cards.css'
+        'game.component.css',
+        '../shared/style/bootstrap.css',
+        '../shared/style/slider.css',
+        '../shared/style/cards.css'
     ]
 })
 export class GameComponent implements OnInit {

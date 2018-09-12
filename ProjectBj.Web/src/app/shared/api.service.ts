@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Settings } from 'src/app/models/settings.model';
-import { Game } from 'src/app/models/game.model';
-import { SystemLog } from 'src/app/models/system-log.model';
-import { GameLog } from 'src/app/models/gamelog.model';
-import { Identifier } from 'src/app/models/identifier.model';
+import { Settings } from 'src/app/shared/models/settings.model';
+import { Game } from 'src/app/shared/models/game.model';
+import { SystemLog } from 'src/app/shared/models/system-log.model';
+import { GameLog } from 'src/app/shared/models/gamelog.model';
+import { Identifier } from 'src/app/shared/models/identifier.model';
 
 const apiUrl = '../api/game';
 const requestOptions = {
