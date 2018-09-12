@@ -119,7 +119,7 @@ namespace ProjectBj.BusinessLogic.Services
             return gameViewModel;
         }
 
-        private async Task<GameViewModel> DealFirstCards()
+        private async Task<GameViewModel> GiveFirstCards()
         {
             GameViewModel model = await CreateGameViewModel();
             List<int> playerIds = new List<int>
@@ -131,7 +131,7 @@ namespace ProjectBj.BusinessLogic.Services
             {
                 playerIds.Add(bot.Id);
             }
-            await DealFirstTwoCards(playerIds, model.SessionId);
+            await GiveFirstTwoCards(playerIds, model.SessionId);
             await UpdateGameViewModel(model);
             return model;
         }
@@ -145,7 +145,7 @@ namespace ProjectBj.BusinessLogic.Services
             _playerName = playerName;
             _botNumber = botsNumber;
             _bet = bet;
-            var gameViewModel = await DealFirstCards();
+            var gameViewModel = await GiveFirstCards();
             Log.Info(StringHelper.GetGameStartedMessage(gameViewModel.SessionId));
             return gameViewModel;
         }
@@ -168,7 +168,7 @@ namespace ProjectBj.BusinessLogic.Services
             Player player = await _playerProvider.GetPlayerById(playerId);
             await _logProvider.CreateLogEntry(player.Name, StringHelper.ChoseToHitMessage, sessionId);
             Log.Info(StringHelper.GetPlayerIdHitsMessage(playerId));
-            await DealCard(playerId, sessionId);
+            await GiveCard(playerId, sessionId);
             GameViewModel gameViewModel = await GetGameViewModel(playerId, sessionId);
             int handValue = await GetHandValue(playerId, sessionId);
             if (handValue >= ValueHelper.BlackjackValue)
@@ -194,7 +194,7 @@ namespace ProjectBj.BusinessLogic.Services
             Log.Info(StringHelper.GetPlayerIdDoubleDownMessage(playerId));
             int playerBet = await _playerProvider.GetBet(playerId);
             await _playerProvider.SetBet(playerId, playerBet * 2);
-            await DealCard(playerId, sessionId);
+            await GiveCard(playerId, sessionId);
             GameViewModel gameViewModel = await GetFinalViewModel(playerId, sessionId);
             return gameViewModel;
         }
@@ -216,27 +216,27 @@ namespace ProjectBj.BusinessLogic.Services
 
             foreach (var bot in gameViewModel.Bots)
             {
-                await DealCardsToBot(bot.Id, sessionId);
+                await GiveCardsToBot(bot.Id, sessionId);
             }
-            await DealCardsToDealer(gameViewModel.Dealer.Id, sessionId);
+            await GiveCardsToDealer(gameViewModel.Dealer.Id, sessionId);
             await CloseGameSession(sessionId);
             gameViewModel = await UpdateGameResult(playerId, sessionId);
             await _playerProvider.DeleteSessionBots(sessionId);
             return gameViewModel;
         }
 
-        private async Task<bool> DealCardsToBot(int botId, int sessionId)
+        private async Task<bool> GiveCardsToBot(int botId, int sessionId)
         {
             int handValue = await GetHandValue(botId, sessionId);
             if (handValue > ValueHelper.MinimumBotHandValue)
             {
                 return false;
             }
-            await DealCard(botId, sessionId);
-            return await DealCardsToBot(botId, sessionId);
+            await GiveCard(botId, sessionId);
+            return await GiveCardsToBot(botId, sessionId);
         }
 
-        private async Task<bool> DealCardsToDealer(int dealerId, int sessionId)
+        private async Task<bool> GiveCardsToDealer(int dealerId, int sessionId)
         {
             Log.Info(StringHelper.DealerTurnMessage);
             int handValue = await GetHandValue(dealerId, sessionId);
@@ -244,20 +244,20 @@ namespace ProjectBj.BusinessLogic.Services
             {
                 return false;
             }
-            await DealCard(dealerId, sessionId);
-            return await DealCardsToDealer(dealerId, sessionId);
+            await GiveCard(dealerId, sessionId);
+            return await GiveCardsToDealer(dealerId, sessionId);
         }
 
-        private async Task DealFirstTwoCards(List<int> playerIds, int sessionId)
+        private async Task GiveFirstTwoCards(List<int> playerIds, int sessionId)
         {
             foreach (var playerId in playerIds)
             {
-                await DealCard(playerId, sessionId);
-                await DealCard(playerId, sessionId);
+                await GiveCard(playerId, sessionId);
+                await GiveCard(playerId, sessionId);
             }
         }
 
-        private async Task DealCard(int playerId, int sessionId)
+        private async Task GiveCard(int playerId, int sessionId)
         {
             var deck = await _cardProvider.GetShuffledDeck();
             var card = deck[0];
