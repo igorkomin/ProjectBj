@@ -94,7 +94,7 @@ namespace ProjectBj.BusinessLogic.Providers
 
         public async Task ClearPlayerHand(int playerId, int sessionId)
         {
-            await _cardRepository.ClearPlayerHand(playerId, sessionId);
+            await _cardRepository.DeletePlayerHand(playerId, sessionId);
         }
     }
 }

@@ -48,7 +48,7 @@ namespace ProjectBj.DataAccess.Repositories
             }
         }
 
-        public async Task ClearPlayerHand(int playerId, int sessionId)
+        public async Task DeletePlayerHand(int playerId, int sessionId)
         {
             using (IDbConnection db = new SqlConnection(_connectionString))
             {

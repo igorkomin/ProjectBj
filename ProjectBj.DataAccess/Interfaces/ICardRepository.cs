@@ -9,6 +9,6 @@ namespace ProjectBj.DataAccess.Interfaces
         Task<ICollection<Card>> InsertList(ICollection<Card> deck);
         Task<ICollection<Card>> GetCards(int playerId, int sessionId);
         Task<ICollection<Card>> GetAllCards();
-        Task ClearPlayerHand(int playerId, int sessionId);
+        Task DeletePlayerHand(int playerId, int sessionId);
     }
 }
