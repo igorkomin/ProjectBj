@@ -13,17 +13,17 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
 @NgModule({
     declarations: [
       AppComponent,
-  ],
-  imports: [
-      SharedModule,
-      AppRoutingModule,
-      RouterModule,
-      NgbModule,
-      HttpClientModule,
-      GridModule,
-      BrowserAnimationsModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    ],
+    imports: [
+        SharedModule,
+        AppRoutingModule,
+        RouterModule,
+        NgbModule,
+        HttpClientModule,
+        GridModule,
+        BrowserAnimationsModule
+    ],
+    providers: [],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
