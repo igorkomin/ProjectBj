@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataStateChangeEvent, GridDataResult } from '@progress/kendo-angular-grid';
 import { State, process } from '@progress/kendo-data-query';
-import { Router } from '@angular/router';
-import { ApiService } from 'src/app/core/api.service';
+import { ApiService } from 'src/app/shared/api.service';
 
 @Component({
     selector: 'app-logs',
@@ -27,7 +26,6 @@ export class LogsComponent implements OnInit {
     gridView: GridDataResult;
 
     constructor(
-        private router: Router,
         private apiService: ApiService,
     ) { }
 

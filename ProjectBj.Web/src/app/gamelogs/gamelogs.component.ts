@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { DataStateChangeEvent, GridDataResult } from '@progress/kendo-angular-grid';
 import { State, process } from '@progress/kendo-data-query';
-import { Router } from '@angular/router';
-import { ApiService } from 'src/app/core/api.service';
+import { ApiService } from 'src/app/shared/api.service';
 
 @Component({
     selector: 'app-gamelogs',
     templateUrl: 'gamelogs.component.html',
-    styleUrls: ['gamelogs.component.css']
 })
 export class GamelogsComponent implements OnInit {
     logs: any;
@@ -27,7 +25,6 @@ export class GamelogsComponent implements OnInit {
     gridView: GridDataResult;
 
     constructor(
-        private router: Router,
         private apiService: ApiService,
     ) { }
 
