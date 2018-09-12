@@ -10,6 +10,6 @@ import { SharedModule } from 'src/app/shared/shared.module';
         LogsRoutingModule,
         GridModule
     ],
-  declarations: [LogsComponent]
+    declarations: [LogsComponent]
 })
 export class LogsModule { }
