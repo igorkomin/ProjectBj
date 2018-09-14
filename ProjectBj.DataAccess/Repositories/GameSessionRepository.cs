@@ -44,7 +44,7 @@ namespace ProjectBj.DataAccess.Repositories
             }
         }
 
-        public async Task<GameSession> GetFirstOpenSession(int playerId)
+        public async Task<GameSession> GetFirstOpen(int playerId)
         {
             using (IDbConnection db = new SqlConnection(_connectionString))
             {

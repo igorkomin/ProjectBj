@@ -29,7 +29,7 @@ namespace ProjectBj.BusinessLogic.Providers
 
         public async Task<GameSession> GetSessionByPlayerId(int playerId)
         {
-            GameSession currentSession = await _sessionRepository.GetFirstOpenSession(playerId);
+            GameSession currentSession = await _sessionRepository.GetFirstOpen(playerId);
             
             if (currentSession == null)
             {
