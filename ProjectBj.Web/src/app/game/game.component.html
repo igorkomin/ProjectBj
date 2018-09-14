@@ -70,7 +70,7 @@
                         <span>{{ game?.player.gameResultMessage }}</span>
                     </div>
                     <p class="caption player-name">{{ game?.player.name }} <span class="badge badge-secondary">{{ game?.player.hand.score }}</span></p>
-                    <p class="balance">
+                    <p class="balance" hidden>
                         {{ game?.player.balance | currency:'USD':symbol:"1.0" }}
                         <span *ngIf="game?.player.gameResult > 0">
                             (<span [class.winMoney]="game?.player.balanceDelta > 0" [class.loseMoney]="game?.player.balanceDelta < 0">
@@ -96,7 +96,7 @@
                         <span>{{ bot?.gameResultMessage }}</span>
                     </div>
                     <p class="caption player-name">{{ bot?.name }} <span class="badge badge-secondary">{{ bot?.hand.score }}</span></p>
-                    <p class="balance">
+                    <p class="balance" hidden>
                         {{ bot?.balance | currency:'USD':symbol:"1.0" }}
                         <span *ngIf="game?.player.gameResult > 0">
                             (<span [class.winMoney]="bot?.balanceDelta > 0" [class.loseMoney]="bot?.balanceDelta < 0">
