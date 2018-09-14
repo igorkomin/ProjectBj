@@ -40,8 +40,9 @@ namespace ProjectBj.DataAccess.Repositories
         {
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
-                var players = (await db.GetAllAsync<Player>()).AsList().FindAll(x => x.Name == name);
-                return players;
+                var sqlQuery = "SELECT * FROM Players WHERE Name = @name";
+                var players = await db.QueryAsync<Player>(sqlQuery, new { name });
+                return players.AsList() ;
             }
         }
 

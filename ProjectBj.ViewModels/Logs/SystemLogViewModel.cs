@@ -2,8 +2,9 @@
 
 namespace ProjectBj.ViewModels.Logs
 {
-    public class SystemLogViewModel : BaseViewModel
+    public class SystemLogViewModel
     {
+        public int Id { get; set; }
         public string MachineName { get; set; }
         public string SiteName { get; set; }
         public DateTime Logged { get; set; }

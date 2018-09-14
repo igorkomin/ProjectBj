@@ -7,8 +7,8 @@ namespace ProjectBj.Entities
     {
         public string Name { get; set; }
         public bool IsHuman { get; set; }
-        public int Balance { get; set; }
+        //public int Balance { get; set; }
         public bool InGame { get; set; }
-        public int Bet { get; set; }
+        //public int Bet { get; set; }
     }
 }

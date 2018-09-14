@@ -25,7 +25,7 @@ namespace ProjectBj.BusinessLogic.Providers
             Player player = new Player
             {
                 Name = name,
-                Balance = ValueHelper.PlayerInitialBalance,
+                //Balance = ValueHelper.PlayerInitialBalance,
                 InGame = true,
                 IsHuman = true
             };
@@ -38,7 +38,7 @@ namespace ProjectBj.BusinessLogic.Providers
             Player bot = new Player
             {
                 Name = _nameGenerator.GenerateRandomFirstName(),
-                Balance = ValueHelper.PlayerInitialBalance,
+                //Balance = ValueHelper.PlayerInitialBalance,
                 IsHuman = false,
                 InGame = true
             };
@@ -144,7 +144,7 @@ namespace ProjectBj.BusinessLogic.Providers
             Player player = await _playerRepository.GetById(playerId);
             await _playerRepository.AddCardToPlayerHand(player, cardId, sessionId);
         }
-
+        /*
         public async Task ChangePlayerBalance(int playerId, int balanceDelta)
         {
             Player player = await _playerRepository.GetById(playerId);
@@ -163,6 +163,6 @@ namespace ProjectBj.BusinessLogic.Providers
         {
             Player player = await _playerRepository.GetById(playerId);
             return player.Bet;
-        }
+        }*/
     }
 }

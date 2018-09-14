@@ -15,7 +15,7 @@ namespace ProjectBj.DataAccess.Configs
                 .WithParameter("connectionString", connectionString);
             builder.RegisterType<GameSessionRepository>().As<IGameSessionRepository>()
                 .WithParameter("connectionString", connectionString);
-            builder.RegisterType<GameLogRepository>().As<IGameLogRepository>()
+            builder.RegisterType<HistoryRepository>().As<IHistoryRepository>()
                 .WithParameter("connectionString", connectionString);
             builder.RegisterType<PlayerRepository>().As<IPlayerRepository>()
                 .WithParameter("connectionString", connectionString);

@@ -12,9 +12,9 @@ namespace ProjectBj.BusinessLogic.Helpers
             {
                 Id = player.Id,
                 Name = player.Name,
-                Balance = player.Balance,
-                IsHuman = player.IsHuman,
-                Bet = player.Bet
+                //Balance = player.Balance,
+                IsHuman = player.IsHuman
+                //Bet = player.Bet
             };
             return playerViewModel;
         }
@@ -24,7 +24,7 @@ namespace ProjectBj.BusinessLogic.Helpers
             DealerViewModel dealerViewModel = new DealerViewModel
             {
                 Id = dealer.Id,
-                Name = dealer.Name,
+                Name = dealer.Name
             };
             return dealerViewModel;
         }
@@ -37,29 +37,29 @@ namespace ProjectBj.BusinessLogic.Helpers
                 PlayerViewModel botViewModel = new PlayerViewModel
                 {
                     Id = bot.Id,
-                    Name = bot.Name,
-                    Balance = bot.Balance
+                    Name = bot.Name
+                    //Balance = bot.Balance
                 };
                 botViewModels.Add(botViewModel);
             }
             return botViewModels;
         }
 
-        public static List<LogEntryViewModel> GetLogEntryViewModels(List<LogEntry> logEntries)
+        public static List<HistoryViewModel> GetHistory(List<History> history)
         {
-            var logEntryViewModels = new List<LogEntryViewModel>();
-            foreach (var entry in logEntries)
+            var historyViewModels = new List<HistoryViewModel>();
+            foreach (var entry in history)
             {
-                LogEntryViewModel logEntryViewModel = new LogEntryViewModel
+                HistoryViewModel historyViewModel = new HistoryViewModel
                 {
                     SessionId = entry.SessionId,
                     Time = entry.Time,
                     PlayerName = entry.PlayerName,
-                    Message = entry.Message
+                    Event = entry.Event
                 };
-                logEntryViewModels.Add(logEntryViewModel); 
+                historyViewModels.Add(historyViewModel); 
             }
-            return logEntryViewModels;
+            return historyViewModels;
         }
     }
 }

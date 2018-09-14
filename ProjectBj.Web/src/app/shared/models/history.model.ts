@@ -1,6 +1,6 @@
-export class GameLog {
+export class History {
     sessionId: number;
     time: Date;
     playerName: string;
-    message: string;
+    event: string;
 }

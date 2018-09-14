@@ -10,7 +10,7 @@ namespace ProjectBj.BusinessLogic.Configs
         public static ContainerBuilder RegisterTypes(ContainerBuilder builder)
         {
             builder.RegisterType<CardProvider>().As<ICardProvider>();
-            builder.RegisterType<LogProvider>().As<ILogProvider>();
+            builder.RegisterType<HistoryProvider>().As<IHistoryProvider>();
             builder.RegisterType<PlayerProvider>().As<IPlayerProvider>();
             builder.RegisterType<SessionProvider>().As<ISessionProvider>();
 

@@ -14,9 +14,9 @@
         public static readonly string NoDeckInDbMessage = "No cards in database";
         public static readonly string SavingDeckMessage = "Saving deck to database";
         public static readonly string DeckShuffledMessage = "Deck shuffled";
-        public static readonly string CreatingLogEntryMessage = "Creating game log entry";
-        public static readonly string GettingLogEntryMessage = "Getting game log entry";
-        public static readonly string GettingAllLogsMessage = "Getting all game logs";
+        public static readonly string CreatingHistoryEntryMessage = "Creating game log entry";
+        public static readonly string GettingHistoryEntryMessage = "Getting game log entry";
+        public static readonly string GettingFullHistoryMessage = "Getting all game logs";
         public static readonly string NameReservedMessage = "This name is reserved";
         public static readonly string NoGameToLoadMessage = "No game to load";
 
@@ -59,12 +59,12 @@
         {
             return $"Player id{playerId} {ChoseToDoubleMessage}";
         }
-
+        
         public static string GetPlayerIdSurrenderMessage(int playerId)
         {
             return $"Player id{playerId} {ChoseToSurrenderMessage}";
         }
-
+        /*
         public static string GetWinsMoneyMessage(int amount)
         {
             return $"wins {amount}$";
@@ -73,6 +73,6 @@
         public static string GetLosesMoneyMessage(int amount)
         {
             return $"loses {amount}$";
-        }
+        }*/
     }
 }

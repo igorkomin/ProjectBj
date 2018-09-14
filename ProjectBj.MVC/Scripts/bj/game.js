@@ -23,11 +23,11 @@ $(document).ready(function () {
         number--;
         $("#bots-number").val(number);
     });
-
+    /*
     $("#bet-slider").on("input change", function () {
         var number = $(this).val();
         $("#bet-output").text(number);
-    });
+    });*/
 
     $("#new-game-btn").click(function () {
         var botsNumber = $("#bots-number").val();
@@ -60,7 +60,7 @@ function newGame(playerName, botsNumber, playerBet) {
         data: JSON.stringify({
             PlayerName: playerName,
             BotsNumber: botsNumber,
-            Bet: playerBet
+            //Bet: playerBet
         }),
         success: function (response) {
             showData(response);

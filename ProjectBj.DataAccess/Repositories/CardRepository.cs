@@ -18,7 +18,7 @@ namespace ProjectBj.DataAccess.Repositories
             _connectionString = connectionString;
         }
 
-        public async Task<ICollection<Card>> InsertList(ICollection<Card> deck)
+        public async Task<ICollection<Card>> Insert(ICollection<Card> deck)
         {
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
@@ -27,7 +27,7 @@ namespace ProjectBj.DataAccess.Repositories
             return deck;
         }
 
-        public async Task<ICollection<Card>> GetCards(int playerId, int sessionId)
+        public async Task<ICollection<Card>> Get(int playerId, int sessionId)
         {
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
@@ -39,7 +39,7 @@ namespace ProjectBj.DataAccess.Repositories
             }
         }
 
-        public async Task<ICollection<Card>> GetAllCards()
+        public async Task<ICollection<Card>> GetAll()
         {
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
@@ -52,9 +52,8 @@ namespace ProjectBj.DataAccess.Repositories
         {
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
-                var playerHand = (await db.GetAllAsync<PlayerHand>()).AsList()
-                    .FindAll(x => x.PlayerId == playerId && x.SessionId == sessionId);
-                await db.DeleteAsync(playerHand);
+                var sqlQuery = @"DELETE FROM PlayerHands WHERE PlayerId = @playerId AND SessionId = @sessionId";
+                await db.QueryAsync(sqlQuery, new { playerId, sessionId });
             }
         }
     }

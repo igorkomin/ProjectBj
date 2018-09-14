@@ -43,10 +43,10 @@ namespace ProjectBj.BusinessLogic.Providers
             }
         }
 
-        private async Task<List<Card>> GetDeckFromDb()
+        private async Task<List<Card>> GetExistingDeck()
         {
             Log.Info(StringHelper.PullingDeckMessage);
-            var deckFromDb = await _cardRepository.GetAllCards();
+            var deckFromDb = await _cardRepository.GetAll();
             if (deckFromDb.ToList().Count == 0)
             {
                 Log.Info(StringHelper.NoDeckInDbMessage);
@@ -58,12 +58,12 @@ namespace ProjectBj.BusinessLogic.Providers
         private async Task SaveDeckToDb(List<Card> localDeck)
         {
             Log.Info(StringHelper.SavingDeckMessage);
-            await _cardRepository.InsertList(localDeck);
+            await _cardRepository.Insert(localDeck);
         }
 
         public async Task<List<Card>> GetDeck()
         {
-            List<Card> deck = await GetDeckFromDb();
+            List<Card> deck = await GetExistingDeck();
             if(deck == null)
             {
                 deck = GetNewDeck();
@@ -88,7 +88,7 @@ namespace ProjectBj.BusinessLogic.Providers
 
         public async Task<List<Card>> GetPlayerCards(int playerId, int sessionId)
         {
-            var cards = await _cardRepository.GetCards(playerId, sessionId);
+            var cards = await _cardRepository.Get(playerId, sessionId);
             return cards.ToList();
         }
 

@@ -33,7 +33,7 @@ export class GamelogsComponent implements OnInit {
     }
 
     getLogs() {
-        this.apiService.getAllLogs().subscribe(
+        this.apiService.getFullHistory().subscribe(
             response => {
                 this.logs = response;
                 this.gridView = process(this.logs, this.state);

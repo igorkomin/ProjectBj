@@ -1,9 +1,9 @@
-﻿namespace ProjectBj.ViewModels
+﻿namespace ProjectBj.Web
 {
-    public class GameSettings
+    public class Settings
     {
         public string PlayerName { get; set; }
         public int BotsNumber { get; set; }
-        public int Bet { get; set; }
+        //public int Bet { get; set; }
     }
 }

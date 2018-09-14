@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Settings } from 'src/app/shared/models/settings.model';
 import { Game } from 'src/app/shared/models/game.model';
 import { SystemLog } from 'src/app/shared/models/system-log.model';
-import { GameLog } from 'src/app/shared/models/gamelog.model';
+import { History } from 'src/app/shared/models/history.model';
 import { Identifier } from 'src/app/shared/models/identifier.model';
 
 const apiUrl = '../api/game';
@@ -51,14 +51,14 @@ export class ApiService {
         return this.http.post<Game>(requestUrl, identifier, requestOptions);
     }
 
-    getLogs(identifier: Identifier): Observable<GameLog> {
+    getHistory(sessionId: number): Observable<History> {
         let requestUrl = `${apiUrl}/History`;
-        return this.http.post<GameLog>(requestUrl, identifier, requestOptions);
+        return this.http.post<History>(requestUrl, sessionId, requestOptions);
     }
 
-    getAllLogs(): Observable<GameLog> {
+    getFullHistory(): Observable<History> {
         let requestUrl = `${apiUrl}/FullHistory`;
-        return this.http.get<GameLog>(requestUrl, requestOptions);
+        return this.http.get<History>(requestUrl, requestOptions);
     }
 
     getSystemLogs(): Observable<SystemLog> {

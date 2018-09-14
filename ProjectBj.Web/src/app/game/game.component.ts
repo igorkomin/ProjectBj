@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Game } from 'src/app/shared/models/game.model';
-import { GameLog } from 'src/app/shared/models/gamelog.model';
+import { History } from 'src/app/shared/models/history.model';
 import { Identifier } from 'src/app/shared/models/identifier.model';
 import { Settings } from 'src/app/shared/models/settings.model';
 import { ApiService } from 'src/app/shared/api.service';
@@ -19,12 +19,12 @@ import { ApiService } from 'src/app/shared/api.service';
 export class GameComponent implements OnInit {
     playerName: string;
     botsNumber: number = 0;
-    playerBet: number = 50;
+    //playerBet: number = 50;
     sessionId: number;
     playerId: number;
     error: string;
     game: Game;
-    log: GameLog;
+    log: History;
 
     constructor(
         private apiService: ApiService,
@@ -40,7 +40,7 @@ export class GameComponent implements OnInit {
     }
 
     updateSliderValue(value: number): void {
-        this.playerBet = value;
+        //this.playerBet = value;
     }
 
     incBotsNumber(): void {
@@ -56,7 +56,7 @@ export class GameComponent implements OnInit {
         let gameSettings = new Settings();
         gameSettings.playerName = this.playerName;
         gameSettings.botsNumber = this.botsNumber;
-        gameSettings.bet = this.playerBet;
+        //gameSettings.bet = this.playerBet;
         this.apiService.newGame(gameSettings).subscribe(
             response => {
                 this.game = response;
@@ -159,9 +159,7 @@ export class GameComponent implements OnInit {
 
     getLogs(): void {
         this.error = undefined;
-        let identifier = new Identifier();
-        identifier.sessionId = this.sessionId;
-        this.apiService.getLogs(identifier).subscribe(
+        this.apiService.getHistory(this.sessionId).subscribe(
             response => {
                 this.log = response;
             },

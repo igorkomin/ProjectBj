@@ -9,16 +9,16 @@ using System.Threading.Tasks;
 
 namespace ProjectBj.DataAccess.Repositories
 {
-    public class GameLogRepository : IGameLogRepository
+    public class HistoryRepository : IHistoryRepository
     {
         private readonly string _connectionString;
 
-        public GameLogRepository(string connectionString)
+        public HistoryRepository(string connectionString)
         {
             _connectionString = connectionString;
         }
 
-        public async Task CreateEntry(LogEntry entry)
+        public async Task Create(History entry)
         {
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
@@ -26,21 +26,21 @@ namespace ProjectBj.DataAccess.Repositories
             }
         }
 
-        public async Task<ICollection<LogEntry>> GetLogsBySessionId(int sessionId)
+        public async Task<ICollection<History>> GetBySessionId(int sessionId)
         {
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
                 var sqlQuery = @"SELECT * FROM Logs WHERE SessionId = @sessionId";
-                var logs = await db.QueryAsync<LogEntry>(sqlQuery, new { sessionId });
+                var logs = await db.QueryAsync<History>(sqlQuery, new { sessionId });
                 return logs.AsList();
             }
         }
 
-        public async Task<ICollection<LogEntry>> GetAllLogs()
+        public async Task<ICollection<History>> GetAll()
         {
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
-                var logs = await db.GetAllAsync<LogEntry>();
+                var logs = await db.GetAllAsync<History>();
                 return logs.AsList();
             }
         }

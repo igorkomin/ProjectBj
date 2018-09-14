@@ -5,10 +5,10 @@ export class Player {
     name: string;
     isHuman: boolean;
     inGame: boolean;
-    balance: number;
+    //balance: number;
     gameResult: number;
     gameResultMessage: string;
-    bet: number;
-    balanceDelta: number;
+    //bet: number;
+    //balanceDelta: number;
     hand: Hand;
 }
