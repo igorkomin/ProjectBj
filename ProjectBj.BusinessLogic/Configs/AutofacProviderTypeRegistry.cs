@@ -12,7 +12,7 @@ namespace ProjectBj.BusinessLogic.Configs
             builder.RegisterType<CardProvider>().As<ICardProvider>();
             builder.RegisterType<HistoryProvider>().As<IHistoryProvider>();
             builder.RegisterType<PlayerProvider>().As<IPlayerProvider>();
-            builder.RegisterType<SessionProvider>().As<ISessionProvider>();
+            builder.RegisterType<GameSessionProvider>().As<IGameSessionProvider>();
 
             AutofacDataAccessTypeRegistry.RegisterTypes(builder);
             return builder;

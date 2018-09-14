@@ -17,10 +17,10 @@ namespace ProjectBj.BusinessLogic.Services
         private readonly ICardProvider _cardProvider;
         private readonly IHistoryProvider _historyProvider;
         private readonly IPlayerProvider _playerProvider;
-        private readonly ISessionProvider _sessionProvider;
+        private readonly IGameSessionProvider _sessionProvider;
 
         public GameService(ICardProvider cardProvider, IHistoryProvider historyProvider,
-            IPlayerProvider playerProvider, ISessionProvider sessionProvider)
+            IPlayerProvider playerProvider, IGameSessionProvider sessionProvider)
         {
             _cardProvider = cardProvider;
             _historyProvider = historyProvider;

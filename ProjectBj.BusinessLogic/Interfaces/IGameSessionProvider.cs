@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace ProjectBj.BusinessLogic.Interfaces
 {
-    public interface ISessionProvider
+    public interface IGameSessionProvider
     {
         Task<GameSession> GetNewSession();
         Task<GameSession> GetSessionByPlayerId(int playerId);
