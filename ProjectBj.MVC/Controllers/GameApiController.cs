@@ -18,11 +18,11 @@ namespace ProjectBj.MVC.Controllers
         }
 
         [HttpPost]
-        public async Task<IHttpActionResult> Start([FromBody]GameSettings settings)
+        public async Task<IHttpActionResult> Start([FromBody]Settings settings)
         {
             try
             {
-                GameViewModel model = await _service.GetNewGame(settings.PlayerName, settings.BotsNumber, settings.Bet);
+                GameViewModel model = await _service.GetNewGame(settings.PlayerName, settings.BotsNumber);
                 return Ok(model);
             }
             catch (Exception exception)
@@ -32,7 +32,7 @@ namespace ProjectBj.MVC.Controllers
         }
 
         [HttpPost]
-        public async Task<IHttpActionResult> Load([FromBody]GameSettings settings)
+        public async Task<IHttpActionResult> Load([FromBody]Settings settings)
         {
             try
             {
@@ -46,7 +46,7 @@ namespace ProjectBj.MVC.Controllers
         }
 
         [HttpPost]
-        public async Task<IHttpActionResult> Hit([FromBody]IdentifierViewModel identifier)
+        public async Task<IHttpActionResult> Hit([FromBody]Identifier identifier)
         {
             try
             {
@@ -60,7 +60,7 @@ namespace ProjectBj.MVC.Controllers
         }
 
         [HttpPost]
-        public async Task<IHttpActionResult> Stand([FromBody]IdentifierViewModel identifier)
+        public async Task<IHttpActionResult> Stand([FromBody]Identifier identifier)
         {
             try
             {
@@ -74,7 +74,7 @@ namespace ProjectBj.MVC.Controllers
         }
 
         [HttpPost]
-        public async Task<IHttpActionResult> Double([FromBody]IdentifierViewModel identifier)
+        public async Task<IHttpActionResult> Double([FromBody]Identifier identifier)
         {
             try
             {
@@ -88,7 +88,7 @@ namespace ProjectBj.MVC.Controllers
         }
 
         [HttpPost]
-        public async Task<IHttpActionResult> Surrender([FromBody]IdentifierViewModel identifier)
+        public async Task<IHttpActionResult> Surrender([FromBody]Identifier identifier)
         {
             try
             {
@@ -102,11 +102,11 @@ namespace ProjectBj.MVC.Controllers
         }
 
         [HttpPost]
-        public async Task<IHttpActionResult> History([FromBody]IdentifierViewModel identifier)
+        public async Task<IHttpActionResult> History([FromBody]Identifier identifier)
         {
             try
             {
-                List<LogEntryViewModel> logs = await _service.GetSessionLogs(identifier.SessionId);
+                List<HistoryViewModel> logs = await _service.GetSessionHistory(identifier.SessionId);
                 return Ok(logs);
             }
             catch (Exception exception)
@@ -120,7 +120,7 @@ namespace ProjectBj.MVC.Controllers
         {
             try
             {
-                List<LogEntryViewModel> logs = await _service.GetAllLogs();
+                List<HistoryViewModel> logs = await _service.GetFullHistory();
                 return Ok(logs);
             }
             catch (Exception exception)
