@@ -6,7 +6,7 @@ namespace ProjectBj.BusinessLogic.Helpers
 {
     public static class ModelViewModelConverter
     {
-        public static PlayerViewModel GetPlayerViewModel(Player player)
+        public static PlayerViewModel GetPlayer(Player player)
         {
             PlayerViewModel playerViewModel = new PlayerViewModel
             {
@@ -19,7 +19,7 @@ namespace ProjectBj.BusinessLogic.Helpers
             return playerViewModel;
         }
 
-        public static DealerViewModel GetDealerViewModel(Player dealer)
+        public static DealerViewModel GetDealer(Player dealer)
         {
             DealerViewModel dealerViewModel = new DealerViewModel
             {
@@ -29,7 +29,7 @@ namespace ProjectBj.BusinessLogic.Helpers
             return dealerViewModel;
         }
 
-        public static List<PlayerViewModel> GetBotViewModels(List<Player> bots)
+        public static List<PlayerViewModel> GetBotPlayers(List<Player> bots)
         {
             var botViewModels = new List<PlayerViewModel>();
             foreach (var bot in bots)
