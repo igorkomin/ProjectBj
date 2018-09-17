@@ -6,9 +6,9 @@ namespace ProjectBj.BusinessLogic.Interfaces
 {
     public interface IGameSessionProvider
     {
-        Task<GameSession> GetNewSession();
-        Task<GameSession> GetSessionByPlayerId(int playerId);
-        Task<GameSession> GetSessionById(int id);
-        Task CloseSession(int sessionId);
+        Task<GameSession> GetNew();
+        Task<GameSession> GetByPlayerId(int playerId);
+        Task<GameSession> GetById(int id);
+        Task Close(int sessionId);
     }
 }

@@ -38,7 +38,7 @@ namespace ProjectBj.BusinessLogic.Providers
             return logs.ToList();
         }
 
-        public async Task<List<History>> GetFullHistory()
+        public async Task<List<History>> GetAll()
         {
             var logs = await _historyRepository.GetAll();
             return logs.ToList();

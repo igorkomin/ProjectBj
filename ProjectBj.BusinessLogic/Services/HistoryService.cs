@@ -24,7 +24,7 @@ namespace ProjectBj.BusinessLogic.Services
 
         public async Task<List<HistoryViewModel>> GetFullHistory()
         {
-            var history = await _historyProvider.GetFullHistory();
+            var history = await _historyProvider.GetAll();
             var historyViewModels = MapHelper.GetHistoryInfo(history);
             return historyViewModels;
         }

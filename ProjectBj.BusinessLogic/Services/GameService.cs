@@ -31,7 +31,7 @@ namespace ProjectBj.BusinessLogic.Services
         private async Task<GameViewModel> CreateGame()
         {
             var player = await _playerProvider.GetPlayerByName(_playerName);
-            var session = await _sessionProvider.GetNewSession();
+            var session = await _sessionProvider.GetNew();
             var bots = await _playerProvider.GetBots(_botNumber, session.Id);
             var dealer = await _playerProvider.GetDealer();
 
@@ -78,7 +78,7 @@ namespace ProjectBj.BusinessLogic.Services
                 throw new ArgumentException(StringHelper.NameReservedMessage);
             }
             var player = await _playerProvider.GetExistingPlayer(playerName);
-            var lastSession = await _sessionProvider.GetSessionByPlayerId(player.Id);
+            var lastSession = await _sessionProvider.GetByPlayerId(player.Id);
             var gameViewModel = await GetGame(player.Id, lastSession.Id);
             Log.Info(StringHelper.GetGameLoadedMessage(lastSession.Id));
             return gameViewModel;
@@ -237,7 +237,7 @@ namespace ProjectBj.BusinessLogic.Services
 
         private async Task CloseGameSession(int sessionId)
         {
-            await _sessionProvider.CloseSession(sessionId);
+            await _sessionProvider.Close(sessionId);
             Log.Info(StringHelper.GetGameEndedMessage(sessionId));
         }
 

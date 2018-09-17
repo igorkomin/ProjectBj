@@ -8,6 +8,6 @@ namespace ProjectBj.BusinessLogic.Interfaces
     {
         Task Create(string player, string message, int sessionId);
         Task<List<History>> Get(int sessionId);
-        Task<List<History>> GetFullHistory();
+        Task<List<History>> GetAll();
     }
 }

@@ -16,7 +16,7 @@ namespace ProjectBj.BusinessLogic.Providers
             _sessionRepository = sessionRepository;
         }
 
-        public async Task<GameSession> GetNewSession()
+        public async Task<GameSession> GetNew()
         {
             GameSession session = new GameSession
             {
@@ -26,7 +26,7 @@ namespace ProjectBj.BusinessLogic.Providers
             return session;
         }
 
-        public async Task<GameSession> GetSessionByPlayerId(int playerId)
+        public async Task<GameSession> GetByPlayerId(int playerId)
         {
             GameSession currentSession = await _sessionRepository.GetFirstOpen(playerId);
             
@@ -38,15 +38,15 @@ namespace ProjectBj.BusinessLogic.Providers
             return currentSession;
         }
 
-        public async Task<GameSession> GetSessionById(int id)
+        public async Task<GameSession> GetById(int id)
         {
             GameSession session = await _sessionRepository.GetById(id);
             return session;
         }
 
-        public async Task CloseSession(int sessionId)
+        public async Task Close(int sessionId)
         {
-            GameSession session = await GetSessionById(sessionId);
+            GameSession session = await GetById(sessionId);
             session.IsOpen = false;
             await _sessionRepository.Update(session);
         }
