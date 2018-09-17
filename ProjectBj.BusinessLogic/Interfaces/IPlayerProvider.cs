@@ -12,10 +12,7 @@ namespace ProjectBj.BusinessLogic.Interfaces
         Task<Player> GetExistingPlayer(string name);
         Task<List<Player>> GetBots(int botnumber, int sessionId);
         Task<List<Player>> GetSessionBots(int sessionId);
-        //Task<int> GetBet(int playerId);
         Task GiveCardToPlayer(int playerId, int sessionId, int cardId);
-        //Task ChangePlayerBalance(int playerId, int balanceDelta);
-        //Task SetBet(int playerId, int bet);
         Task DeleteSessionBots(int sessionId);
     }
 }
