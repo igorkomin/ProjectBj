@@ -29,7 +29,9 @@ namespace ProjectBj.BusinessLogic.Helpers
             {
                 Id = player.Id,
                 Name = player.Name,
+                //Balance = player.Balance,
                 IsHuman = player.IsHuman
+                //Bet = player.Bet
             };
             return playerInfo;
         }
@@ -53,6 +55,7 @@ namespace ProjectBj.BusinessLogic.Helpers
                 {
                     Id = bot.Id,
                     Name = bot.Name
+                    //Balance = bot.Balance
                 };
                 botPlayersInfo.Add(botPlayerInfo);
             }

@@ -296,27 +296,51 @@ namespace ProjectBj.BusinessLogic.Services
 
         private GameResults.Result GetGameResult(int playerScore, int dealerScore)
         {
+            //Player player = await _playerProvider.GetPlayerById(playerId);
+            //int balanceDelta = bet;
             if (playerScore == ValueHelper.BlackjackValue)
             {
+                /*balanceDelta = (bet * 2) + (bet / 2);
+                await _logProvider.CreateLogEntry(player.Name,
+                    StringHelper.GetWinsMoneyMessage(balanceDelta), sessionId);
+                await _playerProvider.ChangePlayerBalance(playerId, balanceDelta);*/
                 return GameResults.Result.Blackjack;
             }
             if (playerScore > ValueHelper.BlackjackValue)
             {
+                /*balanceDelta = -bet;
+                await _logProvider.CreateLogEntry(player.Name,
+                    StringHelper.GetLosesMoneyMessage(Math.Abs(balanceDelta)), sessionId);
+                await _playerProvider.ChangePlayerBalance(playerId, balanceDelta);*/
                 return GameResults.Result.Bust;
             }
             if (playerScore == dealerScore)
             {
+                /*await _logProvider.CreateLogEntry(player.Name,
+                    StringHelper.GetWinsMoneyMessage(balanceDelta), sessionId);
+                await _playerProvider.ChangePlayerBalance(playerId, balanceDelta);*/
                 return GameResults.Result.Win;
             }
             if (playerScore == 0)
             {
+                /*balanceDelta = bet / 2;
+                await _logProvider.CreateLogEntry(player.Name,
+                    StringHelper.GetWinsMoneyMessage(balanceDelta), sessionId);
+                await _playerProvider.ChangePlayerBalance(playerId, balanceDelta);*/
                 return GameResults.Result.Surrender;
             }
             if (playerScore > dealerScore || dealerScore > ValueHelper.BlackjackValue)
             {
+                /*await _logProvider.CreateLogEntry(player.Name,
+                    StringHelper.GetWinsMoneyMessage(balanceDelta), sessionId);
+                await _playerProvider.ChangePlayerBalance(playerId, balanceDelta);*/
                 return GameResults.Result.Win;
             }
             
+            /*balanceDelta = -bet;
+            await _logProvider.CreateLogEntry(player.Name,
+                StringHelper.GetLosesMoneyMessage(Math.Abs(balanceDelta)), sessionId);
+            await _playerProvider.ChangePlayerBalance(playerId, balanceDelta);*/
             return GameResults.Result.Lose;
         }
     }
