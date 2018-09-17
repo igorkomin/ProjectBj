@@ -64,15 +64,5 @@
         {
             return $"Player id{playerId} {ChoseToSurrenderMessage}";
         }
-        /*
-        public static string GetWinsMoneyMessage(int amount)
-        {
-            return $"wins {amount}$";
-        }
-
-        public static string GetLosesMoneyMessage(int amount)
-        {
-            return $"loses {amount}$";
-        }*/
     }
 }
