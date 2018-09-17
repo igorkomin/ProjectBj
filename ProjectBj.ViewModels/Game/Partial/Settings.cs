@@ -1,4 +1,4 @@
-﻿namespace ProjectBj.Web
+﻿namespace ProjectBj.ViewModels.Game
 {
     public class Settings
     {

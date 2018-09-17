@@ -44,6 +44,8 @@
     <Compile Include="Game\Partial\DealerInfo.cs" />
     <Compile Include="Game\GameViewModel.cs" />
     <Compile Include="Game\Partial\HandInfo.cs" />
+    <Compile Include="Game\Partial\Identifier.cs" />
+    <Compile Include="Game\Partial\Settings.cs" />
     <Compile Include="History\HistoryViewModel.cs" />
     <Compile Include="Game\Partial\PlayerInfo.cs" />
     <Compile Include="Logs\SystemLogViewModel.cs" />
