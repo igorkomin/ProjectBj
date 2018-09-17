@@ -16,7 +16,7 @@ namespace ProjectBj.MVC.Controllers
         }
 
         [HttpPost]
-        public async Task<IHttpActionResult> Start([FromBody]Settings settings)
+        public async Task<IHttpActionResult> Start([FromBody]GameSettings settings)
         {
             try
             {
@@ -30,7 +30,7 @@ namespace ProjectBj.MVC.Controllers
         }
 
         [HttpPost]
-        public async Task<IHttpActionResult> Load([FromBody]Settings settings)
+        public async Task<IHttpActionResult> Load([FromBody]GameSettings settings)
         {
             try
             {
@@ -44,7 +44,7 @@ namespace ProjectBj.MVC.Controllers
         }
 
         [HttpPost]
-        public async Task<IHttpActionResult> Hit([FromBody]Identifier identifier)
+        public async Task<IHttpActionResult> Hit([FromBody]GameIdentifier identifier)
         {
             try
             {
@@ -58,7 +58,7 @@ namespace ProjectBj.MVC.Controllers
         }
 
         [HttpPost]
-        public async Task<IHttpActionResult> Stand([FromBody]Identifier identifier)
+        public async Task<IHttpActionResult> Stand([FromBody]GameIdentifier identifier)
         {
             try
             {
@@ -72,7 +72,7 @@ namespace ProjectBj.MVC.Controllers
         }
 
         [HttpPost]
-        public async Task<IHttpActionResult> Double([FromBody]Identifier identifier)
+        public async Task<IHttpActionResult> Double([FromBody]GameIdentifier identifier)
         {
             try
             {
@@ -86,7 +86,7 @@ namespace ProjectBj.MVC.Controllers
         }
 
         [HttpPost]
-        public async Task<IHttpActionResult> Surrender([FromBody]Identifier identifier)
+        public async Task<IHttpActionResult> Surrender([FromBody]GameIdentifier identifier)
         {
             try
             {

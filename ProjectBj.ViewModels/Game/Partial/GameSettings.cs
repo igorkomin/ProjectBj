@@ -1,6 +1,6 @@
 ﻿namespace ProjectBj.ViewModels.Game
 {
-    public class Settings
+    public class GameSettings
     {
         public string PlayerName { get; set; }
         public int BotsNumber { get; set; }
