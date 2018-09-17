@@ -1,14 +1,14 @@
-﻿using ProjectBj.Entities;
-using ProjectBj.ViewModels.Game;
+﻿using ProjectBj.ViewModels.Game;
+using ProjectBj.ViewModels.History;
 using System.Collections.Generic;
 
 namespace ProjectBj.BusinessLogic.Helpers
 {
     public static class ModelViewModelConverter
     {
-        public static PlayerViewModel GetPlayer(Player player)
+        public static PlayerPartial GetPlayer(Entities.Player player)
         {
-            PlayerViewModel playerViewModel = new PlayerViewModel
+            PlayerPartial playerViewModel = new ViewModels.Game.PlayerPartial
             {
                 Id = player.Id,
                 Name = player.Name,
@@ -19,9 +19,9 @@ namespace ProjectBj.BusinessLogic.Helpers
             return playerViewModel;
         }
 
-        public static DealerViewModel GetDealer(Player dealer)
+        public static DealerPartial GetDealer(Entities.Player dealer)
         {
-            DealerViewModel dealerViewModel = new DealerViewModel
+            DealerPartial dealerViewModel = new DealerPartial
             {
                 Id = dealer.Id,
                 Name = dealer.Name
@@ -29,12 +29,12 @@ namespace ProjectBj.BusinessLogic.Helpers
             return dealerViewModel;
         }
 
-        public static List<PlayerViewModel> GetBotPlayers(List<Player> bots)
+        public static List<PlayerPartial> GetBotPlayers(List<Entities.Player> bots)
         {
-            var botViewModels = new List<PlayerViewModel>();
+            var botViewModels = new List<PlayerPartial>();
             foreach (var bot in bots)
             {
-                PlayerViewModel botViewModel = new PlayerViewModel
+                PlayerPartial botViewModel = new PlayerPartial
                 {
                     Id = bot.Id,
                     Name = bot.Name
@@ -45,7 +45,7 @@ namespace ProjectBj.BusinessLogic.Helpers
             return botViewModels;
         }
 
-        public static List<HistoryViewModel> GetHistory(List<History> history)
+        public static List<HistoryViewModel> GetHistory(List<Entities.History> history)
         {
             var historyViewModels = new List<HistoryViewModel>();
             foreach (var entry in history)

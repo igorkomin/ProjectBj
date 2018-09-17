@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ProjectBj.ViewModels.Game
+namespace ProjectBj.ViewModels.History
 {
     public class HistoryViewModel
     {

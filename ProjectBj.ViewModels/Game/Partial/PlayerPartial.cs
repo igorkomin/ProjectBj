@@ -1,6 +1,6 @@
 ﻿namespace ProjectBj.ViewModels.Game
 {
-    public class PlayerViewModel : DealerViewModel
+    public class PlayerPartial : DealerPartial
     {
         public bool IsHuman { get; set; }
         //public int Balance { get; set; }

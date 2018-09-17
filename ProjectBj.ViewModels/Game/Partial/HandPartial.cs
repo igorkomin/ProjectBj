@@ -2,9 +2,9 @@
 
 namespace ProjectBj.ViewModels.Game
 {
-    public class HandViewModel
+    public class HandPartial
     {
-        public List<CardViewModel> Cards { get; set; }
+        public List<CardPartial> Cards { get; set; }
         public int Score { get; set; }
     }
 }

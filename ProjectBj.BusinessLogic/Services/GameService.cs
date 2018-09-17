@@ -250,28 +250,14 @@ namespace ProjectBj.BusinessLogic.Services
             Log.Info(StringHelper.GetGameEndedMessage(sessionId));
         }
 
-        public async Task<List<HistoryViewModel>> GetSessionHistory(int sessionId)
-        {
-            var history = await _historyProvider.GetHistory(sessionId);
-            var historyViewModels = ModelViewModelConverter.GetHistory(history);
-            return historyViewModels;
-        }
-
-        public async Task<List<HistoryViewModel>> GetFullHistory()
-        {
-            var history = await _historyProvider.GetFullHistory();
-            var historyViewModels = ModelViewModelConverter.GetHistory(history);
-            return historyViewModels;
-        }
-
-        private async Task<List<CardViewModel>> GetCards(int playerId, int sessionId)
+        private async Task<List<CardPartial>> GetCards(int playerId, int sessionId)
         {
             var player = await _playerProvider.GetPlayerById(playerId);
             var cards = await _cardProvider.GetPlayerCards(playerId, sessionId);
-            List<CardViewModel> cardViewModels = new List<CardViewModel>();
+            List<CardPartial> cardViewModels = new List<CardPartial>();
             foreach (var card in cards)
             {
-                CardViewModel cardViewModel = new CardViewModel
+                CardPartial cardViewModel = new CardPartial
                 {
                     Suit = card.Suit,
                     Rank = EnumHelper.GetCardRankName(card.Rank),
@@ -282,10 +268,10 @@ namespace ProjectBj.BusinessLogic.Services
             return cardViewModels;
         }
 
-        private async Task<HandViewModel> GetHand(int playerId, int sessionId)
+        private async Task<HandPartial> GetHand(int playerId, int sessionId)
         {
-            List<CardViewModel> cardViewModels = await GetCards(playerId, sessionId);
-            HandViewModel handViewModel = new HandViewModel
+            List<CardPartial> cardViewModels = await GetCards(playerId, sessionId);
+            HandPartial handViewModel = new HandPartial
             {
                 Cards = cardViewModels,
                 Score = await GetHandValue(playerId, sessionId)
@@ -298,7 +284,7 @@ namespace ProjectBj.BusinessLogic.Services
             int totalValue = 0;
             int aceCount = 0;
 
-            List<CardViewModel> cards = await GetCards(playerId, sessionId);
+            List<CardPartial> cards = await GetCards(playerId, sessionId);
 
             foreach (var card in cards)
             {

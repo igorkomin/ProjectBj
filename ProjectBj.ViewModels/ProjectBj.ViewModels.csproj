@@ -40,12 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Game\CardViewModel.cs" />
-    <Compile Include="Game\DealerViewModel.cs" />
+    <Compile Include="Game\Partial\CardPartial.cs" />
+    <Compile Include="Game\Partial\DealerPartial.cs" />
     <Compile Include="Game\GameViewModel.cs" />
-    <Compile Include="Game\HandViewModel.cs" />
-    <Compile Include="Game\HistoryViewModel.cs" />
-    <Compile Include="Game\PlayerViewModel.cs" />
+    <Compile Include="Game\Partial\HandPartial.cs" />
+    <Compile Include="History\HistoryViewModel.cs" />
+    <Compile Include="Game\Partial\PlayerPartial.cs" />
     <Compile Include="Logs\SystemLogViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

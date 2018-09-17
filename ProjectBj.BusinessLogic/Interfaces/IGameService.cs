@@ -12,7 +12,5 @@ namespace ProjectBj.BusinessLogic.Interfaces
         Task<GameViewModel> MakeStandDecision(int playerId, int sessionId);
         Task<GameViewModel> MakeDoubleDownDecision(int playerId, int sessionId);
         Task<GameViewModel> MakeSurrenderDecision(int playerId, int sessionId);
-        Task<List<HistoryViewModel>> GetSessionHistory(int sessionId);
-        Task<List<HistoryViewModel>> GetFullHistory();
     }
 }

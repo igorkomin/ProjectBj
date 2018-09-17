@@ -1,8 +1,6 @@
 ﻿using ProjectBj.BusinessLogic.Interfaces;
-using ProjectBj.ViewModels;
 using ProjectBj.ViewModels.Game;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Http;
 
@@ -94,34 +92,6 @@ namespace ProjectBj.Web.Controllers
             {
                 GameViewModel model = await _service.MakeSurrenderDecision(identifier.PlayerId, identifier.SessionId);
                 return Ok(model);
-            }
-            catch (Exception exception)
-            {
-                return InternalServerError(exception);
-            }
-        }
-
-        [HttpPost]
-        public async Task<IHttpActionResult> History([FromBody] int sessionId)
-        {
-            try
-            {
-                List<HistoryViewModel> history = await _service.GetSessionHistory(sessionId);
-                return Ok(history);
-            }
-            catch (Exception exception)
-            {
-                return InternalServerError(exception);
-            }
-        }
-
-        [HttpGet]
-        public async Task<IHttpActionResult> FullHistory()
-        {
-            try
-            {
-                List<HistoryViewModel> logs = await _service.GetFullHistory();
-                return Ok(logs);
             }
             catch (Exception exception)
             {

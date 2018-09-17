@@ -52,12 +52,12 @@ export class ApiService {
     }
 
     getHistory(sessionId: number): Observable<History> {
-        let requestUrl = `${apiUrl}/History`;
+        let requestUrl = `${apiUrl}/../History/GameHistory`;
         return this.http.post<History>(requestUrl, sessionId, requestOptions);
     }
 
     getFullHistory(): Observable<History> {
-        let requestUrl = `${apiUrl}/FullHistory`;
+        let requestUrl = `${apiUrl}/../History/FullHistory`;
         return this.http.get<History>(requestUrl, requestOptions);
     }
 

@@ -188,6 +188,7 @@
     <Compile Include="Configs\AutofacConfig.cs" />
     <Compile Include="Controllers\GameApiController.cs" />
     <Compile Include="Controllers\GameController.cs" />
+    <Compile Include="Controllers\HistoryApiController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Models\Identifier.cs" />
     <Compile Include="Models\Settings.cs" />
