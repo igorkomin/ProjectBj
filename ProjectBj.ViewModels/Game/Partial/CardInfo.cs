@@ -1,6 +1,6 @@
 ﻿namespace ProjectBj.ViewModels.Game
 {
-    public class CardPartial
+    public class CardInfo
     {
         public string Suit { get; set; }
         public string Rank { get; set; }

@@ -250,33 +250,33 @@ namespace ProjectBj.BusinessLogic.Services
             Log.Info(StringHelper.GetGameEndedMessage(sessionId));
         }
 
-        private async Task<List<CardPartial>> GetCards(int playerId, int sessionId)
+        private async Task<List<CardInfo>> GetCards(int playerId, int sessionId)
         {
             var player = await _playerProvider.GetPlayerById(playerId);
             var cards = await _cardProvider.GetPlayerCards(playerId, sessionId);
-            List<CardPartial> cardViewModels = new List<CardPartial>();
+            List<CardInfo> cardInfos = new List<CardInfo>();
             foreach (var card in cards)
             {
-                CardPartial cardViewModel = new CardPartial
+                CardInfo cardInfo = new CardInfo
                 {
                     Suit = card.Suit,
                     Rank = EnumHelper.GetCardRankName(card.Rank),
                     RankValue = card.Rank
                 };
-                cardViewModels.Add(cardViewModel);
+                cardInfos.Add(cardInfo);
             }
-            return cardViewModels;
+            return cardInfos;
         }
 
-        private async Task<HandPartial> GetHand(int playerId, int sessionId)
+        private async Task<HandInfo> GetHand(int playerId, int sessionId)
         {
-            List<CardPartial> cardViewModels = await GetCards(playerId, sessionId);
-            HandPartial handViewModel = new HandPartial
+            List<CardInfo> cardInfos = await GetCards(playerId, sessionId);
+            HandInfo handInfo = new HandInfo
             {
-                Cards = cardViewModels,
+                Cards = cardInfos,
                 Score = await GetHandValue(playerId, sessionId)
             };
-            return handViewModel;
+            return handInfo;
         }
 
         private async Task<int> GetHandValue(int playerId, int sessionId)
@@ -284,7 +284,7 @@ namespace ProjectBj.BusinessLogic.Services
             int totalValue = 0;
             int aceCount = 0;
 
-            List<CardPartial> cards = await GetCards(playerId, sessionId);
+            List<CardInfo> cards = await GetCards(playerId, sessionId);
 
             foreach (var card in cards)
             {

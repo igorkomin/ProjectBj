@@ -1,4 +1,5 @@
-﻿using ProjectBj.ViewModels.Game;
+﻿using ProjectBj.Entities;
+using ProjectBj.ViewModels.Game;
 using ProjectBj.ViewModels.History;
 using System.Collections.Generic;
 
@@ -6,9 +7,9 @@ namespace ProjectBj.BusinessLogic.Helpers
 {
     public static class ModelViewModelConverter
     {
-        public static PlayerPartial GetPlayer(Entities.Player player)
+        public static PlayerInfo GetPlayer(Player player)
         {
-            PlayerPartial playerViewModel = new ViewModels.Game.PlayerPartial
+            PlayerInfo playerInfo = new PlayerInfo
             {
                 Id = player.Id,
                 Name = player.Name,
@@ -16,38 +17,38 @@ namespace ProjectBj.BusinessLogic.Helpers
                 IsHuman = player.IsHuman
                 //Bet = player.Bet
             };
-            return playerViewModel;
+            return playerInfo;
         }
 
-        public static DealerPartial GetDealer(Entities.Player dealer)
+        public static DealerInfo GetDealer(Player dealer)
         {
-            DealerPartial dealerViewModel = new DealerPartial
+            DealerInfo dealerInfo = new DealerInfo
             {
                 Id = dealer.Id,
                 Name = dealer.Name
             };
-            return dealerViewModel;
+            return dealerInfo;
         }
 
-        public static List<PlayerPartial> GetBotPlayers(List<Entities.Player> bots)
+        public static List<PlayerInfo> GetBotPlayers(List<Player> bots)
         {
-            var botViewModels = new List<PlayerPartial>();
+            var botPlayerInfos = new List<PlayerInfo>();
             foreach (var bot in bots)
             {
-                PlayerPartial botViewModel = new PlayerPartial
+                PlayerInfo botPlayerInfo = new PlayerInfo
                 {
                     Id = bot.Id,
                     Name = bot.Name
                     //Balance = bot.Balance
                 };
-                botViewModels.Add(botViewModel);
+                botPlayerInfos.Add(botPlayerInfo);
             }
-            return botViewModels;
+            return botPlayerInfos;
         }
 
         public static List<HistoryViewModel> GetHistory(List<Entities.History> history)
         {
-            var historyViewModels = new List<HistoryViewModel>();
+            var historyInfos = new List<HistoryViewModel>();
             foreach (var entry in history)
             {
                 HistoryViewModel historyViewModel = new HistoryViewModel
@@ -57,9 +58,9 @@ namespace ProjectBj.BusinessLogic.Helpers
                     PlayerName = entry.PlayerName,
                     Event = entry.Event
                 };
-                historyViewModels.Add(historyViewModel); 
+                historyInfos.Add(historyViewModel); 
             }
-            return historyViewModels;
+            return historyInfos;
         }
     }
 }

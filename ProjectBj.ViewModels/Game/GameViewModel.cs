@@ -5,8 +5,8 @@ namespace ProjectBj.ViewModels.Game
     public class GameViewModel
     {
         public int SessionId { get; set; }
-        public DealerPartial Dealer { get; set; }
-        public PlayerPartial Player { get; set; }
-        public List<PlayerPartial> Bots { get; set; }
+        public DealerInfo Dealer { get; set; }
+        public PlayerInfo Player { get; set; }
+        public List<PlayerInfo> Bots { get; set; }
     }
 }
