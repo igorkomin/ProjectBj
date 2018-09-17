@@ -35,7 +35,7 @@
             return $"Game id{sessionId} ended";
         }
 
-        public static string GetPlayerScoreMessage(int score)
+        public static string GetScoreMessage(int score)
         {
             return $"hand's score: {score}";
         }

@@ -66,7 +66,6 @@ namespace ProjectBj.BusinessLogic.Providers
                 Player bot = await GetNewBot();
                 bots.Add(bot);
             }
-
             return bots;
         }
 
@@ -78,7 +77,6 @@ namespace ProjectBj.BusinessLogic.Providers
             {
                 bots = await GetNewBotList(botnumber);
             }
-            
             return bots.ToList();
         }
 
@@ -90,7 +88,7 @@ namespace ProjectBj.BusinessLogic.Providers
 
         public async Task<Player> GetDealer()
         {
-            Player dealer = await GetDealerFromDb();
+            Player dealer = await GetExistingDealer();
             if(dealer == null)
             {
                 dealer = await GetNewDealer();
@@ -98,7 +96,7 @@ namespace ProjectBj.BusinessLogic.Providers
             return dealer;
         }
 
-        public async Task<Player> GetPlayerFromDb(string name)
+        public async Task<Player> GetExistingPlayer(string name)
         {
             var searchResults = await _playerRepository.Find(name);
             if (searchResults.Count == 0)
@@ -108,7 +106,7 @@ namespace ProjectBj.BusinessLogic.Providers
             return searchResults.FirstOrDefault();
         }
 
-        private async Task<Player> GetDealerFromDb()
+        private async Task<Player> GetExistingDealer()
         {
             var searchResults = await _playerRepository.Find(StringHelper.DealerName);
             if (searchResults.Count == 0)
@@ -120,7 +118,7 @@ namespace ProjectBj.BusinessLogic.Providers
 
         public async Task<Player> GetPlayerByName(string name)
         {
-            Player player = await GetPlayerFromDb(name);
+            Player player = await GetExistingPlayer(name);
             if(player == null)
             {
                 player = await GetNewPlayer(name);

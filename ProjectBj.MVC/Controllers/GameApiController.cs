@@ -1,9 +1,6 @@
 ﻿using ProjectBj.BusinessLogic.Interfaces;
-using ProjectBj.ViewModels;
 using ProjectBj.ViewModels.Game;
-using ProjectBj.ViewModels.History;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Http;
 

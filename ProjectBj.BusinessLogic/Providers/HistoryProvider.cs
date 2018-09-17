@@ -19,7 +19,7 @@ namespace ProjectBj.BusinessLogic.Providers
             _historyRepository = historyRepository;
         }
 
-        public async Task CreateHistoryEntry(string playerName, string message, int sessionId)
+        public async Task Create(string playerName, string message, int sessionId)
         {
             History entry = new History
             {
@@ -32,7 +32,7 @@ namespace ProjectBj.BusinessLogic.Providers
             await _historyRepository.Create(entry);
         }
 
-        public async Task<List<History>> GetHistory(int sessionId)
+        public async Task<List<History>> Get(int sessionId)
         {
             var logs = await _historyRepository.GetBySessionId(sessionId);
             return logs.ToList();

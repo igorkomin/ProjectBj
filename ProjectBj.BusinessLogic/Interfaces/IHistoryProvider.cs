@@ -6,8 +6,8 @@ namespace ProjectBj.BusinessLogic.Interfaces
 {
     public interface IHistoryProvider
     {
-        Task CreateHistoryEntry(string player, string message, int sessionId);
-        Task<List<History>> GetHistory(int sessionId);
+        Task Create(string player, string message, int sessionId);
+        Task<List<History>> Get(int sessionId);
         Task<List<History>> GetFullHistory();
     }
 }

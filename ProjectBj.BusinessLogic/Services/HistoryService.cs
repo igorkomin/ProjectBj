@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProjectBj.BusinessLogic.Services
 {
-    public class HistoryService
+    public class HistoryService : IHistoryService
     {
         private readonly IHistoryProvider _historyProvider;
 
@@ -17,15 +17,15 @@ namespace ProjectBj.BusinessLogic.Services
 
         public async Task<List<HistoryViewModel>> GetSessionHistory(int sessionId)
         {
-            var history = await _historyProvider.GetHistory(sessionId);
-            var historyViewModels = ModelViewModelConverter.GetHistory(history);
+            var history = await _historyProvider.Get(sessionId);
+            var historyViewModels = MapHelper.GetHistoryInfo(history);
             return historyViewModels;
         }
 
         public async Task<List<HistoryViewModel>> GetFullHistory()
         {
             var history = await _historyProvider.GetFullHistory();
-            var historyViewModels = ModelViewModelConverter.GetHistory(history);
+            var historyViewModels = MapHelper.GetHistoryInfo(history);
             return historyViewModels;
         }
     }

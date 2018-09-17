@@ -55,10 +55,10 @@ namespace ProjectBj.BusinessLogic.Providers
             return deckFromDb.ToList();
         }
 
-        private async Task SaveDeckToDb(List<Card> localDeck)
+        private async Task SaveDeck(List<Card> deck)
         {
             Log.Info(StringHelper.SavingDeckMessage);
-            await _cardRepository.Insert(localDeck);
+            await _cardRepository.Insert(deck);
         }
 
         public async Task<List<Card>> GetDeck()
@@ -67,7 +67,7 @@ namespace ProjectBj.BusinessLogic.Providers
             if(deck == null)
             {
                 deck = GetNewDeck();
-                await SaveDeckToDb(deck);
+                await SaveDeck(deck);
             }
             return deck;
         }
@@ -86,7 +86,7 @@ namespace ProjectBj.BusinessLogic.Providers
             return shuffledDeck;
         }
 
-        public async Task<List<Card>> GetPlayerCards(int playerId, int sessionId)
+        public async Task<List<Card>> GetPlayerHand(int playerId, int sessionId)
         {
             var cards = await _cardRepository.Get(playerId, sessionId);
             return cards.ToList();

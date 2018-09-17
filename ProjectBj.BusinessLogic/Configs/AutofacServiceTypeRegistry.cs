@@ -9,6 +9,7 @@ namespace ProjectBj.BusinessLogic.Configs
         public static ContainerBuilder RegisterTypes(ContainerBuilder builder)
         {
             builder.RegisterType<GameService>().As<IGameService>();
+            builder.RegisterType<HistoryService>().As<IHistoryService>();
             builder.RegisterType<SystemLogService>().As<ISystemLogService>();
 
             AutofacProviderTypeRegistry.RegisterTypes(builder);

@@ -50,7 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Helpers\ModelViewModelConverter.cs" />
+    <Compile Include="Helpers\MapHelper.cs" />
     <Compile Include="Interfaces\IHistoryService.cs" />
     <Compile Include="Interfaces\ISystemLogService.cs" />
     <Compile Include="Providers\CardProvider.cs" />

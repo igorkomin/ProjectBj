@@ -9,7 +9,7 @@ namespace ProjectBj.BusinessLogic.Interfaces
         Task<Player> GetDealer();
         Task<Player> GetPlayerByName(string name);
         Task<Player> GetPlayerById(int id);
-        Task<Player> GetPlayerFromDb(string name);
+        Task<Player> GetExistingPlayer(string name);
         Task<List<Player>> GetBots(int botnumber, int sessionId);
         Task<List<Player>> GetSessionBots(int sessionId);
         //Task<int> GetBet(int playerId);
