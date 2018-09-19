@@ -1,4 +1,4 @@
-export class Identifier {
+export class Request {
     playerId: number;
     sessionId: number;
 }

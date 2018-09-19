@@ -6,7 +6,7 @@ namespace ProjectBj.BusinessLogic.Interfaces
 {
     public interface IHistoryService
     {
-        Task<List<HistoryViewModel>> GetSessionHistory(int sessionId);
-        Task<List<HistoryViewModel>> GetFullHistory();
+        Task<List<GameHistoryView>> GetSessionHistory(int sessionId);
+        Task<List<FullHistoryView>> GetFullHistory();
     }
 }

@@ -1,5 +1,6 @@
-﻿using ProjectBj.BusinessLogic.Helpers;
+﻿using ProjectBj.BusinessLogic.Helpers.ViewMapHelpers;
 using ProjectBj.BusinessLogic.Interfaces;
+using ProjectBj.Entities;
 using ProjectBj.ViewModels.History;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -15,17 +16,17 @@ namespace ProjectBj.BusinessLogic.Services
             _historyProvider = historyProvider;
         }
 
-        public async Task<List<HistoryViewModel>> GetSessionHistory(int sessionId)
+        public async Task<List<GameHistoryView>> GetSessionHistory(int sessionId)
         {
-            var history = await _historyProvider.Get(sessionId);
-            var historyViewModels = MapHelper.GetHistoryInfo(history);
+            List<History> history = await _historyProvider.Get(sessionId);
+            List<GameHistoryView> historyViewModels = HistoryMapHelper.GetGameHistoryView(history);
             return historyViewModels;
         }
 
-        public async Task<List<HistoryViewModel>> GetFullHistory()
+        public async Task<List<FullHistoryView>> GetFullHistory()
         {
-            var history = await _historyProvider.GetAll();
-            var historyViewModels = MapHelper.GetHistoryInfo(history);
+            List<History> history = await _historyProvider.GetAll();
+            List<FullHistoryView> historyViewModels = HistoryMapHelper.GetFullHistoryView(history);
             return historyViewModels;
         }
     }

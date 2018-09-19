@@ -24,8 +24,8 @@ namespace ProjectBj.MVC.Controllers
         {
             try
             {
-                List<HistoryViewModel> history = await _service.GetSessionHistory(sessionId);
-                return Ok(history);
+                List<GameHistoryView> view = await _service.GetSessionHistory(sessionId);
+                return Ok(view);
             }
             catch (Exception exception)
             {
@@ -38,8 +38,8 @@ namespace ProjectBj.MVC.Controllers
         {
             try
             {
-                List<HistoryViewModel> logs = await _service.GetFullHistory();
-                return Ok(logs);
+                List<FullHistoryView> view = await _service.GetFullHistory();
+                return Ok(view);
             }
             catch (Exception exception)
             {

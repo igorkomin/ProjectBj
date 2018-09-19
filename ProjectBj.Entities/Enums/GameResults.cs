@@ -4,7 +4,7 @@
     {
         public enum Result
         {
-            Unfinished = 0,
+            None = 0,
             Blackjack = 1,
             Bust = 2,
             Win = 3,

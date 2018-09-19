@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Game } from 'src/app/shared/models/game.model';
 import { History } from 'src/app/shared/models/history.model';
-import { Identifier } from 'src/app/shared/models/identifier.model';
+import { Request } from 'src/app/shared/models/request.model';
 import { Settings } from 'src/app/shared/models/settings.model';
 import { ApiService } from 'src/app/shared/api.service';
 
@@ -53,6 +53,7 @@ export class GameComponent implements OnInit {
         gameSettings.botsNumber = this.botsNumber;
         this.apiService.newGame(gameSettings).subscribe(
             response => {
+                console.log(response);
                 this.game = response;
                 this.sessionId = response.sessionId;
                 this.playerId = response.player.id;
@@ -85,7 +86,7 @@ export class GameComponent implements OnInit {
 
     hit(): void {
         this.error = undefined;
-        let identifier = new Identifier();
+        let identifier = new Request();
         identifier.playerId = this.playerId;
         identifier.sessionId = this.sessionId;
         this.apiService.hit(identifier).subscribe(
@@ -102,7 +103,7 @@ export class GameComponent implements OnInit {
 
     stand(): void {
         this.error = undefined;
-        let identifier = new Identifier();
+        let identifier = new Request();
         identifier.playerId = this.playerId;
         identifier.sessionId = this.sessionId;
         this.apiService.stand(identifier).subscribe(
@@ -119,7 +120,7 @@ export class GameComponent implements OnInit {
 
     doubleDown(): void {
         this.error = undefined;
-        let identifier = new Identifier();
+        let identifier = new Request();
         identifier.playerId = this.playerId;
         identifier.sessionId = this.sessionId;
         this.apiService.double(identifier).subscribe(
@@ -136,7 +137,7 @@ export class GameComponent implements OnInit {
 
     surrender(): void {
         this.error = undefined;
-        let identifier = new Identifier();
+        let identifier = new Request();
         identifier.playerId = this.playerId;
         identifier.sessionId = this.sessionId;
         this.apiService.surrender(identifier).subscribe(

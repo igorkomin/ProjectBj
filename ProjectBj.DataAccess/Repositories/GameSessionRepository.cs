@@ -2,6 +2,7 @@
 using Dapper.Contrib.Extensions;
 using ProjectBj.DataAccess.Interfaces;
 using ProjectBj.Entities;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -31,7 +32,7 @@ namespace ProjectBj.DataAccess.Repositories
         {
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
-                var session = await db.GetAsync<GameSession>(id);
+                GameSession session = await db.GetAsync<GameSession>(id);
                 return session;
             }
         }
@@ -48,11 +49,11 @@ namespace ProjectBj.DataAccess.Repositories
         {
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
-                var sqlQuery = @"SELECT DISTINCT gs.* FROM PlayerHands ph
-                                     JOIN GameSessions gs ON ( ph.SessionId = gs.Id )
-                                     WHERE gs.IsOpen = 1 AND ph.PlayerId = @playerId";
+                string sqlQuery = @"SELECT DISTINCT gs.* FROM PlayerHands ph
+                                    JOIN GameSessions gs ON (ph.SessionId = gs.Id)
+                                    WHERE gs.IsOpen = 1 AND ph.PlayerId = @playerId";
 
-                var session = await db.QueryAsync<GameSession>(sqlQuery, new { playerId });
+                IEnumerable<GameSession> session = await db.QueryAsync<GameSession>(sqlQuery, new { playerId });
                 return session.FirstOrDefault();
             }
         }

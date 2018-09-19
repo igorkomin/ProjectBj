@@ -20,56 +20,9 @@ namespace ProjectBj.BusinessLogic.Providers
             _nameGenerator = new PersonNameGenerator();
         }
 
-        private async Task<Player> GetNewPlayer(string name)
-        {
-            Player player = new Player
-            {
-                Name = name,
-                InGame = true,
-                IsHuman = true
-            };
-            player = await _playerRepository.Insert(player);
-            return player;
-        }
-
-        private async Task<Player> GetNewBot()
-        {
-            Player bot = new Player
-            {
-                Name = _nameGenerator.GenerateRandomFirstName(),
-                IsHuman = false,
-                InGame = true
-            };
-            bot = await _playerRepository.Insert(bot);
-            return bot;
-        }
-
-        private async Task<Player> GetNewDealer()
-        {
-            Player dealer = new Player
-            {
-                Name = StringHelper.DealerName,
-                InGame = false,
-                IsHuman = false
-            };
-            dealer = await _playerRepository.Insert(dealer);
-            return dealer;
-        }
-
-        private async Task<List<Player>> GetNewBotList(int number)
-        {
-            List<Player> bots = new List<Player>();
-            for(int i = 0; i < number; i++)
-            {
-                Player bot = await GetNewBot();
-                bots.Add(bot);
-            }
-            return bots;
-        }
-
         public async Task<List<Player>> GetBots(int botnumber, int sessionId)
         {
-            var bots = await _playerRepository.GetSessionBots(sessionId);
+            ICollection<Player> bots = await _playerRepository.GetSessionBots(sessionId);
 
             if (bots.Count == 0 || bots == null)
             {
@@ -80,14 +33,14 @@ namespace ProjectBj.BusinessLogic.Providers
 
         public async Task<List<Player>> GetSessionBots(int sessionId)
         {
-            var bots = await _playerRepository.GetSessionBots(sessionId);
+            ICollection<Player> bots = await _playerRepository.GetSessionBots(sessionId);
             return bots.ToList();
         }
 
         public async Task<Player> GetDealer()
         {
             Player dealer = await GetExistingDealer();
-            if(dealer == null)
+            if (dealer == null)
             {
                 dealer = await GetNewDealer();
             }
@@ -96,17 +49,7 @@ namespace ProjectBj.BusinessLogic.Providers
 
         public async Task<Player> GetExistingPlayer(string name)
         {
-            var searchResults = await _playerRepository.Find(name);
-            if (searchResults.Count == 0)
-            {
-                return null;
-            }
-            return searchResults.FirstOrDefault();
-        }
-
-        private async Task<Player> GetExistingDealer()
-        {
-            var searchResults = await _playerRepository.Find(StringHelper.DealerName);
+            ICollection<Player> searchResults = await _playerRepository.Find(name);
             if (searchResults.Count == 0)
             {
                 return null;
@@ -117,7 +60,7 @@ namespace ProjectBj.BusinessLogic.Providers
         public async Task<Player> GetPlayerByName(string name)
         {
             Player player = await GetExistingPlayer(name);
-            if(player == null)
+            if (player == null)
             {
                 player = await GetNewPlayer(name);
             }
@@ -139,6 +82,63 @@ namespace ProjectBj.BusinessLogic.Providers
         {
             Player player = await _playerRepository.GetById(playerId);
             await _playerRepository.AddCardToPlayerHand(player, cardId, sessionId);
+        }
+
+        private async Task<Player> GetNewPlayer(string name)
+        {
+            var player = new Player
+            {
+                Name = name,
+                InGame = true,
+                IsHuman = true
+            };
+            player = await _playerRepository.Insert(player);
+            return player;
+        }
+
+        private async Task<Player> GetNewBot()
+        {
+            var bot = new Player
+            {
+                Name = _nameGenerator.GenerateRandomFirstName(),
+                IsHuman = false,
+                InGame = true
+            };
+            bot = await _playerRepository.Insert(bot);
+            return bot;
+        }
+
+        private async Task<Player> GetNewDealer()
+        {
+            var dealer = new Player
+            {
+                Name = StringHelper.DealerName,
+                InGame = false,
+                IsHuman = false
+            };
+            dealer = await _playerRepository.Insert(dealer);
+            return dealer;
+        }
+
+        private async Task<List<Player>> GetNewBotList(int number)
+        {
+            var bots = new List<Player>();
+            for(int i = 0; i < number; i++)
+            {
+                Player bot = await GetNewBot();
+                bots.Add(bot);
+            }
+            return bots;
+        }
+
+        private async Task<Player> GetExistingDealer()
+        {
+            var searchResults = await _playerRepository.Find(StringHelper.DealerName);
+            if (searchResults.Count == 0)
+            {
+                return null;
+            }
+            return searchResults.FirstOrDefault();
         }
     }
 }

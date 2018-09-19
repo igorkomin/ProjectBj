@@ -1,14 +1,11 @@
 import { Hand } from "./hand.model";
+import { GameResult } from "./gameresult.model";
 
 export class Player {
     id: number;
     name: string;
     isHuman: boolean;
     inGame: boolean;
-    //balance: number;
-    gameResult: number;
-    gameResultMessage: string;
-    //bet: number;
-    //balanceDelta: number;
+    gameResult: GameResult;
     hand: Hand;
 }

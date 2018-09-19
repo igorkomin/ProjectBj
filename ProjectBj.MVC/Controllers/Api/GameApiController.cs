@@ -16,12 +16,12 @@ namespace ProjectBj.MVC.Controllers
         }
 
         [HttpPost]
-        public async Task<IHttpActionResult> Start([FromBody]GameSettings settings)
+        public async Task<IHttpActionResult> Start([FromBody]RequestStartGameView request)
         {
             try
             {
-                GameViewModel model = await _service.GetNewGame(settings.PlayerName, settings.BotsNumber);
-                return Ok(model);
+                ResponseStartGameView view = await _service.GetNewGame(request.PlayerName, request.BotsNumber);
+                return Ok(view);
             }
             catch (Exception exception)
             {
@@ -30,12 +30,12 @@ namespace ProjectBj.MVC.Controllers
         }
 
         [HttpPost]
-        public async Task<IHttpActionResult> Load([FromBody]GameSettings settings)
+        public async Task<IHttpActionResult> Load([FromBody]RequestLoadGameView request)
         {
             try
             {
-                GameViewModel model = await _service.GetUnfinishedGame(settings.PlayerName);
-                return Ok(model);
+                ResponseLoadGameView view = await _service.GetUnfinishedGame(request.PlayerName);
+                return Ok(view);
             }
             catch (Exception exception)
             {
@@ -44,12 +44,12 @@ namespace ProjectBj.MVC.Controllers
         }
 
         [HttpPost]
-        public async Task<IHttpActionResult> Hit([FromBody]GameIdentifier identifier)
+        public async Task<IHttpActionResult> Hit([FromBody]RequestHitGameView request)
         {
             try
             {
-                GameViewModel model = await _service.MakeHitDecision(identifier.PlayerId, identifier.SessionId);
-                return Ok(model);
+                ResponseHitGameView view = await _service.MakeHitDecision(request.PlayerId, request.SessionId);
+                return Ok(view);
             }
             catch (Exception exception)
             {
@@ -58,12 +58,12 @@ namespace ProjectBj.MVC.Controllers
         }
 
         [HttpPost]
-        public async Task<IHttpActionResult> Stand([FromBody]GameIdentifier identifier)
+        public async Task<IHttpActionResult> Stand([FromBody]RequestStandGameView request)
         {
             try
             {
-                GameViewModel model = await _service.MakeStandDecision(identifier.PlayerId, identifier.SessionId);
-                return Ok(model);
+                ResponseStandGameView view = await _service.MakeStandDecision(request.PlayerId, request.SessionId);
+                return Ok(view);
             }
             catch (Exception exception)
             {
@@ -72,12 +72,12 @@ namespace ProjectBj.MVC.Controllers
         }
 
         [HttpPost]
-        public async Task<IHttpActionResult> Double([FromBody]GameIdentifier identifier)
+        public async Task<IHttpActionResult> Double([FromBody]RequestDoubleGameView request)
         {
             try
             {
-                GameViewModel model = await _service.MakeDoubleDownDecision(identifier.PlayerId, identifier.SessionId);
-                return Ok(model);
+                ResponseDoubleGameView view = await _service.MakeDoubleDownDecision(request.PlayerId, request.SessionId);
+                return Ok(view);
             }
             catch (Exception exception)
             {
@@ -86,12 +86,12 @@ namespace ProjectBj.MVC.Controllers
         }
 
         [HttpPost]
-        public async Task<IHttpActionResult> Surrender([FromBody]GameIdentifier identifier)
+        public async Task<IHttpActionResult> Surrender([FromBody]RequestSurrenderGameView request)
         {
             try
             {
-                GameViewModel model = await _service.MakeSurrenderDecision(identifier.PlayerId, identifier.SessionId);
-                return Ok(model);
+                ResponseSurrenderGameView view = await _service.MakeSurrenderDecision(request.PlayerId, request.SessionId);
+                return Ok(view);
             }
             catch (Exception exception)
             {

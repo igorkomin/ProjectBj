@@ -15,8 +15,6 @@
         public static readonly string SavingDeckMessage = "Saving deck to database";
         public static readonly string DeckShuffledMessage = "Deck shuffled";
         public static readonly string CreatingHistoryEntryMessage = "Creating game log entry";
-        public static readonly string GettingHistoryEntryMessage = "Getting game log entry";
-        public static readonly string GettingFullHistoryMessage = "Getting all game logs";
         public static readonly string NameReservedMessage = "This name is reserved";
         public static readonly string NoGameToLoadMessage = "No game to load";
 
@@ -33,11 +31,6 @@
         public static string GetGameEndedMessage(int sessionId)
         {
             return $"Game id{sessionId} ended";
-        }
-
-        public static string GetScoreMessage(int score)
-        {
-            return $"hand's score: {score}";
         }
 
         public static string GetPlayerTakesCardMessage(string cardRank, string cardSuit)

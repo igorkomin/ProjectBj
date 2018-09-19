@@ -6,6 +6,7 @@ namespace ProjectBj.Entities.Enums
     {
         public enum Rank
         {
+            None = 0,
             [Description("A")]
             Ace = 1,
             [Description("2")]

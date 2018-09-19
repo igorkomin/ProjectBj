@@ -45,22 +45,22 @@
                 </div>
                 <div class="col-md-3">
                     <div class="btn-group-vertical">
-                        <button [disabled]="game && game?.player.gameResult == 0" (click)="newGame()" class="btn btn-primary">NEW GAME</button>
-                        <button [disabled]="game && game?.player.gameResult == 0" (click)="loadGame()" class="btn btn-secondary">LOAD GAME</button>
+                        <button [disabled]="game?.player.gameResult.state == 0" (click)="newGame()" class="btn btn-primary">NEW GAME</button>
+                        <button [disabled]="game?.player.gameResult.state == 0" (click)="loadGame()" class="btn btn-secondary">LOAD GAME</button>
                     </div>
                 </div>
                 <div *ngIf="game" class="col-md-3">
                     <div class="caption">Actions</div>
                     <div class="btn-group-vertical">
-                        <button [disabled]="game?.player.gameResult != 0" (click)="hit()" class="btn btn-primary">HIT</button>
-                        <button [disabled]="game?.player.gameResult != 0" (click)="doubleDown()" class="btn btn-info">DOUBLE</button>
-                        <button [disabled]="game?.player.gameResult != 0" (click)="stand()" class="btn btn-secondary">STAND</button>
-                        <button [disabled]="game?.player.gameResult != 0" (click)="surrender()" class="btn btn-danger">SURRENDER</button>
+                        <button [disabled]="game?.player.gameResult.state != 0" (click)="hit()" class="btn btn-primary">HIT</button>
+                        <button [disabled]="game?.player.gameResult.state != 0" (click)="doubleDown()" class="btn btn-info">DOUBLE</button>
+                        <button [disabled]="game?.player.gameResult.state != 0" (click)="stand()" class="btn btn-secondary">STAND</button>
+                        <button [disabled]="game?.player.gameResult.state != 0" (click)="surrender()" class="btn btn-danger">SURRENDER</button>
                     </div>
                 </div>
                 <div *ngIf="game" class="player-seat col-md-3">
-                    <div *ngIf="game?.player.gameResult > 0" class="ribbon {{ game?.player.gameResultMessage | lowercase }}">
-                        <span>{{ game?.player.gameResultMessage }}</span>
+                    <div *ngIf="game?.player.gameResult.state > 0" class="ribbon {{ game?.player.gameResult.result | lowercase }}">
+                        <span>{{ game?.player.gameResult.result }}</span>
                     </div>
                     <p class="caption player-name">{{ game?.player.name }} <span class="badge badge-secondary">{{ game?.player.hand.score }}</span></p>
                     <div class="playingCards simpleCards rotateHand">
@@ -76,9 +76,9 @@
                 </div>
             </div>
             <div class="row">
-                <div class="bot-seat col-md-1" *ngFor="let bot of game?.bots">
-                    <div *ngIf="bot?.gameResult > 0" class="ribbon {{ bot?.gameResultMessage | lowercase }}">
-                        <span>{{ bot?.gameResultMessage }}</span>
+                <div class="bot-seat col-md-1" *ngFor="let bot of game?.bots.bots">
+                    <div *ngIf="bot?.gameResult.state > 0" class="ribbon {{ bot?.gameResult.result | lowercase }}">
+                        <span>{{ bot?.gameResult.result }}</span>
                     </div>
                     <p class="caption player-name">{{ bot?.name }} <span class="badge badge-secondary">{{ bot?.hand.score }}</span></p>
                     <div class="playingCards simpleCards rotateHand">

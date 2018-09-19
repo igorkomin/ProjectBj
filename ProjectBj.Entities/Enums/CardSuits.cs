@@ -6,14 +6,15 @@ namespace ProjectBj.Entities.Enums
     {
         public enum Suit
         {
+            None = 0,
             [Description("spades")]
-            Spades = 0,
+            Spades = 1,
             [Description("clubs")]
-            Clubs = 1,
+            Clubs = 2,
             [Description("hearts")]
-            Hearts = 2,
+            Hearts = 3,
             [Description("diams")]
-            Diamonds = 3
+            Diamonds = 4
         }
     }
 }

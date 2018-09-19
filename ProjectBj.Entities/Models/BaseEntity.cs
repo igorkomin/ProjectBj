@@ -5,14 +5,14 @@ namespace ProjectBj.Entities
 {
     public class BaseEntity
     {
-        public BaseEntity()
-        {
-            CreationDate = DateTime.Now;
-        }
-
         [Key]
         public int Id { get; set; }
         [Computed]
         public DateTime CreationDate { get; set; }
+
+        public BaseEntity()
+        {
+            CreationDate = DateTime.Now;
+        }
     }
 }

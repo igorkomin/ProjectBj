@@ -243,8 +243,9 @@
     <TypeScriptCompile Include="src\app\shared\models\card.model.ts" />
     <TypeScriptCompile Include="src\app\shared\models\dealer.model.ts" />
     <TypeScriptCompile Include="src\app\shared\models\game.model.ts" />
+    <TypeScriptCompile Include="src\app\shared\models\gameresult.model.ts" />
     <TypeScriptCompile Include="src\app\shared\models\hand.model.ts" />
-    <TypeScriptCompile Include="src\app\shared\models\identifier.model.ts" />
+    <TypeScriptCompile Include="src\app\shared\models\request.model.ts" />
     <TypeScriptCompile Include="src\app\shared\models\history.model.ts" />
     <TypeScriptCompile Include="src\app\shared\models\system-log.model.ts" />
     <TypeScriptCompile Include="src\app\shared\models\login.model.ts" />

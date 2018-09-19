@@ -5,7 +5,7 @@ import { Settings } from 'src/app/shared/models/settings.model';
 import { Game } from 'src/app/shared/models/game.model';
 import { SystemLog } from 'src/app/shared/models/system-log.model';
 import { History } from 'src/app/shared/models/history.model';
-import { Identifier } from 'src/app/shared/models/identifier.model';
+import { Request } from 'src/app/shared/models/request.model';
 
 const apiUrl = '../api/game';
 const requestOptions = {
@@ -31,38 +31,38 @@ export class ApiService {
         return this.http.post<Game>(requestUrl, settings, requestOptions);
     }
 
-    hit(identifier: Identifier): Observable<Game> {
+    hit(identifier: Request): Observable<Game> {
         let requestUrl = `${apiUrl}/Hit`;
         return this.http.post<Game>(requestUrl, identifier, requestOptions);
     }
 
-    stand(identifier: Identifier): Observable<Game> {
+    stand(identifier: Request): Observable<Game> {
         let requestUrl = `${apiUrl}/Stand`;
         return this.http.post<Game>(requestUrl, identifier, requestOptions);
     }
 
-    double(identifier: Identifier): Observable<Game> {
+    double(identifier: Request): Observable<Game> {
         let requestUrl = `${apiUrl}/Double`;
         return this.http.post<Game>(requestUrl, identifier, requestOptions);
     }
 
-    surrender(identifier: Identifier): Observable<Game> {
+    surrender(identifier: Request): Observable<Game> {
         let requestUrl = `${apiUrl}/Surrender`;
         return this.http.post<Game>(requestUrl, identifier, requestOptions);
     }
 
     getHistory(sessionId: number): Observable<History> {
-        let requestUrl = `${apiUrl}/../History/GameHistory`;
+        let requestUrl = `${apiUrl}/../History/Game`;
         return this.http.post<History>(requestUrl, sessionId, requestOptions);
     }
 
     getFullHistory(): Observable<History> {
-        let requestUrl = `${apiUrl}/../History/FullHistory`;
+        let requestUrl = `${apiUrl}/../History/Full`;
         return this.http.get<History>(requestUrl, requestOptions);
     }
 
     getSystemLogs(): Observable<SystemLog> {
-        let requestUrl = `${apiUrl}/../Log/SystemLogs`;
+        let requestUrl = `${apiUrl}/../Log/Full`;
         return this.http.get<SystemLog>(requestUrl, requestOptions);
     }
 }

@@ -20,12 +20,12 @@ namespace ProjectBj.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<IHttpActionResult> SystemLogs()
+        public async Task<IHttpActionResult> Full()
         {
             try
             {
-                var model = await _service.GetSystemLogs();
-                return Ok(model);
+                List<FullLogView> view = await _service.GetSystemLogs();
+                return Ok(view);
             }
             catch (Exception exception)
             {

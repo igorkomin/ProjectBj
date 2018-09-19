@@ -18,11 +18,11 @@ namespace ProjectBj.DataAccess.Repositories
             _connectionString = connectionString;
         }
 
-        public async Task<IEnumerable<SystemLog>> GetAllLogs()
+        public async Task<IEnumerable<SystemLog>> GetAll()
         {
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
-                var systemLogs = await db.GetAllAsync<SystemLog>();
+                IEnumerable<SystemLog> systemLogs = await db.GetAllAsync<SystemLog>();
                 return systemLogs.AsList();
             }
         }

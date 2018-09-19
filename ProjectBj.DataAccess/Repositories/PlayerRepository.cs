@@ -40,9 +40,9 @@ namespace ProjectBj.DataAccess.Repositories
         {
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
-                var sqlQuery = "SELECT * FROM Players WHERE Name = @name";
-                var players = await db.QueryAsync<Player>(sqlQuery, new { name });
-                return players.AsList() ;
+                string sqlQuery = "SELECT * FROM Players WHERE Name = @name";
+                IEnumerable<Player> players = await db.QueryAsync<Player>(sqlQuery, new { name });
+                return players.AsList();
             }
         }
 
@@ -50,7 +50,7 @@ namespace ProjectBj.DataAccess.Repositories
         {
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
-                var player = await db.GetAsync<Player>(id);
+                Player player = await db.GetAsync<Player>(id);
                 return player;
             }
         }
@@ -65,7 +65,7 @@ namespace ProjectBj.DataAccess.Repositories
 
         public async Task AddCardToPlayerHand(Player player, int cardId, int sessionId)
         {
-            PlayerHand playerHand = new PlayerHand
+            var playerHand = new PlayerHand
             {
                 PlayerId = player.Id,
                 CardId = cardId,
@@ -81,11 +81,11 @@ namespace ProjectBj.DataAccess.Repositories
         {
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
-                var sqlQuery = @"SELECT DISTINCT p.* FROM PlayerHands ph
-                                     JOIN Players p ON ( ph.PlayerId = p.Id )
-                                     WHERE ph.SessionId = @sessionId
-                                     AND p.IsHuman = 0 AND p.InGame = 1";
-                var bots = await db.QueryAsync<Player>(sqlQuery, new { sessionId });
+                string sqlQuery = @"SELECT DISTINCT p.* FROM PlayerHands ph
+                                    JOIN Players p ON (ph.PlayerId = p.Id)
+                                    WHERE ph.SessionId = @sessionId
+                                    AND p.IsHuman = 0 AND p.InGame = 1";
+                IEnumerable<Player> bots = await db.QueryAsync<Player>(sqlQuery, new { sessionId });
                 return bots.AsList();
             }
         }
@@ -94,7 +94,7 @@ namespace ProjectBj.DataAccess.Repositories
         {
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
-                var sessionBots = await GetSessionBots(sessionId);
+                ICollection<Player> sessionBots = await GetSessionBots(sessionId);
                 await db.DeleteAsync(sessionBots);
             }
         }

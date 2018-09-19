@@ -21,7 +21,7 @@ namespace ProjectBj.BusinessLogic.Providers
 
         public async Task Create(string playerName, string message, int sessionId)
         {
-            History entry = new History
+            var entry = new History
             {
                 PlayerName = playerName,
                 SessionId = sessionId,
@@ -34,14 +34,14 @@ namespace ProjectBj.BusinessLogic.Providers
 
         public async Task<List<History>> Get(int sessionId)
         {
-            var logs = await _historyRepository.GetBySessionId(sessionId);
-            return logs.ToList();
+            ICollection<History> sessionHistory = await _historyRepository.GetBySessionId(sessionId);
+            return sessionHistory.ToList();
         }
 
         public async Task<List<History>> GetAll()
         {
-            var logs = await _historyRepository.GetAll();
-            return logs.ToList();
+            ICollection<History> fullHistory = await _historyRepository.GetAll();
+            return fullHistory.ToList();
         }
     }
 }

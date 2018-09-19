@@ -30,8 +30,8 @@ namespace ProjectBj.DataAccess.Repositories
         {
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
-                var sqlQuery = @"SELECT * FROM Logs WHERE SessionId = @sessionId";
-                var logs = await db.QueryAsync<History>(sqlQuery, new { sessionId });
+                string sqlQuery = @"SELECT * FROM Logs WHERE SessionId = @sessionId";
+                IEnumerable<History> logs = await db.QueryAsync<History>(sqlQuery, new { sessionId });
                 return logs.AsList();
             }
         }
@@ -40,7 +40,7 @@ namespace ProjectBj.DataAccess.Repositories
         {
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
-                var logs = await db.GetAllAsync<History>();
+                IEnumerable<History> logs = await db.GetAllAsync<History>();
                 return logs.AsList();
             }
         }

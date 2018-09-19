@@ -39,6 +39,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
     </Reference>
@@ -50,7 +51,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Helpers\MapHelper.cs" />
+    <Compile Include="Helpers\GameServiceHelper.cs" />
+    <Compile Include="Helpers\ViewMapHelpers\HistoryMapHelper.cs" />
+    <Compile Include="Helpers\ViewMapHelpers\SurrenderGameViewHelper.cs" />
+    <Compile Include="Helpers\ViewMapHelpers\LoadGameViewHelper.cs" />
+    <Compile Include="Helpers\ViewMapHelpers\HitGameViewHelper.cs" />
+    <Compile Include="Helpers\ViewMapHelpers\StandGameViewHelper.cs" />
+    <Compile Include="Helpers\ViewMapHelpers\DoubleGameViewHelper.cs" />
+    <Compile Include="Helpers\ViewMapHelpers\StartGameViewHelper.cs" />
+    <Compile Include="Interfaces\IGameServiceHelper.cs" />
     <Compile Include="Interfaces\IHistoryService.cs" />
     <Compile Include="Interfaces\ISystemLogService.cs" />
     <Compile Include="Providers\CardProvider.cs" />

@@ -17,12 +17,12 @@ namespace ProjectBj.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<IHttpActionResult> GameHistory([FromBody] int sessionId)
+        public async Task<IHttpActionResult> Game([FromBody] int sessionId)
         {
             try
             {
-                List<HistoryViewModel> history = await _service.GetSessionHistory(sessionId);
-                return Ok(history);
+                List<GameHistoryView> view = await _service.GetSessionHistory(sessionId);
+                return Ok(view);
             }
             catch (Exception exception)
             {
@@ -31,12 +31,12 @@ namespace ProjectBj.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<IHttpActionResult> FullHistory()
+        public async Task<IHttpActionResult> Full()
         {
             try
             {
-                List<HistoryViewModel> logs = await _service.GetFullHistory();
-                return Ok(logs);
+                List<FullHistoryView> view = await _service.GetFullHistory();
+                return Ok(view);
             }
             catch (Exception exception)
             {

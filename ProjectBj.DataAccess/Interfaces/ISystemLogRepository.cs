@@ -6,6 +6,6 @@ namespace ProjectBj.DataAccess.Interfaces
 {
     public interface ISystemLogRepository
     {
-        Task<IEnumerable<SystemLog>> GetAllLogs();
+        Task<IEnumerable<SystemLog>> GetAll();
     }
 }

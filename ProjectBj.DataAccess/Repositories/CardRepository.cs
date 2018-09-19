@@ -31,10 +31,10 @@ namespace ProjectBj.DataAccess.Repositories
         {
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
-                var sqlQuery = @"SELECT c.* FROM PlayerHands ph 
-                                     JOIN Cards c ON (ph.CardId = c.Id) 
-                                     WHERE ph.PlayerId = @playerId AND ph.SessionId = @sessionId";
-                var cards = await db.QueryAsync<Card>(sqlQuery, new { playerId, sessionId });
+                string sqlQuery = @"SELECT c.* FROM PlayerHands ph
+                                    JOIN Cards c ON (ph.CardId = c.Id)
+                                    WHERE ph.PlayerId = @playerId AND ph.SessionId = @sessionId";
+                IEnumerable<Card> cards = await db.QueryAsync<Card>(sqlQuery, new { playerId, sessionId });
                 return cards.AsList();
             }
         }
@@ -43,7 +43,7 @@ namespace ProjectBj.DataAccess.Repositories
         {
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
-                var cards = await db.GetAllAsync<Card>();
+                IEnumerable<Card> cards = await db.GetAllAsync<Card>();
                 return cards.AsList();
             }
         }
@@ -52,7 +52,9 @@ namespace ProjectBj.DataAccess.Repositories
         {
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
-                var sqlQuery = @"DELETE FROM PlayerHands WHERE PlayerId = @playerId AND SessionId = @sessionId";
+                string sqlQuery = @"DELETE FROM PlayerHands 
+                                    WHERE PlayerId = @playerId 
+                                    AND SessionId = @sessionId";
                 await db.QueryAsync(sqlQuery, new { playerId, sessionId });
             }
         }

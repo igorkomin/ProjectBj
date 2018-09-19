@@ -40,15 +40,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Game\Partial\CardInfo.cs" />
-    <Compile Include="Game\Partial\DealerInfo.cs" />
-    <Compile Include="Game\GameViewModel.cs" />
-    <Compile Include="Game\Partial\HandInfo.cs" />
-    <Compile Include="Game\Partial\GameIdentifier.cs" />
-    <Compile Include="Game\Partial\GameSettings.cs" />
-    <Compile Include="History\HistoryViewModel.cs" />
-    <Compile Include="Game\Partial\PlayerInfo.cs" />
-    <Compile Include="Logs\SystemLogViewModel.cs" />
+    <Compile Include="Game\ResponseHitGameView.cs" />
+    <Compile Include="Game\RequestDoubleGameView.cs" />
+    <Compile Include="Game\RequestHitGameView.cs" />
+    <Compile Include="Game\RequestSurrenderGameView.cs" />
+    <Compile Include="Game\RequestStartGameView.cs" />
+    <Compile Include="Game\RequestStandGameView.cs" />
+    <Compile Include="Game\RequestLoadGameView.cs" />
+    <Compile Include="Game\ResponseStandGameView.cs" />
+    <Compile Include="Game\ResponseStartGameView.cs" />
+    <Compile Include="Game\ResponseLoadGameView.cs" />
+    <Compile Include="Game\ResponseDoubleGameView.cs" />
+    <Compile Include="Game\ResponseSurrenderGameView.cs" />
+    <Compile Include="History\GameHistoryView.cs" />
+    <Compile Include="History\FullHistoryView.cs" />
+    <Compile Include="Logs\FullLogView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

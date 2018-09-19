@@ -18,7 +18,7 @@ namespace ProjectBj.BusinessLogic.Providers
 
         public async Task<GameSession> GetNew()
         {
-            GameSession session = new GameSession
+            var session = new GameSession
             {
                 TimeCreated = DateTime.Now
             };

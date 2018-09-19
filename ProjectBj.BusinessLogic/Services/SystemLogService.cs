@@ -1,5 +1,6 @@
 ﻿using ProjectBj.BusinessLogic.Interfaces;
 using ProjectBj.DataAccess.Interfaces;
+using ProjectBj.Entities;
 using ProjectBj.ViewModels.Logs;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -15,13 +16,13 @@ namespace ProjectBj.BusinessLogic.Services
             _systemLogRepository = systemLogRepository;
         }
 
-        public async Task<List<SystemLogViewModel>> GetSystemLogs()
+        public async Task<List<FullLogView>> GetSystemLogs()
         {
-            var systemLogs = await _systemLogRepository.GetAllLogs();
-            var systemLogViewModels = new List<SystemLogViewModel>();
+            IEnumerable<SystemLog> systemLogs = await _systemLogRepository.GetAll();
+            var systemLogViews = new List<FullLogView>();
             foreach (var log in systemLogs)
             {
-                SystemLogViewModel systemLogViewModel = new SystemLogViewModel
+                var LogView = new FullLogView
                 {
                     Id = log.Id,
                     CallSite = log.CallSite,
@@ -41,9 +42,9 @@ namespace ProjectBj.BusinessLogic.Services
                     Url = log.Url,
                     UserName = log.UserName
                 };
-                systemLogViewModels.Add(systemLogViewModel);
+                systemLogViews.Add(LogView);
             }
-            return systemLogViewModels;
+            return systemLogViews;
         }
     }
 }

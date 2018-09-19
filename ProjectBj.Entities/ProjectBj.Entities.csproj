@@ -53,6 +53,7 @@
     <Compile Include="Enums\GameResults.cs" />
     <Compile Include="Models\BaseEntity.cs" />
     <Compile Include="Models\Card.cs" />
+    <Compile Include="Models\Game.cs" />
     <Compile Include="Models\History.cs" />
     <Compile Include="Models\Player.cs" />
     <Compile Include="Models\PlayerHand.cs" />
