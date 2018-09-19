@@ -26,7 +26,7 @@ namespace ProjectBj.BusinessLogic.Providers
 
             if (bots.Count == 0 || bots == null)
             {
-                bots = await GetNewBotList(botnumber);
+                bots = await GetNewBots(botnumber);
             }
             return bots.ToList();
         }
@@ -120,7 +120,7 @@ namespace ProjectBj.BusinessLogic.Providers
             return dealer;
         }
 
-        private async Task<List<Player>> GetNewBotList(int number)
+        private async Task<List<Player>> GetNewBots(int number)
         {
             var bots = new List<Player>();
             for(int i = 0; i < number; i++)
