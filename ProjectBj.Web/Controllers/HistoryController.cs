@@ -1,4 +1,5 @@
 ﻿using ProjectBj.BusinessLogic.Interfaces;
+using ProjectBj.Logger;
 using ProjectBj.ViewModels.History;
 using System;
 using System.Collections.Generic;
@@ -26,6 +27,7 @@ namespace ProjectBj.Web.Controllers
             }
             catch (Exception exception)
             {
+                Log.Error(exception.Message);
                 return InternalServerError(exception);
             }
         }
@@ -40,6 +42,7 @@ namespace ProjectBj.Web.Controllers
             }
             catch (Exception exception)
             {
+                Log.Error(exception.Message);
                 return InternalServerError(exception);
             }
         }

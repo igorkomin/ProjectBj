@@ -1,4 +1,5 @@
 ﻿using ProjectBj.BusinessLogic.Interfaces;
+using ProjectBj.Logger;
 using ProjectBj.ViewModels.Game;
 using System;
 using System.Threading.Tasks;
@@ -25,6 +26,7 @@ namespace ProjectBj.MVC.Controllers
             }
             catch (Exception exception)
             {
+                Log.Error(exception.Message);
                 return InternalServerError(exception);
             }
         }
@@ -39,6 +41,7 @@ namespace ProjectBj.MVC.Controllers
             }
             catch (Exception exception)
             {
+                Log.Error(exception.Message);
                 return InternalServerError(exception);
             }
         }
@@ -53,6 +56,7 @@ namespace ProjectBj.MVC.Controllers
             }
             catch (Exception exception)
             {
+                Log.Error(exception.Message);
                 return InternalServerError(exception);
             }
         }
@@ -67,6 +71,7 @@ namespace ProjectBj.MVC.Controllers
             }
             catch (Exception exception)
             {
+                Log.Error(exception.Message);
                 return InternalServerError(exception);
             }
         }
@@ -81,6 +86,7 @@ namespace ProjectBj.MVC.Controllers
             }
             catch (Exception exception)
             {
+                Log.Error(exception.Message);
                 return InternalServerError(exception);
             }
         }
@@ -95,6 +101,7 @@ namespace ProjectBj.MVC.Controllers
             }
             catch (Exception exception)
             {
+                Log.Error(exception.Message);
                 return InternalServerError(exception);
             }
         }

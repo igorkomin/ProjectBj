@@ -1,10 +1,8 @@
 ﻿using ProjectBj.BusinessLogic.Interfaces;
+using ProjectBj.Logger;
 using ProjectBj.ViewModels.History;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 
@@ -29,6 +27,7 @@ namespace ProjectBj.MVC.Controllers
             }
             catch (Exception exception)
             {
+                Log.Error(exception.Message);
                 return InternalServerError(exception);
             }
         }
@@ -43,6 +42,7 @@ namespace ProjectBj.MVC.Controllers
             }
             catch (Exception exception)
             {
+                Log.Error(exception.Message);
                 return InternalServerError(exception);
             }
         }

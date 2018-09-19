@@ -1,12 +1,10 @@
-﻿using System;
+﻿using ProjectBj.BusinessLogic.Interfaces;
+using ProjectBj.Logger;
+using ProjectBj.ViewModels.Logs;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
-using ProjectBj.BusinessLogic.Interfaces;
-using ProjectBj.ViewModels.Logs;
 
 namespace ProjectBj.Web.Controllers
 {
@@ -29,6 +27,7 @@ namespace ProjectBj.Web.Controllers
             }
             catch (Exception exception)
             {
+                Log.Error(exception.Message);
                 return InternalServerError(exception);
             }
         }

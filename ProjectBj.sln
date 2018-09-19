@@ -10,6 +10,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectBj.BusinessLogic", "ProjectBj.BusinessLogic\ProjectBj.BusinessLogic.csproj", "{D8587967-8E91-44ED-851B-2FA11E44CC0A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectBj.Web", "ProjectBj.Web\ProjectBj.Web.csproj", "{924CA740-A4C5-48D0-8BA7-88C3E51CB8DB}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3E65020D-0401-4E2C-9073-09BB17602629} = {3E65020D-0401-4E2C-9073-09BB17602629}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectBj.ViewModels", "ProjectBj.ViewModels\ProjectBj.ViewModels.csproj", "{28004629-1A7A-4632-AB7D-A1857B170D46}"
 EndProject
