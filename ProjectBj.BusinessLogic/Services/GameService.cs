@@ -137,7 +137,7 @@ namespace ProjectBj.BusinessLogic.Services
                 gameView.Player.Id,
                 gameView.Dealer.Id
             };
-            foreach (var bot in gameView.Bots.Bots)
+            foreach (var bot in gameView.Bots)
             {
                 playerIds.Add(bot.Id);
             }

@@ -12,7 +12,7 @@ namespace ProjectBj.BusinessLogic.Helpers.ViewMapHelpers
             {
                 Player = GetPlayerSurrenderGameViewItem(player),
                 Dealer = GetDealerSurrenderGameViewItem(dealer),
-                Bots = GetBotsSurrenderGameViewItem(bots),
+                Bots = GetPlayerSurrenderGameViewItems(bots),
                 SessionId = sessionId
             };
             return responseSurrenderGameView;
@@ -66,9 +66,8 @@ namespace ProjectBj.BusinessLogic.Helpers.ViewMapHelpers
             return dealerSurrenderGameViewItem;
         }
 
-        private static BotsSurrenderGameViewItem GetBotsSurrenderGameViewItem(List<Player> bots)
+        private static List<PlayerSurrenderGameViewItem> GetPlayerSurrenderGameViewItems(List<Player> bots)
         {
-            BotsSurrenderGameViewItem botsSurrenderGameViewItem = new BotsSurrenderGameViewItem();
             var playerSurrenderGameViewItems = new List<PlayerSurrenderGameViewItem>();
             foreach (var bot in bots)
             {
@@ -79,8 +78,7 @@ namespace ProjectBj.BusinessLogic.Helpers.ViewMapHelpers
                 };
                 playerSurrenderGameViewItems.Add(playerSurrenderGameViewItem);
             }
-            botsSurrenderGameViewItem.Bots = playerSurrenderGameViewItems;
-            return botsSurrenderGameViewItem;
+            return playerSurrenderGameViewItems;
         }
     }
 }

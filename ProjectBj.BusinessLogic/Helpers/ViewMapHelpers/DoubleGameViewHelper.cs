@@ -12,7 +12,7 @@ namespace ProjectBj.BusinessLogic.Helpers.ViewMapHelpers
             {
                 Player = GetPlayerDoubleGameViewItem(player),
                 Dealer = GetDealerDoubleGameViewItem(dealer),
-                Bots = GetBotsDoubleGameViewItem(bots),
+                Bots = GetPlayerDoubleGameViewItems(bots),
                 SessionId = sessionId
             };
             return responseDoubleGameView;
@@ -66,9 +66,8 @@ namespace ProjectBj.BusinessLogic.Helpers.ViewMapHelpers
             return dealerDoubleGameViewItem;
         }
 
-        private static BotsDoubleGameViewItem GetBotsDoubleGameViewItem(List<Player> bots)
+        private static List<PlayerDoubleGameViewItem> GetPlayerDoubleGameViewItems(List<Player> bots)
         {
-            var botsDoubleGameViewItem = new BotsDoubleGameViewItem();
             var playerDoubleGameViewItems = new List<PlayerDoubleGameViewItem>();
             
             foreach (var bot in bots)
@@ -80,8 +79,7 @@ namespace ProjectBj.BusinessLogic.Helpers.ViewMapHelpers
                 };
                 playerDoubleGameViewItems.Add(playerDoubleGameViewItem);
             }
-            botsDoubleGameViewItem.Bots = playerDoubleGameViewItems;
-            return botsDoubleGameViewItem;
+            return playerDoubleGameViewItems;
         }
     }
 }

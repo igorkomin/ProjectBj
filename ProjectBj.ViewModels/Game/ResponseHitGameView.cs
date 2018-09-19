@@ -7,11 +7,6 @@ namespace ProjectBj.ViewModels.Game
         public int SessionId { get; set; }
         public DealerHitGameViewItem Dealer { get; set; }
         public PlayerHitGameViewItem Player { get; set; }
-        public BotsHitGameViewItem Bots { get; set; }
-    }
-
-    public class BotsHitGameViewItem
-    {
         public List<PlayerHitGameViewItem> Bots { get; set; }
     }
 

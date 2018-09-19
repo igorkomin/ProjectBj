@@ -32,7 +32,7 @@ namespace ProjectBj.BusinessLogic.Helpers
             gameView.Player.Hand = StartGameViewHelper.GetHandLoadGameViewItem(playerCards, playerScore);
             gameView.Dealer.Hand = StartGameViewHelper.GetHandLoadGameViewItem(dealerCards, dealerScore);
 
-            foreach (var bot in gameView.Bots.Bots)
+            foreach (var bot in gameView.Bots)
             {
                 List<Card> botCards = await GetCards(bot.Id, sessionId);
                 int botScore = await GetHandScore(bot.Id, sessionId);
@@ -55,7 +55,7 @@ namespace ProjectBj.BusinessLogic.Helpers
             gameView.Player.Hand = LoadGameViewHelper.GetHandLoadGameViewItem(playerCards, playerScore);
             gameView.Dealer.Hand = LoadGameViewHelper.GetHandLoadGameViewItem(dealerCards, dealerScore);
 
-            foreach (var bot in gameView.Bots.Bots)
+            foreach (var bot in gameView.Bots)
             {
                 List<Card> botCards = await GetCards(bot.Id, sessionId);
                 int botScore = await GetHandScore(bot.Id, sessionId);
@@ -85,7 +85,7 @@ namespace ProjectBj.BusinessLogic.Helpers
                 gameView.Player.GameResult.Result = playerGameResult;
             }
 
-            foreach (var bot in gameView.Bots.Bots)
+            foreach (var bot in gameView.Bots)
             {
                 List<Card> botCards = await GetCards(bot.Id, sessionId);
                 int botScore = await GetHandScore(bot.Id, sessionId);
@@ -118,7 +118,7 @@ namespace ProjectBj.BusinessLogic.Helpers
             gameView.Player.GameResult.State = playerGameState;
             gameView.Player.GameResult.Result = playerGameResult;
 
-            foreach (var bot in gameView.Bots.Bots)
+            foreach (var bot in gameView.Bots)
             {
                 List<Card> botCards = await GetCards(bot.Id, sessionId);
                 int botScore = await GetHandScore(bot.Id, sessionId);
@@ -148,7 +148,7 @@ namespace ProjectBj.BusinessLogic.Helpers
             gameView.Player.GameResult.State = playerGameState;
             gameView.Player.GameResult.Result = playerGameResult;
 
-            foreach (var bot in gameView.Bots.Bots)
+            foreach (var bot in gameView.Bots)
             {
                 List<Card> botCards = await GetCards(bot.Id, sessionId);
                 int botScore = await GetHandScore(bot.Id, sessionId);
@@ -178,7 +178,7 @@ namespace ProjectBj.BusinessLogic.Helpers
             gameView.Player.GameResult.State = playerGameState;
             gameView.Player.GameResult.Result = playerGameResult;
 
-            foreach (var bot in gameView.Bots.Bots)
+            foreach (var bot in gameView.Bots)
             {
                 List<Card> botCards = await GetCards(bot.Id, sessionId);
                 int botScore = await GetHandScore(bot.Id, sessionId);

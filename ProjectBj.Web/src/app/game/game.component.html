@@ -76,7 +76,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="bot-seat col-md-1" *ngFor="let bot of game?.bots.bots">
+                <div class="bot-seat col-md-1" *ngFor="let bot of game?.bots">
                     <div *ngIf="bot?.gameResult.state > 0" class="ribbon {{ bot?.gameResult.result | lowercase }}">
                         <span>{{ bot?.gameResult.result }}</span>
                     </div>
