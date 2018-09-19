@@ -10,8 +10,8 @@ namespace ProjectBj.BusinessLogic.Helpers
 {
     public class GameServiceHelper : IGameServiceHelper
     {
-        ICardProvider _cardProvider;
-        IPlayerProvider _playerProvider;
+        private readonly ICardProvider _cardProvider;
+        private readonly IPlayerProvider _playerProvider;
 
         public GameServiceHelper(ICardProvider cardProvider, IPlayerProvider playerProvider)
         {
@@ -276,7 +276,6 @@ namespace ProjectBj.BusinessLogic.Helpers
 
         private async Task<List<Card>> GetCards(int playerId, int sessionId)
         {
-            Player player = await _playerProvider.GetPlayerById(playerId);
             List<Card> cards = await _cardProvider.GetPlayerHand(playerId, sessionId);
             return cards;
         }
