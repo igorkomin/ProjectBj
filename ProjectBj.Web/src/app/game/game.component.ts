@@ -53,7 +53,6 @@ export class GameComponent implements OnInit {
         gameSettings.botsNumber = this.botsNumber;
         this.apiService.newGame(gameSettings).subscribe(
             response => {
-                console.log(response);
                 this.game = response;
                 this.sessionId = response.sessionId;
                 this.playerId = response.player.id;
