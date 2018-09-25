@@ -1,4 +1,4 @@
-export class Request {
+export class GameRequest {
     playerId: number;
     sessionId: number;
 }

@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Game } from 'src/app/shared/models/game.model';
 import { History } from 'src/app/shared/models/history.model';
-import { Request } from 'src/app/shared/models/request.model';
-import { Settings } from 'src/app/shared/models/settings.model';
+import { GameRequest } from 'src/app/shared/models/game-request.model';
+import { NewGameRequest } from 'src/app/shared/models/new-game-request.model';
 import { ApiService } from 'src/app/shared/api.service';
 
 @Component({
@@ -48,7 +48,7 @@ export class GameComponent implements OnInit {
 
     newGame(): void {
         this.error = undefined;
-        let gameSettings = new Settings();
+        let gameSettings = new NewGameRequest();
         gameSettings.playerName = this.playerName;
         gameSettings.botsNumber = this.botsNumber;
         this.apiService.newGame(gameSettings).subscribe(
@@ -67,7 +67,7 @@ export class GameComponent implements OnInit {
 
     loadGame(): void {
         this.error = undefined;
-        let gameSettings = new Settings();
+        let gameSettings = new NewGameRequest();
         gameSettings.playerName = this.playerName;
         this.apiService.loadGame(gameSettings).subscribe(
             response => {
@@ -85,10 +85,10 @@ export class GameComponent implements OnInit {
 
     hit(): void {
         this.error = undefined;
-        let identifier = new Request();
-        identifier.playerId = this.playerId;
-        identifier.sessionId = this.sessionId;
-        this.apiService.hit(identifier).subscribe(
+        let request = new GameRequest();
+        request.playerId = this.playerId;
+        request.sessionId = this.sessionId;
+        this.apiService.hit(request).subscribe(
             response => {
                 this.game = response;
                 this.getLogs();
@@ -102,10 +102,10 @@ export class GameComponent implements OnInit {
 
     stand(): void {
         this.error = undefined;
-        let identifier = new Request();
-        identifier.playerId = this.playerId;
-        identifier.sessionId = this.sessionId;
-        this.apiService.stand(identifier).subscribe(
+        let request = new GameRequest();
+        request.playerId = this.playerId;
+        request.sessionId = this.sessionId;
+        this.apiService.stand(request).subscribe(
             response => {
                 this.game = response;
                 this.getLogs();
@@ -119,10 +119,10 @@ export class GameComponent implements OnInit {
 
     doubleDown(): void {
         this.error = undefined;
-        let identifier = new Request();
-        identifier.playerId = this.playerId;
-        identifier.sessionId = this.sessionId;
-        this.apiService.double(identifier).subscribe(
+        let request = new GameRequest();
+        request.playerId = this.playerId;
+        request.sessionId = this.sessionId;
+        this.apiService.double(request).subscribe(
             response => {
                 this.game = response;
                 this.getLogs();
@@ -136,10 +136,10 @@ export class GameComponent implements OnInit {
 
     surrender(): void {
         this.error = undefined;
-        let identifier = new Request();
-        identifier.playerId = this.playerId;
-        identifier.sessionId = this.sessionId;
-        this.apiService.surrender(identifier).subscribe(
+        let request = new GameRequest();
+        request.playerId = this.playerId;
+        request.sessionId = this.sessionId;
+        this.apiService.surrender(request).subscribe(
             response => {
                 this.game = response;
                 this.getLogs();
