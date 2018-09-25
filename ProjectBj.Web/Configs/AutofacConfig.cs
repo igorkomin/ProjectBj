@@ -1,9 +1,9 @@
 ﻿using Autofac;
 using Autofac.Integration.WebApi;
-using System.Reflection;
-using System.Web.Http;
 using ProjectBj.BusinessLogic.Configs;
+using System.Reflection;
 using System.Web.Configuration;
+using System.Web.Http;
 
 namespace ProjectBj.Web.Configs
 {
