@@ -31,8 +31,8 @@ namespace ProjectBj.DataAccess.Repositories
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
                 string sqlQuery = @"SELECT * FROM History WHERE SessionId = @sessionId";
-                IEnumerable<History> logs = await db.QueryAsync<History>(sqlQuery, new { sessionId });
-                return logs;
+                IEnumerable<History> history = await db.QueryAsync<History>(sqlQuery, new { sessionId });
+                return history;
             }
         }
 
@@ -40,8 +40,8 @@ namespace ProjectBj.DataAccess.Repositories
         {
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
-                IEnumerable<History> logs = await db.GetAllAsync<History>();
-                return logs;
+                IEnumerable<History> history = await db.GetAllAsync<History>();
+                return history;
             }
         }
     }
