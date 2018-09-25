@@ -82,7 +82,7 @@ namespace ProjectBj.BusinessLogic.Providers
         {
             Log.Info(StringHelper.PullingDeckMessage);
             IEnumerable<Card> deck = await _cardRepository.GetAll();
-            if (deck.ToList().Count == 0)
+            if (deck.Count() == 0)
             {
                 Log.Info(StringHelper.NoDeckInDbMessage);
                 return null;
