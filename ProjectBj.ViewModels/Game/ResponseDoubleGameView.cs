@@ -4,15 +4,15 @@ namespace ProjectBj.ViewModels.Game
 {
     public class ResponseDoubleGameView
     {
-        public int SessionId { get; set; }
+        public long SessionId { get; set; }
         public DealerDoubleGameViewItem Dealer { get; set; }
         public PlayerDoubleGameViewItem Player { get; set; }
-        public List<PlayerDoubleGameViewItem> Bots { get; set; }
+        public IEnumerable<PlayerDoubleGameViewItem> Bots { get; set; }
     }
 
     public class DealerDoubleGameViewItem
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
         public string Name { get; set; }
         public HandDoubleGameViewItem Hand { get; set; }
     }
@@ -42,7 +42,7 @@ namespace ProjectBj.ViewModels.Game
 
     public class HandDoubleGameViewItem
     {
-        public List<CardDoubleGameViewItem> Cards { get; set; }
+        public IEnumerable<CardDoubleGameViewItem> Cards { get; set; }
         public int Score { get; set; }
     }
 

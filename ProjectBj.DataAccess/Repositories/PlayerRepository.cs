@@ -27,7 +27,7 @@ namespace ProjectBj.DataAccess.Repositories
             }
         }
 
-        public async Task<ICollection<Player>> Insert(ICollection<Player> players)
+        public async Task<IEnumerable<Player>> Insert(IEnumerable<Player> players)
         {
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
@@ -36,17 +36,17 @@ namespace ProjectBj.DataAccess.Repositories
             }
         }
 
-        public async Task<ICollection<Player>> Find(string name)
+        public async Task<IEnumerable<Player>> Find(string name)
         {
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
                 string sqlQuery = "SELECT * FROM Players WHERE Name = @name";
                 IEnumerable<Player> players = await db.QueryAsync<Player>(sqlQuery, new { name });
-                return players.AsList();
+                return players;
             }
         }
 
-        public async Task<Player> GetById(int id)
+        public async Task<Player> GetById(long id)
         {
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
@@ -63,7 +63,7 @@ namespace ProjectBj.DataAccess.Repositories
             }
         }
 
-        public async Task AddCardToPlayerHand(Player player, int cardId, int sessionId)
+        public async Task AddCardToPlayerHand(Player player, long cardId, long sessionId)
         {
             var playerHand = new PlayerHand
             {
@@ -77,7 +77,7 @@ namespace ProjectBj.DataAccess.Repositories
             }
         }
 
-        public async Task<ICollection<Player>> GetSessionBots(int sessionId)
+        public async Task<IEnumerable<Player>> GetSessionBots(long sessionId)
         {
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
@@ -86,15 +86,15 @@ namespace ProjectBj.DataAccess.Repositories
                                     WHERE ph.SessionId = @sessionId
                                     AND p.IsHuman = 0 AND p.InGame = 1";
                 IEnumerable<Player> bots = await db.QueryAsync<Player>(sqlQuery, new { sessionId });
-                return bots.AsList();
+                return bots;
             }
         }
 
-        public async Task DeleteBotsFromSession(int sessionId)
+        public async Task DeleteBotsFromSession(long sessionId)
         {
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
-                ICollection<Player> sessionBots = await GetSessionBots(sessionId);
+                IEnumerable<Player> sessionBots = await GetSessionBots(sessionId);
                 await db.DeleteAsync(sessionBots);
             }
         }

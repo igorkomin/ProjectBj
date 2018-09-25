@@ -7,7 +7,6 @@ namespace ProjectBj.Entities
     public class GameSession : BaseEntity
     {
         public bool IsOpen { get; set; }
-        public DateTime TimeCreated { get; set; }
 
         public GameSession()
         {

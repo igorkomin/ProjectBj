@@ -1,13 +1,12 @@
-﻿using Dapper.Contrib.Extensions;
-using System;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace ProjectBj.Entities
 {
     public class BaseEntity
     {
         [Key]
-        public int Id { get; set; }
-        [Computed]
+        public long Id { get; set; }
         public DateTime CreationDate { get; set; }
 
         public BaseEntity()

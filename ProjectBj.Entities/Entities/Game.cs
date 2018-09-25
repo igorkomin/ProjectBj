@@ -6,6 +6,6 @@ namespace ProjectBj.Entities
     {
         public Player Dealer { get; set; }
         public Player Player { get; set; }
-        public List<Player> Bots { get; set; }
+        public IEnumerable<Player> Bots { get; set; }
     }
 }

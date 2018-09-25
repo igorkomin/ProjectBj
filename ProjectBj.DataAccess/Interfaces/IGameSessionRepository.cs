@@ -5,9 +5,9 @@ namespace ProjectBj.DataAccess.Interfaces
 {
     public interface IGameSessionRepository
     {
-        Task<GameSession> GetById(int id);
+        Task<GameSession> GetById(long id);
         Task<GameSession> Insert(GameSession session);
-        Task<GameSession> GetFirstOpen(int playerId);
+        Task<GameSession> GetFirstOpen(long playerId);
         Task Update(GameSession session);
     }
 }

@@ -22,7 +22,7 @@ namespace ProjectBj.Web.Controllers
         {
             try
             {
-                List<GameHistoryView> view = await _service.GetSessionHistory(sessionId);
+                IEnumerable<GameHistoryView> view = await _service.GetSessionHistory(sessionId);
                 return Ok(view);
             }
             catch (Exception exception)
@@ -37,7 +37,7 @@ namespace ProjectBj.Web.Controllers
         {
             try
             {
-                List<FullHistoryView> view = await _service.GetFullHistory();
+                IEnumerable<FullHistoryView> view = await _service.GetFullHistory();
                 return Ok(view);
             }
             catch (Exception exception)

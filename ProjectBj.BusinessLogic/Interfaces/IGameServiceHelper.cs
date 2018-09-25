@@ -9,12 +9,12 @@ namespace ProjectBj.BusinessLogic.Interfaces
 {
     public interface IGameServiceHelper
     {
-        Task<int> GetHandScore(int playerId, int sessionId);
-        Task<ResponseStartGameView> GetStartGameView(int playerId, int sessionId);
-        Task<ResponseLoadGameView> GetLoadGameView(int playerId, int sessionId);
-        Task<ResponseHitGameView> GetHitGameView(int playerId, int sessionId, bool isLast);
-        Task<ResponseStandGameView> GetStandGameView(int playerId, int sessionId);
-        Task<ResponseDoubleGameView> GetDoubleGameView(int playerId, int sessionId);
-        Task<ResponseSurrenderGameView> GetSurrenderGameView(int playerId, int sessionId);
+        Task<int> GetHandScore(long playerId, long sessionId);
+        Task<ResponseStartGameView> GetStartGameView(long playerId, long sessionId);
+        Task<ResponseLoadGameView> GetLoadGameView(long playerId, long sessionId);
+        Task<ResponseHitGameView> GetHitGameView(long playerId, long sessionId, bool isLast);
+        Task<ResponseStandGameView> GetStandGameView(long playerId, long sessionId);
+        Task<ResponseDoubleGameView> GetDoubleGameView(long playerId, long sessionId);
+        Task<ResponseSurrenderGameView> GetSurrenderGameView(long playerId, long sessionId);
     }
 }

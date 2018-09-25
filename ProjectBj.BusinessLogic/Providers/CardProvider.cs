@@ -20,9 +20,9 @@ namespace ProjectBj.BusinessLogic.Providers
             _cardRepository = cardRepository;
         }
 
-        public async Task<List<Card>> GetDeck()
+        public async Task<IEnumerable<Card>> GetDeck()
         {
-            List<Card> deck = await GetExistingDeck();
+            IEnumerable<Card> deck = await GetExistingDeck();
             if (deck == null)
             {
                 deck = GetNewDeck();
@@ -31,24 +31,25 @@ namespace ProjectBj.BusinessLogic.Providers
             return deck;
         }
 
-        public async Task<List<Card>> GetShuffledDeck()
+        public async Task<Card> GetRandomCard()
         {
-            List<Card> shuffledDeck = ShuffleDeck(await GetDeck());
-            return shuffledDeck;
+            IEnumerable<Card> shuffledDeck = ShuffleDeck(await GetDeck());
+            Card card = shuffledDeck.FirstOrDefault();
+            return card;
         }
 
-        public async Task<List<Card>> GetPlayerHand(int playerId, int sessionId)
+        public async Task<IEnumerable<Card>> GetPlayerHand(long playerId, long sessionId)
         {
-            ICollection<Card> cards = await _cardRepository.Get(playerId, sessionId);
-            return cards.ToList();
+            IEnumerable<Card> cards = await _cardRepository.Get(playerId, sessionId);
+            return cards;
         }
 
-        public async Task ClearPlayerHand(int playerId, int sessionId)
+        public async Task ClearPlayerHand(long playerId, long sessionId)
         {
             await _cardRepository.DeletePlayerHand(playerId, sessionId);
         }
 
-        private List<Card> GetNewDeck()
+        private IEnumerable<Card> GetNewDeck()
         {
             Log.Info(StringHelper.CreatingDeckMessage);
             var deck = new List<Card>();
@@ -70,28 +71,28 @@ namespace ProjectBj.BusinessLogic.Providers
             }
         }
 
-        private async Task<List<Card>> GetExistingDeck()
+        private async Task<IEnumerable<Card>> GetExistingDeck()
         {
             Log.Info(StringHelper.PullingDeckMessage);
-            ICollection<Card> deck = await _cardRepository.GetAll();
+            IEnumerable<Card> deck = await _cardRepository.GetAll();
             if (deck.ToList().Count == 0)
             {
                 Log.Info(StringHelper.NoDeckInDbMessage);
                 return null;
             }
-            return deck.ToList();
+            return deck;
         }
 
-        private async Task SaveDeck(List<Card> deck)
+        private async Task SaveDeck(IEnumerable<Card> deck)
         {
             Log.Info(StringHelper.SavingDeckMessage);
             await _cardRepository.Insert(deck);
         }
 
-        private static List<Card> ShuffleDeck(List<Card> deck)
+        private static IEnumerable<Card> ShuffleDeck(IEnumerable<Card> deck)
         {
             Random random = new Random(Guid.NewGuid().GetHashCode());
-            List<Card> shuffledDeck = deck.OrderBy(item => random.Next(0, deck.Count)).ToList();
+            IEnumerable<Card> shuffledDeck = deck.OrderBy(item => random.Next(0, deck.Count())).ToList();
             Log.Info(StringHelper.DeckShuffledMessage);
             return shuffledDeck;
         }

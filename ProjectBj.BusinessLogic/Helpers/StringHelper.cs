@@ -18,17 +18,17 @@
         public static readonly string NameReservedMessage = "This name is reserved";
         public static readonly string NoGameToLoadMessage = "No game to load";
 
-        public static string GetGameStartedMessage(int sessionId)
+        public static string GetGameStartedMessage(long sessionId)
         {
             return $"Game id{sessionId} started";
         }
 
-        public static string GetGameLoadedMessage(int sessionId)
+        public static string GetGameLoadedMessage(long sessionId)
         {
             return $"Game id{sessionId} loaded";
         }
 
-        public static string GetGameEndedMessage(int sessionId)
+        public static string GetGameEndedMessage(long sessionId)
         {
             return $"Game id{sessionId} ended";
         }
@@ -38,22 +38,22 @@
             return $"takes {cardRank} of {cardSuit}";
         }
 
-        public static string GetPlayerIdHitsMessage(int playerId)
+        public static string GetPlayerIdHitsMessage(long playerId)
         {
             return $"Player id{playerId} {ChoseToHitMessage}";
         }
 
-        public static string GetPlayerIdStandsMessage(int playerId)
+        public static string GetPlayerIdStandsMessage(long playerId)
         {
             return $"Player id{playerId} {ChoseToStandMessage}";
         }
 
-        public static string GetPlayerIdDoubleDownMessage(int playerId)
+        public static string GetPlayerIdDoubleDownMessage(long playerId)
         {
             return $"Player id{playerId} {ChoseToDoubleMessage}";
         }
         
-        public static string GetPlayerIdSurrenderMessage(int playerId)
+        public static string GetPlayerIdSurrenderMessage(long playerId)
         {
             return $"Player id{playerId} {ChoseToSurrenderMessage}";
         }

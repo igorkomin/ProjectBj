@@ -28,7 +28,7 @@ namespace ProjectBj.DataAccess.Repositories
             }
         }
 
-        public async Task<GameSession> GetById(int id)
+        public async Task<GameSession> GetById(long id)
         {
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
@@ -45,7 +45,7 @@ namespace ProjectBj.DataAccess.Repositories
             }
         }
 
-        public async Task<GameSession> GetFirstOpen(int playerId)
+        public async Task<GameSession> GetFirstOpen(long playerId)
         {
             using (IDbConnection db = new SqlConnection(_connectionString))
             {

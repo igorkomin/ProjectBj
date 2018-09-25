@@ -12,13 +12,14 @@ namespace ProjectBj.Web.Configs
         public static IContainer ConfigureContainer()
         {
             var builder = new ContainerBuilder();
-            var config = GlobalConfiguration.Configuration;
-            
+            HttpConfiguration config = GlobalConfiguration.Configuration;
+            string connectionString = WebConfigurationManager.ConnectionStrings["DBConnection"].ConnectionString;
+
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
 
-            AutofacServiceTypeRegistry.RegisterTypes(builder);
-            
-            var container = builder.Build();
+            AutofacServiceTypeRegistry.RegisterTypes(builder, connectionString);
+
+            IContainer container = builder.Build();
             config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
             return container;
         }

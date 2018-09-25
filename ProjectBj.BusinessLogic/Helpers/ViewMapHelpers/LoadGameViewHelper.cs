@@ -6,7 +6,7 @@ namespace ProjectBj.BusinessLogic.Helpers.ViewMapHelpers
 {
     public static class LoadGameViewHelper
     {
-        public static ResponseLoadGameView GetLoadGameView(int sessionId, Player dealer, Player player, List<Player> bots)
+        public static ResponseLoadGameView GetLoadGameView(long sessionId, Player dealer, Player player, IEnumerable<Player> bots)
         {
             var responseLoadGameView = new ResponseLoadGameView
             {
@@ -18,9 +18,9 @@ namespace ProjectBj.BusinessLogic.Helpers.ViewMapHelpers
             return responseLoadGameView;
         }
 
-        public static HandLoadGameViewItem GetHandLoadGameViewItem(List<Card> cards, int score)
+        public static HandLoadGameViewItem GetHandLoadGameViewItem(IEnumerable<Card> cards, int score)
         {
-            List<CardLoadGameViewItem> cardLoadGameViewItems = GetCardLoadGameViewItems(cards);
+            IEnumerable<CardLoadGameViewItem> cardLoadGameViewItems = GetCardLoadGameViewItems(cards);
             var handLoadGameViewItem = new HandLoadGameViewItem
             {
                 Cards = cardLoadGameViewItems,
@@ -29,7 +29,7 @@ namespace ProjectBj.BusinessLogic.Helpers.ViewMapHelpers
             return handLoadGameViewItem;
         }
 
-        private static List<CardLoadGameViewItem> GetCardLoadGameViewItems(List<Card> cards)
+        private static IEnumerable<CardLoadGameViewItem> GetCardLoadGameViewItems(IEnumerable<Card> cards)
         {
             var cardLoadGameViewItems = new List<CardLoadGameViewItem>();
             foreach (var card in cards)
@@ -66,7 +66,7 @@ namespace ProjectBj.BusinessLogic.Helpers.ViewMapHelpers
             return dealerLoadGameViewItem;
         }
 
-        private static List<PlayerLoadGameViewItem> GetPlayerLoadGameViewItems(List<Player> bots)
+        private static IEnumerable<PlayerLoadGameViewItem> GetPlayerLoadGameViewItems(IEnumerable<Player> bots)
         {
             var playerLoadGameViewItems = new List<PlayerLoadGameViewItem>();
             foreach (var bot in bots)

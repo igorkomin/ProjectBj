@@ -7,7 +7,7 @@ namespace ProjectBj.DataAccess.Interfaces
     public interface IHistoryRepository
     {
         Task Create(History entry);
-        Task<ICollection<History>> GetAll();
-        Task<ICollection<History>> GetBySessionId(int sessionId);
+        Task<IEnumerable<History>> GetAll();
+        Task<IEnumerable<History>> GetBySessionId(long sessionId);
     }
 }

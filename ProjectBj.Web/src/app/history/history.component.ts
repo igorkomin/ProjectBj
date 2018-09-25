@@ -4,11 +4,11 @@ import { State, process } from '@progress/kendo-data-query';
 import { ApiService } from 'src/app/shared/api.service';
 
 @Component({
-    selector: 'app-gamelogs',
-    templateUrl: 'gamelogs.component.html',
+    selector: 'app-history',
+    templateUrl: 'history.component.html',
 })
-export class GamelogsComponent implements OnInit {
-    logs: any;
+export class HistoryComponent implements OnInit {
+    history: any;
     data: Object[];
 
     public allowUnsort = true;
@@ -29,14 +29,14 @@ export class GamelogsComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.getLogs();
+        this.getHistory();
     }
 
-    getLogs() {
+    getHistory() {
         this.apiService.getFullHistory().subscribe(
             response => {
-                this.logs = response;
-                this.gridView = process(this.logs, this.state);
+                this.history = response;
+                this.gridView = process(this.history, this.state);
             },
             exception => {
                 console.error(exception);
@@ -46,6 +46,6 @@ export class GamelogsComponent implements OnInit {
 
     dataStateChange(state: DataStateChangeEvent): void {
         this.state = state;
-        this.gridView = process(this.logs, this.state);
+        this.gridView = process(this.history, this.state);
     }
 }

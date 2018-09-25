@@ -18,7 +18,7 @@ namespace ProjectBj.DataAccess.Repositories
             _connectionString = connectionString;
         }
 
-        public async Task<ICollection<Card>> Insert(ICollection<Card> deck)
+        public async Task<IEnumerable<Card>> Insert(IEnumerable<Card> deck)
         {
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
@@ -27,7 +27,7 @@ namespace ProjectBj.DataAccess.Repositories
             return deck;
         }
 
-        public async Task<ICollection<Card>> Get(int playerId, int sessionId)
+        public async Task<IEnumerable<Card>> Get(long playerId, long sessionId)
         {
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
@@ -35,20 +35,20 @@ namespace ProjectBj.DataAccess.Repositories
                                     JOIN Cards c ON (ph.CardId = c.Id)
                                     WHERE ph.PlayerId = @playerId AND ph.SessionId = @sessionId";
                 IEnumerable<Card> cards = await db.QueryAsync<Card>(sqlQuery, new { playerId, sessionId });
-                return cards.AsList();
+                return cards;
             }
         }
 
-        public async Task<ICollection<Card>> GetAll()
+        public async Task<IEnumerable<Card>> GetAll()
         {
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
                 IEnumerable<Card> cards = await db.GetAllAsync<Card>();
-                return cards.AsList();
+                return cards;
             }
         }
 
-        public async Task DeletePlayerHand(int playerId, int sessionId)
+        public async Task DeletePlayerHand(long playerId, long sessionId)
         {
             using (IDbConnection db = new SqlConnection(_connectionString))
             {

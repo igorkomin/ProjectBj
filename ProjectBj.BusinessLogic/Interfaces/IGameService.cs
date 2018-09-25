@@ -8,9 +8,9 @@ namespace ProjectBj.BusinessLogic.Interfaces
     {
         Task<ResponseStartGameView> GetNewGame(string playerName, int botsNumber);
         Task<ResponseLoadGameView> GetUnfinishedGame(string playerName);
-        Task<ResponseHitGameView> MakeHitDecision(int playerId, int sessionId);
-        Task<ResponseStandGameView> MakeStandDecision(int playerId, int sessionId);
-        Task<ResponseDoubleGameView> MakeDoubleDownDecision(int playerId, int sessionId);
-        Task<ResponseSurrenderGameView> MakeSurrenderDecision(int playerId, int sessionId);
+        Task<ResponseHitGameView> MakeHitDecision(long playerId, long sessionId);
+        Task<ResponseStandGameView> MakeStandDecision(long playerId, long sessionId);
+        Task<ResponseDoubleGameView> MakeDoubleDownDecision(long playerId, long sessionId);
+        Task<ResponseSurrenderGameView> MakeSurrenderDecision(long playerId, long sessionId);
     }
 }

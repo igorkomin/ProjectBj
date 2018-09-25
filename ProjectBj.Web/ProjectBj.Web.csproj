@@ -155,7 +155,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="src\app\gamelogs\gamelogs.component.html" />
+    <Content Include="src\app\history\history.component.html" />
     <Content Include="src\app\login\login.component.html" />
     <Content Include="src\assets\bg.jpg" />
     <Content Include="src\assets\Cards\faces\JC.gif" />
@@ -243,7 +243,7 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="src\app\logs\logs.component.ts" />
-    <TypeScriptCompile Include="src\app\gamelogs\gamelogs.component.ts" />
+    <TypeScriptCompile Include="src\app\history\history.component.ts" />
     <TypeScriptCompile Include="src\app\shared\models\card.model.ts" />
     <TypeScriptCompile Include="src\app\shared\models\dealer.model.ts" />
     <TypeScriptCompile Include="src\app\shared\models\game.model.ts" />
@@ -260,8 +260,8 @@
     <TypeScriptCompile Include="src\app\game\game.component.ts" />
     <TypeScriptCompile Include="src\app\login\login.component.ts" />
     <TypeScriptCompile Include="src\app\app.module.ts" />
-    <TypeScriptCompile Include="src\app\gamelogs\gamelogs-routing.module.ts" />
-    <TypeScriptCompile Include="src\app\gamelogs\gamelogs.module.ts" />
+    <TypeScriptCompile Include="src\app\history\history-routing.module.ts" />
+    <TypeScriptCompile Include="src\app\history\history.module.ts" />
     <TypeScriptCompile Include="src\app\game\game-routing.module.ts" />
     <TypeScriptCompile Include="src\app\game\game.module.ts" />
     <TypeScriptCompile Include="src\app\login\login-routing.module.ts" />

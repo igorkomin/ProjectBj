@@ -20,13 +20,13 @@ namespace ProjectBj.BusinessLogic.Providers
         {
             var session = new GameSession
             {
-                TimeCreated = DateTime.Now
+                CreationDate = DateTime.Now
             };
             session = await _sessionRepository.Insert(session);
             return session;
         }
 
-        public async Task<GameSession> GetByPlayerId(int playerId)
+        public async Task<GameSession> GetByPlayerId(long playerId)
         {
             GameSession currentSession = await _sessionRepository.GetFirstOpen(playerId);
             
@@ -38,13 +38,13 @@ namespace ProjectBj.BusinessLogic.Providers
             return currentSession;
         }
 
-        public async Task<GameSession> GetById(int id)
+        public async Task<GameSession> GetById(long id)
         {
             GameSession session = await _sessionRepository.GetById(id);
             return session;
         }
 
-        public async Task Close(int sessionId)
+        public async Task Close(long sessionId)
         {
             GameSession session = await GetById(sessionId);
             session.IsOpen = false;

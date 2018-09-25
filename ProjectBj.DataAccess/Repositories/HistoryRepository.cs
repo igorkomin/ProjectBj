@@ -26,22 +26,22 @@ namespace ProjectBj.DataAccess.Repositories
             }
         }
 
-        public async Task<ICollection<History>> GetBySessionId(int sessionId)
+        public async Task<IEnumerable<History>> GetBySessionId(long sessionId)
         {
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
-                string sqlQuery = @"SELECT * FROM Logs WHERE SessionId = @sessionId";
+                string sqlQuery = @"SELECT * FROM History WHERE SessionId = @sessionId";
                 IEnumerable<History> logs = await db.QueryAsync<History>(sqlQuery, new { sessionId });
-                return logs.AsList();
+                return logs;
             }
         }
 
-        public async Task<ICollection<History>> GetAll()
+        public async Task<IEnumerable<History>> GetAll()
         {
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
                 IEnumerable<History> logs = await db.GetAllAsync<History>();
-                return logs.AsList();
+                return logs;
             }
         }
     }

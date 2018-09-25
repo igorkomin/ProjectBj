@@ -6,7 +6,7 @@ namespace ProjectBj.BusinessLogic.Helpers.ViewMapHelpers
 {
     public static class StandGameViewHelper
     {
-        public static ResponseStandGameView GetStandGameView(int sessionId, Player dealer, Player player, List<Player> bots)
+        public static ResponseStandGameView GetStandGameView(long sessionId, Player dealer, Player player, IEnumerable<Player> bots)
         {
             var responseStandGameView = new ResponseStandGameView
             {
@@ -18,9 +18,9 @@ namespace ProjectBj.BusinessLogic.Helpers.ViewMapHelpers
             return responseStandGameView;
         }
 
-        public static HandStandGameViewItem GetHandStandGameViewItem(List<Card> cards, int score)
+        public static HandStandGameViewItem GetHandStandGameViewItem(IEnumerable<Card> cards, int score)
         {
-            List<CardStandGameViewItem> cardStandGameViewItems = GetCardStandGameViewItems(cards);
+            IEnumerable<CardStandGameViewItem> cardStandGameViewItems = GetCardStandGameViewItems(cards);
             var handStandGameViewItem = new HandStandGameViewItem
             {
                 Cards = cardStandGameViewItems,
@@ -29,7 +29,7 @@ namespace ProjectBj.BusinessLogic.Helpers.ViewMapHelpers
             return handStandGameViewItem;
         }
 
-        private static List<CardStandGameViewItem> GetCardStandGameViewItems(List<Card> cards)
+        private static IEnumerable<CardStandGameViewItem> GetCardStandGameViewItems(IEnumerable<Card> cards)
         {
             var cardStandGameViewItems = new List<CardStandGameViewItem>();
             foreach (var card in cards)
@@ -66,7 +66,7 @@ namespace ProjectBj.BusinessLogic.Helpers.ViewMapHelpers
             return dealerStandGameViewItem;
         }
 
-        private static List<PlayerStandGameViewItem> GetPlayerStandGameViewItems(List<Player> bots)
+        private static IEnumerable<PlayerStandGameViewItem> GetPlayerStandGameViewItems(IEnumerable<Player> bots)
         {
             var playerStandGameViewItems = new List<PlayerStandGameViewItem>();
             foreach (var bot in bots)

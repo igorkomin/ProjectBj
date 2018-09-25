@@ -20,21 +20,21 @@ namespace ProjectBj.BusinessLogic.Providers
             _nameGenerator = new PersonNameGenerator();
         }
 
-        public async Task<List<Player>> GetBots(int botnumber, int sessionId)
+        public async Task<IEnumerable<Player>> GetBots(int botnumber, long sessionId)
         {
-            ICollection<Player> bots = await _playerRepository.GetSessionBots(sessionId);
+            IEnumerable<Player> bots = await _playerRepository.GetSessionBots(sessionId);
 
-            if (bots.Count == 0 || bots == null)
+            if (bots.Count() == 0 || bots == null)
             {
                 bots = await GetNewBots(botnumber);
             }
-            return bots.ToList();
+            return bots;
         }
 
-        public async Task<List<Player>> GetSessionBots(int sessionId)
+        public async Task<IEnumerable<Player>> GetSessionBots(long sessionId)
         {
-            ICollection<Player> bots = await _playerRepository.GetSessionBots(sessionId);
-            return bots.ToList();
+            IEnumerable<Player> bots = await _playerRepository.GetSessionBots(sessionId);
+            return bots;
         }
 
         public async Task<Player> GetDealer()
@@ -49,8 +49,8 @@ namespace ProjectBj.BusinessLogic.Providers
 
         public async Task<Player> GetExistingPlayer(string name)
         {
-            ICollection<Player> searchResults = await _playerRepository.Find(name);
-            if (searchResults.Count == 0)
+            IEnumerable<Player> searchResults = await _playerRepository.Find(name);
+            if (searchResults.Count() == 0)
             {
                 return null;
             }
@@ -67,18 +67,18 @@ namespace ProjectBj.BusinessLogic.Providers
             return player;
         }
 
-        public async Task<Player> GetPlayerById(int id)
+        public async Task<Player> GetPlayerById(long id)
         {
             Player player = await _playerRepository.GetById(id);
             return player;
         }
 
-        public async Task DeleteSessionBots(int sessionId)
+        public async Task DeleteSessionBots(long sessionId)
         {
             await _playerRepository.DeleteBotsFromSession(sessionId);
         }
 
-        public async Task GiveCardToPlayer(int playerId, int sessionId, int cardId)
+        public async Task GiveCardToPlayer(long playerId, long sessionId, long cardId)
         {
             Player player = await _playerRepository.GetById(playerId);
             await _playerRepository.AddCardToPlayerHand(player, cardId, sessionId);
@@ -120,7 +120,7 @@ namespace ProjectBj.BusinessLogic.Providers
             return dealer;
         }
 
-        private async Task<List<Player>> GetNewBots(int number)
+        private async Task<IEnumerable<Player>> GetNewBots(int number)
         {
             var bots = new List<Player>();
             for(int i = 0; i < number; i++)
@@ -133,8 +133,8 @@ namespace ProjectBj.BusinessLogic.Providers
 
         private async Task<Player> GetExistingDealer()
         {
-            var searchResults = await _playerRepository.Find(StringHelper.DealerName);
-            if (searchResults.Count == 0)
+            IEnumerable<Player> searchResults = await _playerRepository.Find(StringHelper.DealerName);
+            if (searchResults.Count() == 0)
             {
                 return null;
             }

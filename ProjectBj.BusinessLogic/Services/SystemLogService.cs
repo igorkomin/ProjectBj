@@ -1,7 +1,7 @@
 ﻿using ProjectBj.BusinessLogic.Interfaces;
 using ProjectBj.DataAccess.Interfaces;
 using ProjectBj.Entities;
-using ProjectBj.ViewModels.Logs;
+using ProjectBj.ViewModels.Log;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -29,7 +29,7 @@ namespace ProjectBj.BusinessLogic.Services
                     Exception = log.Exception,
                     Https = log.Https,
                     Level = log.Level,
-                    Logged = log.Logged,
+                    CreationDate = log.CreationDate,
                     Logger = log.Logger,
                     MachineName = log.MachineName,
                     Message = log.Message,

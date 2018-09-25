@@ -8,11 +8,11 @@ namespace ProjectBj.BusinessLogic.Interfaces
     {
         Task<Player> GetDealer();
         Task<Player> GetPlayerByName(string name);
-        Task<Player> GetPlayerById(int id);
+        Task<Player> GetPlayerById(long id);
         Task<Player> GetExistingPlayer(string name);
-        Task<List<Player>> GetBots(int botnumber, int sessionId);
-        Task<List<Player>> GetSessionBots(int sessionId);
-        Task GiveCardToPlayer(int playerId, int sessionId, int cardId);
-        Task DeleteSessionBots(int sessionId);
+        Task<IEnumerable<Player>> GetBots(int botnumber, long sessionId);
+        Task<IEnumerable<Player>> GetSessionBots(long sessionId);
+        Task GiveCardToPlayer(long playerId, long sessionId, long cardId);
+        Task DeleteSessionBots(long sessionId);
     }
 }

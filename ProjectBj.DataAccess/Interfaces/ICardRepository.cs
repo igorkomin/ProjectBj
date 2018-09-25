@@ -6,9 +6,9 @@ namespace ProjectBj.DataAccess.Interfaces
 {
     public interface ICardRepository
     {
-        Task<ICollection<Card>> Insert(ICollection<Card> deck);
-        Task<ICollection<Card>> Get(int playerId, int sessionId);
-        Task<ICollection<Card>> GetAll();
-        Task DeletePlayerHand(int playerId, int sessionId);
+        Task<IEnumerable<Card>> Insert(IEnumerable<Card> deck);
+        Task<IEnumerable<Card>> Get(long playerId, long sessionId);
+        Task<IEnumerable<Card>> GetAll();
+        Task DeletePlayerHand(long playerId, long sessionId);
     }
 }

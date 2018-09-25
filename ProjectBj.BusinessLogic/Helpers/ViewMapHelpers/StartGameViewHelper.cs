@@ -6,7 +6,7 @@ namespace ProjectBj.BusinessLogic.Helpers.ViewMapHelpers
 {
     public static class StartGameViewHelper
     {
-        public static ResponseStartGameView GetStartGameView(int sessionId, Player dealer, Player player, List<Player> bots)
+        public static ResponseStartGameView GetStartGameView(long sessionId, Player dealer, Player player, IEnumerable<Player> bots)
         {
             var responseStartGameView = new ResponseStartGameView
             {
@@ -18,9 +18,9 @@ namespace ProjectBj.BusinessLogic.Helpers.ViewMapHelpers
             return responseStartGameView;
         }
 
-        public static HandStartGameViewItem GetHandLoadGameViewItem(List<Card> cards, int score)
+        public static HandStartGameViewItem GetHandLoadGameViewItem(IEnumerable<Card> cards, int score)
         {
-            List<CardStartGameViewItem> cardStartGameViewItems = GetCardStartGameViewItems(cards);
+            IEnumerable<CardStartGameViewItem> cardStartGameViewItems = GetCardStartGameViewItems(cards);
             var handStartGameViewItem = new HandStartGameViewItem
             {
                 Cards = cardStartGameViewItems,
@@ -29,7 +29,7 @@ namespace ProjectBj.BusinessLogic.Helpers.ViewMapHelpers
             return handStartGameViewItem;
         }
 
-        private static List<CardStartGameViewItem> GetCardStartGameViewItems(List<Card> cards)
+        private static IEnumerable<CardStartGameViewItem> GetCardStartGameViewItems(IEnumerable<Card> cards)
         {
             var cardStartGameViewItems = new List<CardStartGameViewItem>();
             foreach (var card in cards)
@@ -66,7 +66,7 @@ namespace ProjectBj.BusinessLogic.Helpers.ViewMapHelpers
             return dealerStartGameViewItem;
         }
 
-        private static List<PlayerStartGameViewItem> GetPlayerStartGameViewItems(List<Player> bots)
+        private static IEnumerable<PlayerStartGameViewItem> GetPlayerStartGameViewItems(IEnumerable<Player> bots)
         {
             var playerStartGameViewItems = new List<PlayerStartGameViewItem>();
             foreach (var bot in bots)

@@ -19,29 +19,29 @@ namespace ProjectBj.BusinessLogic.Providers
             _historyRepository = historyRepository;
         }
 
-        public async Task Create(string playerName, string message, int sessionId)
+        public async Task Create(string playerName, string message, long sessionId)
         {
             var entry = new History
             {
                 PlayerName = playerName,
                 SessionId = sessionId,
                 Event = message,
-                Time = DateTime.Now
+                CreationDate = DateTime.Now
             };
             Log.Info(StringHelper.CreatingHistoryEntryMessage);
             await _historyRepository.Create(entry);
         }
 
-        public async Task<List<History>> Get(int sessionId)
+        public async Task<IEnumerable<History>> Get(long sessionId)
         {
-            ICollection<History> sessionHistory = await _historyRepository.GetBySessionId(sessionId);
-            return sessionHistory.ToList();
+            IEnumerable<History> sessionHistory = await _historyRepository.GetBySessionId(sessionId);
+            return sessionHistory;
         }
 
-        public async Task<List<History>> GetAll()
+        public async Task<IEnumerable<History>> GetAll()
         {
-            ICollection<History> fullHistory = await _historyRepository.GetAll();
-            return fullHistory.ToList();
+            IEnumerable<History> fullHistory = await _historyRepository.GetAll();
+            return fullHistory;
         }
     }
 }

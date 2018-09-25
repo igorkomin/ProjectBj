@@ -2,7 +2,7 @@
 {
     public class RequestStandGameView
     {
-        public int PlayerId { get; set; }
-        public int SessionId { get; set; }
+        public long PlayerId { get; set; }
+        public long SessionId { get; set; }
     }
 }

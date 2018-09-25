@@ -6,7 +6,7 @@ namespace ProjectBj.BusinessLogic.Helpers.ViewMapHelpers
 {
     public static class SurrenderGameViewHelper
     {
-        public static ResponseSurrenderGameView GetSurrenderGameView(int sessionId, Player dealer, Player player, List<Player> bots)
+        public static ResponseSurrenderGameView GetSurrenderGameView(long sessionId, Player dealer, Player player, IEnumerable<Player> bots)
         {
             var responseSurrenderGameView = new ResponseSurrenderGameView
             {
@@ -18,9 +18,9 @@ namespace ProjectBj.BusinessLogic.Helpers.ViewMapHelpers
             return responseSurrenderGameView;
         }
 
-        public static HandSurrenderGameViewItem GetHandSurrenderGameViewItem(List<Card> cards, int score)
+        public static HandSurrenderGameViewItem GetHandSurrenderGameViewItem(IEnumerable<Card> cards, int score)
         {
-            List<CardSurrenderGameViewItem> cardSurrenderGameViewItems = GetCardSurrenderGameViewItems(cards);
+            IEnumerable<CardSurrenderGameViewItem> cardSurrenderGameViewItems = GetCardSurrenderGameViewItems(cards);
             var handSurrenderGameViewItem = new HandSurrenderGameViewItem
             {
                 Cards = cardSurrenderGameViewItems,
@@ -29,7 +29,7 @@ namespace ProjectBj.BusinessLogic.Helpers.ViewMapHelpers
             return handSurrenderGameViewItem;
         }
 
-        private static List<CardSurrenderGameViewItem> GetCardSurrenderGameViewItems(List<Card> cards)
+        private static IEnumerable<CardSurrenderGameViewItem> GetCardSurrenderGameViewItems(IEnumerable<Card> cards)
         {
             var cardSurrenderGameViewItems = new List<CardSurrenderGameViewItem>();
             foreach (var card in cards)
@@ -66,7 +66,7 @@ namespace ProjectBj.BusinessLogic.Helpers.ViewMapHelpers
             return dealerSurrenderGameViewItem;
         }
 
-        private static List<PlayerSurrenderGameViewItem> GetPlayerSurrenderGameViewItems(List<Player> bots)
+        private static IEnumerable<PlayerSurrenderGameViewItem> GetPlayerSurrenderGameViewItems(IEnumerable<Player> bots)
         {
             var playerSurrenderGameViewItems = new List<PlayerSurrenderGameViewItem>();
             foreach (var bot in bots)

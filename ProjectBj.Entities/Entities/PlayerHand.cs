@@ -5,8 +5,8 @@ namespace ProjectBj.Entities
     [Table("PlayerHands")]
     public class PlayerHand : BaseEntity
     {
-        public int PlayerId { get; set; }
-        public int CardId { get; set; }
-        public int SessionId { get; set; }
+        public long PlayerId { get; set; }
+        public long CardId { get; set; }
+        public long SessionId { get; set; }
     }
 }

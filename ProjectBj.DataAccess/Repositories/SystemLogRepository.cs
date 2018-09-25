@@ -23,7 +23,7 @@ namespace ProjectBj.DataAccess.Repositories
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
                 IEnumerable<SystemLog> systemLogs = await db.GetAllAsync<SystemLog>();
-                return systemLogs.AsList();
+                return systemLogs;
             }
         }
     }

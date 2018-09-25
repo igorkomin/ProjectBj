@@ -52,7 +52,7 @@ namespace ProjectBj.BusinessLogic.Services
             return gameView;
         }
 
-        public async Task<ResponseHitGameView> MakeHitDecision(int playerId, int sessionId)
+        public async Task<ResponseHitGameView> MakeHitDecision(long playerId, long sessionId)
         {
             bool isLastAction = false;
             Player player = await _playerProvider.GetPlayerById(playerId);
@@ -77,7 +77,7 @@ namespace ProjectBj.BusinessLogic.Services
             return gameView;
         }
 
-        public async Task<ResponseStandGameView> MakeStandDecision(int playerId, int sessionId)
+        public async Task<ResponseStandGameView> MakeStandDecision(long playerId, long sessionId)
         {
             Player player = await _playerProvider.GetPlayerById(playerId);
             await _historyProvider.Create(player.Name,
@@ -90,7 +90,7 @@ namespace ProjectBj.BusinessLogic.Services
             return gameView;
         }
 
-        public async Task<ResponseDoubleGameView> MakeDoubleDownDecision(int playerId, int sessionId)
+        public async Task<ResponseDoubleGameView> MakeDoubleDownDecision(long playerId, long sessionId)
         {
             Player player = await _playerProvider.GetPlayerById(playerId);
             await _historyProvider.Create(player.Name,
@@ -104,7 +104,7 @@ namespace ProjectBj.BusinessLogic.Services
             return gameView;
         }
 
-        public async Task<ResponseSurrenderGameView> MakeSurrenderDecision(int playerId, int sessionId)
+        public async Task<ResponseSurrenderGameView> MakeSurrenderDecision(long playerId, long sessionId)
         {
             Player player = await _playerProvider.GetPlayerById(playerId);
             await _historyProvider.Create(player.Name,
@@ -122,7 +122,7 @@ namespace ProjectBj.BusinessLogic.Services
         {
             Player player = await _playerProvider.GetPlayerByName(playerName);
             GameSession session = await _sessionProvider.GetNew();
-            List<Player> bots = await _playerProvider.GetBots(botsNumber, session.Id);
+            IEnumerable<Player> bots = await _playerProvider.GetBots(botsNumber, session.Id);
             Player dealer = await _playerProvider.GetDealer();
 
             ResponseStartGameView gameView = StartGameViewHelper.GetStartGameView(session.Id, dealer, player, bots);
@@ -132,7 +132,7 @@ namespace ProjectBj.BusinessLogic.Services
         private async Task<ResponseStartGameView> GiveFirstCards(string playerName, int botsNumber)
         {
             ResponseStartGameView gameView = await CreateGame(playerName, botsNumber);
-            List<int> playerIds = new List<int>
+            List<long> playerIds = new List<long>
             {
                 gameView.Player.Id,
                 gameView.Dealer.Id
@@ -146,16 +146,16 @@ namespace ProjectBj.BusinessLogic.Services
             return gameView;
         }
 
-        private async Task GiveCardsToBots(int sessionId)
+        private async Task GiveCardsToBots(long sessionId)
         {
-            List<Player> bots = await _playerProvider.GetSessionBots(sessionId);
+            IEnumerable<Player> bots = await _playerProvider.GetSessionBots(sessionId);
             foreach (var bot in bots)
             {
                 await GiveCardsToBot(bot.Id, sessionId);
             }
         }
 
-        private async Task<bool> GiveCardsToBot(int botId, int sessionId)
+        private async Task<bool> GiveCardsToBot(long botId, long sessionId)
         {
             Log.Info(StringHelper.BotsTurnMessage);
             int botScore = await _gameServiceHelper.GetHandScore(botId, sessionId);
@@ -167,7 +167,7 @@ namespace ProjectBj.BusinessLogic.Services
             return await GiveCardsToBot(botId, sessionId);
         }
 
-        private async Task<bool> GiveCardsToDealer(int sessionId)
+        private async Task<bool> GiveCardsToDealer(long sessionId)
         {
             Player dealer = await _playerProvider.GetDealer();
             Log.Info(StringHelper.DealerTurnMessage);
@@ -180,7 +180,7 @@ namespace ProjectBj.BusinessLogic.Services
             return await GiveCardsToDealer(sessionId);
         }
 
-        private async Task GiveFirstTwoCards(List<int> playerIds, int sessionId)
+        private async Task GiveFirstTwoCards(List<long> playerIds, long sessionId)
         {
             foreach (var playerId in playerIds)
             {
@@ -189,16 +189,15 @@ namespace ProjectBj.BusinessLogic.Services
             }
         }
 
-        private async Task EndGameSession(int sessionId)
+        private async Task EndGameSession(long sessionId)
         {
             await CloseGameSession(sessionId);
             await _playerProvider.DeleteSessionBots(sessionId);
         }
 
-        private async Task GiveCard(int playerId, int sessionId)
+        private async Task GiveCard(long playerId, long sessionId)
         {
-            List<Card> deck = await _cardProvider.GetShuffledDeck();
-            Card card = deck[0];
+            Card card = await _cardProvider.GetRandomCard();
             Player player = await _playerProvider.GetPlayerById(playerId);
             await _historyProvider.Create(
                 player.Name, StringHelper.GetPlayerTakesCardMessage(
@@ -206,7 +205,7 @@ namespace ProjectBj.BusinessLogic.Services
             await _playerProvider.GiveCardToPlayer(playerId, sessionId, card.Id);
         }
 
-        private async Task CloseGameSession(int sessionId)
+        private async Task CloseGameSession(long sessionId)
         {
             await _sessionProvider.Close(sessionId);
             Log.Info(StringHelper.GetGameEndedMessage(sessionId));

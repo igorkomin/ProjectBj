@@ -16,7 +16,7 @@ const routes: Routes = [
     },
     {
         path: 'history',
-        loadChildren: 'src/app/gamelogs/gamelogs.module#GamelogsModule'
+        loadChildren: 'src/app/history/history.module#HistoryModule'
     },
     { path: "", redirectTo: "/login", pathMatch: "full" },
     { path: "**", redirectTo: "/login" }

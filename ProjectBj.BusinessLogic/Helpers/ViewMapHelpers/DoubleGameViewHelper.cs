@@ -6,7 +6,7 @@ namespace ProjectBj.BusinessLogic.Helpers.ViewMapHelpers
 {
     public static class DoubleGameViewHelper
     {
-        public static ResponseDoubleGameView GetDoubleGameView(int sessionId, Player dealer, Player player, List<Player> bots)
+        public static ResponseDoubleGameView GetDoubleGameView(long sessionId, Player dealer, Player player, IEnumerable<Player> bots)
         {
             var responseDoubleGameView = new ResponseDoubleGameView
             {
@@ -18,9 +18,9 @@ namespace ProjectBj.BusinessLogic.Helpers.ViewMapHelpers
             return responseDoubleGameView;
         }
 
-        public static HandDoubleGameViewItem GetHandDoubleGameViewItem(List<Card> cards, int score)
+        public static HandDoubleGameViewItem GetHandDoubleGameViewItem(IEnumerable<Card> cards, int score)
         {
-            List<CardDoubleGameViewItem> cardItems = GetCardDoubleGameViewItems(cards);
+            IEnumerable<CardDoubleGameViewItem> cardItems = GetCardDoubleGameViewItems(cards);
             var handDoubleGameViewItem = new HandDoubleGameViewItem
             {
                 Cards = cardItems,
@@ -29,7 +29,7 @@ namespace ProjectBj.BusinessLogic.Helpers.ViewMapHelpers
             return handDoubleGameViewItem;
         }
 
-        private static List<CardDoubleGameViewItem> GetCardDoubleGameViewItems(List<Card> cards)
+        private static IEnumerable<CardDoubleGameViewItem> GetCardDoubleGameViewItems(IEnumerable<Card> cards)
         {
             var cardDoubleGameViewItems = new List<CardDoubleGameViewItem>();
             foreach (var card in cards)
@@ -66,7 +66,7 @@ namespace ProjectBj.BusinessLogic.Helpers.ViewMapHelpers
             return dealerDoubleGameViewItem;
         }
 
-        private static List<PlayerDoubleGameViewItem> GetPlayerDoubleGameViewItems(List<Player> bots)
+        private static IEnumerable<PlayerDoubleGameViewItem> GetPlayerDoubleGameViewItems(IEnumerable<Player> bots)
         {
             var playerDoubleGameViewItems = new List<PlayerDoubleGameViewItem>();
             

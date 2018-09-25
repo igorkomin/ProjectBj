@@ -81,10 +81,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ProjectBj.Configuration\ProjectBj.Configuration.csproj">
-      <Project>{b4673553-de45-498c-ac6e-c02ec24efb68}</Project>
-      <Name>ProjectBj.Configuration</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ProjectBj.Entities\ProjectBj.Entities.csproj">
       <Project>{fe68c0ab-c49b-4ad7-8675-493223b5f50c}</Project>
       <Name>ProjectBj.Entities</Name>

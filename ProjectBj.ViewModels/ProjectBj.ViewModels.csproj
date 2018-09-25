@@ -54,7 +54,7 @@
     <Compile Include="Game\ResponseSurrenderGameView.cs" />
     <Compile Include="History\GameHistoryView.cs" />
     <Compile Include="History\FullHistoryView.cs" />
-    <Compile Include="Logs\FullLogView.cs" />
+    <Compile Include="Log\FullLogView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

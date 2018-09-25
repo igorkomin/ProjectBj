@@ -1,7 +1,7 @@
 ﻿export class SystemLog {
     machineName: string;
     siteName: string;
-    logged: Date;
+    creationDate: Date;
     level: string;
     userName: string;
     message: string;

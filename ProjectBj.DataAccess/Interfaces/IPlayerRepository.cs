@@ -7,12 +7,12 @@ namespace ProjectBj.DataAccess.Interfaces
     public interface IPlayerRepository
     {
         Task<Player> Insert(Player player);
-        Task<Player> GetById(int id);
-        Task<ICollection<Player>> Insert(ICollection<Player> players);
-        Task<ICollection<Player>> Find(string name);
-        Task<ICollection<Player>> GetSessionBots(int sessionId);
+        Task<Player> GetById(long id);
+        Task<IEnumerable<Player>> Insert(IEnumerable<Player> players);
+        Task<IEnumerable<Player>> Find(string name);
+        Task<IEnumerable<Player>> GetSessionBots(long sessionId);
         Task Update(Player player);
-        Task AddCardToPlayerHand(Player player, int cardId, int sessionId);
-        Task DeleteBotsFromSession(int sessionId);
+        Task AddCardToPlayerHand(Player player, long cardId, long sessionId);
+        Task DeleteBotsFromSession(long sessionId);
     }
 }

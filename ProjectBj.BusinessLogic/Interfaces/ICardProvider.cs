@@ -6,9 +6,9 @@ namespace ProjectBj.BusinessLogic.Interfaces
 {
     public interface ICardProvider
     {
-        Task<List<Card>> GetDeck();
-        Task<List<Card>> GetShuffledDeck();
-        Task<List<Card>> GetPlayerHand(int playerId, int sessionId);
-        Task ClearPlayerHand(int playerId, int sessionId);
+        Task<Card> GetRandomCard();
+        Task<IEnumerable<Card>> GetDeck();
+        Task<IEnumerable<Card>> GetPlayerHand(long playerId, long sessionId);
+        Task ClearPlayerHand(long playerId, long sessionId);
     }
 }
