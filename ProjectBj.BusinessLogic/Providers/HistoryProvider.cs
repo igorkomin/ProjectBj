@@ -5,7 +5,6 @@ using ProjectBj.Entities;
 using ProjectBj.Logger;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace ProjectBj.BusinessLogic.Providers
