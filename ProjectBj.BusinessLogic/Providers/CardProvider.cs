@@ -27,6 +27,7 @@ namespace ProjectBj.BusinessLogic.Providers
             {
                 deck = GetNewDeck();
                 await SaveDeck(deck);
+                deck = await GetExistingDeck();
             }
             return deck;
         }
