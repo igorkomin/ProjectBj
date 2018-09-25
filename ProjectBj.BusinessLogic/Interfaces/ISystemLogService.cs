@@ -1,4 +1,4 @@
-﻿using ProjectBj.ViewModels.Log;
+﻿using ProjectBj.ViewModels.Logs;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

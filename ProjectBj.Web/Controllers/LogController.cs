@@ -1,6 +1,6 @@
 ﻿using ProjectBj.BusinessLogic.Interfaces;
 using ProjectBj.Logger;
-using ProjectBj.ViewModels.Log;
+using ProjectBj.ViewModels.Logs;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
