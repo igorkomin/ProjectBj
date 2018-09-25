@@ -2,7 +2,7 @@
 
 namespace ProjectBj.Entities
 {
-    [Table("NLog")]
+    [Table("SystemLog")]
     public class SystemLog : BaseEntity
     {
         public string MachineName { get; set; }
