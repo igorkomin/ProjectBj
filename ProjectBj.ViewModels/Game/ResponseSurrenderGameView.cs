@@ -17,9 +17,12 @@ namespace ProjectBj.ViewModels.Game
         public HandSurrenderGameViewItem Hand { get; set; }
     }
 
-    public class PlayerSurrenderGameViewItem : DealerSurrenderGameViewItem
+    public class PlayerSurrenderGameViewItem
     {
+        public long Id { get; set; }
+        public string Name { get; set; }
         public bool IsHuman { get; set; }
+        public HandSurrenderGameViewItem Hand { get; set; }
         public ResultSurrenderGameViewItem GameResult { get; set; }
 
         public PlayerSurrenderGameViewItem()

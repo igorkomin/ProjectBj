@@ -17,9 +17,12 @@ namespace ProjectBj.ViewModels.Game
         public HandStartGameViewItem Hand { get; set; }
     }
 
-    public class PlayerStartGameViewItem : DealerStartGameViewItem
+    public class PlayerStartGameViewItem
     {
+        public long Id { get; set; }
+        public string Name { get; set; }
         public bool IsHuman { get; set; }
+        public HandStartGameViewItem Hand { get; set; }
         public ResultStartGameViewItem GameResult { get; set; }
 
         public PlayerStartGameViewItem()

@@ -17,9 +17,12 @@ namespace ProjectBj.ViewModels.Game
         public HandHitGameViewItem Hand { get; set; }
     }
 
-    public class PlayerHitGameViewItem : DealerHitGameViewItem
+    public class PlayerHitGameViewItem
     {
+        public long Id { get; set; }
+        public string Name { get; set; }
         public bool IsHuman { get; set; }
+        public HandHitGameViewItem Hand { get; set; }
         public ResultHitGameViewItem GameResult { get; set; }
 
         public PlayerHitGameViewItem()
