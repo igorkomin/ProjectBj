@@ -181,7 +181,6 @@
     <Content Include="src\app\shared\style\slider.css" />
     <Content Include="angular.json" />
     <Content Include="package.json" />
-    <Content Include="src\app\shared\style\bootstrap.css" />
     <Content Include="src\app\game\game.component.css" />
     <Content Include="src\app\game\game.component.html" />
     <Content Include="src\app\login\login.component.css" />

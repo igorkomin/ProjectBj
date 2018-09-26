@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { GridModule } from '@progress/kendo-angular-grid';
@@ -18,7 +17,6 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
         SharedModule,
         AppRoutingModule,
         RouterModule,
-        NgbModule,
         HttpClientModule,
         GridModule,
         BrowserAnimationsModule
