@@ -5,51 +5,51 @@ namespace ProjectBj.ViewModels.Game
     public class ResponseDoubleGameView
     {
         public long SessionId { get; set; }
-        public DealerDoubleGameViewItem Dealer { get; set; }
-        public PlayerDoubleGameViewItem Player { get; set; }
-        public IEnumerable<PlayerDoubleGameViewItem> Bots { get; set; }
+        public DealerResponseDoubleGameViewItem Dealer { get; set; }
+        public PlayerResponseDoubleGameViewItem Player { get; set; }
+        public IEnumerable<PlayerResponseDoubleGameViewItem> Bots { get; set; }
     }
 
-    public class DealerDoubleGameViewItem
+    public class DealerResponseDoubleGameViewItem
     {
         public long Id { get; set; }
         public string Name { get; set; }
-        public HandDoubleGameViewItem Hand { get; set; }
+        public HandResponseDoubleGameViewItem Hand { get; set; }
     }
 
-    public class PlayerDoubleGameViewItem
+    public class PlayerResponseDoubleGameViewItem
     {
         public long Id { get; set; }
         public string Name { get; set; }
         public bool IsHuman { get; set; }
-        public HandDoubleGameViewItem Hand { get; set; }
-        public ResultDoubleGameViewItem GameResult { get; set; }
+        public HandResponseDoubleGameViewItem Hand { get; set; }
+        public ResultResponseDoubleGameViewItem GameResult { get; set; }
 
-        public PlayerDoubleGameViewItem()
+        public PlayerResponseDoubleGameViewItem()
         {
-            GameResult = new ResultDoubleGameViewItem();
+            GameResult = new ResultResponseDoubleGameViewItem();
         }
     }
 
-    public class ResultDoubleGameViewItem
+    public class ResultResponseDoubleGameViewItem
     {
         public int State { get; set; }
         public string Result { get; set; }
 
-        public ResultDoubleGameViewItem()
+        public ResultResponseDoubleGameViewItem()
         {
             State = 0;
             Result = string.Empty;
         }
     }
 
-    public class HandDoubleGameViewItem
+    public class HandResponseDoubleGameViewItem
     {
-        public IEnumerable<CardDoubleGameViewItem> Cards { get; set; }
+        public IEnumerable<CardResponseDoubleGameViewItem> Cards { get; set; }
         public int Score { get; set; }
     }
 
-    public class CardDoubleGameViewItem
+    public class CardResponseDoubleGameViewItem
     {
         public string Suit { get; set; }
         public string Rank { get; set; }

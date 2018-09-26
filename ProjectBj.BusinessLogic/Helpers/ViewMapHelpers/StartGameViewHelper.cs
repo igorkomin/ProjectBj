@@ -18,10 +18,10 @@ namespace ProjectBj.BusinessLogic.Helpers.ViewMapHelpers
             return responseStartGameView;
         }
 
-        public static HandStartGameViewItem GetHandLoadGameViewItem(IEnumerable<Card> cards, int score)
+        public static HandResponseStartGameViewItem GetHandLoadGameViewItem(IEnumerable<Card> cards, int score)
         {
-            IEnumerable<CardStartGameViewItem> cardStartGameViewItems = GetCardStartGameViewItems(cards);
-            var handStartGameViewItem = new HandStartGameViewItem
+            IEnumerable<CardResponseStartGameViewItem> cardStartGameViewItems = GetCardStartGameViewItems(cards);
+            var handStartGameViewItem = new HandResponseStartGameViewItem
             {
                 Cards = cardStartGameViewItems,
                 Score = score
@@ -29,12 +29,12 @@ namespace ProjectBj.BusinessLogic.Helpers.ViewMapHelpers
             return handStartGameViewItem;
         }
 
-        private static IEnumerable<CardStartGameViewItem> GetCardStartGameViewItems(IEnumerable<Card> cards)
+        private static IEnumerable<CardResponseStartGameViewItem> GetCardStartGameViewItems(IEnumerable<Card> cards)
         {
-            var cardStartGameViewItems = new List<CardStartGameViewItem>();
+            var cardStartGameViewItems = new List<CardResponseStartGameViewItem>();
             foreach (var card in cards)
             {
-                var cardStartGameViewItem = new CardStartGameViewItem
+                var cardStartGameViewItem = new CardResponseStartGameViewItem
                 {
                     Suit = card.Suit,
                     Rank = EnumHelper.GetCardRankName(card.Rank),
@@ -45,9 +45,9 @@ namespace ProjectBj.BusinessLogic.Helpers.ViewMapHelpers
             return cardStartGameViewItems;
         }
 
-        private static PlayerStartGameViewItem GetPlayerStartGameViewItem(Player player)
+        private static PlayerResponseStartGameViewItem GetPlayerStartGameViewItem(Player player)
         {
-            var playerStartGameViewItem = new PlayerStartGameViewItem
+            var playerStartGameViewItem = new PlayerResponseStartGameViewItem
             {
                 Id = player.Id,
                 Name = player.Name,
@@ -56,9 +56,9 @@ namespace ProjectBj.BusinessLogic.Helpers.ViewMapHelpers
             return playerStartGameViewItem;
         }
 
-        private static DealerStartGameViewItem GetDealerStartGameViewItem(Player dealer)
+        private static DealerResponseStartGameViewItem GetDealerStartGameViewItem(Player dealer)
         {
-            var dealerStartGameViewItem = new DealerStartGameViewItem
+            var dealerStartGameViewItem = new DealerResponseStartGameViewItem
             {
                 Id = dealer.Id,
                 Name = dealer.Name
@@ -66,12 +66,12 @@ namespace ProjectBj.BusinessLogic.Helpers.ViewMapHelpers
             return dealerStartGameViewItem;
         }
 
-        private static IEnumerable<PlayerStartGameViewItem> GetPlayerStartGameViewItems(IEnumerable<Player> bots)
+        private static IEnumerable<PlayerResponseStartGameViewItem> GetPlayerStartGameViewItems(IEnumerable<Player> bots)
         {
-            var playerStartGameViewItems = new List<PlayerStartGameViewItem>();
+            var playerStartGameViewItems = new List<PlayerResponseStartGameViewItem>();
             foreach (var bot in bots)
             {
-                var playerStartGameViewItem = new PlayerStartGameViewItem
+                var playerStartGameViewItem = new PlayerResponseStartGameViewItem
                 {
                     Id = bot.Id,
                     Name = bot.Name

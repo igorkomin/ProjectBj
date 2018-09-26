@@ -5,51 +5,51 @@ namespace ProjectBj.ViewModels.Game
     public class ResponseSurrenderGameView
     {
         public long SessionId { get; set; }
-        public DealerSurrenderGameViewItem Dealer { get; set; }
-        public PlayerSurrenderGameViewItem Player { get; set; }
-        public IEnumerable<PlayerSurrenderGameViewItem> Bots { get; set; }
+        public DealerResponseSurrenderGameViewItem Dealer { get; set; }
+        public PlayerResponseSurrenderGameViewItem Player { get; set; }
+        public IEnumerable<PlayerResponseSurrenderGameViewItem> Bots { get; set; }
     }
 
-    public class DealerSurrenderGameViewItem
+    public class DealerResponseSurrenderGameViewItem
     {
         public long Id { get; set; }
         public string Name { get; set; }
-        public HandSurrenderGameViewItem Hand { get; set; }
+        public HandResponseSurrenderGameViewItem Hand { get; set; }
     }
 
-    public class PlayerSurrenderGameViewItem
+    public class PlayerResponseSurrenderGameViewItem
     {
         public long Id { get; set; }
         public string Name { get; set; }
         public bool IsHuman { get; set; }
-        public HandSurrenderGameViewItem Hand { get; set; }
-        public ResultSurrenderGameViewItem GameResult { get; set; }
+        public HandResponseSurrenderGameViewItem Hand { get; set; }
+        public ResultResponseSurrenderGameViewItem GameResult { get; set; }
 
-        public PlayerSurrenderGameViewItem()
+        public PlayerResponseSurrenderGameViewItem()
         {
-            GameResult = new ResultSurrenderGameViewItem();
+            GameResult = new ResultResponseSurrenderGameViewItem();
         }
     }
 
-    public class ResultSurrenderGameViewItem
+    public class ResultResponseSurrenderGameViewItem
     {
         public int State { get; set; }
         public string Result { get; set; }
 
-        public ResultSurrenderGameViewItem()
+        public ResultResponseSurrenderGameViewItem()
         {
             State = 0;
             Result = string.Empty;
         }
     }
 
-    public class HandSurrenderGameViewItem
+    public class HandResponseSurrenderGameViewItem
     {
-        public IEnumerable<CardSurrenderGameViewItem> Cards { get; set; }
+        public IEnumerable<CardResponseSurrenderGameViewItem> Cards { get; set; }
         public int Score { get; set; }
     }
 
-    public class CardSurrenderGameViewItem
+    public class CardResponseSurrenderGameViewItem
     {
         public string Suit { get; set; }
         public string Rank { get; set; }

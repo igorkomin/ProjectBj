@@ -18,10 +18,10 @@ namespace ProjectBj.BusinessLogic.Helpers.ViewMapHelpers
             return responseHitGameView;
         }
 
-        public static HandHitGameViewItem GetHandHitGameViewItem(IEnumerable<Card> cards, int score)
+        public static HandResponseHitGameViewItem GetHandHitGameViewItem(IEnumerable<Card> cards, int score)
         {
-            IEnumerable<CardHitGameViewItem> cardItems = GetCardHitGameViewItems(cards);
-            var handHitGameViewItem = new HandHitGameViewItem
+            IEnumerable<CardResponseHitGameViewItem> cardItems = GetCardHitGameViewItems(cards);
+            var handHitGameViewItem = new HandResponseHitGameViewItem
             {
                 Cards = cardItems,
                 Score = score
@@ -29,9 +29,9 @@ namespace ProjectBj.BusinessLogic.Helpers.ViewMapHelpers
             return handHitGameViewItem;
         }
 
-        private static PlayerHitGameViewItem GetPlayerHitGameViewItem(Player player)
+        private static PlayerResponseHitGameViewItem GetPlayerHitGameViewItem(Player player)
         {
-            var playerHitGameViewItem = new PlayerHitGameViewItem
+            var playerHitGameViewItem = new PlayerResponseHitGameViewItem
             {
                 Id = player.Id,
                 Name = player.Name,
@@ -40,9 +40,9 @@ namespace ProjectBj.BusinessLogic.Helpers.ViewMapHelpers
             return playerHitGameViewItem;
         }
 
-        private static DealerHitGameViewItem GetDealerHitGameViewItem(Player dealer)
+        private static DealerResponseHitGameViewItem GetDealerHitGameViewItem(Player dealer)
         {
-            var dealerHitGameViewItem = new DealerHitGameViewItem
+            var dealerHitGameViewItem = new DealerResponseHitGameViewItem
             {
                 Id = dealer.Id,
                 Name = dealer.Name
@@ -50,12 +50,12 @@ namespace ProjectBj.BusinessLogic.Helpers.ViewMapHelpers
             return dealerHitGameViewItem;
         }
 
-        private static IEnumerable<PlayerHitGameViewItem> GetPlayerHitGameViewItems(IEnumerable<Player> bots)
+        private static IEnumerable<PlayerResponseHitGameViewItem> GetPlayerHitGameViewItems(IEnumerable<Player> bots)
         {
-            var playerHitGameViewItems = new List<PlayerHitGameViewItem>();
+            var playerHitGameViewItems = new List<PlayerResponseHitGameViewItem>();
             foreach (var bot in bots)
             {
-                var playerHitGameViewItem = new PlayerHitGameViewItem
+                var playerHitGameViewItem = new PlayerResponseHitGameViewItem
                 {
                     Id = bot.Id,
                     Name = bot.Name
@@ -65,12 +65,12 @@ namespace ProjectBj.BusinessLogic.Helpers.ViewMapHelpers
             return playerHitGameViewItems;
         }
 
-        private static IEnumerable<CardHitGameViewItem> GetCardHitGameViewItems(IEnumerable<Card> cards)
+        private static IEnumerable<CardResponseHitGameViewItem> GetCardHitGameViewItems(IEnumerable<Card> cards)
         {
-            var cardHitGameViewItems = new List<CardHitGameViewItem>();
+            var cardHitGameViewItems = new List<CardResponseHitGameViewItem>();
             foreach (var card in cards)
             {
-                var cardHitGameViewItem = new CardHitGameViewItem
+                var cardHitGameViewItem = new CardResponseHitGameViewItem
                 {
                     Suit = card.Suit,
                     Rank = EnumHelper.GetCardRankName(card.Rank),

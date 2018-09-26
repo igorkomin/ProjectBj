@@ -18,10 +18,10 @@ namespace ProjectBj.BusinessLogic.Helpers.ViewMapHelpers
             return responseSurrenderGameView;
         }
 
-        public static HandSurrenderGameViewItem GetHandSurrenderGameViewItem(IEnumerable<Card> cards, int score)
+        public static HandResponseSurrenderGameViewItem GetHandSurrenderGameViewItem(IEnumerable<Card> cards, int score)
         {
-            IEnumerable<CardSurrenderGameViewItem> cardSurrenderGameViewItems = GetCardSurrenderGameViewItems(cards);
-            var handSurrenderGameViewItem = new HandSurrenderGameViewItem
+            IEnumerable<CardResponseSurrenderGameViewItem> cardSurrenderGameViewItems = GetCardSurrenderGameViewItems(cards);
+            var handSurrenderGameViewItem = new HandResponseSurrenderGameViewItem
             {
                 Cards = cardSurrenderGameViewItems,
                 Score = score
@@ -29,12 +29,12 @@ namespace ProjectBj.BusinessLogic.Helpers.ViewMapHelpers
             return handSurrenderGameViewItem;
         }
 
-        private static IEnumerable<CardSurrenderGameViewItem> GetCardSurrenderGameViewItems(IEnumerable<Card> cards)
+        private static IEnumerable<CardResponseSurrenderGameViewItem> GetCardSurrenderGameViewItems(IEnumerable<Card> cards)
         {
-            var cardSurrenderGameViewItems = new List<CardSurrenderGameViewItem>();
+            var cardSurrenderGameViewItems = new List<CardResponseSurrenderGameViewItem>();
             foreach (var card in cards)
             {
-                var cardSurrenderGameViewItem = new CardSurrenderGameViewItem
+                var cardSurrenderGameViewItem = new CardResponseSurrenderGameViewItem
                 {
                     Suit = card.Suit,
                     Rank = EnumHelper.GetCardRankName(card.Rank),
@@ -45,9 +45,9 @@ namespace ProjectBj.BusinessLogic.Helpers.ViewMapHelpers
             return cardSurrenderGameViewItems;
         }
 
-        private static PlayerSurrenderGameViewItem GetPlayerSurrenderGameViewItem(Player player)
+        private static PlayerResponseSurrenderGameViewItem GetPlayerSurrenderGameViewItem(Player player)
         {
-            var playerSurrenderGameViewItem = new PlayerSurrenderGameViewItem
+            var playerSurrenderGameViewItem = new PlayerResponseSurrenderGameViewItem
             {
                 Id = player.Id,
                 Name = player.Name,
@@ -56,9 +56,9 @@ namespace ProjectBj.BusinessLogic.Helpers.ViewMapHelpers
             return playerSurrenderGameViewItem;
         }
 
-        private static DealerSurrenderGameViewItem GetDealerSurrenderGameViewItem(Player dealer)
+        private static DealerResponseSurrenderGameViewItem GetDealerSurrenderGameViewItem(Player dealer)
         {
-            var dealerSurrenderGameViewItem = new DealerSurrenderGameViewItem
+            var dealerSurrenderGameViewItem = new DealerResponseSurrenderGameViewItem
             {
                 Id = dealer.Id,
                 Name = dealer.Name
@@ -66,12 +66,12 @@ namespace ProjectBj.BusinessLogic.Helpers.ViewMapHelpers
             return dealerSurrenderGameViewItem;
         }
 
-        private static IEnumerable<PlayerSurrenderGameViewItem> GetPlayerSurrenderGameViewItems(IEnumerable<Player> bots)
+        private static IEnumerable<PlayerResponseSurrenderGameViewItem> GetPlayerSurrenderGameViewItems(IEnumerable<Player> bots)
         {
-            var playerSurrenderGameViewItems = new List<PlayerSurrenderGameViewItem>();
+            var playerSurrenderGameViewItems = new List<PlayerResponseSurrenderGameViewItem>();
             foreach (var bot in bots)
             {
-                var playerSurrenderGameViewItem = new PlayerSurrenderGameViewItem
+                var playerSurrenderGameViewItem = new PlayerResponseSurrenderGameViewItem
                 {
                     Id = bot.Id,
                     Name = bot.Name
