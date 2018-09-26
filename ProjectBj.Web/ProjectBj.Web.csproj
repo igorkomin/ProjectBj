@@ -155,8 +155,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="src\app\history\history.component.html" />
-    <Content Include="src\app\login\login.component.html" />
+    <Content Include="src\app\history\history\history.component.html" />
+    <Content Include="src\app\login\login\login.component.html" />
     <Content Include="src\assets\bg.jpg" />
     <Content Include="src\assets\Cards\faces\JC.gif" />
     <Content Include="src\assets\Cards\faces\JD.gif" />
@@ -179,9 +179,9 @@
     <Content Include="src\app\logs\logs.component.html" />
     <Content Include="angular.json" />
     <Content Include="package.json" />
-    <Content Include="src\app\game\game.component.css" />
-    <Content Include="src\app\game\game.component.html" />
-    <Content Include="src\app\login\login.component.css" />
+    <Content Include="src\app\game\game\game.component.css" />
+    <Content Include="src\app\game\game\game.component.html" />
+    <Content Include="src\app\login\login\login.component.css" />
     <Content Include="src\app\app.component.css" />
     <Content Include="src\app\app.component.html" />
     <Content Include="src\karma.conf.js" />
@@ -240,7 +240,7 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="src\app\logs\logs.component.ts" />
-    <TypeScriptCompile Include="src\app\history\history.component.ts" />
+    <TypeScriptCompile Include="src\app\history\history\history.component.ts" />
     <TypeScriptCompile Include="src\app\shared\models\card.model.ts" />
     <TypeScriptCompile Include="src\app\shared\models\dealer.model.ts" />
     <TypeScriptCompile Include="src\app\shared\models\game.model.ts" />
@@ -254,8 +254,8 @@
     <TypeScriptCompile Include="src\app\shared\models\new-game-request.model.ts" />
     <TypeScriptCompile Include="src\app\app-routing.module.ts" />
     <TypeScriptCompile Include="src\app\app.component.ts" />
-    <TypeScriptCompile Include="src\app\game\game.component.ts" />
-    <TypeScriptCompile Include="src\app\login\login.component.ts" />
+    <TypeScriptCompile Include="src\app\game\game\game.component.ts" />
+    <TypeScriptCompile Include="src\app\login\login\login.component.ts" />
     <TypeScriptCompile Include="src\app\app.module.ts" />
     <TypeScriptCompile Include="src\app\history\history-routing.module.ts" />
     <TypeScriptCompile Include="src\app\history\history.module.ts" />
