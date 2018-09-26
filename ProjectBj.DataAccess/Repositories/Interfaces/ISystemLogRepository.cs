@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace ProjectBj.DataAccess.Interfaces
+namespace ProjectBj.DataAccess.Repositories.Interfaces
 {
     public interface ISystemLogRepository
     {

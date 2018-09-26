@@ -1,6 +1,6 @@
 ﻿using Autofac;
-using ProjectBj.DataAccess.Interfaces;
 using ProjectBj.DataAccess.Repositories;
+using ProjectBj.DataAccess.Repositories.Interfaces;
 
 namespace ProjectBj.DataAccess.Configs
 {

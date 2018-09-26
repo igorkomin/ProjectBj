@@ -1,5 +1,5 @@
 ﻿using ProjectBj.BusinessLogic.Interfaces;
-using ProjectBj.DataAccess.Interfaces;
+using ProjectBj.DataAccess.Repositories.Interfaces;
 using ProjectBj.Entities;
 using ProjectBj.ViewModels.Logs;
 using System.Collections.Generic;

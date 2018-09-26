@@ -1,6 +1,6 @@
 ﻿using ProjectBj.BusinessLogic.Helpers;
 using ProjectBj.BusinessLogic.Interfaces;
-using ProjectBj.DataAccess.Interfaces;
+using ProjectBj.DataAccess.Repositories.Interfaces;
 using ProjectBj.Entities;
 using System;
 using System.Threading.Tasks;
