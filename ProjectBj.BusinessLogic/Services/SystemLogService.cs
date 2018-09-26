@@ -1,4 +1,5 @@
-﻿using ProjectBj.BusinessLogic.Interfaces;
+﻿using AutoMapper;
+using ProjectBj.BusinessLogic.Interfaces;
 using ProjectBj.DataAccess.Repositories.Interfaces;
 using ProjectBj.Entities;
 using ProjectBj.ViewModels.Logs;
@@ -18,31 +19,13 @@ namespace ProjectBj.BusinessLogic.Services
 
         public async Task<List<GetFullLogView>> GetFull()
         {
+            Mapper.Initialize(cfg => cfg.CreateMap<SystemLog, GetFullLogView>());
             IEnumerable<SystemLog> systemLogs = await _systemLogRepository.GetAll();
             var systemLogViews = new List<GetFullLogView>();
             foreach (var log in systemLogs)
             {
-                var LogView = new GetFullLogView
-                {
-                    Id = log.Id,
-                    CallSite = log.CallSite,
-                    Exception = log.Exception,
-                    Https = log.Https,
-                    Level = log.Level,
-                    CreationDate = log.CreationDate,
-                    Logger = log.Logger,
-                    MachineName = log.MachineName,
-                    Message = log.Message,
-                    Port = log.Port,
-                    Properties = log.Properties,
-                    RemoteAddress = log.RemoteAddress,
-                    ServerAddress = log.ServerAddress,
-                    ServerName = log.ServerName,
-                    SiteName = log.SiteName,
-                    Url = log.Url,
-                    UserName = log.UserName
-                };
-                systemLogViews.Add(LogView);
+                GetFullLogView logView = Mapper.Map<GetFullLogView>(log);
+                systemLogViews.Add(logView);
             }
             return systemLogViews;
         }
