@@ -52,17 +52,17 @@ export class ApiService {
     }
 
     getHistory(sessionId: number): Observable<History> {
-        let requestUrl = `${apiUrl}/../History/Game`;
+        let requestUrl = `${apiUrl}/../History/GetGameHistory`;
         return this.http.post<History>(requestUrl, sessionId, requestOptions);
     }
 
     getFullHistory(): Observable<History> {
-        let requestUrl = `${apiUrl}/../History/Full`;
+        let requestUrl = `${apiUrl}/../History/GetFullHistory`;
         return this.http.get<History>(requestUrl, requestOptions);
     }
 
     getSystemLogs(): Observable<SystemLog> {
-        let requestUrl = `${apiUrl}/../Log/Full`;
+        let requestUrl = `${apiUrl}/../Log/GetFull`;
         return this.http.get<SystemLog>(requestUrl, requestOptions);
     }
 }

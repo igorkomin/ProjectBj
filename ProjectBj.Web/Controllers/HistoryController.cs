@@ -18,7 +18,7 @@ namespace ProjectBj.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<IHttpActionResult> Game([FromBody] int sessionId)
+        public async Task<IHttpActionResult> GetGameHistory([FromBody] int sessionId)
         {
             try
             {
@@ -33,7 +33,7 @@ namespace ProjectBj.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<IHttpActionResult> Full()
+        public async Task<IHttpActionResult> GetFullHistory()
         {
             try
             {
