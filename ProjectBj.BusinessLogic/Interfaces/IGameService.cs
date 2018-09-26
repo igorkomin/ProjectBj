@@ -6,11 +6,11 @@ namespace ProjectBj.BusinessLogic.Interfaces
 {
     public interface IGameService
     {
-        Task<ResponseStartGameView> GetNewGame(string playerName, int botsNumber);
-        Task<ResponseLoadGameView> GetUnfinishedGame(string playerName);
-        Task<ResponseHitGameView> MakeHitDecision(long playerId, long sessionId);
-        Task<ResponseStandGameView> MakeStandDecision(long playerId, long sessionId);
-        Task<ResponseDoubleGameView> MakeDoubleDownDecision(long playerId, long sessionId);
-        Task<ResponseSurrenderGameView> MakeSurrenderDecision(long playerId, long sessionId);
+        Task<ResponseStartGameView> Start(string playerName, int botsNumber);
+        Task<ResponseLoadGameView> Load(string playerName);
+        Task<ResponseHitGameView> Hit(long playerId, long sessionId);
+        Task<ResponseStandGameView> Stand(long playerId, long sessionId);
+        Task<ResponseDoubleGameView> Double(long playerId, long sessionId);
+        Task<ResponseSurrenderGameView> Surrender(long playerId, long sessionId);
     }
 }

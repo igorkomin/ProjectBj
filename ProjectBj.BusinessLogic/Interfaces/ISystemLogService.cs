@@ -6,6 +6,6 @@ namespace ProjectBj.BusinessLogic.Interfaces
 {
     public interface ISystemLogService
     {
-        Task<List<FullLogView>> GetSystemLogs();
+        Task<List<GetFullLogView>> GetFull();
     }
 }

@@ -28,7 +28,7 @@ namespace ProjectBj.BusinessLogic.Services
             _gameServiceHelper = gameServiceHelper;
         }
 
-        public async Task<ResponseStartGameView> GetNewGame(string playerName, int botsNumber)
+        public async Task<ResponseStartGameView> Start(string playerName, int botsNumber)
         {
             if (playerName == StringHelper.DealerName)
             {
@@ -39,7 +39,7 @@ namespace ProjectBj.BusinessLogic.Services
             return gameView;
         }
 
-        public async Task<ResponseLoadGameView> GetUnfinishedGame(string playerName)
+        public async Task<ResponseLoadGameView> Load(string playerName)
         {
             if (playerName == StringHelper.DealerName)
             {
@@ -52,7 +52,7 @@ namespace ProjectBj.BusinessLogic.Services
             return gameView;
         }
 
-        public async Task<ResponseHitGameView> MakeHitDecision(long playerId, long sessionId)
+        public async Task<ResponseHitGameView> Hit(long playerId, long sessionId)
         {
             bool isLastAction = false;
             Player player = await _playerProvider.GetPlayerById(playerId);
@@ -77,7 +77,7 @@ namespace ProjectBj.BusinessLogic.Services
             return gameView;
         }
 
-        public async Task<ResponseStandGameView> MakeStandDecision(long playerId, long sessionId)
+        public async Task<ResponseStandGameView> Stand(long playerId, long sessionId)
         {
             Player player = await _playerProvider.GetPlayerById(playerId);
             await _historyProvider.Create(player.Name,
@@ -90,7 +90,7 @@ namespace ProjectBj.BusinessLogic.Services
             return gameView;
         }
 
-        public async Task<ResponseDoubleGameView> MakeDoubleDownDecision(long playerId, long sessionId)
+        public async Task<ResponseDoubleGameView> Double(long playerId, long sessionId)
         {
             Player player = await _playerProvider.GetPlayerById(playerId);
             await _historyProvider.Create(player.Name,
@@ -104,7 +104,7 @@ namespace ProjectBj.BusinessLogic.Services
             return gameView;
         }
 
-        public async Task<ResponseSurrenderGameView> MakeSurrenderDecision(long playerId, long sessionId)
+        public async Task<ResponseSurrenderGameView> Surrender(long playerId, long sessionId)
         {
             Player player = await _playerProvider.GetPlayerById(playerId);
             await _historyProvider.Create(player.Name,

@@ -6,23 +6,23 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Http;
 
-namespace ProjectBj.MVC.Controllers
+namespace ProjectBj.MVC.Controllers.Api
 {
-    public class HistoryApiController : ApiController
+    public class HistoryController : ApiController
     {
         private readonly IHistoryService _service;
 
-        public HistoryApiController(IHistoryService service)
+        public HistoryController(IHistoryService service)
         {
             _service = service;
         }
 
         [HttpPost]
-        public async Task<IHttpActionResult> GameHistory([FromBody] int sessionId)
+        public async Task<IHttpActionResult> GetGameHistory([FromBody] int sessionId)
         {
             try
             {
-                IEnumerable<GameHistoryView> view = await _service.GetSessionHistory(sessionId);
+                IEnumerable<GetGameHistoryHistoryView> view = await _service.GetGameHistory(sessionId);
                 return Ok(view);
             }
             catch (Exception exception)
@@ -33,11 +33,11 @@ namespace ProjectBj.MVC.Controllers
         }
 
         [HttpGet]
-        public async Task<IHttpActionResult> FullHistory()
+        public async Task<IHttpActionResult> GetFullHistory()
         {
             try
             {
-                IEnumerable<FullHistoryView> view = await _service.GetFullHistory();
+                IEnumerable<GetFullHistoryHistoryView> view = await _service.GetFullHistory();
                 return Ok(view);
             }
             catch (Exception exception)

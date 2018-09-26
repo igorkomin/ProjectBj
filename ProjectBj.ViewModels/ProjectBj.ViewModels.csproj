@@ -52,9 +52,9 @@
     <Compile Include="Game\ResponseLoadGameView.cs" />
     <Compile Include="Game\ResponseDoubleGameView.cs" />
     <Compile Include="Game\ResponseSurrenderGameView.cs" />
-    <Compile Include="History\GameHistoryView.cs" />
-    <Compile Include="History\FullHistoryView.cs" />
-    <Compile Include="Logs\FullLogView.cs" />
+    <Compile Include="History\GetGameHistoryHistoryView.cs" />
+    <Compile Include="History\GetFullHistoryHistoryView.cs" />
+    <Compile Include="Logs\GetFullLogView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

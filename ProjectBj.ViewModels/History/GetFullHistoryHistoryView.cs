@@ -2,7 +2,7 @@
 
 namespace ProjectBj.ViewModels.History
 {
-    public class GameHistoryView
+    public class GetFullHistoryHistoryView
     {
         public long SessionId { get; set; }
         public DateTime Time { get; set; }

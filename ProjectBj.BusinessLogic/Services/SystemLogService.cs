@@ -16,13 +16,13 @@ namespace ProjectBj.BusinessLogic.Services
             _systemLogRepository = systemLogRepository;
         }
 
-        public async Task<List<FullLogView>> GetSystemLogs()
+        public async Task<List<GetFullLogView>> GetFull()
         {
             IEnumerable<SystemLog> systemLogs = await _systemLogRepository.GetAll();
-            var systemLogViews = new List<FullLogView>();
+            var systemLogViews = new List<GetFullLogView>();
             foreach (var log in systemLogs)
             {
-                var LogView = new FullLogView
+                var LogView = new GetFullLogView
                 {
                     Id = log.Id,
                     CallSite = log.CallSite,

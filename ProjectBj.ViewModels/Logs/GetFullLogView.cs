@@ -2,7 +2,7 @@
 
 namespace ProjectBj.ViewModels.Logs
 {
-    public class FullLogView
+    public class GetFullLogView
     {
         public long Id { get; set; }
         public string MachineName { get; set; }

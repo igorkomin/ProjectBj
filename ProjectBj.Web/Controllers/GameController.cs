@@ -21,7 +21,7 @@ namespace ProjectBj.Web.Controllers
         {
             try
             {
-                ResponseStartGameView view = await _service.GetNewGame(request.PlayerName, request.BotsNumber);
+                ResponseStartGameView view = await _service.Start(request.PlayerName, request.BotsNumber);
                 return Ok(view);
             }
             catch (Exception exception)
@@ -36,7 +36,7 @@ namespace ProjectBj.Web.Controllers
         {
             try
             {
-                ResponseLoadGameView view = await _service.GetUnfinishedGame(request.PlayerName);
+                ResponseLoadGameView view = await _service.Load(request.PlayerName);
                 return Ok(view);
             }
             catch (Exception exception)
@@ -51,7 +51,7 @@ namespace ProjectBj.Web.Controllers
         {
             try
             {
-                ResponseHitGameView view = await _service.MakeHitDecision(request.PlayerId, request.SessionId);
+                ResponseHitGameView view = await _service.Hit(request.PlayerId, request.SessionId);
                 return Ok(view);
             }
             catch (Exception exception)
@@ -66,7 +66,7 @@ namespace ProjectBj.Web.Controllers
         {
             try
             {
-                ResponseStandGameView view = await _service.MakeStandDecision(request.PlayerId, request.SessionId);
+                ResponseStandGameView view = await _service.Stand(request.PlayerId, request.SessionId);
                 return Ok(view);
             }
             catch(Exception exception)
@@ -81,7 +81,7 @@ namespace ProjectBj.Web.Controllers
         {
             try
             {
-                ResponseDoubleGameView view = await _service.MakeDoubleDownDecision(request.PlayerId, request.SessionId);
+                ResponseDoubleGameView view = await _service.Double(request.PlayerId, request.SessionId);
                 return Ok(view);
             }
             catch (Exception exception)
@@ -96,7 +96,7 @@ namespace ProjectBj.Web.Controllers
         {
             try
             {
-                ResponseSurrenderGameView view = await _service.MakeSurrenderDecision(request.PlayerId, request.SessionId);
+                ResponseSurrenderGameView view = await _service.Surrender(request.PlayerId, request.SessionId);
                 return Ok(view);
             }
             catch (Exception exception)

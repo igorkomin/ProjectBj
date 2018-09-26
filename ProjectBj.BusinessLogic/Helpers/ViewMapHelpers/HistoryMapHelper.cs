@@ -6,12 +6,12 @@ namespace ProjectBj.BusinessLogic.Helpers.ViewMapHelpers
 {
     public static class HistoryMapHelper
     {
-        public static IEnumerable<GameHistoryView> GetGameHistoryView(IEnumerable<History> history)
+        public static IEnumerable<GetGameHistoryHistoryView> GetGameHistoryView(IEnumerable<History> history)
         {
-            var gameHistoryViews = new List<GameHistoryView>();
+            var gameHistoryViews = new List<GetGameHistoryHistoryView>();
             foreach (var entry in history)
             {
-                var gameHistoryView = new GameHistoryView
+                var gameHistoryView = new GetGameHistoryHistoryView
                 {
                     SessionId = entry.SessionId,
                     Time = entry.CreationDate,
@@ -23,12 +23,12 @@ namespace ProjectBj.BusinessLogic.Helpers.ViewMapHelpers
             return gameHistoryViews;
         }
 
-        public static IEnumerable<FullHistoryView> GetFullHistoryView(IEnumerable<History> history)
+        public static IEnumerable<GetFullHistoryHistoryView> GetFullHistoryView(IEnumerable<History> history)
         {
-            var fullHistoryViews = new List<FullHistoryView>();
+            var fullHistoryViews = new List<GetFullHistoryHistoryView>();
             foreach (var entry in history)
             {
-                var fullHistoryView = new FullHistoryView
+                var fullHistoryView = new GetFullHistoryHistoryView
                 {
                     SessionId = entry.SessionId,
                     Time = entry.CreationDate,
