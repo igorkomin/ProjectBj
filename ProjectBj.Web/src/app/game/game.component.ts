@@ -11,8 +11,6 @@ import { ApiService } from 'src/app/shared/api.service';
     templateUrl: 'game.component.html',
     styleUrls: [
         'game.component.css',
-        '../shared/style/slider.css',
-        '../shared/style/cards.css'
     ]
 })
 export class GameComponent implements OnInit {

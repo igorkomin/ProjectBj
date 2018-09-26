@@ -177,8 +177,6 @@
     <Content Include="src\assets\robot.png" />
     <Content Include="src\app\logs\logs.component.css" />
     <Content Include="src\app\logs\logs.component.html" />
-    <Content Include="src\app\shared\style\cards.css" />
-    <Content Include="src\app\shared\style\slider.css" />
     <Content Include="angular.json" />
     <Content Include="package.json" />
     <Content Include="src\app\game\game.component.css" />
