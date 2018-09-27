@@ -99,7 +99,7 @@ namespace ProjectBj.BusinessLogic.Providers
         private static IEnumerable<Card> ShuffleDeck(IEnumerable<Card> deck)
         {
             Random random = new Random(Guid.NewGuid().GetHashCode());
-            IEnumerable<Card> shuffledDeck = deck.OrderBy(item => random.Next(0, deck.Count())).ToList();
+            IEnumerable<Card> shuffledDeck = deck.OrderBy(item => random.Next(0, deck.Count()));
             Log.Info(StringHelper.DeckShuffledMessage);
             return shuffledDeck;
         }
