@@ -55,7 +55,7 @@ export class GameComponent implements OnInit {
                 this.game = response;
                 this.sessionId = response.sessionId;
                 this.playerId = response.player.id;
-                this.getLogs();
+                this.getHistory();
             },
             exception => {
                 console.error(exception);
@@ -73,7 +73,7 @@ export class GameComponent implements OnInit {
                 this.game = response;
                 this.sessionId = response.sessionId;
                 this.playerId = response.player.id;
-                this.getLogs();
+                this.getHistory();
             },
             exception => {
                 console.error(exception);
@@ -90,7 +90,7 @@ export class GameComponent implements OnInit {
         this.gameService.hit(request).subscribe(
             response => {
                 this.game = response;
-                this.getLogs();
+                this.getHistory();
             },
             exception => {
                 console.error(exception);
@@ -107,7 +107,7 @@ export class GameComponent implements OnInit {
         this.gameService.stand(request).subscribe(
             response => {
                 this.game = response;
-                this.getLogs();
+                this.getHistory();
             },
             exception => {
                 console.error(exception);
@@ -124,7 +124,7 @@ export class GameComponent implements OnInit {
         this.gameService.double(request).subscribe(
             response => {
                 this.game = response;
-                this.getLogs();
+                this.getHistory();
             },
             exception => {
                 console.error(exception);
@@ -141,7 +141,7 @@ export class GameComponent implements OnInit {
         this.gameService.surrender(request).subscribe(
             response => {
                 this.game = response;
-                this.getLogs();
+                this.getHistory();
             },
             exception => {
                 console.log(exception);
@@ -150,7 +150,7 @@ export class GameComponent implements OnInit {
         );
     }
 
-    getLogs(): void {
+    getHistory(): void {
         this.error = undefined;
         this.historyService.getHistory(this.sessionId).subscribe(
             response => {
