@@ -47,10 +47,10 @@ export class GameComponent implements OnInit {
 
     newGame(): void {
         this.error = undefined;
-        let gameSettings = new NewGameRequest();
-        gameSettings.playerName = this.playerName;
-        gameSettings.botsNumber = this.botsNumber;
-        this.gameService.newGame(gameSettings).subscribe(
+        let request = new NewGameRequest();
+        request.playerName = this.playerName;
+        request.botsNumber = this.botsNumber;
+        this.gameService.newGame(request).subscribe(
             response => {
                 this.game = response;
                 this.sessionId = response.sessionId;
@@ -66,9 +66,9 @@ export class GameComponent implements OnInit {
 
     loadGame(): void {
         this.error = undefined;
-        let gameSettings = new NewGameRequest();
-        gameSettings.playerName = this.playerName;
-        this.gameService.loadGame(gameSettings).subscribe(
+        let request = new NewGameRequest();
+        request.playerName = this.playerName;
+        this.gameService.loadGame(request).subscribe(
             response => {
                 this.game = response;
                 this.sessionId = response.sessionId;
