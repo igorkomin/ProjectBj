@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataStateChangeEvent, GridDataResult } from '@progress/kendo-angular-grid';
 import { State, process } from '@progress/kendo-data-query';
-import { ApiService } from 'src/app/shared/api.service';
+import { HistoryService } from '../history.service';
 
 @Component({
     selector: 'app-history',
@@ -25,7 +25,7 @@ export class HistoryComponent implements OnInit {
     gridView: GridDataResult;
 
     constructor(
-        private apiService: ApiService,
+        private historyService: HistoryService
     ) { }
 
     ngOnInit() {
@@ -33,7 +33,7 @@ export class HistoryComponent implements OnInit {
     }
 
     getHistory() {
-        this.apiService.getFullHistory().subscribe(
+        this.historyService.getFullHistory().subscribe(
             response => {
                 this.history = response;
                 this.gridView = process(this.history, this.state);

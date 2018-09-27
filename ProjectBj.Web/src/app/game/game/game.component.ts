@@ -4,7 +4,8 @@ import { Game } from 'src/app/shared/models/game.model';
 import { History } from 'src/app/shared/models/history.model';
 import { GameRequest } from 'src/app/shared/models/game-request.model';
 import { NewGameRequest } from 'src/app/shared/models/new-game-request.model';
-import { ApiService } from 'src/app/shared/api.service';
+import { GameService } from 'src/app/game/game.service';
+import { HistoryService } from 'src/app/history/history.service';
 
 @Component({
     selector: 'app-game',
@@ -23,7 +24,8 @@ export class GameComponent implements OnInit {
     log: History;
 
     constructor(
-        private apiService: ApiService,
+        private gameService: GameService,
+        private historyService: HistoryService,
         private route: ActivatedRoute,
     ) { }
 
@@ -48,7 +50,7 @@ export class GameComponent implements OnInit {
         let gameSettings = new NewGameRequest();
         gameSettings.playerName = this.playerName;
         gameSettings.botsNumber = this.botsNumber;
-        this.apiService.newGame(gameSettings).subscribe(
+        this.gameService.newGame(gameSettings).subscribe(
             response => {
                 this.game = response;
                 this.sessionId = response.sessionId;
@@ -66,7 +68,7 @@ export class GameComponent implements OnInit {
         this.error = undefined;
         let gameSettings = new NewGameRequest();
         gameSettings.playerName = this.playerName;
-        this.apiService.loadGame(gameSettings).subscribe(
+        this.gameService.loadGame(gameSettings).subscribe(
             response => {
                 this.game = response;
                 this.sessionId = response.sessionId;
@@ -85,7 +87,7 @@ export class GameComponent implements OnInit {
         let request = new GameRequest();
         request.playerId = this.playerId;
         request.sessionId = this.sessionId;
-        this.apiService.hit(request).subscribe(
+        this.gameService.hit(request).subscribe(
             response => {
                 this.game = response;
                 this.getLogs();
@@ -102,7 +104,7 @@ export class GameComponent implements OnInit {
         let request = new GameRequest();
         request.playerId = this.playerId;
         request.sessionId = this.sessionId;
-        this.apiService.stand(request).subscribe(
+        this.gameService.stand(request).subscribe(
             response => {
                 this.game = response;
                 this.getLogs();
@@ -119,7 +121,7 @@ export class GameComponent implements OnInit {
         let request = new GameRequest();
         request.playerId = this.playerId;
         request.sessionId = this.sessionId;
-        this.apiService.double(request).subscribe(
+        this.gameService.double(request).subscribe(
             response => {
                 this.game = response;
                 this.getLogs();
@@ -136,7 +138,7 @@ export class GameComponent implements OnInit {
         let request = new GameRequest();
         request.playerId = this.playerId;
         request.sessionId = this.sessionId;
-        this.apiService.surrender(request).subscribe(
+        this.gameService.surrender(request).subscribe(
             response => {
                 this.game = response;
                 this.getLogs();
@@ -150,7 +152,7 @@ export class GameComponent implements OnInit {
 
     getLogs(): void {
         this.error = undefined;
-        this.apiService.getHistory(this.sessionId).subscribe(
+        this.historyService.getHistory(this.sessionId).subscribe(
             response => {
                 this.log = response;
             },

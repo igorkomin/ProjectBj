@@ -175,8 +175,8 @@
     <Content Include="src\assets\loading.gif" />
     <Content Include="src\assets\player.png" />
     <Content Include="src\assets\robot.png" />
-    <Content Include="src\app\logs\logs.component.css" />
-    <Content Include="src\app\logs\logs.component.html" />
+    <Content Include="src\app\logs\logs\logs.component.css" />
+    <Content Include="src\app\logs\logs\logs.component.html" />
     <Content Include="angular.json" />
     <Content Include="package.json" />
     <Content Include="src\app\game\game\game.component.css" />
@@ -239,7 +239,10 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="src\app\logs\logs.component.ts" />
+    <TypeScriptCompile Include="src\app\game\game.service.ts" />
+    <TypeScriptCompile Include="src\app\history\history.service.ts" />
+    <TypeScriptCompile Include="src\app\logs\logs.service.ts" />
+    <TypeScriptCompile Include="src\app\logs\logs\logs.component.ts" />
     <TypeScriptCompile Include="src\app\history\history\history.component.ts" />
     <TypeScriptCompile Include="src\app\shared\models\card.model.ts" />
     <TypeScriptCompile Include="src\app\shared\models\dealer.model.ts" />
@@ -266,7 +269,6 @@
     <TypeScriptCompile Include="src\app\logs\logs-routing.module.ts" />
     <TypeScriptCompile Include="src\app\logs\logs.module.ts" />
     <TypeScriptCompile Include="src\app\shared\shared.module.ts" />
-    <TypeScriptCompile Include="src\app\shared\api.service.ts" />
     <TypeScriptCompile Include="src\environments\environment.prod.ts" />
     <TypeScriptCompile Include="src\environments\environment.ts" />
     <TypeScriptCompile Include="src\main.ts" />
