@@ -175,7 +175,6 @@
     <Content Include="src\assets\loading.gif" />
     <Content Include="src\assets\player.png" />
     <Content Include="src\assets\robot.png" />
-    <Content Include="src\app\logs\logs\logs.component.css" />
     <Content Include="src\app\logs\logs\logs.component.html" />
     <Content Include="angular.json" />
     <Content Include="package.json" />
@@ -244,6 +243,7 @@
     <TypeScriptCompile Include="src\app\logs\logs.service.ts" />
     <TypeScriptCompile Include="src\app\logs\logs\logs.component.ts" />
     <TypeScriptCompile Include="src\app\history\history\history.component.ts" />
+    <TypeScriptCompile Include="src\app\shared\api.interceptor.ts" />
     <TypeScriptCompile Include="src\app\shared\models\card.model.ts" />
     <TypeScriptCompile Include="src\app\shared\models\dealer.model.ts" />
     <TypeScriptCompile Include="src\app\shared\models\game.model.ts" />
