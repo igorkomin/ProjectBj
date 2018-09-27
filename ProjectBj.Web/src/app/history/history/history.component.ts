@@ -11,16 +11,9 @@ export class HistoryComponent implements OnInit {
     history: any;
     data: Object[];
 
-    public allowUnsort = true;
-
     public state: State = {
         skip: 0,
         take: 15,
-
-        filter: {
-            logic: 'and',
-            filters: [{ field: 'message', operator: 'contains', value: '' }]
-        },
     };
     gridView: GridDataResult;
 
