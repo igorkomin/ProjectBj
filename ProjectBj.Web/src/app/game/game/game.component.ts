@@ -31,7 +31,7 @@ export class GameComponent implements OnInit {
 
     ngOnInit() {
         this.route
-            .queryParams
+            .params
             .subscribe(params => {
                 this.playerName = params['name'];
             });

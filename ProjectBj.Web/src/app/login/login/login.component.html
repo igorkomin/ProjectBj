@@ -5,9 +5,9 @@
                 <span class="input-group-text">Enter your name</span>
             </div>
             <input #playerName required [(ngModel)]="name"
-                   type="text" id="player-name" name="ame" class="form-control" />
+                   type="text" id="player-name" name="name" class="form-control" />
         </div>
-        <input #loginButton routerLink="/game" id="play-button" [queryParams]="{ name: playerName.value }"
+        <input #loginButton [routerLink]="['/game', {'name': playerName.value}]" id="play-button"
                [disabled]="!loginForm.form.valid" type="submit" class="btn btn-primary" value="LOGIN" />
     </form>
 </div>
