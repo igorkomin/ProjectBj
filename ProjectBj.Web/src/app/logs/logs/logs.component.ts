@@ -6,22 +6,14 @@ import { LogsService } from 'src/app/logs/logs.service';
 @Component({
     selector: 'app-logs',
     templateUrl: 'logs.component.html',
-    styleUrls: ['logs.component.css']
 })
 export class LogsComponent implements OnInit {
     logs: any;
     data: Object[];
 
-    public allowUnsort = true;
-
     public state: State = {
         skip: 0,
-        take: 10,
-
-        filter: {
-            logic: 'and',
-            filters: [{ field: 'level', operator: 'contains', value: 'Info' }]
-        },
+        take: 15,
     };
     gridView: GridDataResult;
 
