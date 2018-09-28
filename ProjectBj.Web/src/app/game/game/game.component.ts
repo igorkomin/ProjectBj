@@ -18,7 +18,7 @@ export class GameComponent implements OnInit {
     botsNumber: number = 0;
     error: string;
     game: Game;
-    log: any;
+    history: History;
 
     constructor(
         private gameService: GameService,
@@ -140,7 +140,7 @@ export class GameComponent implements OnInit {
         this.error = undefined;
         this.gameService.getHistory(this.game.sessionId).subscribe(
             response => {
-                this.log = response;
+                this.history = response;
             },
             exception => {
                 this.error = exception;
