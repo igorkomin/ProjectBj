@@ -1,5 +1,5 @@
 import { Hand } from "./hand.model";
-import { GameResult } from "./gameresult.model";
+import { GameResult } from "./game-result.model";
 
 export class Player {
     id: number;
