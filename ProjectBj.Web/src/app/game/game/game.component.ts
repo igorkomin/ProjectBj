@@ -17,8 +17,6 @@ import { HistoryService } from 'src/app/history/history.service';
 export class GameComponent implements OnInit {
     playerName: string;
     botsNumber: number = 0;
-    sessionId: number;
-    playerId: number;
     error: string;
     game: Game;
     log: History;
@@ -53,8 +51,6 @@ export class GameComponent implements OnInit {
         this.gameService.newGame(request).subscribe(
             response => {
                 this.game = response;
-                this.sessionId = response.sessionId;
-                this.playerId = response.player.id;
                 this.getHistory();
             },
             exception => {
@@ -71,8 +67,6 @@ export class GameComponent implements OnInit {
         this.gameService.loadGame(request).subscribe(
             response => {
                 this.game = response;
-                this.sessionId = response.sessionId;
-                this.playerId = response.player.id;
                 this.getHistory();
             },
             exception => {
@@ -85,8 +79,8 @@ export class GameComponent implements OnInit {
     hit(): void {
         this.error = undefined;
         let request = new GameRequest();
-        request.playerId = this.playerId;
-        request.sessionId = this.sessionId;
+        request.playerId = this.game.player.id;
+        request.sessionId = this.game.sessionId;
         this.gameService.hit(request).subscribe(
             response => {
                 this.game = response;
@@ -102,8 +96,8 @@ export class GameComponent implements OnInit {
     stand(): void {
         this.error = undefined;
         let request = new GameRequest();
-        request.playerId = this.playerId;
-        request.sessionId = this.sessionId;
+        request.playerId = this.game.player.id;
+        request.sessionId = this.game.sessionId;
         this.gameService.stand(request).subscribe(
             response => {
                 this.game = response;
@@ -119,8 +113,8 @@ export class GameComponent implements OnInit {
     doubleDown(): void {
         this.error = undefined;
         let request = new GameRequest();
-        request.playerId = this.playerId;
-        request.sessionId = this.sessionId;
+        request.playerId = this.game.player.id;
+        request.sessionId = this.game.sessionId;
         this.gameService.double(request).subscribe(
             response => {
                 this.game = response;
@@ -136,8 +130,8 @@ export class GameComponent implements OnInit {
     surrender(): void {
         this.error = undefined;
         let request = new GameRequest();
-        request.playerId = this.playerId;
-        request.sessionId = this.sessionId;
+        request.playerId = this.game.player.id;
+        request.sessionId = this.game.sessionId;
         this.gameService.surrender(request).subscribe(
             response => {
                 this.game = response;
@@ -152,7 +146,7 @@ export class GameComponent implements OnInit {
 
     getHistory(): void {
         this.error = undefined;
-        this.historyService.getHistory(this.sessionId).subscribe(
+        this.historyService.getHistory(this.game.sessionId).subscribe(
             response => {
                 this.log = response;
             },
