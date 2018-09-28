@@ -1,13 +1,13 @@
 <kendo-grid [data]="gridView"
             [pageSize]="state.take"
             [skip]="state.skip"
-            [height]="500"
+            [height]="auto"
             [filterable]="true"
             [pageable]="true"
             [reorderable]="true"
             [resizable]="true"
             [sortable]="{
-                allowUnsort: allowUnsort,
+                allowUnsort: true,
                 mode: 'single'
             }"
             [sort]="state.sort"
