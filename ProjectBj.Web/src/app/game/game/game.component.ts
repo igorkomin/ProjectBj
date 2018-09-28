@@ -5,7 +5,6 @@ import { History } from 'src/app/shared/models/history.model';
 import { GameRequest } from 'src/app/shared/models/game-request.model';
 import { NewGameRequest } from 'src/app/shared/models/new-game-request.model';
 import { GameService } from 'src/app/game/game.service';
-import { HistoryService } from 'src/app/history/history.service';
 
 @Component({
     selector: 'app-game',
@@ -19,11 +18,10 @@ export class GameComponent implements OnInit {
     botsNumber: number = 0;
     error: string;
     game: Game;
-    log: History;
+    log: any;
 
     constructor(
         private gameService: GameService,
-        private historyService: HistoryService,
         private route: ActivatedRoute,
     ) { }
 
@@ -140,7 +138,7 @@ export class GameComponent implements OnInit {
 
     getHistory(): void {
         this.error = undefined;
-        this.historyService.getHistory(this.game.sessionId).subscribe(
+        this.gameService.getHistory(this.game.sessionId).subscribe(
             response => {
                 this.log = response;
             },

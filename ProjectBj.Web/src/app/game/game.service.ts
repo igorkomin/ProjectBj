@@ -42,4 +42,9 @@ export class GameService {
         let requestUrl = `${apiUrl}/Surrender`;
         return this.http.post<Game>(requestUrl, request);
     }
+
+    getHistory(sessionId: number): Observable<History> {
+        let requestUrl = `${apiUrl}/../History/GetGameHistory`;
+        return this.http.post<History>(requestUrl, sessionId);
+    }
 }
