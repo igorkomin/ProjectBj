@@ -54,8 +54,7 @@ export class GameComponent implements OnInit {
                 this.getHistory();
             },
             exception => {
-                console.error(exception);
-                this.error = exception.error.exceptionMessage;
+                this.error = exception;
             }
         );
     }
@@ -70,8 +69,7 @@ export class GameComponent implements OnInit {
                 this.getHistory();
             },
             exception => {
-                console.error(exception);
-                this.error = exception.error.exceptionMessage;
+                this.error = exception;
             }
         );
     }
@@ -87,8 +85,7 @@ export class GameComponent implements OnInit {
                 this.getHistory();
             },
             exception => {
-                console.error(exception);
-                this.error = exception.error.exceptionMessage;
+                this.error = exception;
             }
         );
     }
@@ -104,8 +101,7 @@ export class GameComponent implements OnInit {
                 this.getHistory();
             },
             exception => {
-                console.error(exception);
-                this.error = exception.error.exceptionMessage;
+                this.error = exception;
             }
         );
     }
@@ -121,8 +117,7 @@ export class GameComponent implements OnInit {
                 this.getHistory();
             },
             exception => {
-                console.error(exception);
-                this.error = exception.error.exceptionMessage;
+                this.error = exception;
             }
         );
     }
@@ -138,8 +133,7 @@ export class GameComponent implements OnInit {
                 this.getHistory();
             },
             exception => {
-                console.log(exception);
-                this.error = exception.error.exceptionMessage;
+                this.error = exception;
             }
         );
     }
@@ -151,8 +145,7 @@ export class GameComponent implements OnInit {
                 this.log = response;
             },
             exception => {
-                console.error(exception);
-                this.error = exception.error.exceptionMessage;
+                this.error = exception;
             }
         );
     }
