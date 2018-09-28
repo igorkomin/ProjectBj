@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { GameRequest } from '../shared/models/game-request.model';
 import { Game } from '../shared/models/game.model';
+import { History } from '../shared/models/history.model';
 import { NewGameRequest } from '../shared/models/new-game-request.model';
 
 const apiUrl = '../api/game';
