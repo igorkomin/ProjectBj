@@ -243,7 +243,7 @@
     <TypeScriptCompile Include="src\app\logs\logs.service.ts" />
     <TypeScriptCompile Include="src\app\logs\logs\logs.component.ts" />
     <TypeScriptCompile Include="src\app\history\history\history.component.ts" />
-    <TypeScriptCompile Include="src\app\shared\api.interceptor.ts" />
+    <TypeScriptCompile Include="src\app\shared\http-error.interceptor.ts" />
     <TypeScriptCompile Include="src\app\shared\models\card.model.ts" />
     <TypeScriptCompile Include="src\app\shared\models\dealer.model.ts" />
     <TypeScriptCompile Include="src\app\shared\models\game.model.ts" />
