@@ -2,6 +2,7 @@
 using Owin;
 using ProjectBj.Web.Configs;
 using System.Web.Http;
+using System.Web.Optimization;
 using System.Web.Routing;
 
 [assembly: OwinStartup(typeof(ProjectBj.Web.Startup))]
@@ -16,6 +17,7 @@ namespace ProjectBj.Web
             HttpConfiguration config = new HttpConfiguration();
             WebApiConfig.Register(config);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             app.UseAutofacMiddleware(container);
             app.UseAutofacWebApi(config);
