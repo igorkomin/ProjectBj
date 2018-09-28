@@ -12,8 +12,8 @@ export class HttpErrorInterceptor implements HttpInterceptor {
         return next.handle(request).pipe(
             catchError((error: HttpErrorResponse) => {
                 let errorMessage = '';
-                if (error.error instanceof ErrorEvent) {
-                    errorMessage = `Error: ${error.error.message}`;
+                if (error instanceof ErrorEvent) {
+                    errorMessage = `Error: ${error.message}`;
                 }
                 else {
                     errorMessage = `Error Code: ${error.status},  Message: ${error.message}`;
