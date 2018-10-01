@@ -10,39 +10,13 @@ using System.Threading.Tasks;
 
 namespace ProjectBj.DataAccess.Repositories
 {
-    public class GameSessionRepository : IGameSessionRepository
+    public class GameSessionRepository : RepositoryBase<GameSession>, IGameSessionRepository
     {
         private readonly string _connectionString;
 
-        public GameSessionRepository(string connectionString)
+        public GameSessionRepository(string connectionString): base(connectionString)
         {
             _connectionString = connectionString;
-        }
-
-        public async Task<GameSession> Insert(GameSession session)
-        {
-            using (IDbConnection db = new SqlConnection(_connectionString))
-            {
-                session.Id = await db.InsertAsync(session);
-                return session;
-            }
-        }
-
-        public async Task<GameSession> GetById(long id)
-        {
-            using (IDbConnection db = new SqlConnection(_connectionString))
-            {
-                GameSession session = await db.GetAsync<GameSession>(id);
-                return session;
-            }
-        }
-
-        public async Task Update(GameSession session)
-        {
-            using (IDbConnection db = new SqlConnection(_connectionString))
-            {
-                await db.UpdateAsync(session);
-            }
         }
 
         public async Task<GameSession> GetFirstOpen(long playerId)

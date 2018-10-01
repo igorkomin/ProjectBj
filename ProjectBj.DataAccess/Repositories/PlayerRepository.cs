@@ -9,22 +9,13 @@ using System.Threading.Tasks;
 
 namespace ProjectBj.DataAccess.Repositories
 {
-    public class PlayerRepository : IPlayerRepository
+    public class PlayerRepository : RepositoryBase<Player>, IPlayerRepository
     {
         private readonly string _connectionString;
 
-        public PlayerRepository(string connectionString)
+        public PlayerRepository(string connectionString) : base(connectionString)
         {
             _connectionString = connectionString;
-        }
-
-        public async Task<Player> Insert(Player player)
-        {
-            using (IDbConnection db = new SqlConnection(_connectionString))
-            {
-                await db.InsertAsync(player);
-                return player;
-            }
         }
 
         public async Task<IEnumerable<Player>> Insert(IEnumerable<Player> players)
@@ -43,23 +34,6 @@ namespace ProjectBj.DataAccess.Repositories
                 string sqlQuery = "SELECT * FROM Players WHERE Name = @name";
                 IEnumerable<Player> players = await db.QueryAsync<Player>(sqlQuery, new { name });
                 return players;
-            }
-        }
-
-        public async Task<Player> GetById(long id)
-        {
-            using (IDbConnection db = new SqlConnection(_connectionString))
-            {
-                Player player = await db.GetAsync<Player>(id);
-                return player;
-            }
-        }
-
-        public async Task Update(Player player)
-        {
-            using (IDbConnection db = new SqlConnection(_connectionString))
-            {
-                await db.UpdateAsync(player);
             }
         }
 

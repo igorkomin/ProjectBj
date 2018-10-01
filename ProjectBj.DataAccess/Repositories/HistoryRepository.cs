@@ -9,21 +9,13 @@ using System.Threading.Tasks;
 
 namespace ProjectBj.DataAccess.Repositories
 {
-    public class HistoryRepository : IHistoryRepository
+    public class HistoryRepository : RepositoryBase<History>, IHistoryRepository
     {
         private readonly string _connectionString;
 
-        public HistoryRepository(string connectionString)
+        public HistoryRepository(string connectionString): base(connectionString)
         {
             _connectionString = connectionString;
-        }
-
-        public async Task Create(History entry)
-        {
-            using (IDbConnection db = new SqlConnection(_connectionString))
-            {
-                await db.InsertAsync(entry);
-            }
         }
 
         public async Task<IEnumerable<History>> GetBySessionId(long sessionId)

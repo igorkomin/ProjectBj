@@ -28,7 +28,7 @@ namespace ProjectBj.BusinessLogic.Providers
                 CreationDate = DateTime.Now
             };
             Log.Info(StringHelper.CreatingHistoryEntryMessage);
-            await _historyRepository.Create(entry);
+            await _historyRepository.Insert(entry);
         }
 
         public async Task<IEnumerable<History>> Get(long sessionId)

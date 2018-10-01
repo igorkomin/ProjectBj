@@ -8,6 +8,8 @@ namespace ProjectBj.DataAccess.Configs
     {
         public static ContainerBuilder RegisterTypes(ContainerBuilder builder, string connectionString)
         {
+            builder.RegisterGeneric(typeof(RepositoryBase<>))
+                .As(typeof(IRepositoryBase<>));
             builder.RegisterType<CardRepository>().As<ICardRepository>()
                 .WithParameter("connectionString", connectionString);
             builder.RegisterType<GameSessionRepository>().As<IGameSessionRepository>()
