@@ -12,7 +12,7 @@ export class LogsService {
     constructor(private http: HttpClient) { }
 
     getSystemLogs(): Observable<SystemLog> {
-        let requestUrl = `${apiUrl}/GetFull`;
+        let requestUrl = `${apiUrl}/GetFullLog`;
         return this.http.get<SystemLog>(requestUrl);
     }
 }

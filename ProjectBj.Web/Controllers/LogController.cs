@@ -18,11 +18,11 @@ namespace ProjectBj.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<IHttpActionResult> GetFull()
+        public async Task<IHttpActionResult> GetFullLog()
         {
             try
             {
-                List<GetFullLogView> view = await _service.GetFull();
+                List<GetFullLogView> view = await _service.GetFullLog();
                 return Ok(view);
             }
             catch (Exception exception)

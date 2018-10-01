@@ -17,7 +17,7 @@ namespace ProjectBj.BusinessLogic.Services
             _systemLogRepository = systemLogRepository;
         }
 
-        public async Task<List<GetFullLogView>> GetFull()
+        public async Task<List<GetFullLogView>> GetFullLog()
         {
             Mapper.Initialize(cfg => cfg.CreateMap<SystemLog, GetFullLogView>());
             IEnumerable<SystemLog> systemLogs = await _systemLogRepository.GetAll();
