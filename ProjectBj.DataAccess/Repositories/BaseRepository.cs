@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace ProjectBj.DataAccess.Repositories
 {
-    public abstract class RepositoryBase<T>: IRepositoryBase<T> where T: class
+    public abstract class BaseRepository<T>: IBaseRepository<T> where T: class
     {
         private readonly string _connectionString;
 
-        public RepositoryBase(string connectionString)
+        public BaseRepository(string connectionString)
         {
             _connectionString = connectionString;
         }

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ProjectBj.DataAccess.Repositories
 {
-    public class GameSessionRepository : RepositoryBase<GameSession>, IGameSessionRepository
+    public class GameSessionRepository : BaseRepository<GameSession>, IGameSessionRepository
     {
         private readonly string _connectionString;
 

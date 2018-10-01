@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ProjectBj.DataAccess.Repositories
 {
-    public class PlayerRepository : RepositoryBase<Player>, IPlayerRepository
+    public class PlayerRepository : BaseRepository<Player>, IPlayerRepository
     {
         private readonly string _connectionString;
 

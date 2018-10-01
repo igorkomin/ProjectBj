@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProjectBj.DataAccess.Repositories.Interfaces
 {
-    public interface IRepositoryBase<T> where T: class
+    public interface IBaseRepository<T> where T: class
     {
         Task<T> Insert(T item);
         Task<T> GetById(long id);

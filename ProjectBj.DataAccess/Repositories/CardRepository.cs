@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ProjectBj.DataAccess.Repositories
 {
-    public class CardRepository : RepositoryBase<Card>, ICardRepository
+    public class CardRepository : BaseRepository<Card>, ICardRepository
     {
         private readonly string _connectionString;
 

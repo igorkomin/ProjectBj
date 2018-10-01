@@ -61,8 +61,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Repositories\Interfaces\IRepositoryBase.cs" />
-    <Compile Include="Repositories\RepositoryBase.cs" />
+    <Compile Include="Repositories\Interfaces\IBaseRepository.cs" />
+    <Compile Include="Repositories\BaseRepository.cs" />
     <Compile Include="Repositories\Interfaces\ICardRepository.cs" />
     <Compile Include="Repositories\Interfaces\IGameSessionRepository.cs" />
     <Compile Include="Repositories\Interfaces\IHistoryRepository.cs" />
