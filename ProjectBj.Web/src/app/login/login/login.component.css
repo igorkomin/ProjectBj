@@ -1,5 +1,3 @@
-@import 'https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.css';
-
 .ng-valid[required], .ng-valid.required {
     border-right: 5px solid #42A948;
 }

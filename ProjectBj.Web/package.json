@@ -21,6 +21,7 @@
     "@angular/platform-browser-dynamic": "^6.1.8",
     "@angular/router": "^6.1.8",
     "@ng-bootstrap/ng-bootstrap": "^3.2.0",
+    "@ng-bootstrap/schematics": "^2.0.0-alpha.1",
     "@progress/kendo-angular-buttons": "^4.0.0",
     "@progress/kendo-angular-dateinputs": "2 - 3",
     "@progress/kendo-angular-dropdowns": "^3.1.0",
@@ -37,7 +38,8 @@
     "hoek": "^5.0.4",
     "rxjs": "^6.3.2",
     "rxjs-compat": "^6.3.2",
-    "zone.js": "~0.8.26"
+    "zone.js": "~0.8.26",
+    "bootstrap": "^4.0.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.7.5",
