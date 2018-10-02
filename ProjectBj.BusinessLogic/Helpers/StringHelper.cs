@@ -11,7 +11,6 @@
         public static readonly string DealerTurnMessage = "Dealer's turn";
         public static readonly string CreatingDeckMessage = "Creating a new deck";
         public static readonly string PullingDeckMessage = "Pulling deck from database";
-        public static readonly string NoDeckInDbMessage = "No cards in database";
         public static readonly string SavingDeckMessage = "Saving deck to database";
         public static readonly string DeckShuffledMessage = "Deck shuffled";
         public static readonly string CreatingHistoryEntryMessage = "Creating game log entry";
