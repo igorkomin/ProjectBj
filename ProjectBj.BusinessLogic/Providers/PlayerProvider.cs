@@ -22,12 +22,7 @@ namespace ProjectBj.BusinessLogic.Providers
 
         public async Task<IEnumerable<Player>> GetBots(int botnumber, long sessionId)
         {
-            IEnumerable<Player> bots = await _playerRepository.GetSessionBots(sessionId);
-
-            if (bots.Count() == 0 || bots == null)
-            {
-                bots = await GetNewBots(botnumber);
-            }
+            IEnumerable<Player> bots = await GetNewBots(botnumber);
             return bots;
         }
 
