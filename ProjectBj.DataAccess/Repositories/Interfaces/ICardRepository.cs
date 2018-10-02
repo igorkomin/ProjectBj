@@ -8,7 +8,7 @@ namespace ProjectBj.DataAccess.Repositories.Interfaces
     {
         Task<IEnumerable<Card>> Insert(IEnumerable<Card> deck);
         Task<IEnumerable<Card>> Get(long playerId, long sessionId);
-        Task<IEnumerable<Card>> GetAll();
+        Task<IEnumerable<Card>> GetRandom(int cardsCount);
         Task DeletePlayerHand(long playerId, long sessionId);
     }
 }

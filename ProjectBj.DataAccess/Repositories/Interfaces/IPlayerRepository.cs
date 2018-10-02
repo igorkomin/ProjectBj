@@ -13,6 +13,7 @@ namespace ProjectBj.DataAccess.Repositories.Interfaces
         Task<IEnumerable<Player>> GetSessionBots(long sessionId);
         Task Update(Player player);
         Task AddCardToPlayerHand(Player player, long cardId, long sessionId);
+        Task AddCardsToPlayerHand(Player player, IEnumerable<long> cardIds, long sessionId);
         Task DeleteBotsFromSession(long sessionId);
     }
 }

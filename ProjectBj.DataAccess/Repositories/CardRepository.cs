@@ -39,11 +39,12 @@ namespace ProjectBj.DataAccess.Repositories
             }
         }
 
-        public async Task<IEnumerable<Card>> GetAll()
+        public async Task<IEnumerable<Card>> GetRandom(int count)
         {
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
-                IEnumerable<Card> cards = await db.GetAllAsync<Card>();
+                string sqlQuery = "SELECT TOP(@count) * FROM Cards ORDER BY NEWID()";
+                IEnumerable<Card> cards = await db.QueryAsync<Card>(sqlQuery, new { count });
                 return cards;
             }
         }

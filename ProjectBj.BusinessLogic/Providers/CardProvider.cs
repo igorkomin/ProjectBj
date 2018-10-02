@@ -20,23 +20,16 @@ namespace ProjectBj.BusinessLogic.Providers
             _cardRepository = cardRepository;
         }
 
-        public async Task<IEnumerable<Card>> GetDeck()
+        public async Task<IEnumerable<Card>> GetRandomCards(int count)
         {
-            IEnumerable<Card> deck = await GetExistingDeck();
-            if (deck == null)
+            IEnumerable<Card> cards = await _cardRepository.GetRandom(count);
+            if (cards.Count() == 0)
             {
-                deck = GetNewDeck();
-                await SaveDeck(deck);
-                deck = await GetExistingDeck();
+                cards = GetNewDeck();
+                await SaveDeck(cards);
+                return await GetRandomCards(count);
             }
-            return deck;
-        }
-
-        public async Task<Card> GetRandomCard()
-        {
-            IEnumerable<Card> shuffledDeck = ShuffleDeck(await GetDeck());
-            Card card = shuffledDeck.FirstOrDefault();
-            return card;
+            return cards;
         }
 
         public async Task<IEnumerable<Card>> GetPlayerHand(long playerId, long sessionId)
@@ -78,30 +71,10 @@ namespace ProjectBj.BusinessLogic.Providers
             }
         }
 
-        private async Task<IEnumerable<Card>> GetExistingDeck()
-        {
-            Log.Info(StringHelper.PullingDeckMessage);
-            IEnumerable<Card> deck = await _cardRepository.GetAll();
-            if (deck.Count() == 0)
-            {
-                Log.Info(StringHelper.NoDeckInDbMessage);
-                return null;
-            }
-            return deck;
-        }
-
         private async Task SaveDeck(IEnumerable<Card> deck)
         {
             Log.Info(StringHelper.SavingDeckMessage);
             await _cardRepository.Insert(deck);
-        }
-
-        private static IEnumerable<Card> ShuffleDeck(IEnumerable<Card> deck)
-        {
-            Random random = new Random(Guid.NewGuid().GetHashCode());
-            IEnumerable<Card> shuffledDeck = deck.OrderBy(item => random.Next(0, deck.Count()));
-            Log.Info(StringHelper.DeckShuffledMessage);
-            return shuffledDeck;
         }
     }
 }

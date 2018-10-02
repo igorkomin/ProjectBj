@@ -12,7 +12,7 @@ namespace ProjectBj.BusinessLogic.Interfaces
         Task<Player> GetExistingPlayer(string name);
         Task<IEnumerable<Player>> GetBots(int botnumber, long sessionId);
         Task<IEnumerable<Player>> GetSessionBots(long sessionId);
-        Task GiveCardToPlayer(long playerId, long sessionId, long cardId);
+        Task GiveCardsToPlayer(long playerId, long sessionId, IEnumerable<long> cardIds);
         Task DeleteSessionBots(long sessionId);
     }
 }

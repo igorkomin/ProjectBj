@@ -77,11 +77,11 @@ namespace ProjectBj.BusinessLogic.Providers
         {
             await _playerRepository.DeleteBotsFromSession(sessionId);
         }
-
-        public async Task GiveCardToPlayer(long playerId, long sessionId, long cardId)
+        
+        public async Task GiveCardsToPlayer(long playerId, long sessionId, IEnumerable<long> cardIds)
         {
             Player player = await _playerRepository.GetById(playerId);
-            await _playerRepository.AddCardToPlayerHand(player, cardId, sessionId);
+            await _playerRepository.AddCardsToPlayerHand(player, cardIds, sessionId);
         }
 
         private async Task<Player> GetNewPlayer(string name)

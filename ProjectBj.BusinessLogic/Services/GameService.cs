@@ -6,6 +6,7 @@ using ProjectBj.Logger;
 using ProjectBj.ViewModels.Game;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ProjectBj.BusinessLogic.Services
@@ -59,7 +60,7 @@ namespace ProjectBj.BusinessLogic.Services
             await _historyProvider.Create(player.Name,
                 StringHelper.ChoseToHitMessage, sessionId);
             Log.Info(StringHelper.GetPlayerIdHitsMessage(playerId));
-            await GiveCard(playerId, sessionId);
+            await GiveCards(1, playerId, sessionId);
 
             int playerScore = await _gameServiceHelper.GetHandScore(playerId, sessionId);
             if (playerScore >= ValueHelper.BlackjackValue)
@@ -96,7 +97,7 @@ namespace ProjectBj.BusinessLogic.Services
             await _historyProvider.Create(player.Name,
                 StringHelper.ChoseToDoubleMessage, sessionId);
             Log.Info(StringHelper.GetPlayerIdDoubleDownMessage(playerId));
-            await GiveCard(playerId, sessionId);
+            await GiveCards(1, playerId, sessionId);
             await GiveCardsToBots(sessionId);
             await GiveCardsToDealer(sessionId);
             ResponseDoubleGameView gameView = await _gameServiceHelper.GetDoubleGameView(playerId, sessionId);
@@ -163,7 +164,7 @@ namespace ProjectBj.BusinessLogic.Services
             {
                 return false;
             }
-            await GiveCard(botId, sessionId);
+            await GiveCards(1, botId, sessionId);
             return await GiveCardsToBot(botId, sessionId);
         }
 
@@ -176,7 +177,7 @@ namespace ProjectBj.BusinessLogic.Services
             {
                 return false;
             }
-            await GiveCard(dealer.Id, sessionId);
+            await GiveCards(1, dealer.Id, sessionId);
             return await GiveCardsToDealer(sessionId);
         }
 
@@ -184,8 +185,7 @@ namespace ProjectBj.BusinessLogic.Services
         {
             foreach (var playerId in playerIds)
             {
-                await GiveCard(playerId, sessionId);
-                await GiveCard(playerId, sessionId);
+                await GiveCards(2, playerId, sessionId);
             }
         }
 
@@ -194,15 +194,20 @@ namespace ProjectBj.BusinessLogic.Services
             await CloseGameSession(sessionId);
             await _playerProvider.DeleteSessionBots(sessionId);
         }
-
-        private async Task GiveCard(long playerId, long sessionId)
+        
+        private async Task GiveCards(int count, long playerId, long sessionId)
         {
-            Card card = await _cardProvider.GetRandomCard();
             Player player = await _playerProvider.GetPlayerById(playerId);
-            await _historyProvider.Create(
-                player.Name, StringHelper.GetPlayerTakesCardMessage(
-                    EnumHelper.GetCardRankName(card.Rank), card.Suit), sessionId);
-            await _playerProvider.GiveCardToPlayer(playerId, sessionId, card.Id);
+            IEnumerable<Card> cards = await _cardProvider.GetRandomCards(count);
+            IEnumerable<long> cardIds = cards.Select(c => c.Id);
+            await _playerProvider.GiveCardsToPlayer(playerId, sessionId, cardIds);
+
+            foreach (var card in cards)
+            {
+                await _historyProvider.Create(
+                    player.Name, StringHelper.GetPlayerTakesCardMessage(
+                        EnumHelper.GetCardRankName(card.Rank), card.Suit), sessionId);
+            }
         }
 
         private async Task CloseGameSession(long sessionId)

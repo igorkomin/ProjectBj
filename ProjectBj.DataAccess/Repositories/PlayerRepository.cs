@@ -51,6 +51,25 @@ namespace ProjectBj.DataAccess.Repositories
             }
         }
 
+        public async Task AddCardsToPlayerHand(Player player, IEnumerable<long> cardIds, long sessionId)
+        {
+            List<PlayerHand> playerHands = new List<PlayerHand>();
+            foreach (var id in cardIds)
+            {
+                var playerHand = new PlayerHand
+                {
+                    PlayerId = player.Id,
+                    CardId = id,
+                    SessionId = sessionId
+                };
+                playerHands.Add(playerHand);
+            }
+            using (IDbConnection db = new SqlConnection(_connectionString))
+            {
+                await db.InsertAsync(playerHands);
+            }
+        }
+
         public async Task<IEnumerable<Player>> GetSessionBots(long sessionId)
         {
             using (IDbConnection db = new SqlConnection(_connectionString))
