@@ -17,6 +17,7 @@
         public static readonly string CreatingHistoryEntryMessage = "Creating game log entry";
         public static readonly string NameReservedMessage = "This name is reserved";
         public static readonly string NoGameToLoadMessage = "No game to load";
+        public static readonly string RandomCardsExceptionMessage = "'count' must be more then 0";
 
         public static string GetGameStartedMessage(long sessionId)
         {

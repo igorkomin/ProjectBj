@@ -22,6 +22,11 @@ namespace ProjectBj.BusinessLogic.Providers
 
         public async Task<IEnumerable<Card>> GetRandomCards(int count)
         {
+            if (count == 0)
+            {
+                throw new ArgumentException(StringHelper.RandomCardsExceptionMessage);
+            }
+
             IEnumerable<Card> cards = await _cardRepository.GetRandom(count);
             if (cards.Count() == 0)
             {
