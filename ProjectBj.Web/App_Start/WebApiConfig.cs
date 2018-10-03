@@ -7,6 +7,7 @@ namespace ProjectBj.Web
     {
         public static void Register(HttpConfiguration config)
         {
+            config.EnableCors();
             config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             config.Formatters.JsonFormatter.UseDataContractJsonSerializer = false;
             config.MapHttpAttributeRoutes();
