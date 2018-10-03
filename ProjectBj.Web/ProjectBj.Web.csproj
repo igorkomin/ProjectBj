@@ -183,7 +183,10 @@
     <Content Include="src\app\login\login\login.component.css" />
     <Content Include="src\app\app.component.css" />
     <Content Include="src\app\app.component.html" />
+    <Content Include="src\favicon.ico" />
+    <Content Include="src\index.html" />
     <Content Include="src\karma.conf.js" />
+    <Content Include="src\styles.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
