@@ -15,25 +15,21 @@ namespace ProjectBj.MVC
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                         "~/Scripts/bootstrap.js"
                         ));
-
-            bundles.Add(new ScriptBundle("~/bundles/blackjack").Include(
-                        "~/Scripts/bj/slider.js"
-                        ));
-
+            
             bundles.Add(new ScriptBundle("~/bundles/login").Include(
-                        "~/Scripts/bj/login.js"
+                        "~/Scripts/blackjack/login.js"
                         ));
 
             bundles.Add(new ScriptBundle("~/bundles/game").Include(
-                        "~/Scripts/bj/game.js"
+                        "~/Scripts/blackjack/game.js"
                         ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                         "~/Content/bootstrap.css",
                         "~/Content/jquery-ui.css",
-                        "~/Content/bj-styles/style.css",
-                        "~/Content/bj-styles/slider.css",
-                        "~/Content/bj-styles/cards.css"
+                        "~/Content/style/style.css",
+                        "~/Content/style/slider.css",
+                        "~/Content/style/cards.css"
                          ));
         }
     }
