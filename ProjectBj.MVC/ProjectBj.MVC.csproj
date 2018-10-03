@@ -151,9 +151,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bj-styles\cards.css" />
-    <Content Include="Content\bj-styles\slider.css" />
-    <Content Include="Content\bj-styles\style.css" />
+    <Content Include="Content\style\cards.css" />
+    <Content Include="Content\style\slider.css" />
+    <Content Include="Content\style\style.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\Images\bg.jpg" />
     <Content Include="Content\Images\Cards\faces\JC.gif" />
@@ -173,8 +173,8 @@
     <Content Include="Content\Images\loading.gif" />
     <Content Include="Content\Images\player.png" />
     <Content Include="Content\Images\robot.png" />
-    <Content Include="Scripts\bj\game.js" />
-    <Content Include="Scripts\bj\login.js" />
+    <Content Include="Scripts\blackjack\game.js" />
+    <Content Include="Scripts\blackjack\login.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-ui.js" />
