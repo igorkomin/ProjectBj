@@ -1,10 +1,11 @@
 ﻿using ProjectBj.Entities;
 using ProjectBj.ViewModels.Game;
 using System.Collections.Generic;
+using ProjectBj.BusinessLogic.Helpers;
 
-namespace ProjectBj.BusinessLogic.Helpers.ViewMapHelpers
+namespace ProjectBj.BusinessLogic.Mappers
 {
-    public static class LoadGameViewHelper
+    public static class LoadGameViewMapper
     {
         public static ResponseLoadGameView GetLoadGameView(long sessionId, Player dealer, Player player, IEnumerable<Player> bots)
         {

@@ -2,9 +2,9 @@
 using ProjectBj.ViewModels.History;
 using System.Collections.Generic;
 
-namespace ProjectBj.BusinessLogic.Helpers.ViewMapHelpers
+namespace ProjectBj.BusinessLogic.Mappers
 {
-    public static class HistoryMapHelper
+    public static class HistoryViewMapper
     {
         public static IEnumerable<GetGameHistoryHistoryView> GetGameHistoryView(IEnumerable<History> history)
         {
