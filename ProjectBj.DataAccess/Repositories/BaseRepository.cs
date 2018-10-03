@@ -10,7 +10,7 @@ namespace ProjectBj.DataAccess.Repositories
     {
         private readonly string _connectionString;
 
-        public BaseRepository(string connectionString)
+        protected BaseRepository(string connectionString)
         {
             _connectionString = connectionString;
         }
