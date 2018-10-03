@@ -55,13 +55,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Helpers\GameServiceHelper.cs" />
-    <Compile Include="Helpers\ViewMapHelpers\HistoryMapHelper.cs" />
-    <Compile Include="Helpers\ViewMapHelpers\SurrenderGameViewHelper.cs" />
-    <Compile Include="Helpers\ViewMapHelpers\LoadGameViewHelper.cs" />
-    <Compile Include="Helpers\ViewMapHelpers\HitGameViewHelper.cs" />
-    <Compile Include="Helpers\ViewMapHelpers\StandGameViewHelper.cs" />
-    <Compile Include="Helpers\ViewMapHelpers\DoubleGameViewHelper.cs" />
-    <Compile Include="Helpers\ViewMapHelpers\StartGameViewHelper.cs" />
+    <Compile Include="Mappers\HistoryViewMapper.cs" />
+    <Compile Include="Mappers\SurrenderGameViewMapper.cs" />
+    <Compile Include="Mappers\LoadGameViewMapper.cs" />
+    <Compile Include="Mappers\HitGameViewMapper.cs" />
+    <Compile Include="Mappers\StandGameViewMapper.cs" />
+    <Compile Include="Mappers\DoubleGameViewMapper.cs" />
+    <Compile Include="Mappers\StartGameViewMapper.cs" />
     <Compile Include="Interfaces\IGameServiceHelper.cs" />
     <Compile Include="Interfaces\IHistoryService.cs" />
     <Compile Include="Interfaces\ISystemLogService.cs" />

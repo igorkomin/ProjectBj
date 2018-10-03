@@ -1,6 +1,6 @@
 ﻿using ProjectBj.BusinessLogic.Helpers;
-using ProjectBj.BusinessLogic.Helpers.ViewMapHelpers;
 using ProjectBj.BusinessLogic.Interfaces;
+using ProjectBj.BusinessLogic.Mappers;
 using ProjectBj.Entities;
 using ProjectBj.Logger;
 using ProjectBj.ViewModels.Game;
@@ -126,7 +126,7 @@ namespace ProjectBj.BusinessLogic.Services
             IEnumerable<Player> bots = await _playerProvider.GetBots(botsNumber, session.Id);
             Player dealer = await _playerProvider.GetDealer();
 
-            ResponseStartGameView gameView = StartGameViewHelper.GetStartGameView(session.Id, dealer, player, bots);
+            ResponseStartGameView gameView = StartGameViewMapper.GetStartGameView(session.Id, dealer, player, bots);
             return gameView;
         }
 

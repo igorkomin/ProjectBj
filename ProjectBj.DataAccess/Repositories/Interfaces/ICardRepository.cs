@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace ProjectBj.DataAccess.Repositories.Interfaces
 {
-    public interface ICardRepository
+    public interface ICardRepository : IBaseRepository<Card>
     {
         Task<IEnumerable<Card>> Insert(IEnumerable<Card> deck);
         Task<IEnumerable<Card>> Get(long playerId, long sessionId);

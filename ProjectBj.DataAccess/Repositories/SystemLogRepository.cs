@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace ProjectBj.DataAccess.Repositories
 {
-    public class SystemLogRepository : ISystemLogRepository
+    public class SystemLogRepository : BaseRepository<SystemLog>, ISystemLogRepository
     {
         private readonly string _connectionString;
 
-        public SystemLogRepository(string connectionString)
+        public SystemLogRepository(string connectionString): base(connectionString)
         {
             _connectionString = connectionString;
         }

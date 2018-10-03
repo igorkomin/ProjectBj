@@ -1,4 +1,4 @@
-﻿using ProjectBj.BusinessLogic.Helpers.ViewMapHelpers;
+﻿using ProjectBj.BusinessLogic.Mappers;
 using ProjectBj.BusinessLogic.Interfaces;
 using ProjectBj.Entities;
 using ProjectBj.Entities.Enums;
@@ -22,21 +22,21 @@ namespace ProjectBj.BusinessLogic.Helpers
         public async Task<ResponseStartGameView> GetStartGameView(long playerId, long sessionId)
         {
             Game game = await GetGame(playerId, sessionId);
-            ResponseStartGameView gameView = StartGameViewHelper.GetStartGameView(sessionId, game.Dealer, game.Player, game.Bots);
+            ResponseStartGameView gameView = StartGameViewMapper.GetStartGameView(sessionId, game.Dealer, game.Player, game.Bots);
 
             IEnumerable<Card> playerCards = await GetCards(game.Player.Id, sessionId);
             IEnumerable<Card> dealerCards = await GetCards(game.Dealer.Id, sessionId);
             int playerScore = await GetHandScore(game.Player.Id, sessionId);
             int dealerScore = await GetHandScore(game.Dealer.Id, sessionId);
 
-            gameView.Player.Hand = StartGameViewHelper.GetHandLoadGameViewItem(playerCards, playerScore);
-            gameView.Dealer.Hand = StartGameViewHelper.GetHandLoadGameViewItem(dealerCards, dealerScore);
+            gameView.Player.Hand = StartGameViewMapper.GetHandLoadGameViewItem(playerCards, playerScore);
+            gameView.Dealer.Hand = StartGameViewMapper.GetHandLoadGameViewItem(dealerCards, dealerScore);
 
             foreach (var bot in gameView.Bots)
             {
                 IEnumerable<Card> botCards = await GetCards(bot.Id, sessionId);
                 int botScore = await GetHandScore(bot.Id, sessionId);
-                bot.Hand = StartGameViewHelper.GetHandLoadGameViewItem(botCards, botScore);
+                bot.Hand = StartGameViewMapper.GetHandLoadGameViewItem(botCards, botScore);
             }
 
             return gameView;
@@ -45,21 +45,21 @@ namespace ProjectBj.BusinessLogic.Helpers
         public async Task<ResponseLoadGameView> GetLoadGameView(long playerId, long sessionId)
         {
             Game game = await GetGame(playerId, sessionId);
-            ResponseLoadGameView gameView = LoadGameViewHelper.GetLoadGameView(sessionId, game.Dealer, game.Player, game.Bots);
+            ResponseLoadGameView gameView = LoadGameViewMapper.GetLoadGameView(sessionId, game.Dealer, game.Player, game.Bots);
 
             IEnumerable<Card> playerCards = await GetCards(game.Player.Id, sessionId);
             IEnumerable<Card> dealerCards = await GetCards(game.Dealer.Id, sessionId);
             int playerScore = await GetHandScore(game.Player.Id, sessionId);
             int dealerScore = await GetHandScore(game.Dealer.Id, sessionId);
 
-            gameView.Player.Hand = LoadGameViewHelper.GetHandLoadGameViewItem(playerCards, playerScore);
-            gameView.Dealer.Hand = LoadGameViewHelper.GetHandLoadGameViewItem(dealerCards, dealerScore);
+            gameView.Player.Hand = LoadGameViewMapper.GetHandLoadGameViewItem(playerCards, playerScore);
+            gameView.Dealer.Hand = LoadGameViewMapper.GetHandLoadGameViewItem(dealerCards, dealerScore);
 
             foreach (var bot in gameView.Bots)
             {
                 IEnumerable<Card> botCards = await GetCards(bot.Id, sessionId);
                 int botScore = await GetHandScore(bot.Id, sessionId);
-                bot.Hand = LoadGameViewHelper.GetHandLoadGameViewItem(botCards, botScore);
+                bot.Hand = LoadGameViewMapper.GetHandLoadGameViewItem(botCards, botScore);
             }
 
             return gameView;
@@ -68,15 +68,15 @@ namespace ProjectBj.BusinessLogic.Helpers
         public async Task<ResponseHitGameView> GetHitGameView(long playerId, long sessionId, bool isLastAction)
         {
             Game game = await GetGame(playerId, sessionId);
-            ResponseHitGameView gameView = HitGameViewHelper.GetHitGameView(sessionId, game.Dealer, game.Player, game.Bots);
+            ResponseHitGameView gameView = HitGameViewMapper.GetHitGameView(sessionId, game.Dealer, game.Player, game.Bots);
 
             IEnumerable<Card> playerCards = await GetCards(game.Player.Id, sessionId);
             IEnumerable<Card> dealerCards = await GetCards(game.Dealer.Id, sessionId);
             int playerScore = await GetHandScore(game.Player.Id, sessionId);
             int dealerScore = await GetHandScore(game.Dealer.Id, sessionId);
 
-            gameView.Player.Hand = HitGameViewHelper.GetHandHitGameViewItem(playerCards, playerScore);
-            gameView.Dealer.Hand = HitGameViewHelper.GetHandHitGameViewItem(dealerCards, dealerScore);
+            gameView.Player.Hand = HitGameViewMapper.GetHandHitGameViewItem(playerCards, playerScore);
+            gameView.Dealer.Hand = HitGameViewMapper.GetHandHitGameViewItem(dealerCards, dealerScore);
 
             if (isLastAction)
             {
@@ -89,7 +89,7 @@ namespace ProjectBj.BusinessLogic.Helpers
             {
                 IEnumerable<Card> botCards = await GetCards(bot.Id, sessionId);
                 int botScore = await GetHandScore(bot.Id, sessionId);
-                bot.Hand = HitGameViewHelper.GetHandHitGameViewItem(botCards, botScore);
+                bot.Hand = HitGameViewMapper.GetHandHitGameViewItem(botCards, botScore);
                 if (isLastAction)
                 {
                     (int botGameState, string botGameResult) = GetGameStateResult(botScore, dealerScore);
@@ -104,15 +104,15 @@ namespace ProjectBj.BusinessLogic.Helpers
         public async Task<ResponseStandGameView> GetStandGameView(long playerId, long sessionId)
         {
             Game game = await GetGame(playerId, sessionId);
-            ResponseStandGameView gameView = StandGameViewHelper.GetStandGameView(sessionId, game.Dealer, game.Player, game.Bots);
+            ResponseStandGameView gameView = StandGameViewMapper.GetStandGameView(sessionId, game.Dealer, game.Player, game.Bots);
 
             IEnumerable<Card> playerCards = await GetCards(game.Player.Id, sessionId);
             IEnumerable<Card> dealerCards = await GetCards(game.Dealer.Id, sessionId);
             int playerScore = await GetHandScore(game.Player.Id, sessionId);
             int dealerScore = await GetHandScore(game.Dealer.Id, sessionId);
 
-            gameView.Player.Hand = StandGameViewHelper.GetHandStandGameViewItem(playerCards, playerScore);
-            gameView.Dealer.Hand = StandGameViewHelper.GetHandStandGameViewItem(dealerCards, dealerScore);
+            gameView.Player.Hand = StandGameViewMapper.GetHandStandGameViewItem(playerCards, playerScore);
+            gameView.Dealer.Hand = StandGameViewMapper.GetHandStandGameViewItem(dealerCards, dealerScore);
 
             (int playerGameState, string playerGameResult) = GetGameStateResult(playerScore, dealerScore);
             gameView.Player.GameResult.State = playerGameState;
@@ -123,7 +123,7 @@ namespace ProjectBj.BusinessLogic.Helpers
                 IEnumerable<Card> botCards = await GetCards(bot.Id, sessionId);
                 int botScore = await GetHandScore(bot.Id, sessionId);
                 (int botGameState, string botGameResult) = GetGameStateResult(botScore, dealerScore);
-                bot.Hand = StandGameViewHelper.GetHandStandGameViewItem(botCards, botScore);
+                bot.Hand = StandGameViewMapper.GetHandStandGameViewItem(botCards, botScore);
                 bot.GameResult.State = botGameState;
                 bot.GameResult.Result = botGameResult;
             }
@@ -134,15 +134,15 @@ namespace ProjectBj.BusinessLogic.Helpers
         public async Task<ResponseDoubleGameView> GetDoubleGameView(long playerId, long sessionId)
         {
             Game game = await GetGame(playerId, sessionId);
-            ResponseDoubleGameView gameView = DoubleGameViewHelper.GetDoubleGameView(sessionId, game.Dealer, game.Player, game.Bots);
+            ResponseDoubleGameView gameView = DoubleGameViewMapper.GetDoubleGameView(sessionId, game.Dealer, game.Player, game.Bots);
 
             IEnumerable<Card> playerCards = await GetCards(game.Player.Id, sessionId);
             IEnumerable<Card> dealerCards = await GetCards(game.Dealer.Id, sessionId);
             int playerScore = await GetHandScore(game.Player.Id, sessionId);
             int dealerScore = await GetHandScore(game.Dealer.Id, sessionId);
 
-            gameView.Player.Hand = DoubleGameViewHelper.GetHandDoubleGameViewItem(playerCards, playerScore);
-            gameView.Dealer.Hand = DoubleGameViewHelper.GetHandDoubleGameViewItem(dealerCards, dealerScore);
+            gameView.Player.Hand = DoubleGameViewMapper.GetHandDoubleGameViewItem(playerCards, playerScore);
+            gameView.Dealer.Hand = DoubleGameViewMapper.GetHandDoubleGameViewItem(dealerCards, dealerScore);
 
             (int playerGameState, string playerGameResult) = GetGameStateResult(playerScore, dealerScore);
             gameView.Player.GameResult.State = playerGameState;
@@ -153,7 +153,7 @@ namespace ProjectBj.BusinessLogic.Helpers
                 IEnumerable<Card> botCards = await GetCards(bot.Id, sessionId);
                 int botScore = await GetHandScore(bot.Id, sessionId);
                 (int botGameState, string botGameResult) = GetGameStateResult(botScore, dealerScore);
-                bot.Hand = DoubleGameViewHelper.GetHandDoubleGameViewItem(botCards, botScore);
+                bot.Hand = DoubleGameViewMapper.GetHandDoubleGameViewItem(botCards, botScore);
                 bot.GameResult.State = botGameState;
                 bot.GameResult.Result = botGameResult;
             }
@@ -164,15 +164,15 @@ namespace ProjectBj.BusinessLogic.Helpers
         public async Task<ResponseSurrenderGameView> GetSurrenderGameView(long playerId, long sessionId)
         {
             Game game = await GetGame(playerId, sessionId);
-            ResponseSurrenderGameView gameView = SurrenderGameViewHelper.GetSurrenderGameView(sessionId, game.Dealer, game.Player, game.Bots);
+            ResponseSurrenderGameView gameView = SurrenderGameViewMapper.GetSurrenderGameView(sessionId, game.Dealer, game.Player, game.Bots);
 
             IEnumerable<Card> playerCards = await GetCards(game.Player.Id, sessionId);
             IEnumerable<Card> dealerCards = await GetCards(game.Dealer.Id, sessionId);
             int playerScore = await GetHandScore(game.Player.Id, sessionId);
             int dealerScore = await GetHandScore(game.Dealer.Id, sessionId);
 
-            gameView.Player.Hand = SurrenderGameViewHelper.GetHandSurrenderGameViewItem(playerCards, playerScore);
-            gameView.Dealer.Hand = SurrenderGameViewHelper.GetHandSurrenderGameViewItem(dealerCards, dealerScore);
+            gameView.Player.Hand = SurrenderGameViewMapper.GetHandSurrenderGameViewItem(playerCards, playerScore);
+            gameView.Dealer.Hand = SurrenderGameViewMapper.GetHandSurrenderGameViewItem(dealerCards, dealerScore);
 
             (int playerGameState, string playerGameResult) = GetGameStateResult(playerScore, dealerScore);
             gameView.Player.GameResult.State = playerGameState;
@@ -183,7 +183,7 @@ namespace ProjectBj.BusinessLogic.Helpers
                 IEnumerable<Card> botCards = await GetCards(bot.Id, sessionId);
                 int botScore = await GetHandScore(bot.Id, sessionId);
                 (int botGameState, string botGameResult) = GetGameStateResult(botScore, dealerScore);
-                bot.Hand = SurrenderGameViewHelper.GetHandSurrenderGameViewItem(botCards, botScore);
+                bot.Hand = SurrenderGameViewMapper.GetHandSurrenderGameViewItem(botCards, botScore);
                 bot.GameResult.State = botGameState;
                 bot.GameResult.Result = botGameResult;
             }

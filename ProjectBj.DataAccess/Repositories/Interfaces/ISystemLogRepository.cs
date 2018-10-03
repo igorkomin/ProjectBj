@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace ProjectBj.DataAccess.Repositories.Interfaces
 {
-    public interface ISystemLogRepository
+    public interface ISystemLogRepository : IBaseRepository<SystemLog>
     {
         Task<IEnumerable<SystemLog>> GetAll();
     }

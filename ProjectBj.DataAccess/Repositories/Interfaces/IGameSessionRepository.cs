@@ -3,11 +3,8 @@ using System.Threading.Tasks;
 
 namespace ProjectBj.DataAccess.Repositories.Interfaces
 {
-    public interface IGameSessionRepository
+    public interface IGameSessionRepository : IBaseRepository<GameSession>
     {
-        Task<GameSession> GetById(long id);
-        Task<GameSession> Insert(GameSession session);
         Task<GameSession> GetFirstOpen(long playerId);
-        Task Update(GameSession session);
     }
 }

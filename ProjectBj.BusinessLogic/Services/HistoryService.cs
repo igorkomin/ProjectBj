@@ -1,4 +1,4 @@
-﻿using ProjectBj.BusinessLogic.Helpers.ViewMapHelpers;
+﻿using ProjectBj.BusinessLogic.Mappers;
 using ProjectBj.BusinessLogic.Interfaces;
 using ProjectBj.Entities;
 using ProjectBj.ViewModels.History;
@@ -19,14 +19,14 @@ namespace ProjectBj.BusinessLogic.Services
         public async Task<IEnumerable<GetGameHistoryHistoryView>> GetGameHistory(long sessionId)
         {
             IEnumerable<History> history = await _historyProvider.Get(sessionId);
-            IEnumerable<GetGameHistoryHistoryView> historyViewModels = HistoryMapHelper.GetGameHistoryView(history);
+            IEnumerable<GetGameHistoryHistoryView> historyViewModels = HistoryViewMapper.GetGameHistoryView(history);
             return historyViewModels;
         }
 
         public async Task<IEnumerable<GetFullHistoryHistoryView>> GetFullHistory()
         {
             IEnumerable<History> history = await _historyProvider.GetAll();
-            IEnumerable<GetFullHistoryHistoryView> historyViewModels = HistoryMapHelper.GetFullHistoryView(history);
+            IEnumerable<GetFullHistoryHistoryView> historyViewModels = HistoryViewMapper.GetFullHistoryView(history);
             return historyViewModels;
         }
     }
