@@ -155,6 +155,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="src\app\error\error\error.component.html" />
     <Content Include="src\app\history\history\history.component.html" />
     <Content Include="src\app\login\login\login.component.html" />
     <Content Include="src\assets\bg.jpg" />
@@ -204,13 +205,10 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\web.config" />
     <Content Include="src\assets\Cards\faces\README" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="tsconfig.json" />
     <Content Include="src\browserslist" />
     <Content Include="src\tsconfig.app.json" />
@@ -242,6 +240,9 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="src\app\error\error-routing.module.ts" />
+    <TypeScriptCompile Include="src\app\error\error\error.component.ts" />
+    <TypeScriptCompile Include="src\app\error\error.module.ts" />
     <TypeScriptCompile Include="src\app\game\game.service.ts" />
     <TypeScriptCompile Include="src\app\history\history.service.ts" />
     <TypeScriptCompile Include="src\app\logs\logs.service.ts" />
@@ -255,6 +256,7 @@
     <TypeScriptCompile Include="src\app\shared\models\hand.model.ts" />
     <TypeScriptCompile Include="src\app\shared\models\game-request.model.ts" />
     <TypeScriptCompile Include="src\app\shared\models\history.model.ts" />
+    <TypeScriptCompile Include="src\app\shared\models\history-list.model.ts" />
     <TypeScriptCompile Include="src\app\shared\models\system-log.model.ts" />
     <TypeScriptCompile Include="src\app\shared\models\login.model.ts" />
     <TypeScriptCompile Include="src\app\shared\models\player.model.ts" />
