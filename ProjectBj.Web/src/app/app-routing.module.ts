@@ -18,6 +18,10 @@ const routes: Routes = [
         path: 'history',
         loadChildren: 'src/app/history/history.module#HistoryModule'
     },
+    {
+        path: 'error',
+        loadChildren: 'src/app/error/error.module#ErrorModule'
+    },
     { path: "", redirectTo: "/login", pathMatch: "full" },
     { path: "**", redirectTo: "/login" }
 ];
