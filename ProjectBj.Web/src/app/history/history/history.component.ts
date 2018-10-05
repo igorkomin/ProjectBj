@@ -3,7 +3,6 @@ import { DataStateChangeEvent, GridDataResult } from '@progress/kendo-angular-gr
 import { State, process } from '@progress/kendo-data-query';
 import { HistoryService } from 'src/app/history/history.service';
 import { History } from 'src/app/shared/models/history.model';
-import { HistoryList } from 'src/app/shared/models/history-list.model';
 
 @Component({
     selector: 'app-history',
