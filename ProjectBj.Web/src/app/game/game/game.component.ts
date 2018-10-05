@@ -16,9 +16,8 @@ import { GameService } from 'src/app/game/game.service';
 export class GameComponent implements OnInit {
     playerName: string;
     botsNumber: number = 0;
-    error: string;
     game: Game;
-    history: History;
+    history: History[];
 
     constructor(
         private gameService: GameService,
@@ -42,7 +41,6 @@ export class GameComponent implements OnInit {
     }
 
     newGame(): void {
-        this.error = undefined;
         let request = new NewGameRequest();
         request.playerName = this.playerName;
         request.botsNumber = this.botsNumber;
@@ -50,30 +48,22 @@ export class GameComponent implements OnInit {
             response => {
                 this.game = response;
                 this.getHistory();
-            },
-            exception => {
-                this.error = exception;
             }
         );
     }
 
     loadGame(): void {
-        this.error = undefined;
         let request = new NewGameRequest();
         request.playerName = this.playerName;
         this.gameService.loadGame(request).subscribe(
             response => {
                 this.game = response;
                 this.getHistory();
-            },
-            exception => {
-                this.error = exception;
             }
         );
     }
 
     hit(): void {
-        this.error = undefined;
         let request = new GameRequest();
         request.playerId = this.game.player.id;
         request.sessionId = this.game.sessionId;
@@ -81,15 +71,11 @@ export class GameComponent implements OnInit {
             response => {
                 this.game = response;
                 this.getHistory();
-            },
-            exception => {
-                this.error = exception;
             }
         );
     }
 
     stand(): void {
-        this.error = undefined;
         let request = new GameRequest();
         request.playerId = this.game.player.id;
         request.sessionId = this.game.sessionId;
@@ -97,15 +83,11 @@ export class GameComponent implements OnInit {
             response => {
                 this.game = response;
                 this.getHistory();
-            },
-            exception => {
-                this.error = exception;
             }
         );
     }
 
     doubleDown(): void {
-        this.error = undefined;
         let request = new GameRequest();
         request.playerId = this.game.player.id;
         request.sessionId = this.game.sessionId;
@@ -113,15 +95,11 @@ export class GameComponent implements OnInit {
             response => {
                 this.game = response;
                 this.getHistory();
-            },
-            exception => {
-                this.error = exception;
             }
         );
     }
 
     surrender(): void {
-        this.error = undefined;
         let request = new GameRequest();
         request.playerId = this.game.player.id;
         request.sessionId = this.game.sessionId;
@@ -129,21 +107,14 @@ export class GameComponent implements OnInit {
             response => {
                 this.game = response;
                 this.getHistory();
-            },
-            exception => {
-                this.error = exception;
             }
         );
     }
 
     getHistory(): void {
-        this.error = undefined;
         this.gameService.getHistory(this.game.sessionId).subscribe(
             response => {
                 this.history = response;
-            },
-            exception => {
-                this.error = exception;
             }
         );
     }
