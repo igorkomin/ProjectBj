@@ -16,17 +16,17 @@ namespace ProjectBj.BusinessLogic.Services
             _historyProvider = historyProvider;
         }
 
-        public async Task<IEnumerable<GetGameHistoryHistoryView>> GetGameHistory(long sessionId)
+        public async Task<GetGameHistoryHistoryView> GetGameHistory(long sessionId)
         {
             IEnumerable<History> history = await _historyProvider.Get(sessionId);
-            IEnumerable<GetGameHistoryHistoryView> historyViewModels = HistoryViewMapper.GetGameHistoryView(history);
+            GetGameHistoryHistoryView historyViewModels = HistoryViewMapper.GetGameHistoryView(history);
             return historyViewModels;
         }
 
-        public async Task<IEnumerable<GetFullHistoryHistoryView>> GetFullHistory()
+        public async Task<GetFullHistoryHistoryView> GetFullHistory()
         {
             IEnumerable<History> history = await _historyProvider.GetAll();
-            IEnumerable<GetFullHistoryHistoryView> historyViewModels = HistoryViewMapper.GetFullHistoryView(history);
+            GetFullHistoryHistoryView historyViewModels = HistoryViewMapper.GetFullHistoryView(history);
             return historyViewModels;
         }
     }
