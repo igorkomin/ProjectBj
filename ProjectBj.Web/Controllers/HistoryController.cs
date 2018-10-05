@@ -2,7 +2,6 @@
 using ProjectBj.Logger;
 using ProjectBj.ViewModels.History;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Cors;
@@ -24,7 +23,7 @@ namespace ProjectBj.Web.Controllers
         {
             try
             {
-                IEnumerable<GetGameHistoryHistoryView> view = await _service.GetGameHistory(sessionId);
+                GetGameHistoryHistoryView view = await _service.GetGameHistory(sessionId);
                 return Ok(view);
             }
             catch (Exception exception)
@@ -39,7 +38,7 @@ namespace ProjectBj.Web.Controllers
         {
             try
             {
-                IEnumerable<GetFullHistoryHistoryView> view = await _service.GetFullHistory();
+                GetFullHistoryHistoryView view = await _service.GetFullHistory();
                 return Ok(view);
             }
             catch (Exception exception)

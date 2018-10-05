@@ -1,5 +1,5 @@
-﻿using ProjectBj.BusinessLogic.Mappers;
-using ProjectBj.BusinessLogic.Interfaces;
+﻿using ProjectBj.BusinessLogic.Interfaces;
+using ProjectBj.BusinessLogic.Mappers;
 using ProjectBj.Entities;
 using ProjectBj.Entities.Enums;
 using ProjectBj.ViewModels.Game;
