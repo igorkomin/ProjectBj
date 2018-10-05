@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { DataStateChangeEvent, GridDataResult } from '@progress/kendo-angular-grid';
 import { State, process } from '@progress/kendo-data-query';
-import { HistoryService } from '../history.service';
+import { HistoryService } from 'src/app/history/history.service';
+import { History } from 'src/app/shared/models/history.model';
+import { HistoryList } from 'src/app/shared/models/history-list.model';
 
 @Component({
     selector: 'app-history',
     templateUrl: 'history.component.html',
 })
 export class HistoryComponent implements OnInit {
-    history: any;
-    data: Object[];
+    history: History[];
 
     public state: State = {
         skip: 0,
@@ -28,11 +29,8 @@ export class HistoryComponent implements OnInit {
     getHistory() {
         this.historyService.getFullHistory().subscribe(
             response => {
-                this.history = response;
+                this.history = response.entries;
                 this.gridView = process(this.history, this.state);
-            },
-            exception => {
-                console.error(exception);
             }
         );
     }
