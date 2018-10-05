@@ -38,7 +38,7 @@ namespace ProjectBj.BusinessLogic.Providers
             return currentSession;
         }
 
-        public async Task<GameSession> GetById(long id)
+        private async Task<GameSession> GetById(long id)
         {
             GameSession session = await _sessionRepository.GetById(id);
             return session;
