@@ -30,9 +30,6 @@ export class LogsComponent implements OnInit {
             response => {
                 this.logs = response;
                 this.gridView = process(this.logs, this.state);
-            },
-            exception => {
-                console.error(exception);
             }
         );
     }
