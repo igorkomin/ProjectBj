@@ -248,7 +248,6 @@ function enableBotDecrease() {
 }
 
 function switchToGameControls() {
-    $("#bet-slider").attr("disabled", true);
     $("#new-game-btn").attr("disabled", true);
     $("#load-game-btn").attr("disabled", true);
 
@@ -260,7 +259,6 @@ function switchToGameControls() {
 }
 
 function switchToMainMenu() {
-    $("#bet-slider").attr("disabled", false);
     $("#new-game-btn").attr("disabled", false);
     $("#load-game-btn").attr("disabled", false);
 
