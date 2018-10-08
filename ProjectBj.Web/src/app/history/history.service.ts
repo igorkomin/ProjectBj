@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
     providedIn: 'root'
 })
 export class HistoryService {
-    constructor(private http: HttpClient) { }
+    constructor(private readonly http: HttpClient) { }
 
     getFullHistory(): Observable<HistoryView> {
         const requestUrl = `${environment.historyApiUrl}/GetFullHistory`;
