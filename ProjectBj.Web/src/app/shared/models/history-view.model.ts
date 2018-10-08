@@ -2,7 +2,7 @@
     entries: HistoryViewItem[];
 }
 
-export class HistoryViewItem {
+class HistoryViewItem {
     sessionId: number;
     time: Date;
     playerName: string;

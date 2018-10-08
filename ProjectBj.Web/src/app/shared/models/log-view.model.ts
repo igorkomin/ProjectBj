@@ -2,7 +2,7 @@
     entries: LogViewItem[];
 }
 
-export class LogViewItem {
+class LogViewItem {
     machineName: string;
     siteName: string;
     creationDate: Date;
