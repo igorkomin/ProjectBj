@@ -49,7 +49,7 @@ $(document).ready(function () {
 
 function newGame(playerName, botsNumber, playerBet) {
     $.ajax({
-        url: "/api/gameapi/start",
+        url: "/api/game/start",
         type: "POST",
         contentType: "application/json",
         data: JSON.stringify({
@@ -69,7 +69,7 @@ function newGame(playerName, botsNumber, playerBet) {
 
 function loadGame(playerName) {
     $.ajax({
-        url: "/api/gameapi/load",
+        url: "/api/game/load",
         type: "POST",
         contentType: "application/json",
         data: JSON.stringify({
@@ -88,7 +88,7 @@ function loadGame(playerName) {
 
 function hit() {
     $.ajax({
-        url: "/api/gameapi/hit",
+        url: "/api/game/hit",
         type: "POST",
         contentType: "application/json",
         data: JSON.stringify({
@@ -106,7 +106,7 @@ function hit() {
 
 function stand() {
     $.ajax({
-        url: "/api/gameapi/stand",
+        url: "/api/game/stand",
         type: "POST",
         contentType: "application/json",
         data: JSON.stringify({
@@ -124,7 +124,7 @@ function stand() {
 
 function double() {
     $.ajax({
-        url: "/api/gameapi/double",
+        url: "/api/game/double",
         type: "POST",
         contentType: "application/json",
         data: JSON.stringify({
@@ -142,7 +142,7 @@ function double() {
 
 function surrender() {
     $.ajax({
-        url: "/api/gameapi/surrender",
+        url: "/api/game/surrender",
         type: "POST",
         contentType: "application/json",
         data: JSON.stringify({
