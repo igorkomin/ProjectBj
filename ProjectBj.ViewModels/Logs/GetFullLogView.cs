@@ -1,8 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ProjectBj.ViewModels.Logs
 {
     public class GetFullLogView
+    {
+        public List<EntryGetFullLogViewItem> Entries { get; set; }
+    }
+
+    public class EntryGetFullLogViewItem
     {
         public long Id { get; set; }
         public string MachineName { get; set; }
