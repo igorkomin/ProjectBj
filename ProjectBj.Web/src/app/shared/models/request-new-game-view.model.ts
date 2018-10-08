@@ -1,4 +1,4 @@
-export class NewGameRequest {
+export class RequestNewGameView {
     playerName: string;
     botsNumber: number;
 }

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { GameService } from 'src/app/game/game.service';
-import { GameRequest } from 'src/app/shared/models/game-request.model';
+import { RequestGameView } from 'src/app/shared/models/request-game-view.model';
 import { HistoryView } from 'src/app/shared/models/history-view.model';
-import { NewGameRequest } from 'src/app/shared/models/new-game-request.model';
+import { RequestNewGameView } from 'src/app/shared/models/request-new-game-view.model';
 import { ResponseGameView } from 'src/app/shared/models/response-game-view.model';
 
 @Component({
@@ -41,7 +41,7 @@ export class GameComponent implements OnInit {
     }
 
     newGame(): void {
-        const request = new NewGameRequest();
+        const request = new RequestNewGameView();
         request.playerName = this.playerName;
         request.botsNumber = this.botsNumber;
         this.gameService.newGame(request).subscribe(
@@ -53,7 +53,7 @@ export class GameComponent implements OnInit {
     }
 
     loadGame(): void {
-        const request = new NewGameRequest();
+        const request = new RequestNewGameView();
         request.playerName = this.playerName;
         this.gameService.loadGame(request).subscribe(
             response => {
@@ -64,7 +64,7 @@ export class GameComponent implements OnInit {
     }
 
     hit(): void {
-        const request = new GameRequest();
+        const request = new RequestGameView();
         request.playerId = this.game.player.id;
         request.sessionId = this.game.sessionId;
         this.gameService.hit(request).subscribe(
@@ -76,7 +76,7 @@ export class GameComponent implements OnInit {
     }
 
     stand(): void {
-        const request = new GameRequest();
+        const request = new RequestGameView();
         request.playerId = this.game.player.id;
         request.sessionId = this.game.sessionId;
         this.gameService.stand(request).subscribe(
@@ -88,7 +88,7 @@ export class GameComponent implements OnInit {
     }
 
     doubleDown(): void {
-        const request = new GameRequest();
+        const request = new RequestGameView();
         request.playerId = this.game.player.id;
         request.sessionId = this.game.sessionId;
         this.gameService.double(request).subscribe(
@@ -100,7 +100,7 @@ export class GameComponent implements OnInit {
     }
 
     surrender(): void {
-        const request = new GameRequest();
+        const request = new RequestGameView();
         request.playerId = this.game.player.id;
         request.sessionId = this.game.sessionId;
         this.gameService.surrender(request).subscribe(
