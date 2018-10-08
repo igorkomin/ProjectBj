@@ -3,13 +3,13 @@ import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-error',
-    templateUrl: 'error.component.html',
+    templateUrl: 'error.component.html'
 })
 export class ErrorComponent implements OnInit {
     errorCode: string;
 
     constructor(
-        private route: ActivatedRoute
+        private readonly route: ActivatedRoute
     ) { }
 
     ngOnInit() {

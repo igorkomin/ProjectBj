@@ -1,27 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Game } from 'src/app/shared/models/game.model';
-import { History } from 'src/app/shared/models/history.model';
-import { GameRequest } from 'src/app/shared/models/game-request.model';
-import { NewGameRequest } from 'src/app/shared/models/new-game-request.model';
 import { GameService } from 'src/app/game/game.service';
+import { GameRequest } from 'src/app/shared/models/game-request.model';
+import { HistoryView } from 'src/app/shared/models/history-view.model';
+import { NewGameRequest } from 'src/app/shared/models/new-game-request.model';
+import { ResponseGameView } from 'src/app/shared/models/response-game-view.model';
 
 @Component({
     selector: 'app-game',
     templateUrl: 'game.component.html',
     styleUrls: [
-        'game.component.css',
+        'game.component.css'
     ]
 })
 export class GameComponent implements OnInit {
     playerName: string;
     botsNumber: number = 0;
-    game: Game;
-    history: History[];
+    game: ResponseGameView;
+    history: HistoryView;
 
     constructor(
-        private gameService: GameService,
-        private route: ActivatedRoute,
+        private readonly gameService: GameService,
+        private readonly route: ActivatedRoute,
     ) { }
 
     ngOnInit() {
@@ -41,7 +41,7 @@ export class GameComponent implements OnInit {
     }
 
     newGame(): void {
-        let request = new NewGameRequest();
+        const request = new NewGameRequest();
         request.playerName = this.playerName;
         request.botsNumber = this.botsNumber;
         this.gameService.newGame(request).subscribe(
@@ -53,7 +53,7 @@ export class GameComponent implements OnInit {
     }
 
     loadGame(): void {
-        let request = new NewGameRequest();
+        const request = new NewGameRequest();
         request.playerName = this.playerName;
         this.gameService.loadGame(request).subscribe(
             response => {
@@ -64,7 +64,7 @@ export class GameComponent implements OnInit {
     }
 
     hit(): void {
-        let request = new GameRequest();
+        const request = new GameRequest();
         request.playerId = this.game.player.id;
         request.sessionId = this.game.sessionId;
         this.gameService.hit(request).subscribe(
@@ -76,7 +76,7 @@ export class GameComponent implements OnInit {
     }
 
     stand(): void {
-        let request = new GameRequest();
+        const request = new GameRequest();
         request.playerId = this.game.player.id;
         request.sessionId = this.game.sessionId;
         this.gameService.stand(request).subscribe(
@@ -88,7 +88,7 @@ export class GameComponent implements OnInit {
     }
 
     doubleDown(): void {
-        let request = new GameRequest();
+        const request = new GameRequest();
         request.playerId = this.game.player.id;
         request.sessionId = this.game.sessionId;
         this.gameService.double(request).subscribe(
@@ -100,7 +100,7 @@ export class GameComponent implements OnInit {
     }
 
     surrender(): void {
-        let request = new GameRequest();
+        const request = new GameRequest();
         request.playerId = this.game.player.id;
         request.sessionId = this.game.sessionId;
         this.gameService.surrender(request).subscribe(

@@ -1,4 +1,8 @@
-﻿export class SystemLog {
+﻿export class LogView {
+    entries: LogViewItem[];
+}
+
+export class LogViewItem {
     machineName: string;
     siteName: string;
     creationDate: Date;
