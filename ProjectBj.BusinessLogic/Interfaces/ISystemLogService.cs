@@ -1,5 +1,4 @@
 ﻿using ProjectBj.ViewModels.Logs;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace ProjectBj.BusinessLogic.Interfaces
