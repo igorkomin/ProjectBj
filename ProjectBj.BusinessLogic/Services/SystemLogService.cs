@@ -17,17 +17,21 @@ namespace ProjectBj.BusinessLogic.Services
             _systemLogRepository = systemLogRepository;
         }
 
-        public async Task<List<GetFullLogView>> GetFullLog()
+        public async Task<GetFullLogView> GetFullLog()
         {
-            Mapper.Initialize(cfg => cfg.CreateMap<SystemLog, GetFullLogView>());
+            Mapper.Initialize(cfg => cfg.CreateMap<SystemLog, EntryGetFullLogViewItem>());
+            GetFullLogView view = new GetFullLogView();
             IEnumerable<SystemLog> systemLogs = await _systemLogRepository.GetAll();
-            var systemLogViews = new List<GetFullLogView>();
-            foreach (var log in systemLogs)
+            var viewItems = new List<EntryGetFullLogViewItem>();
+            foreach (var item in systemLogs)
             {
-                GetFullLogView logView = Mapper.Map<GetFullLogView>(log);
-                systemLogViews.Add(logView);
+                EntryGetFullLogViewItem logView = Mapper.Map<EntryGetFullLogViewItem>(item);
+                viewItems.Add(logView);
             }
-            return systemLogViews;
+
+            view.Entries = viewItems;
+
+            return view;
         }
     }
 }
