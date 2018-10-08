@@ -24,7 +24,7 @@ namespace ProjectBj.Web.Controllers
         {
             try
             {
-                List<GetFullLogView> view = await _service.GetFullLog();
+                GetFullLogView view = await _service.GetFullLog();
                 return Ok(view);
             }
             catch (Exception exception)

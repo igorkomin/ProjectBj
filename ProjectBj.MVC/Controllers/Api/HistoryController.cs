@@ -22,7 +22,7 @@ namespace ProjectBj.MVC.ApiControllers
         {
             try
             {
-                IEnumerable<GetGameHistoryHistoryView> view = await _service.GetGameHistory(sessionId);
+                GetGameHistoryHistoryView view = await _service.GetGameHistory(sessionId);
                 return Ok(view);
             }
             catch (Exception exception)
@@ -37,7 +37,7 @@ namespace ProjectBj.MVC.ApiControllers
         {
             try
             {
-                IEnumerable<GetFullHistoryHistoryView> view = await _service.GetFullHistory();
+                GetFullHistoryHistoryView view = await _service.GetFullHistory();
                 return Ok(view);
             }
             catch (Exception exception)
