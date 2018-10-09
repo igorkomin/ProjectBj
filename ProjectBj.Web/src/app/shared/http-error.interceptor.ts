@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 @Injectable()
 export class HttpErrorInterceptor implements HttpInterceptor {
     constructor(
-        private router: Router
+        private readonly router: Router
     ) { }
     intercept(
         request: HttpRequest<any>,
@@ -15,7 +15,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
     ): Observable<HttpEvent<any>> {
         return next.handle(request).pipe(
             catchError((error: HttpErrorResponse) => {
-                let errorMessage = `Error Code: ${error.status},  Message: ${error.message}`;
+                const errorMessage = `Error Code: ${error.status},  Message: ${error.message}`;
                 this.router.navigate(['/error', { 'code': error.status }]);
 
                 return throwError(errorMessage);
