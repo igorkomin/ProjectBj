@@ -182,7 +182,6 @@
     <Content Include="src\app\game\game\game.component.css" />
     <Content Include="src\app\game\game\game.component.html" />
     <Content Include="src\app\login\login\login.component.css" />
-    <Content Include="src\app\app.component.css" />
     <Content Include="src\app\app.component.html" />
     <Content Include="src\favicon.ico" />
     <Content Include="src\index.html" />
