@@ -20,12 +20,12 @@ namespace ProjectBj.BusinessLogic.Services
         public async Task<GetFullLogView> GetFullLog()
         {
             Mapper.Initialize(cfg => cfg.CreateMap<SystemLog, EntryGetFullLogViewItem>());
-            GetFullLogView view = new GetFullLogView();
+            var view = new GetFullLogView();
             IEnumerable<SystemLog> systemLogs = await _systemLogRepository.GetAll();
             var viewItems = new List<EntryGetFullLogViewItem>();
             foreach (var item in systemLogs)
             {
-                EntryGetFullLogViewItem logView = Mapper.Map<EntryGetFullLogViewItem>(item);
+                var logView = Mapper.Map<EntryGetFullLogViewItem>(item);
                 viewItems.Add(logView);
             }
 

@@ -10,7 +10,7 @@ namespace ProjectBj.BusinessLogic.Helpers
         public static string GetEnumDescription(Enum value)
         {
             FieldInfo fieldInfo = value.GetType().GetField(value.ToString());
-            DescriptionAttribute[] attributes = (DescriptionAttribute[])fieldInfo.GetCustomAttributes(typeof(DescriptionAttribute), false);
+            var attributes = (DescriptionAttribute[])fieldInfo.GetCustomAttributes(typeof(DescriptionAttribute), false);
             return attributes[0].Description;
         }
 

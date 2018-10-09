@@ -55,7 +55,7 @@ namespace ProjectBj.BusinessLogic.Services
 
         public async Task<ResponseHitGameView> Hit(long playerId, long sessionId)
         {
-            bool isLastAction = false;
+            var isLastAction = false;
             Player player = await _playerProvider.GetPlayerById(playerId);
             await _historyProvider.Create(player.Name,
                 StringHelper.ChoseToHitMessage, sessionId);
@@ -133,7 +133,7 @@ namespace ProjectBj.BusinessLogic.Services
         private async Task<ResponseStartGameView> GiveFirstCards(string playerName, int botsNumber)
         {
             ResponseStartGameView gameView = await CreateGame(playerName, botsNumber);
-            List<long> playerIds = new List<long>
+            var playerIds = new List<long>
             {
                 gameView.Player.Id,
                 gameView.Dealer.Id

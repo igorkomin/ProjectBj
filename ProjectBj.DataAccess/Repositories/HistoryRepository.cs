@@ -22,7 +22,7 @@ namespace ProjectBj.DataAccess.Repositories
         {
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
-                string sqlQuery = @"SELECT * FROM History WHERE SessionId = @sessionId";
+                var sqlQuery = @"SELECT * FROM History WHERE SessionId = @sessionId";
                 IEnumerable<History> history = await db.QueryAsync<History>(sqlQuery, new { sessionId });
                 return history;
             }

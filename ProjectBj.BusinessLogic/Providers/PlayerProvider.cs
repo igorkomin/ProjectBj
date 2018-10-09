@@ -45,11 +45,12 @@ namespace ProjectBj.BusinessLogic.Providers
         public async Task<Player> GetExistingPlayer(string name)
         {
             IEnumerable<Player> searchResults = await _playerRepository.Find(name);
-            if (searchResults.Count() == 0)
+            if (searchResults.Any())
             {
-                return null;
+                return searchResults.FirstOrDefault();
             }
-            return searchResults.FirstOrDefault();
+
+            return null;
         }
 
         public async Task<Player> GetPlayerByName(string name)
@@ -129,11 +130,12 @@ namespace ProjectBj.BusinessLogic.Providers
         private async Task<Player> GetExistingDealer()
         {
             IEnumerable<Player> searchResults = await _playerRepository.Find(StringHelper.DealerName);
-            if (searchResults.Count() == 0)
+            if (searchResults.Any())
             {
-                return null;
+                return searchResults.FirstOrDefault();
             }
-            return searchResults.FirstOrDefault();
+
+            return null;
         }
     }
 }
