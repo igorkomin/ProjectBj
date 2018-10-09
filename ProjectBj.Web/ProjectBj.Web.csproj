@@ -249,7 +249,7 @@
     <TypeScriptCompile Include="src\app\shared\http-error.interceptor.ts" />
     <TypeScriptCompile Include="src\app\shared\models\request-game-view.model.ts" />
     <TypeScriptCompile Include="src\app\shared\models\history-view.model.ts" />
-    <TypeScriptCompile Include="src\app\shared\models\response-game-view.model.ts" />
+    <TypeScriptCompile Include="src\app\shared\models\response-double-game-view.model.ts" />
     <TypeScriptCompile Include="src\app\shared\models\log-view.model.ts" />
     <TypeScriptCompile Include="src\app\shared\models\request-new-game-view.model.ts" />
     <TypeScriptCompile Include="src\app\app-routing.module.ts" />
@@ -265,6 +265,11 @@
     <TypeScriptCompile Include="src\app\login\login.module.ts" />
     <TypeScriptCompile Include="src\app\logs\logs-routing.module.ts" />
     <TypeScriptCompile Include="src\app\logs\logs.module.ts" />
+    <TypeScriptCompile Include="src\app\shared\models\response-hit-game-view.model.ts" />
+    <TypeScriptCompile Include="src\app\shared\models\response-load-game-view.model.ts" />
+    <TypeScriptCompile Include="src\app\shared\models\response-stand-game-view.model.ts" />
+    <TypeScriptCompile Include="src\app\shared\models\response-start-game-view.model.ts" />
+    <TypeScriptCompile Include="src\app\shared\models\response-surrender-game-view.model.ts" />
     <TypeScriptCompile Include="src\app\shared\shared.module.ts" />
     <TypeScriptCompile Include="src\environments\environment.prod.ts" />
     <TypeScriptCompile Include="src\environments\environment.ts" />
