@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { DataStateChangeEvent, GridDataResult } from '@progress/kendo-angular-grid';
-import { State, process } from '@progress/kendo-data-query';
-import { HistoryService } from 'src/app/history/history.service';
-import { HistoryView } from 'src/app/shared/models/history-view.model';
+import { process, State } from '@progress/kendo-data-query';
+import { GetFullHistoryHistoryView } from 'src/app/history/shared/models/get-full-history-history-view.model';
+import { HistoryService } from 'src/app/history/shared/services/history.service';
 
 @Component({
     selector: 'app-history',
     templateUrl: 'history.component.html'
 })
 export class HistoryComponent implements OnInit {
-    history: HistoryView;
+    history: GetFullHistoryHistoryView;
 
     state: State = {
         skip: 0,

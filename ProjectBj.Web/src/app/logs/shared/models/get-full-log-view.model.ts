@@ -1,8 +1,8 @@
-﻿export class LogView {
-    entries: LogViewItem[];
+﻿export class GetFullLogView {
+    entries: GetFullLogViewItem[];
 }
 
-class LogViewItem {
+class GetFullLogViewItem {
     machineName: string;
     siteName: string;
     creationDate: Date;

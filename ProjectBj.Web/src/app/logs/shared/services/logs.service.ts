@@ -1,7 +1,7 @@
 ﻿import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { LogView } from 'src/app/shared/models/log-view.model';
+import { GetFullLogView } from 'src/app/logs/shared/models/get-full-log-view.model';
 import { environment } from 'src/environments/environment'
 
 @Injectable({
@@ -10,8 +10,8 @@ import { environment } from 'src/environments/environment'
 export class LogsService {
     constructor(private readonly http: HttpClient) { }
 
-    getSystemLogs(): Observable<LogView> {
+    getSystemLogs(): Observable<GetFullLogView> {
         const requestUrl = `${environment.logApiUrl}/GetFullLog`;
-        return this.http.get<LogView>(requestUrl);
+        return this.http.get<GetFullLogView>(requestUrl);
     }
 }

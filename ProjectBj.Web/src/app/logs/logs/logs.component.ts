@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { DataStateChangeEvent, GridDataResult } from '@progress/kendo-angular-grid';
 import { State, process } from '@progress/kendo-data-query';
-import { LogView } from 'src/app/shared/models/log-view.model';
-import { LogsService } from 'src/app/logs/logs.service';
+import { GetFullLogView } from 'src/app/logs/shared/models/get-full-log-view.model';
+import { LogsService } from 'src/app/logs/shared/services/logs.service';
 
 @Component({
     selector: 'app-logs',
     templateUrl: 'logs.component.html'
 })
 export class LogsComponent implements OnInit {
-    logs: LogView;
+    logs: GetFullLogView;
 
     state: State = {
         skip: 0,

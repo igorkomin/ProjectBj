@@ -1,15 +1,15 @@
 ﻿import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HistoryView } from 'src/app/shared/models/history-view.model';
-import { RequestGameView } from 'src/app/shared/models/request-game-view.model';
-import { RequestNewGameView } from 'src/app/shared/models/request-new-game-view.model';
-import { ResponseDoubleGameView } from 'src/app/shared/models/response-double-game-view.model';
-import { ResponseHitGameView } from 'src/app/shared/models/response-hit-game-view.model';
-import { ResponseLoadGameView } from 'src/app/shared/models/response-load-game-view.model';
-import { ResponseStandGameView } from 'src/app/shared/models/response-stand-game-view.model';
-import { ResponseStartGameView } from 'src/app/shared/models/response-start-game-view.model';
-import { ResponseSurrenderGameView } from 'src/app/shared/models/response-surrender-game-view.model';
+import { RequestGameView } from 'src/app/game/shared/models/request-game-view.model';
+import { RequestNewGameView } from 'src/app/game/shared/models/request-new-game-view.model';
+import { ResponseDoubleGameView } from 'src/app/game/shared/models/response-double-game-view.model';
+import { ResponseHitGameView } from 'src/app/game/shared/models/response-hit-game-view.model';
+import { ResponseLoadGameView } from 'src/app/game/shared/models/response-load-game-view.model';
+import { ResponseStandGameView } from 'src/app/game/shared/models/response-stand-game-view.model';
+import { ResponseStartGameView } from 'src/app/game/shared/models/response-start-game-view.model';
+import { ResponseSurrenderGameView } from 'src/app/game/shared/models/response-surrender-game-view.model';
+import { GetGameHistoryHistoryView } from 'src/app/game/shared/models/get-game-history-history-view.model';
 import { environment } from 'src/environments/environment';
 
 
@@ -50,8 +50,8 @@ export class GameService {
         return this.http.post<ResponseSurrenderGameView>(requestUrl, request);
     }
 
-    getHistory(sessionId: number): Observable<HistoryView> {
+    getHistory(sessionId: number): Observable<GetGameHistoryHistoryView> {
         const requestUrl = `${environment.gameApiUrl}/../History/GetGameHistory`;
-        return this.http.post<HistoryView>(requestUrl, sessionId);
+        return this.http.post<GetGameHistoryHistoryView>(requestUrl, sessionId);
     }
 }
