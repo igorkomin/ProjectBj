@@ -1,12 +1,14 @@
 ﻿using Dapper.Contrib.Extensions;
 using ProjectBj.DataAccess.Repositories.Interfaces;
+using ProjectBj.Entities;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
 
 namespace ProjectBj.DataAccess.Repositories
 {
-    public abstract class BaseRepository<T>: IBaseRepository<T> where T: class
+    public abstract class BaseRepository<T>: IBaseRepository<T> where T: BaseEntity
     {
         private readonly string _connectionString;
 
@@ -30,6 +32,15 @@ namespace ProjectBj.DataAccess.Repositories
             {
                 T item = await db.GetAsync<T>(id);
                 return item;
+            }
+        }
+
+        public async Task<IEnumerable<T>> GetAll()
+        {
+            using (IDbConnection db = new SqlConnection(_connectionString))
+            {
+                IEnumerable<T> items = await db.GetAllAsync<T>();
+                return items;
             }
         }
 

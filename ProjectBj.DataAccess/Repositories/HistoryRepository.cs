@@ -1,5 +1,4 @@
 ﻿using Dapper;
-using Dapper.Contrib.Extensions;
 using ProjectBj.DataAccess.Repositories.Interfaces;
 using ProjectBj.Entities;
 using System.Collections.Generic;
@@ -24,15 +23,6 @@ namespace ProjectBj.DataAccess.Repositories
             {
                 string sqlQuery = @"SELECT * FROM History WHERE SessionId = @sessionId";
                 IEnumerable<History> history = await db.QueryAsync<History>(sqlQuery, new { sessionId });
-                return history;
-            }
-        }
-
-        public async Task<IEnumerable<History>> GetAll()
-        {
-            using (IDbConnection db = new SqlConnection(_connectionString))
-            {
-                IEnumerable<History> history = await db.GetAllAsync<History>();
                 return history;
             }
         }
