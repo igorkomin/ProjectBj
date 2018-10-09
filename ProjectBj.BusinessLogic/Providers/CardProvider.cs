@@ -28,7 +28,7 @@ namespace ProjectBj.BusinessLogic.Providers
             }
 
             IEnumerable<Card> cards = await _cardRepository.GetRandom(count);
-            if (!cards.Any())
+            if (cards.Count() == 0)
             {
                 cards = GetNewDeck();
                 await SaveDeck(cards);

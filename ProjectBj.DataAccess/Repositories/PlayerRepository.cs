@@ -31,7 +31,7 @@ namespace ProjectBj.DataAccess.Repositories
         {
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
-                var sqlQuery = "SELECT * FROM Players WHERE Name = @name";
+                string sqlQuery = "SELECT * FROM Players WHERE Name = @name";
                 IEnumerable<Player> players = await db.QueryAsync<Player>(sqlQuery, new { name });
                 return players;
             }
@@ -74,7 +74,7 @@ namespace ProjectBj.DataAccess.Repositories
         {
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
-                var sqlQuery = @"SELECT DISTINCT p.* FROM PlayerHands ph
+                string sqlQuery = @"SELECT DISTINCT p.* FROM PlayerHands ph
                                     JOIN Players p ON (ph.PlayerId = p.Id)
                                     WHERE ph.SessionId = @sessionId
                                     AND p.IsHuman = 0 AND p.InGame = 1";

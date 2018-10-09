@@ -31,7 +31,7 @@ namespace ProjectBj.DataAccess.Repositories
         {
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
-                var sqlQuery = @"SELECT c.* FROM PlayerHands ph
+                string sqlQuery = @"SELECT c.* FROM PlayerHands ph
                                     JOIN Cards c ON (ph.CardId = c.Id)
                                     WHERE ph.PlayerId = @playerId AND ph.SessionId = @sessionId";
                 IEnumerable<Card> cards = await db.QueryAsync<Card>(sqlQuery, new { playerId, sessionId });
@@ -43,7 +43,7 @@ namespace ProjectBj.DataAccess.Repositories
         {
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
-                var sqlQuery = "SELECT TOP(@count) * FROM Cards ORDER BY NEWID()";
+                string sqlQuery = "SELECT TOP(@count) * FROM Cards ORDER BY NEWID()";
                 IEnumerable<Card> cards = await db.QueryAsync<Card>(sqlQuery, new { count });
                 return cards;
             }
@@ -53,7 +53,7 @@ namespace ProjectBj.DataAccess.Repositories
         {
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
-                var sqlQuery = @"DELETE FROM PlayerHands 
+                string sqlQuery = @"DELETE FROM PlayerHands 
                                     WHERE PlayerId = @playerId 
                                     AND SessionId = @sessionId";
                 await db.QueryAsync(sqlQuery, new { playerId, sessionId });
