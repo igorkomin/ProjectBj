@@ -37,20 +37,6 @@ namespace ProjectBj.DataAccess.Repositories
             }
         }
 
-        public async Task AddCardToPlayerHand(Player player, long cardId, long sessionId)
-        {
-            var playerHand = new PlayerHand
-            {
-                PlayerId = player.Id,
-                CardId = cardId,
-                SessionId = sessionId
-            };
-            using (IDbConnection db = new SqlConnection(_connectionString))
-            {
-                await db.InsertAsync(playerHand);
-            }
-        }
-
         public async Task AddCardsToPlayerHand(Player player, IEnumerable<long> cardIds, long sessionId)
         {
             List<PlayerHand> playerHands = new List<PlayerHand>();
