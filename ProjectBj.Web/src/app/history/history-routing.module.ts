@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { HistoryComponent } from 'src/app/history/history/history.component';
 
 const routes: Routes = [
