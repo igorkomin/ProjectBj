@@ -192,7 +192,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HistoryController.cs" />
     <Compile Include="Controllers\GameController.cs" />
