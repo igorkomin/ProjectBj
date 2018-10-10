@@ -1,5 +1,5 @@
-import { NgModule } from "@angular/core";
-import { RouterModule, Routes } from "@angular/router";
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
     {
@@ -22,8 +22,8 @@ const routes: Routes = [
         path: 'error',
         loadChildren: 'src/app/error/error.module#ErrorModule'
     },
-    { path: "", redirectTo: "/login", pathMatch: "full" },
-    { path: "**", redirectTo: "/login" }
+    { path: '', redirectTo: '/login', pathMatch: 'full' },
+    { path: '**', redirectTo: '/login' }
 ];
 
 @NgModule({
