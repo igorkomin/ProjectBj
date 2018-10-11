@@ -28,7 +28,6 @@ namespace ProjectBj.MVC
                         "~/Content/bootstrap.css",
                         "~/Content/jquery-ui.css",
                         "~/Content/style/style.css",
-                        "~/Content/style/slider.css",
                         "~/Content/style/cards.css"
                          ));
         }

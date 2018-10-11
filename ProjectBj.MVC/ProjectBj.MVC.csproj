@@ -152,7 +152,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\style\cards.css" />
-    <Content Include="Content\style\slider.css" />
     <Content Include="Content\style\style.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\Images\bg.jpg" />
