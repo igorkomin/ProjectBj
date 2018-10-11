@@ -12,8 +12,6 @@ import { ResponseStartGameView } from 'src/app/game/shared/models/response-start
 import { ResponseSurrenderGameView } from 'src/app/game/shared/models/response-surrender-game-view.model';
 import { environment } from 'src/environments/environment';
 
-
-
 @Injectable({
     providedIn: 'root'
 })
