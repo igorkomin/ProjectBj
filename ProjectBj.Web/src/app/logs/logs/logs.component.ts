@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DataStateChangeEvent, GridDataResult } from '@progress/kendo-angular-grid';
 import { process, State } from '@progress/kendo-data-query';
-import { GetFullLogView } from 'src/app/logs/shared/models/get-full-log-view.model';
-import { LogsService } from 'src/app/logs/shared/services/logs.service';
+import { GetFullLogView } from 'src/app/shared/models/get-full-log-view.model';
+import { LogsService } from 'src/app/shared/services/logs.service';
 
 @Component({
     selector: 'app-logs',

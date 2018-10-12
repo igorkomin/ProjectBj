@@ -1,7 +1,7 @@
 ﻿import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { GetFullLogView } from 'src/app/logs/shared/models/get-full-log-view.model';
+import { GetFullLogView } from 'src/app/shared/models/get-full-log-view.model';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
