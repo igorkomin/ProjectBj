@@ -2,11 +2,10 @@
 using ProjectBj.Logger;
 using ProjectBj.ViewModels.History;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Http;
 
-namespace ProjectBj.MVC.ApiControllers
+namespace ProjectBj.MVC.Controllers.Api
 {
     public class HistoryController : ApiController
     {
