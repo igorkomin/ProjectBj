@@ -241,7 +241,7 @@
     <TypeScriptCompile Include="src\app\error\error\error.component.ts" />
     <TypeScriptCompile Include="src\app\error\error.module.ts" />
     <TypeScriptCompile Include="src\app\game\shared\models\get-game-history-history-view.model.ts" />
-    <TypeScriptCompile Include="src\app\game\shared\services\game.service.ts" />
+    <TypeScriptCompile Include="src\app\game\shared\game.service.ts" />
     <TypeScriptCompile Include="src\app\shared\models\get-full-history-history-view.model.ts" />
     <TypeScriptCompile Include="src\app\shared\services\history.service.ts" />
     <TypeScriptCompile Include="src\app\shared\services\logs.service.ts" />
