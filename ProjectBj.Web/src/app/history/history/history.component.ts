@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DataStateChangeEvent, GridDataResult } from '@progress/kendo-angular-grid';
 import { process, State } from '@progress/kendo-data-query';
-import { GetFullHistoryHistoryView } from 'src/app/history/shared/models/get-full-history-history-view.model';
-import { HistoryService } from 'src/app/history/shared/services/history.service';
+import { GetFullHistoryHistoryView } from 'src/app/shared/models/get-full-history-history-view.model';
+import { HistoryService } from 'src/app/shared/services/history.service';
 
 @Component({
     selector: 'app-history',

@@ -1,7 +1,7 @@
 ﻿import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { GetFullHistoryHistoryView } from 'src/app/history/shared/models/get-full-history-history-view.model';
+import { GetFullHistoryHistoryView } from 'src/app/shared/models/get-full-history-history-view.model';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
