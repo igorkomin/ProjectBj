@@ -123,7 +123,7 @@ namespace ProjectBj.BusinessLogic.Services
             return gameView;
         }
 
-        private async Task<ResponseStartGameView> CreateGame(string playerName, int botsNumber)
+        private async Task<ResponseStartGameView> CreateGameView(string playerName, int botsNumber)
         {
             Player player = await _playerProvider.GetPlayerByName(playerName);
             GameSession session = await _sessionProvider.GetNew();
@@ -136,7 +136,7 @@ namespace ProjectBj.BusinessLogic.Services
 
         private async Task<ResponseStartGameView> GiveFirstCards(string playerName, int botsNumber)
         {
-            ResponseStartGameView gameView = await CreateGame(playerName, botsNumber);
+            ResponseStartGameView gameView = await CreateGameView(playerName, botsNumber);
             List<long> playerIds = new List<long>
             {
                 gameView.Player.Id,
