@@ -35,6 +35,10 @@ namespace ProjectBj.BusinessLogic.Services
             {
                 throw new ArgumentException(StringHelper.NameReservedMessage);
             }
+            if (botsNumber < 0)
+            {
+                throw new ArgumentException(StringHelper.BotsNumberMustBePositiveMessage);
+            }
             ResponseStartGameView gameView = await GiveFirstCards(playerName, botsNumber);
             Log.Info(StringHelper.GetGameStartedMessage(gameView.SessionId));
             return gameView;
