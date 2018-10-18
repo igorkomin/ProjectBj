@@ -17,16 +17,7 @@ namespace ProjectBj.DataAccess.Repositories
         {
             _connectionString = connectionString;
         }
-
-        public async Task<IEnumerable<Player>> Insert(IEnumerable<Player> players)
-        {
-            using (IDbConnection db = new SqlConnection(_connectionString))
-            {
-                await db.InsertAsync(players);
-                return players;
-            }
-        }
-
+        
         public async Task<IEnumerable<Player>> Find(string name)
         {
             using (IDbConnection db = new SqlConnection(_connectionString))

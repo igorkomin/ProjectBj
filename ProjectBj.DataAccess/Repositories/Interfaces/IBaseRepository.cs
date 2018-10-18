@@ -7,6 +7,7 @@ namespace ProjectBj.DataAccess.Repositories.Interfaces
     public interface IBaseRepository<T> where T: BaseEntity
     {
         Task<T> Insert(T item);
+        Task Insert(IEnumerable<T> items);
         Task<T> GetById(long id);
         Task<IEnumerable<T>> GetAll();
         Task Update(T item);

@@ -26,6 +26,14 @@ namespace ProjectBj.DataAccess.Repositories
             }
         }
 
+        public async Task Insert(IEnumerable<T> items)
+        {
+            using (IDbConnection db = new SqlConnection(_connectionString))
+            {
+                await db.InsertAsync(items);
+            }
+        }
+
         public async Task<T> GetById(long id)
         {
             using (IDbConnection db = new SqlConnection(_connectionString))
