@@ -13,7 +13,7 @@ namespace ProjectBj.MVC
                         ));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                        "~/Scripts/bootstrap.js"
+                        "~/Scripts/style/bootstrap.js"
                         ));
             
             bundles.Add(new ScriptBundle("~/bundles/login").Include(
