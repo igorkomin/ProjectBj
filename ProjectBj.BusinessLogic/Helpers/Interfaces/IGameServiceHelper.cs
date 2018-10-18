@@ -1,7 +1,7 @@
 ﻿using ProjectBj.ViewModels.Game;
 using System.Threading.Tasks;
 
-namespace ProjectBj.BusinessLogic.Interfaces
+namespace ProjectBj.BusinessLogic.Helpers.Interfaces
 {
     public interface IGameServiceHelper
     {

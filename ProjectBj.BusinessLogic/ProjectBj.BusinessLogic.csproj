@@ -62,7 +62,7 @@
     <Compile Include="Mappers\StandGameViewMapper.cs" />
     <Compile Include="Mappers\DoubleGameViewMapper.cs" />
     <Compile Include="Mappers\StartGameViewMapper.cs" />
-    <Compile Include="Interfaces\IGameServiceHelper.cs" />
+    <Compile Include="Helpers\Interfaces\IGameServiceHelper.cs" />
     <Compile Include="Services\Interfaces\IHistoryService.cs" />
     <Compile Include="Services\Interfaces\ISystemLogService.cs" />
     <Compile Include="Providers\CardProvider.cs" />

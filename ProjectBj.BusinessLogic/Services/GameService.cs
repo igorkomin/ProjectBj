@@ -1,4 +1,5 @@
 ﻿using ProjectBj.BusinessLogic.Helpers;
+using ProjectBj.BusinessLogic.Helpers.Interfaces;
 using ProjectBj.BusinessLogic.Mappers;
 using ProjectBj.BusinessLogic.Providers.Interfaces;
 using ProjectBj.BusinessLogic.Services.Interfaces;
