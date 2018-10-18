@@ -13,12 +13,12 @@ export class HistoryService {
 
 
     getHistory(sessionId: number): Observable<GetGameHistoryHistoryView> {
-        const requestUrl = `${environment.gameApiUrl}/GetGameHistory`;
+        const requestUrl = `${environment.historyApiUrl}GetGameHistory`;
         return this.http.post<GetGameHistoryHistoryView>(requestUrl, sessionId);
     }
 
     getFullHistory(): Observable<GetFullHistoryHistoryView> {
-        const requestUrl = `${environment.historyApiUrl}/GetFullHistory`;
+        const requestUrl = `${environment.historyApiUrl}GetFullHistory`;
         return this.http.get<GetFullHistoryHistoryView>(requestUrl);
     }
 }
