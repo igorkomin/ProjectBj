@@ -54,7 +54,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Helpers\GameServiceHelper.cs" />
+    <Compile Include="Configs\AutofacHelperTypeRegistry.cs" />
+    <Compile Include="Helpers\GameHelper.cs" />
+    <Compile Include="Helpers\GameResultHelper.cs" />
+    <Compile Include="Helpers\GameViewHelper.cs" />
+    <Compile Include="Helpers\Interfaces\IGameHelper.cs" />
+    <Compile Include="Helpers\Interfaces\IGameResultHelper.cs" />
+    <Compile Include="Helpers\Interfaces\IGameViewHelper.cs" />
     <Compile Include="Mappers\HistoryViewMapper.cs" />
     <Compile Include="Mappers\SurrenderGameViewMapper.cs" />
     <Compile Include="Mappers\LoadGameViewMapper.cs" />
@@ -62,7 +68,6 @@
     <Compile Include="Mappers\StandGameViewMapper.cs" />
     <Compile Include="Mappers\DoubleGameViewMapper.cs" />
     <Compile Include="Mappers\StartGameViewMapper.cs" />
-    <Compile Include="Helpers\Interfaces\IGameServiceHelper.cs" />
     <Compile Include="Services\Interfaces\IHistoryService.cs" />
     <Compile Include="Services\Interfaces\ISystemLogService.cs" />
     <Compile Include="Providers\CardProvider.cs" />
