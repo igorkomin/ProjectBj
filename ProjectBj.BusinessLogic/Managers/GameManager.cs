@@ -1,18 +1,18 @@
-﻿using ProjectBj.BusinessLogic.Helpers.Interfaces;
+﻿using ProjectBj.BusinessLogic.Managers.Interfaces;
 using ProjectBj.BusinessLogic.Providers.Interfaces;
 using ProjectBj.Entities;
 using ProjectBj.Entities.Enums;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace ProjectBj.BusinessLogic.Helpers
+namespace ProjectBj.BusinessLogic.Managers
 {
-    public class GameHelper : IGameHelper
+    public class GameManager : IGameManager
     {
         private readonly IPlayerProvider _playerProvider;
         private readonly ICardProvider _cardProvider;
 
-        public GameHelper(IPlayerProvider playerProvider, ICardProvider cardProvider)
+        public GameManager(IPlayerProvider playerProvider, ICardProvider cardProvider)
         {
             _playerProvider = playerProvider;
             _cardProvider = cardProvider;
@@ -54,21 +54,21 @@ namespace ProjectBj.BusinessLogic.Helpers
 
                 if ((int)card.Rank == aceCardRank)
                 {
-                    totalScore += ValueHelper.AceCardValue;
+                    totalScore += Constants.AceCardValue;
                     aceCount++;
                     continue;
                 }
                 if ((int)card.Rank > tenCardRank)
                 {
-                    totalScore += ValueHelper.FaceCardValue;
+                    totalScore += Constants.FaceCardValue;
                     continue;
                 }
                 totalScore += (int)card.Rank;
             }
 
-            if (totalScore > ValueHelper.BlackjackValue)
+            if (totalScore > Constants.BlackjackValue)
             {
-                totalScore -= aceCount * ValueHelper.AceDelta;
+                totalScore -= aceCount * Constants.AceDelta;
             }
 
             return totalScore;
