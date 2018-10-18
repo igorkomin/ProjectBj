@@ -1,4 +1,4 @@
-﻿using ProjectBj.BusinessLogic.Interfaces;
+﻿using ProjectBj.BusinessLogic.Services.Interfaces;
 using ProjectBj.Logger;
 using ProjectBj.ViewModels.Game;
 using System;

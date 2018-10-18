@@ -1,5 +1,4 @@
 ﻿using Dapper;
-using Dapper.Contrib.Extensions;
 using ProjectBj.DataAccess.Repositories.Interfaces;
 using ProjectBj.Entities;
 using System.Collections.Generic;
@@ -16,15 +15,6 @@ namespace ProjectBj.DataAccess.Repositories
         public CardRepository(string connectionString): base(connectionString)
         {
             _connectionString = connectionString;
-        }
-
-        public async Task<IEnumerable<Card>> Insert(IEnumerable<Card> deck)
-        {
-            using (IDbConnection db = new SqlConnection(_connectionString))
-            {
-                await db.InsertAsync(deck);
-            }
-            return deck;
         }
 
         public async Task<IEnumerable<Card>> Get(long playerId, long sessionId)

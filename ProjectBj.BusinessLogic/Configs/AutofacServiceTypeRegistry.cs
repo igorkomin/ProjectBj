@@ -1,7 +1,8 @@
 ﻿using Autofac;
 using ProjectBj.BusinessLogic.Helpers;
-using ProjectBj.BusinessLogic.Interfaces;
+using ProjectBj.BusinessLogic.Helpers.Interfaces;
 using ProjectBj.BusinessLogic.Services;
+using ProjectBj.BusinessLogic.Services.Interfaces;
 
 namespace ProjectBj.BusinessLogic.Configs
 {
