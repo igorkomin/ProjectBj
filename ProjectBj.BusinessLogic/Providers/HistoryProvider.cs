@@ -27,7 +27,6 @@ namespace ProjectBj.BusinessLogic.Providers
                 Event = message,
                 CreationDate = DateTime.Now
             };
-            Log.Info(StringHelper.CreatingHistoryEntryMessage);
             await _historyRepository.Insert(entry);
         }
 

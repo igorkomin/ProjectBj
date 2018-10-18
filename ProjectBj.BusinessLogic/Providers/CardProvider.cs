@@ -50,7 +50,6 @@ namespace ProjectBj.BusinessLogic.Providers
 
         private IEnumerable<Card> GetNewDeck()
         {
-            Log.Info(StringHelper.CreatingDeckMessage);
             var deck = new List<Card>();
 
             foreach (CardSuits suit in Enum.GetValues(typeof(CardSuits)))
@@ -78,7 +77,6 @@ namespace ProjectBj.BusinessLogic.Providers
 
         private async Task SaveDeck(IEnumerable<Card> deck)
         {
-            Log.Info(StringHelper.SavingDeckMessage);
             await _cardRepository.Insert(deck);
         }
     }
