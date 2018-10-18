@@ -54,13 +54,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configs\AutofacHelperTypeRegistry.cs" />
-    <Compile Include="Helpers\GameHelper.cs" />
-    <Compile Include="Helpers\GameResultHelper.cs" />
-    <Compile Include="Helpers\GameViewHelper.cs" />
-    <Compile Include="Helpers\Interfaces\IGameHelper.cs" />
-    <Compile Include="Helpers\Interfaces\IGameResultHelper.cs" />
-    <Compile Include="Helpers\Interfaces\IGameViewHelper.cs" />
+    <Compile Include="Configs\AutofacManagerTypeRegistry.cs" />
+    <Compile Include="Managers\GameManager.cs" />
+    <Compile Include="Managers\GameResultManager.cs" />
+    <Compile Include="Managers\GameViewManager.cs" />
+    <Compile Include="Managers\Interfaces\IGameManager.cs" />
+    <Compile Include="Managers\Interfaces\IGameResultManager.cs" />
+    <Compile Include="Managers\Interfaces\IGameViewManager.cs" />
     <Compile Include="Mappers\HistoryViewMapper.cs" />
     <Compile Include="Mappers\SurrenderGameViewMapper.cs" />
     <Compile Include="Mappers\LoadGameViewMapper.cs" />
@@ -72,8 +72,8 @@
     <Compile Include="Services\Interfaces\ISystemLogService.cs" />
     <Compile Include="Providers\CardProvider.cs" />
     <Compile Include="Helpers\EnumHelper.cs" />
-    <Compile Include="Helpers\StringHelper.cs" />
-    <Compile Include="Helpers\ValueHelper.cs" />
+    <Compile Include="Strings.cs" />
+    <Compile Include="Constants.cs" />
     <Compile Include="Providers\Interfaces\ICardProvider.cs" />
     <Compile Include="Services\Interfaces\IGameService.cs" />
     <Compile Include="Providers\Interfaces\IHistoryProvider.cs" />

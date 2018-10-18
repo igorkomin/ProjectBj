@@ -1,5 +1,5 @@
 ﻿using ProjectBj.BusinessLogic.Helpers;
-using ProjectBj.BusinessLogic.Helpers.Interfaces;
+using ProjectBj.BusinessLogic.Managers.Interfaces;
 using ProjectBj.BusinessLogic.Mappers;
 using ProjectBj.BusinessLogic.Providers.Interfaces;
 using ProjectBj.BusinessLogic.Services.Interfaces;
@@ -18,12 +18,12 @@ namespace ProjectBj.BusinessLogic.Services
         private readonly IHistoryProvider _historyProvider;
         private readonly IPlayerProvider _playerProvider;
         private readonly IGameSessionProvider _sessionProvider;
-        private readonly IGameHelper _gameHelper;
-        private readonly IGameViewHelper _gameViewHelper;
+        private readonly IGameManager _gameHelper;
+        private readonly IGameViewManager _gameViewHelper;
 
         public GameService(ICardProvider cardProvider, IHistoryProvider historyProvider,
             IPlayerProvider playerProvider, IGameSessionProvider sessionProvider,
-            IGameHelper gameHelper, IGameViewHelper gameViewHelper)
+            IGameManager gameHelper, IGameViewManager gameViewHelper)
         {
             _cardProvider = cardProvider;
             _historyProvider = historyProvider;
@@ -35,13 +35,13 @@ namespace ProjectBj.BusinessLogic.Services
 
         public async Task<ResponseStartGameView> Start(string playerName, int botsNumber)
         {
-            if (playerName == StringHelper.DealerName)
+            if (playerName == Strings.DealerName)
             {
-                throw new ArgumentException(StringHelper.NameReservedMessage);
+                throw new ArgumentException(Strings.NameReservedMessage);
             }
             if (botsNumber < 0)
             {
-                throw new ArgumentException(StringHelper.BotsNumberMustBePositiveMessage);
+                throw new ArgumentException(Strings.BotsNumberMustBePositiveMessage);
             }
             ResponseStartGameView gameView = await GiveFirstCards(playerName, botsNumber);
             return gameView;
@@ -49,9 +49,9 @@ namespace ProjectBj.BusinessLogic.Services
 
         public async Task<ResponseLoadGameView> Load(string playerName)
         {
-            if (playerName == StringHelper.DealerName)
+            if (playerName == Strings.DealerName)
             {
-                throw new ArgumentException(StringHelper.NameReservedMessage);
+                throw new ArgumentException(Strings.NameReservedMessage);
             }
             Player player = await _playerProvider.GetExistingPlayer(playerName);
             GameSession lastSession = await _sessionProvider.GetByPlayerId(player.Id);
@@ -64,11 +64,11 @@ namespace ProjectBj.BusinessLogic.Services
             bool isLastAction = false;
             Player player = await _playerProvider.GetPlayerById(playerId);
             await _historyProvider.Create(player.Name,
-                StringHelper.ChoseToHitMessage, sessionId);
+                Strings.ChoseToHitMessage, sessionId);
             await GiveCards(1, playerId, sessionId);
 
             int playerScore = await _gameHelper.GetHandScore(playerId, sessionId);
-            if (playerScore >= ValueHelper.BlackjackValue)
+            if (playerScore >= Constants.BlackjackValue)
             {
                 isLastAction = true;
                 await GiveCardsToBots(sessionId);
@@ -87,7 +87,7 @@ namespace ProjectBj.BusinessLogic.Services
         {
             Player player = await _playerProvider.GetPlayerById(playerId);
             await _historyProvider.Create(player.Name,
-                StringHelper.ChoseToStandMessage, sessionId);
+                Strings.ChoseToStandMessage, sessionId);
             await GiveCardsToBots(sessionId);
             await GiveCardsToDealer(sessionId);
             ResponseStandGameView gameView = await _gameViewHelper.GetStandGameView(playerId, sessionId);
@@ -99,7 +99,7 @@ namespace ProjectBj.BusinessLogic.Services
         {
             Player player = await _playerProvider.GetPlayerById(playerId);
             await _historyProvider.Create(player.Name,
-                StringHelper.ChoseToDoubleMessage, sessionId);
+                Strings.ChoseToDoubleMessage, sessionId);
             await GiveCards(1, playerId, sessionId);
             await GiveCardsToBots(sessionId);
             await GiveCardsToDealer(sessionId);
@@ -112,7 +112,7 @@ namespace ProjectBj.BusinessLogic.Services
         {
             Player player = await _playerProvider.GetPlayerById(playerId);
             await _historyProvider.Create(player.Name,
-                StringHelper.ChoseToSurrenderMessage, sessionId);
+                Strings.ChoseToSurrenderMessage, sessionId);
             await _cardProvider.ClearPlayerHand(playerId, sessionId);
             await GiveCardsToBots(sessionId);
             await GiveCardsToDealer(sessionId);
@@ -161,7 +161,7 @@ namespace ProjectBj.BusinessLogic.Services
         private async Task<bool> GiveCardsToBot(long botId, long sessionId)
         {
             int botScore = await _gameHelper.GetHandScore(botId, sessionId);
-            if (botScore > ValueHelper.MinimumBotHandValue)
+            if (botScore > Constants.MinimumBotHandValue)
             {
                 return false;
             }
@@ -173,7 +173,7 @@ namespace ProjectBj.BusinessLogic.Services
         {
             Player dealer = await _playerProvider.GetDealer();
             int dealerScore = await _gameHelper.GetHandScore(dealer.Id, sessionId);
-            if (dealerScore > ValueHelper.MinimumDealerHandValue)
+            if (dealerScore > Constants.MinimumDealerHandValue)
             {
                 return false;
             }
@@ -205,7 +205,7 @@ namespace ProjectBj.BusinessLogic.Services
             foreach (var card in cards)
             {
                 await _historyProvider.Create(
-                    player.Name, StringHelper.GetPlayerTakesCardMessage(
+                    player.Name, Strings.GetPlayerTakesCardMessage(
                         EnumHelper.GetCardRankName(card.Rank), card.Suit.ToString()), sessionId);
             }
         }

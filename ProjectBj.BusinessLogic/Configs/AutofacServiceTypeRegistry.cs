@@ -12,7 +12,7 @@ namespace ProjectBj.BusinessLogic.Configs
             builder.RegisterType<HistoryService>().As<IHistoryService>();
             builder.RegisterType<SystemLogService>().As<ISystemLogService>();
 
-            AutofacHelperTypeRegistry.RegisterTypes(builder);
+            AutofacManagerTypeRegistry.RegisterTypes(builder);
             AutofacProviderTypeRegistry.RegisterTypes(builder, connectionString);
 
             return builder;
