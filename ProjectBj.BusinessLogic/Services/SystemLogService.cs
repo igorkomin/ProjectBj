@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using ProjectBj.BusinessLogic.Interfaces;
+using ProjectBj.BusinessLogic.Services.Interfaces;
 using ProjectBj.DataAccess.Repositories.Interfaces;
 using ProjectBj.Entities;
 using ProjectBj.ViewModels.Logs;

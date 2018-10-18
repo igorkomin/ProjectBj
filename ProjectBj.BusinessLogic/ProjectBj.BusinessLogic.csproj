@@ -63,14 +63,14 @@
     <Compile Include="Mappers\DoubleGameViewMapper.cs" />
     <Compile Include="Mappers\StartGameViewMapper.cs" />
     <Compile Include="Interfaces\IGameServiceHelper.cs" />
-    <Compile Include="Interfaces\IHistoryService.cs" />
-    <Compile Include="Interfaces\ISystemLogService.cs" />
+    <Compile Include="Services\Interfaces\IHistoryService.cs" />
+    <Compile Include="Services\Interfaces\ISystemLogService.cs" />
     <Compile Include="Providers\CardProvider.cs" />
     <Compile Include="Helpers\EnumHelper.cs" />
     <Compile Include="Helpers\StringHelper.cs" />
     <Compile Include="Helpers\ValueHelper.cs" />
     <Compile Include="Providers\Interfaces\ICardProvider.cs" />
-    <Compile Include="Interfaces\IGameService.cs" />
+    <Compile Include="Services\Interfaces\IGameService.cs" />
     <Compile Include="Providers\Interfaces\IHistoryProvider.cs" />
     <Compile Include="Providers\Interfaces\IGameSessionProvider.cs" />
     <Compile Include="Providers\Interfaces\IPlayerProvider.cs" />

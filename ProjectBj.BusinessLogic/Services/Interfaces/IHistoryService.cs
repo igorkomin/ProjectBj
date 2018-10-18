@@ -1,7 +1,7 @@
 ﻿using ProjectBj.ViewModels.History;
 using System.Threading.Tasks;
 
-namespace ProjectBj.BusinessLogic.Interfaces
+namespace ProjectBj.BusinessLogic.Services.Interfaces
 {
     public interface IHistoryService
     {

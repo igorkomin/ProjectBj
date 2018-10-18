@@ -1,5 +1,6 @@
 ﻿using ProjectBj.BusinessLogic.Mappers;
-using ProjectBj.BusinessLogic.Interfaces;
+using ProjectBj.BusinessLogic.Providers.Interfaces;
+using ProjectBj.BusinessLogic.Services.Interfaces;
 using ProjectBj.Entities;
 using ProjectBj.ViewModels.History;
 using System.Collections.Generic;
