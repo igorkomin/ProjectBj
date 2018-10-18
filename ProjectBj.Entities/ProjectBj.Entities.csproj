@@ -42,9 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Enums\CardRanks.cs" />
-    <Compile Include="Enums\CardSuits.cs" />
-    <Compile Include="Enums\GameResults.cs" />
+    <Compile Include="Enums\CardRank.cs" />
+    <Compile Include="Enums\CardSuit.cs" />
+    <Compile Include="Enums\GameResult.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Entities\Card.cs" />
     <Compile Include="Entities\Game.cs" />

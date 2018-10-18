@@ -49,8 +49,8 @@ namespace ProjectBj.BusinessLogic.Helpers
 
             foreach (var card in cards)
             {
-                int aceCardRank = (int)CardRanks.Ace;
-                int tenCardRank = (int)CardRanks.Ten;
+                int aceCardRank = (int)CardRank.Ace;
+                int tenCardRank = (int)CardRank.Ten;
 
                 if ((int)card.Rank == aceCardRank)
                 {

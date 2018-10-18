@@ -12,30 +12,30 @@ namespace ProjectBj.BusinessLogic.Helpers
             return (gameState, gameResult);
         }
 
-        private GameResults GetGameResult(int playerScore, int dealerScore)
+        private GameResult GetGameResult(int playerScore, int dealerScore)
         {
             if (playerScore == ValueHelper.BlackjackValue)
             {
-                return GameResults.Blackjack;
+                return GameResult.Blackjack;
             }
             if (playerScore > ValueHelper.BlackjackValue)
             {
-                return GameResults.Bust;
+                return GameResult.Bust;
             }
             if (playerScore == dealerScore)
             {
-                return GameResults.Win;
+                return GameResult.Win;
             }
             if (playerScore == 0)
             {
-                return GameResults.Surrender;
+                return GameResult.Surrender;
             }
             if (playerScore > dealerScore || dealerScore > ValueHelper.BlackjackValue)
             {
-                return GameResults.Win;
+                return GameResult.Win;
             }
 
-            return GameResults.Lose;
+            return GameResult.Lose;
         }
 
     }

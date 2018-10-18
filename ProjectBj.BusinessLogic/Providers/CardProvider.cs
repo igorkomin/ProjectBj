@@ -51,7 +51,7 @@ namespace ProjectBj.BusinessLogic.Providers
         {
             var deck = new List<Card>();
 
-            foreach (CardSuits suit in Enum.GetValues(typeof(CardSuits)))
+            foreach (CardSuit suit in Enum.GetValues(typeof(CardSuit)))
             {
                 if (suit != 0)
                 {
@@ -62,9 +62,9 @@ namespace ProjectBj.BusinessLogic.Providers
             return deck;
         }
 
-        private void AddCardSuitToDeck(CardSuits suit, List<Card> deck)
+        private void AddCardSuitToDeck(CardSuit suit, List<Card> deck)
         {
-            foreach (CardRanks rank in Enum.GetValues(typeof(CardRanks)))
+            foreach (CardRank rank in Enum.GetValues(typeof(CardRank)))
             {
                 if (rank != 0)
                 {

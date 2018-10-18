@@ -2,7 +2,7 @@
 
 namespace ProjectBj.Entities.Enums
 {
-    public enum CardSuits
+    public enum CardSuit
     {
         None = 0,
         [Description("spades")]

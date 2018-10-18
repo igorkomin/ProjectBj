@@ -1,6 +1,6 @@
 ﻿namespace ProjectBj.Entities.Enums
 {
-    public enum GameResults
+    public enum GameResult
     {
         None = 0,
         Blackjack = 1,

@@ -2,7 +2,7 @@
 
 namespace ProjectBj.Entities.Enums
 {
-    public enum CardRanks
+    public enum CardRank
     {
         None = 0,
         [Description("A")]

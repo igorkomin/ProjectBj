@@ -6,7 +6,7 @@ namespace ProjectBj.Entities
     [Table("Cards")]
     public class Card : BaseEntity
     {
-        public CardSuits Suit { get; set; }
-        public CardRanks Rank { get; set; }
+        public CardSuit Suit { get; set; }
+        public CardRank Rank { get; set; }
     }
 }
