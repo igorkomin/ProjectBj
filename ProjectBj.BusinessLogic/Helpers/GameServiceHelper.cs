@@ -200,8 +200,8 @@ namespace ProjectBj.BusinessLogic.Helpers
 
             foreach (var card in cards)
             {
-                int aceCardRank = (int)CardRanks.Rank.Ace;
-                int tenCardRank = (int)CardRanks.Rank.Ten;
+                int aceCardRank = (int)CardRanks.Ace;
+                int tenCardRank = (int)CardRanks.Ten;
 
                 if (card.Rank == aceCardRank)
                 {
@@ -232,30 +232,30 @@ namespace ProjectBj.BusinessLogic.Helpers
             return (gameState, gameResult);
         }
 
-        private GameResults.Result GetGameResult(int playerScore, int dealerScore)
+        private GameResults GetGameResult(int playerScore, int dealerScore)
         {
             if (playerScore == ValueHelper.BlackjackValue)
             {
-                return GameResults.Result.Blackjack;
+                return GameResults.Blackjack;
             }
             if (playerScore > ValueHelper.BlackjackValue)
             {
-                return GameResults.Result.Bust;
+                return GameResults.Bust;
             }
             if (playerScore == dealerScore)
             {
-                return GameResults.Result.Win;
+                return GameResults.Win;
             }
             if (playerScore == 0)
             {
-                return GameResults.Result.Surrender;
+                return GameResults.Surrender;
             }
             if (playerScore > dealerScore || dealerScore > ValueHelper.BlackjackValue)
             {
-                return GameResults.Result.Win;
+                return GameResults.Win;
             }
 
-            return GameResults.Result.Lose;
+            return GameResults.Lose;
         }
 
         private async Task<Game> GetGame(long playerId, long sessionId)
