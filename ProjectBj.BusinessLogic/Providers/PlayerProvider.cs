@@ -1,5 +1,5 @@
 ﻿using ProjectBj.BusinessLogic.Helpers;
-using ProjectBj.BusinessLogic.Interfaces;
+using ProjectBj.BusinessLogic.Providers.Interfaces;
 using ProjectBj.DataAccess.Repositories.Interfaces;
 using ProjectBj.Entities;
 using RandomNameGeneratorLibrary;

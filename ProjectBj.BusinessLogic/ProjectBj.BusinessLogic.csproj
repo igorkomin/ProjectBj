@@ -69,11 +69,11 @@
     <Compile Include="Helpers\EnumHelper.cs" />
     <Compile Include="Helpers\StringHelper.cs" />
     <Compile Include="Helpers\ValueHelper.cs" />
-    <Compile Include="Interfaces\ICardProvider.cs" />
+    <Compile Include="Providers\Interfaces\ICardProvider.cs" />
     <Compile Include="Interfaces\IGameService.cs" />
-    <Compile Include="Interfaces\IHistoryProvider.cs" />
-    <Compile Include="Interfaces\IGameSessionProvider.cs" />
-    <Compile Include="Interfaces\IPlayerProvider.cs" />
+    <Compile Include="Providers\Interfaces\IHistoryProvider.cs" />
+    <Compile Include="Providers\Interfaces\IGameSessionProvider.cs" />
+    <Compile Include="Providers\Interfaces\IPlayerProvider.cs" />
     <Compile Include="Providers\HistoryProvider.cs" />
     <Compile Include="Providers\PlayerProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

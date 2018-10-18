@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace ProjectBj.BusinessLogic.Interfaces
+namespace ProjectBj.BusinessLogic.Providers.Interfaces
 {
     public interface IHistoryProvider
     {
