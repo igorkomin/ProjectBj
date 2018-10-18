@@ -1,9 +1,9 @@
-﻿using ProjectBj.BusinessLogic.Helpers.Interfaces;
+﻿using ProjectBj.BusinessLogic.Managers.Interfaces;
 using ProjectBj.Entities.Enums;
 
-namespace ProjectBj.BusinessLogic.Helpers
+namespace ProjectBj.BusinessLogic.Managers
 {
-    public class GameResultHelper : IGameResultHelper
+    public class GameResultManager : IGameResultManager
     {
         public (int gameState, string gameResult) GetGameStateResult(int playerScore, int dealerScore)
         {
@@ -14,11 +14,11 @@ namespace ProjectBj.BusinessLogic.Helpers
 
         private GameResult GetGameResult(int playerScore, int dealerScore)
         {
-            if (playerScore == ValueHelper.BlackjackValue)
+            if (playerScore == Constants.BlackjackValue)
             {
                 return GameResult.Blackjack;
             }
-            if (playerScore > ValueHelper.BlackjackValue)
+            if (playerScore > Constants.BlackjackValue)
             {
                 return GameResult.Bust;
             }
@@ -30,7 +30,7 @@ namespace ProjectBj.BusinessLogic.Helpers
             {
                 return GameResult.Surrender;
             }
-            if (playerScore > dealerScore || dealerScore > ValueHelper.BlackjackValue)
+            if (playerScore > dealerScore || dealerScore > Constants.BlackjackValue)
             {
                 return GameResult.Win;
             }

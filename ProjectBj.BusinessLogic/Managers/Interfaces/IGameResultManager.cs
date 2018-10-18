@@ -1,6 +1,6 @@
-﻿namespace ProjectBj.BusinessLogic.Helpers.Interfaces
+﻿namespace ProjectBj.BusinessLogic.Managers.Interfaces
 {
-    public interface IGameResultHelper
+    public interface IGameResultManager
     {
         (int gameState, string gameResult) GetGameStateResult(int playerScore, int dealerScore);
     }
