@@ -20,9 +20,9 @@ namespace ProjectBj.BusinessLogic.Providers
             _nameGenerator = new PersonNameGenerator();
         }
 
-        public async Task<IEnumerable<Player>> GetBots(int botnumber, long sessionId)
+        public async Task<IEnumerable<Player>> GetBots(int botsNumber, long sessionId)
         {
-            IEnumerable<Player> bots = await GetNewBots(botnumber);
+            IEnumerable<Player> bots = await GetNewBots(botsNumber);
             return bots;
         }
 
