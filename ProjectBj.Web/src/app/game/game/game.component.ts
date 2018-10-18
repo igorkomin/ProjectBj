@@ -10,6 +10,7 @@ import { ResponseLoadGameView } from 'src/app/shared/models/response-load-game-v
 import { ResponseStandGameView } from 'src/app/shared/models/response-stand-game-view.model';
 import { ResponseStartGameView } from 'src/app/shared/models/response-start-game-view.model';
 import { ResponseSurrenderGameView } from 'src/app/shared/models/response-surrender-game-view.model';
+import { HistoryService } from 'src/app/shared/services/history.service';
 
 @Component({
     selector: 'app-game',
@@ -28,6 +29,7 @@ export class GameComponent implements OnInit {
 
     constructor(
         private readonly gameService: GameService,
+        private readonly historyService: HistoryService,
         private readonly route: ActivatedRoute,
     ) { }
 
@@ -119,7 +121,7 @@ export class GameComponent implements OnInit {
     }
 
     getHistory(): void {
-        this.gameService.getHistory(this.game.sessionId).subscribe(
+        this.historyService.getHistory(this.game.sessionId).subscribe(
             response => {
                 this.history = response;
             }

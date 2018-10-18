@@ -159,19 +159,19 @@
     <Content Include="src\app\history\history\history.component.html" />
     <Content Include="src\app\login\login\login.component.html" />
     <Content Include="src\assets\bg.jpg" />
-    <Content Include="src\assets\Cards\faces\JC.gif" />
-    <Content Include="src\assets\Cards\faces\JD.gif" />
-    <Content Include="src\assets\Cards\faces\JH.gif" />
-    <Content Include="src\assets\Cards\faces\joker.gif" />
-    <Content Include="src\assets\Cards\faces\JS.gif" />
-    <Content Include="src\assets\Cards\faces\KC.gif" />
-    <Content Include="src\assets\Cards\faces\KD.gif" />
-    <Content Include="src\assets\Cards\faces\KH.gif" />
-    <Content Include="src\assets\Cards\faces\KS.gif" />
-    <Content Include="src\assets\Cards\faces\QC.gif" />
-    <Content Include="src\assets\Cards\faces\QD.gif" />
-    <Content Include="src\assets\Cards\faces\QH.gif" />
-    <Content Include="src\assets\Cards\faces\QS.gif" />
+    <Content Include="src\assets\cards\faces\JC.gif" />
+    <Content Include="src\assets\cards\faces\JD.gif" />
+    <Content Include="src\assets\cards\faces\JH.gif" />
+    <Content Include="src\assets\cards\faces\joker.gif" />
+    <Content Include="src\assets\cards\faces\JS.gif" />
+    <Content Include="src\assets\cards\faces\KC.gif" />
+    <Content Include="src\assets\cards\faces\KD.gif" />
+    <Content Include="src\assets\cards\faces\KH.gif" />
+    <Content Include="src\assets\cards\faces\KS.gif" />
+    <Content Include="src\assets\cards\faces\QC.gif" />
+    <Content Include="src\assets\cards\faces\QD.gif" />
+    <Content Include="src\assets\cards\faces\QH.gif" />
+    <Content Include="src\assets\cards\faces\QS.gif" />
     <Content Include="src\assets\dealer.png" />
     <Content Include="src\assets\loading.gif" />
     <Content Include="src\assets\player.png" />
@@ -202,7 +202,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="src\assets\Cards\faces\README" />
+    <Content Include="src\assets\cards\faces\README" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
