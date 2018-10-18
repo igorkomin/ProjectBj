@@ -1,9 +1,9 @@
-﻿using ProjectBj.ViewModels.Game;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using ProjectBj.ViewModels.Game;
 
-namespace ProjectBj.BusinessLogic.Helpers.Interfaces
+namespace ProjectBj.BusinessLogic.Managers.Interfaces
 {
-    public interface IGameViewHelper
+    public interface IGameViewManager
     {
         Task<ResponseStartGameView> GetStartGameView(long playerId, long sessionId);
         Task<ResponseLoadGameView> GetLoadGameView(long playerId, long sessionId);

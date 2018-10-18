@@ -1,18 +1,18 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using ProjectBj.BusinessLogic.Helpers.Interfaces;
+using ProjectBj.BusinessLogic.Managers.Interfaces;
 using ProjectBj.BusinessLogic.Mappers;
 using ProjectBj.Entities;
 using ProjectBj.ViewModels.Game;
 
-namespace ProjectBj.BusinessLogic.Helpers
+namespace ProjectBj.BusinessLogic.Managers
 {
-    public class GameViewHelper : IGameViewHelper
+    public class GameViewManager : IGameViewManager
     {
-        private readonly IGameHelper _gameHelper;
-        private readonly IGameResultHelper _gameResultHelper;
+        private readonly IGameManager _gameHelper;
+        private readonly IGameResultManager _gameResultHelper;
 
-        public GameViewHelper(IGameHelper gameHelper, IGameResultHelper gameResultHelper)
+        public GameViewManager(IGameManager gameHelper, IGameResultManager gameResultHelper)
         {
             _gameHelper = gameHelper;
             _gameResultHelper = gameResultHelper;
