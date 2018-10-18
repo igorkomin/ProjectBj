@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ProjectBj.BusinessLogic.Managers
 {
-    public class GameManager : IGameManager
+    internal class GameManager : IGameManager
     {
         private readonly IPlayerProvider _playerProvider;
         private readonly ICardProvider _cardProvider;

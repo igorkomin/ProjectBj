@@ -3,7 +3,7 @@ using ProjectBj.Entities.Enums;
 
 namespace ProjectBj.BusinessLogic.Managers
 {
-    public class GameResultManager : IGameResultManager
+    internal class GameResultManager : IGameResultManager
     {
         public (int gameState, string gameResult) GetGameStateResult(int playerScore, int dealerScore)
         {
