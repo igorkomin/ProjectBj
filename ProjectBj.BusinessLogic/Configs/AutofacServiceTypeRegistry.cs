@@ -1,6 +1,4 @@
 ﻿using Autofac;
-using ProjectBj.BusinessLogic.Helpers;
-using ProjectBj.BusinessLogic.Helpers.Interfaces;
 using ProjectBj.BusinessLogic.Services;
 using ProjectBj.BusinessLogic.Services.Interfaces;
 

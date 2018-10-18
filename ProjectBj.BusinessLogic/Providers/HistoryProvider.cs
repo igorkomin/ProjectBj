@@ -1,8 +1,6 @@
-﻿using ProjectBj.BusinessLogic.Helpers;
-using ProjectBj.BusinessLogic.Providers.Interfaces;
+﻿using ProjectBj.BusinessLogic.Providers.Interfaces;
 using ProjectBj.DataAccess.Repositories.Interfaces;
 using ProjectBj.Entities;
-using ProjectBj.Logger;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;

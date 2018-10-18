@@ -1,7 +1,6 @@
 ﻿using Autofac;
 using ProjectBj.BusinessLogic.Helpers;
 using ProjectBj.BusinessLogic.Helpers.Interfaces;
-using ProjectBj.DataAccess.Configs;
 
 namespace ProjectBj.BusinessLogic.Configs
 {
