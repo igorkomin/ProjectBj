@@ -203,18 +203,18 @@ namespace ProjectBj.BusinessLogic.Helpers
                 int aceCardRank = (int)CardRanks.Ace;
                 int tenCardRank = (int)CardRanks.Ten;
 
-                if (card.Rank == aceCardRank)
+                if ((int)card.Rank == aceCardRank)
                 {
                     totalScore += ValueHelper.AceCardValue;
                     aceCount++;
                     continue;
                 }
-                if (card.Rank > tenCardRank)
+                if ((int)card.Rank > tenCardRank)
                 {
                     totalScore += ValueHelper.FaceCardValue;
                     continue;
                 }
-                totalScore += card.Rank;
+                totalScore += (int)card.Rank;
             }
 
             if (totalScore > ValueHelper.BlackjackValue)

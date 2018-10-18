@@ -53,20 +53,20 @@ namespace ProjectBj.BusinessLogic.Providers
             Log.Info(StringHelper.CreatingDeckMessage);
             var deck = new List<Card>();
 
-            foreach (var suit in Enum.GetValues(typeof(CardSuits)))
+            foreach (CardSuits suit in Enum.GetValues(typeof(CardSuits)))
             {
-                if ((int)suit != 0)
+                if (suit != 0)
                 {
-                    AddCardSuitToDeck(suit.ToString(), deck);
+                    AddCardSuitToDeck(suit, deck);
                 }
             }
 
             return deck;
         }
 
-        private void AddCardSuitToDeck(string suit, List<Card> deck)
+        private void AddCardSuitToDeck(CardSuits suit, List<Card> deck)
         {
-            foreach (int rank in Enum.GetValues(typeof(CardRanks)))
+            foreach (CardRanks rank in Enum.GetValues(typeof(CardRanks)))
             {
                 if (rank != 0)
                 {

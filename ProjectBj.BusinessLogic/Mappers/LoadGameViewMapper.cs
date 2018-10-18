@@ -35,13 +35,13 @@ namespace ProjectBj.BusinessLogic.Mappers
             var cardLoadGameViewItems = new List<CardResponseLoadGameViewItem>();
             foreach (var card in cards)
             {
-                var cardLoadGameViewItemitem = new CardResponseLoadGameViewItem
+                var cardLoadGameViewItem = new CardResponseLoadGameViewItem
                 {
-                    Suit = card.Suit,
+                    Suit = card.Suit.ToString(),
                     Rank = EnumHelper.GetCardRankName(card.Rank),
-                    RankValue = card.Rank
+                    RankValue = (int)card.Rank
                 };
-                cardLoadGameViewItems.Add(cardLoadGameViewItemitem);
+                cardLoadGameViewItems.Add(cardLoadGameViewItem);
             }
             return cardLoadGameViewItems;
         }

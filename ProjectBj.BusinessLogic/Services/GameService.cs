@@ -210,7 +210,7 @@ namespace ProjectBj.BusinessLogic.Services
             {
                 await _historyProvider.Create(
                     player.Name, StringHelper.GetPlayerTakesCardMessage(
-                        EnumHelper.GetCardRankName(card.Rank), card.Suit), sessionId);
+                        EnumHelper.GetCardRankName(card.Rank), card.Suit.ToString()), sessionId);
             }
         }
 
