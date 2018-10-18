@@ -1,9 +1,9 @@
-﻿using ProjectBj.Entities;
+﻿using ProjectBj.BusinessLogic.Helpers.Interfaces;
+using ProjectBj.BusinessLogic.Providers.Interfaces;
+using ProjectBj.Entities;
+using ProjectBj.Entities.Enums;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using ProjectBj.BusinessLogic.Helpers.Interfaces;
-using ProjectBj.BusinessLogic.Providers.Interfaces;
-using ProjectBj.Entities.Enums;
 
 namespace ProjectBj.BusinessLogic.Helpers
 {
