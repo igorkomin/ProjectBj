@@ -32,7 +32,7 @@ namespace ProjectBj.BusinessLogic.Providers
             
             if (currentSession == null)
             {
-                throw new Exception(StringHelper.NoGameToLoadMessage);
+                throw new Exception(Strings.NoGameToLoadMessage);
             }
  
             return currentSession;

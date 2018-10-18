@@ -107,7 +107,7 @@ namespace ProjectBj.BusinessLogic.Providers
         {
             var dealer = new Player
             {
-                Name = StringHelper.DealerName,
+                Name = Strings.DealerName,
                 InGame = false,
                 IsHuman = false
             };
@@ -128,7 +128,7 @@ namespace ProjectBj.BusinessLogic.Providers
 
         private async Task<Player> GetExistingDealer()
         {
-            IEnumerable<Player> searchResults = await _playerRepository.Find(StringHelper.DealerName);
+            IEnumerable<Player> searchResults = await _playerRepository.Find(Strings.DealerName);
             if (searchResults.Count() == 0)
             {
                 return null;
