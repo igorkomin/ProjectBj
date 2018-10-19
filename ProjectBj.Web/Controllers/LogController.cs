@@ -4,11 +4,9 @@ using ProjectBj.ViewModels.Logs;
 using System;
 using System.Threading.Tasks;
 using System.Web.Http;
-using System.Web.Http.Cors;
 
 namespace ProjectBj.Web.Controllers
 {
-    [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
     public class LogController : ApiController
     {
         private readonly ISystemLogService _service;
@@ -28,7 +26,7 @@ namespace ProjectBj.Web.Controllers
             }
             catch (Exception exception)
             {
-                Log.Error(exception.Message);
+                Log.Error(exception.ToString());
                 return InternalServerError(exception);
             }
         }
