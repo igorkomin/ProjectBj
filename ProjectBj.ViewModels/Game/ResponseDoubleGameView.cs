@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using ProjectBj.Entities.Enums;
+using System.Collections.Generic;
 
 namespace ProjectBj.ViewModels.Game
 {
@@ -53,6 +54,6 @@ namespace ProjectBj.ViewModels.Game
     {
         public string Suit { get; set; }
         public string Rank { get; set; }
-        public int RankValue { get; set; }
+        public CardRank RankValue { get; set; }
     }
 }
