@@ -11,7 +11,7 @@ export class LogsService {
     constructor(private readonly http: HttpClient) { }
 
     getSystemLogs(): Observable<GetFullLogView> {
-        const requestUrl = `${environment.logApiUrl}/GetFullLog`;
+        const requestUrl = `${environment.logApiUrl}GetFullLog`;
         return this.http.get<GetFullLogView>(requestUrl);
     }
 }
