@@ -6,6 +6,11 @@ namespace ProjectBj.ViewModels.Logs
     public class GetFullLogView
     {
         public List<EntryGetFullLogViewItem> Entries { get; set; }
+
+        public GetFullLogView()
+        {
+            Entries = new List<EntryGetFullLogViewItem>();
+        }
     }
 
     public class EntryGetFullLogViewItem

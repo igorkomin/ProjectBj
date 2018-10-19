@@ -6,6 +6,11 @@ namespace ProjectBj.ViewModels.History
     public class GetFullHistoryHistoryView
     {
         public List<EntryGetFullHistoryHistoryViewItem> Entries { get; set; }
+
+        public GetFullHistoryHistoryView()
+        {
+            Entries = new List<EntryGetFullHistoryHistoryViewItem>();
+        }
     }
 
     public class EntryGetFullHistoryHistoryViewItem
