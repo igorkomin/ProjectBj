@@ -1,7 +1,7 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace ProjectBj.Web
+namespace ProjectBj.Web.Configs
 {
     public class RouteConfig
     {

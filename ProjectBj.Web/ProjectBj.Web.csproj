@@ -192,8 +192,8 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Configs\RouteConfig.cs" />
+    <Compile Include="Configs\WebApiConfig.cs" />
     <Compile Include="Controllers\HistoryController.cs" />
     <Compile Include="Controllers\GameController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
