@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using ProjectBj.Entities.Enums;
 
 namespace ProjectBj.ViewModels.Game
 {
