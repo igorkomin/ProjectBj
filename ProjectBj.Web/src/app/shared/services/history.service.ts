@@ -11,7 +11,6 @@ import { environment } from 'src/environments/environment';
 export class HistoryService {
     constructor(private readonly http: HttpClient) { }
 
-
     getHistory(sessionId: number): Observable<GetGameHistoryHistoryView> {
         const requestUrl = `${environment.historyApiUrl}GetGameHistory`;
         return this.http.post<GetGameHistoryHistoryView>(requestUrl, sessionId);
