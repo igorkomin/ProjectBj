@@ -6,7 +6,7 @@ namespace ProjectBj.Web.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            return Redirect("/dist");
         }
     }
 }
