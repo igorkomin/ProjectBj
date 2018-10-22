@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { GameService } from 'src/app/shared/services/game.service';
 import { GetGameHistoryHistoryView } from 'src/app/shared/models/get-game-history-history-view.model';
 import { RequestGameView } from 'src/app/shared/models/request-game-view.model';
 import { RequestNewGameView } from 'src/app/shared/models/request-new-game-view.model';
@@ -10,6 +9,7 @@ import { ResponseLoadGameView } from 'src/app/shared/models/response-load-game-v
 import { ResponseStandGameView } from 'src/app/shared/models/response-stand-game-view.model';
 import { ResponseStartGameView } from 'src/app/shared/models/response-start-game-view.model';
 import { ResponseSurrenderGameView } from 'src/app/shared/models/response-surrender-game-view.model';
+import { GameService } from 'src/app/shared/services/game.service';
 import { HistoryService } from 'src/app/shared/services/history.service';
 
 @Component({
