@@ -181,9 +181,9 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\BundleConfig.cs" />
-    <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Configs\BundleConfig.cs" />
+    <Compile Include="Configs\RouteConfig.cs" />
+    <Compile Include="Configs\WebApiConfig.cs" />
     <Compile Include="Configs\AutofacConfig.cs" />
     <Compile Include="Controllers\Api\GameController.cs" />
     <Compile Include="Controllers\GameController.cs" />
@@ -205,9 +205,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
