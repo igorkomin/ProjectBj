@@ -32,5 +32,4 @@ class HandResponseStandGameViewItem {
 class CardResponseStandGameViewItem {
     suit: string;
     rank: string;
-    rankValue: number;
 }
