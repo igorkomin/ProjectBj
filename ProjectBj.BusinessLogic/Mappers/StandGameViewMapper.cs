@@ -37,8 +37,8 @@ namespace ProjectBj.BusinessLogic.Mappers
             {
                 var cardStandGameViewItem = new CardResponseStandGameViewItem
                 {
-                    Suit = card.Suit.ToString(),
-                    Rank = EnumHelper.GetCardRankName(card.Rank)
+                    Suit = card.Suit,
+                    Rank = card.Rank
                 };
                 cardStandGameViewItems.Add(cardStandGameViewItem);
             }

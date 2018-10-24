@@ -37,8 +37,8 @@ namespace ProjectBj.BusinessLogic.Mappers
             {
                 var cardSurrenderGameViewItem = new CardResponseSurrenderGameViewItem
                 {
-                    Suit = card.Suit.ToString(),
-                    Rank = EnumHelper.GetCardRankName(card.Rank)
+                    Suit = card.Suit,
+                    Rank = card.Rank
                 };
                 cardSurrenderGameViewItems.Add(cardSurrenderGameViewItem);
             }
