@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using ProjectBj.BusinessLogic.Services;
 using ProjectBj.BusinessLogic.Services.Interfaces;
+using ProjectBj.DataAccess.Configs;
 
 namespace ProjectBj.BusinessLogic.Configs
 {
@@ -13,6 +14,7 @@ namespace ProjectBj.BusinessLogic.Configs
             builder.RegisterType<SystemLogService>().As<ISystemLogService>();
 
             AutofacManagerTypeRegistry.RegisterTypes(builder);
+            AutofacDataAccessTypeRegistry.RegisterTypes(builder, connectionString);
 
             return builder;
         }
