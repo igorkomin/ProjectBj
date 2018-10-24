@@ -195,8 +195,7 @@ GO
 CREATE TABLE [dbo].[Players](
 	[Id] [bigint] IDENTITY(1,1) NOT NULL,
 	[Name] [nvarchar](max) NOT NULL,
-	[IsHuman] [bit] NOT NULL,
-	[InGame] [bit] NOT NULL,
+	[Type] [int] NOT NULL,
 	[CreationDate] [datetime2](7) NOT NULL,
 PRIMARY KEY CLUSTERED 
 (
