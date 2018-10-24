@@ -190,7 +190,7 @@ namespace ProjectBj.BusinessLogic.Services
 
         private async Task EndGameSession(long sessionId)
         {
-            await CloseGameSession(sessionId);
+            await _sessionManager.Close(sessionId);
             await _playerManager.DeleteSessionBots(sessionId);
         }
         
@@ -207,11 +207,6 @@ namespace ProjectBj.BusinessLogic.Services
                     player.Name, Strings.GetPlayerTakesCardMessage(
                         EnumHelper.GetCardRankName(card.Rank), card.Suit.ToString()), sessionId);
             }
-        }
-
-        private async Task CloseGameSession(long sessionId)
-        {
-            await _sessionManager.Close(sessionId);
         }
     }
 }
