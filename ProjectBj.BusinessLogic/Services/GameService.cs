@@ -124,7 +124,7 @@ namespace ProjectBj.BusinessLogic.Services
         {
             Player player = await _playerManager.GetPlayerByName(playerName);
             GameSession session = await _sessionManager.GetNew();
-            IEnumerable<Player> bots = await _playerManager.GetBots(botsNumber, session.Id);
+            IEnumerable<Player> bots = await _playerManager.GetBots(botsNumber);
             Player dealer = await _playerManager.GetDealer();
 
             ResponseStartGameView gameView = StartGameViewMapper.GetStartGameView(session.Id, dealer, player, bots);
