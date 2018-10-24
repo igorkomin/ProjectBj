@@ -26,7 +26,7 @@ namespace ProjectBj.MVC.Controllers.Api
             }
             catch (Exception exception)
             {
-                Log.Error(exception.Message);
+                Log.Error(exception.ToString());
                 return InternalServerError(exception);
             }
         }
@@ -41,7 +41,7 @@ namespace ProjectBj.MVC.Controllers.Api
             }
             catch (Exception exception)
             {
-                Log.Error(exception.Message);
+                Log.Error(exception.ToString());
                 return InternalServerError(exception);
             }
         }
