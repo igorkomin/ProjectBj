@@ -1,4 +1,7 @@
-﻿export class ResponseDoubleGameView {
+﻿import { CardRank } from 'src/app/shared/enums/card-rank.enum';
+import { CardSuit } from 'src/app/shared/enums/card-suit.enum';
+
+export class ResponseDoubleGameView {
     sessionId: number;
     dealer: DealerResponseDoubleGameViewItem;
     player: PlayerResponseDoubleGameViewItem;
@@ -30,6 +33,6 @@ class HandResponseDoubleGameViewItem {
 }
 
 class CardResponseDoubleGameViewItem {
-    suit: string;
-    rank: string;
+    suit: CardSuit;
+    rank: CardRank;
 }

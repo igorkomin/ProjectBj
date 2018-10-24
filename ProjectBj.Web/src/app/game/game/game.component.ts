@@ -11,6 +11,8 @@ import { ResponseStartGameView } from 'src/app/shared/models/response-start-game
 import { ResponseSurrenderGameView } from 'src/app/shared/models/response-surrender-game-view.model';
 import { GameService } from 'src/app/shared/services/game.service';
 import { HistoryService } from 'src/app/shared/services/history.service';
+import { CardRank } from 'src/app/shared/enums/card-rank.enum';
+import { CardSuit } from 'src/app/shared/enums/card-suit.enum'
 
 @Component({
     selector: 'app-game',
@@ -26,6 +28,8 @@ export class GameComponent implements OnInit {
         ResponseLoadGameView | ResponseStandGameView |
         ResponseStartGameView | ResponseSurrenderGameView;
     history: GetGameHistoryHistoryView;
+    cardRank = CardRank;
+    cardSuit = CardSuit;
 
     constructor(
         private readonly gameService: GameService,
@@ -39,6 +43,13 @@ export class GameComponent implements OnInit {
             .subscribe(params => {
                 this.playerName = params['name'];
             });
+    }
+
+    isFaceCard(card: CardRank): boolean {
+        if (card > 1 && card < 11) {
+            return false;
+        }
+        return true;
     }
 
     incBotsNumber(): void {

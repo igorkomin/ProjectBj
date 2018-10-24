@@ -1,4 +1,7 @@
-﻿export class ResponseLoadGameView {
+﻿import { CardRank } from 'src/app/shared/enums/card-rank.enum';
+import { CardSuit } from 'src/app/shared/enums/card-suit.enum';
+
+export class ResponseLoadGameView {
     sessionId: number;
     dealer: DealerResponseLoadGameViewItem;
     player: PlayerResponseLoadGameViewItem;
@@ -30,6 +33,6 @@ class HandResponseLoadGameViewItem {
 }
 
 class CardResponseLoadGameViewItem {
-    suit: string;
-    rank: string;
+    suit: CardSuit;
+    rank: CardRank;
 }
