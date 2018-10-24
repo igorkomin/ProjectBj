@@ -45,7 +45,7 @@ namespace ProjectBj.BusinessLogic.Managers
         public async Task<Player> GetExistingPlayer(string name)
         {
             IEnumerable<Player> searchResults = await _playerRepository.Find(name);
-            if (searchResults.Count() == 0)
+            if (!searchResults.Any())
             {
                 return null;
             }
@@ -126,7 +126,7 @@ namespace ProjectBj.BusinessLogic.Managers
         private async Task<Player> GetExistingDealer()
         {
             IEnumerable<Player> players = await _playerRepository.GetByType(PlayerType.Dealer);
-            if (players.Count() == 0)
+            if (!players.Any())
             {
                 return null;
             }
