@@ -17,7 +17,6 @@ class DealerResponseSurrenderGameViewItem {
 class PlayerResponseSurrenderGameViewItem {
     id: number;
     name: string;
-    isHuman: boolean;
     hand: HandResponseSurrenderGameViewItem;
     gameResult: ResultResponseSurrenderGameViewItem;
 }

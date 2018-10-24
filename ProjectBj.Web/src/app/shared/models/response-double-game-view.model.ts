@@ -17,7 +17,6 @@ class DealerResponseDoubleGameViewItem {
 class PlayerResponseDoubleGameViewItem {
     id: number;
     name: string;
-    isHuman: boolean;
     hand: HandResponseDoubleGameViewItem;
     gameResult: ResultResponseDoubleGameViewItem;
 }

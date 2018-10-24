@@ -17,7 +17,6 @@ class DealerResponseStandGameViewItem {
 class PlayerResponseStandGameViewItem {
     id: number;
     name: string;
-    isHuman: boolean;
     hand: HandResponseStandGameViewItem;
     gameResult: ResultResponseStandGameViewItem;
 }
