@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace ProjectBj.BusinessLogic.Providers.Interfaces
+namespace ProjectBj.BusinessLogic.Managers.Interfaces
 {
-    public interface ICardProvider
+    public interface ICardManager
     {
         Task<IEnumerable<Card>> GetPlayerHand(long playerId, long sessionId);
         Task<IEnumerable<Card>> GetRandomCards(int count);

@@ -1,9 +1,9 @@
 ﻿using ProjectBj.Entities;
 using System.Threading.Tasks;
 
-namespace ProjectBj.BusinessLogic.Providers.Interfaces
+namespace ProjectBj.BusinessLogic.Managers.Interfaces
 {
-    public interface IGameSessionProvider
+    public interface IGameSessionManager
     {
         Task<GameSession> GetNew();
         Task<GameSession> GetByPlayerId(long playerId);

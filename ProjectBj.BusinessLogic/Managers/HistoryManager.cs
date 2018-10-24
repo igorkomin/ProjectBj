@@ -1,17 +1,17 @@
-﻿using ProjectBj.BusinessLogic.Providers.Interfaces;
+﻿using ProjectBj.BusinessLogic.Managers.Interfaces;
 using ProjectBj.DataAccess.Repositories.Interfaces;
 using ProjectBj.Entities;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace ProjectBj.BusinessLogic.Providers
+namespace ProjectBj.BusinessLogic.Managers
 {
-    public class HistoryProvider : IHistoryProvider
+    public class HistoryManager : IHistoryManager
     {
         private readonly IHistoryRepository _historyRepository;
 
-        public HistoryProvider(IHistoryRepository historyRepository)
+        public HistoryManager(IHistoryRepository historyRepository)
         {
             _historyRepository = historyRepository;
         }

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace ProjectBj.BusinessLogic.Providers.Interfaces
+namespace ProjectBj.BusinessLogic.Managers.Interfaces
 {
-    public interface IHistoryProvider
+    public interface IHistoryManager
     {
         Task Create(string player, string message, long sessionId);
         Task<IEnumerable<History>> Get(long sessionId);

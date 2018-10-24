@@ -68,25 +68,24 @@
     <Compile Include="Mappers\StandGameViewMapper.cs" />
     <Compile Include="Mappers\DoubleGameViewMapper.cs" />
     <Compile Include="Mappers\StartGameViewMapper.cs" />
+    <Compile Include="Managers\Interfaces\ICardManager.cs" />
     <Compile Include="Services\Interfaces\IHistoryService.cs" />
     <Compile Include="Services\Interfaces\ISystemLogService.cs" />
-    <Compile Include="Providers\CardProvider.cs" />
+    <Compile Include="Managers\CardManager.cs" />
     <Compile Include="Helpers\EnumHelper.cs" />
     <Compile Include="Strings.cs" />
     <Compile Include="Constants.cs" />
-    <Compile Include="Providers\Interfaces\ICardProvider.cs" />
     <Compile Include="Services\Interfaces\IGameService.cs" />
-    <Compile Include="Providers\Interfaces\IHistoryProvider.cs" />
-    <Compile Include="Providers\Interfaces\IGameSessionProvider.cs" />
-    <Compile Include="Providers\Interfaces\IPlayerProvider.cs" />
-    <Compile Include="Providers\HistoryProvider.cs" />
-    <Compile Include="Providers\PlayerProvider.cs" />
+    <Compile Include="Managers\Interfaces\IHistoryManager.cs" />
+    <Compile Include="Managers\Interfaces\IGameSessionManager.cs" />
+    <Compile Include="Managers\Interfaces\IPlayerManager.cs" />
+    <Compile Include="Managers\HistoryManager.cs" />
+    <Compile Include="Managers\PlayerManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\GameService.cs" />
-    <Compile Include="Providers\GameSessionProvider.cs" />
+    <Compile Include="Managers\GameSessionManager.cs" />
     <Compile Include="Services\HistoryService.cs" />
     <Compile Include="Services\SystemLogService.cs" />
-    <Compile Include="Configs\AutofacProviderTypeRegistry.cs" />
     <Compile Include="Configs\AutofacServiceTypeRegistry.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -111,6 +110,9 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Providers\Interfaces\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

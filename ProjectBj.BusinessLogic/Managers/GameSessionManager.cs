@@ -1,17 +1,16 @@
-﻿using ProjectBj.BusinessLogic.Helpers;
-using ProjectBj.BusinessLogic.Providers.Interfaces;
+﻿using ProjectBj.BusinessLogic.Managers.Interfaces;
 using ProjectBj.DataAccess.Repositories.Interfaces;
 using ProjectBj.Entities;
 using System;
 using System.Threading.Tasks;
 
-namespace ProjectBj.BusinessLogic.Providers
+namespace ProjectBj.BusinessLogic.Managers
 {
-    public class GameSessionProvider : IGameSessionProvider
+    public class GameSessionManager : IGameSessionManager
     {
         private readonly IGameSessionRepository _sessionRepository;
 
-        public GameSessionProvider(IGameSessionRepository sessionRepository)
+        public GameSessionManager(IGameSessionRepository sessionRepository)
         {
             _sessionRepository = sessionRepository;
         }

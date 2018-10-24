@@ -8,6 +8,10 @@ namespace ProjectBj.BusinessLogic.Configs
     {
         public static ContainerBuilder RegisterTypes(ContainerBuilder builder)
         {
+            builder.RegisterType<CardManager>().As<ICardManager>();
+            builder.RegisterType<HistoryManager>().As<IHistoryManager>();
+            builder.RegisterType<PlayerManager>().As<IPlayerManager>();
+            builder.RegisterType<GameSessionManager>().As<IGameSessionManager>();
             builder.RegisterType<GameManager>().As<IGameManager>();
             builder.RegisterType<GameResultManager>().As<IGameResultManager>();
             builder.RegisterType<GameViewManager>().As<IGameViewManager>();

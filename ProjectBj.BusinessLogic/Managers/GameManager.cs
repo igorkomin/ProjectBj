@@ -1,5 +1,4 @@
 ﻿using ProjectBj.BusinessLogic.Managers.Interfaces;
-using ProjectBj.BusinessLogic.Providers.Interfaces;
 using ProjectBj.Entities;
 using ProjectBj.Entities.Enums;
 using System.Collections.Generic;
@@ -9,20 +8,20 @@ namespace ProjectBj.BusinessLogic.Managers
 {
     internal class GameManager : IGameManager
     {
-        private readonly IPlayerProvider _playerProvider;
-        private readonly ICardProvider _cardProvider;
+        private readonly IPlayerManager _playerManager;
+        private readonly ICardManager _cardManager;
 
-        public GameManager(IPlayerProvider playerProvider, ICardProvider cardProvider)
+        public GameManager(IPlayerManager playerManager, ICardManager cardManager)
         {
-            _playerProvider = playerProvider;
-            _cardProvider = cardProvider;
+            _playerManager = playerManager;
+            _cardManager = cardManager;
         }
 
         public async Task<Game> GetGame(long playerId, long sessionId)
         {
-            Player player = await _playerProvider.GetPlayerById(playerId);
-            Player dealer = await _playerProvider.GetDealer();
-            IEnumerable<Player> bots = await _playerProvider.GetSessionBots(sessionId);
+            Player player = await _playerManager.GetPlayerById(playerId);
+            Player dealer = await _playerManager.GetDealer();
+            IEnumerable<Player> bots = await _playerManager.GetSessionBots(sessionId);
 
             var game = new Game
             {
@@ -36,7 +35,7 @@ namespace ProjectBj.BusinessLogic.Managers
 
         public async Task<IEnumerable<Card>> GetCards(long playerId, long sessionId)
         {
-            IEnumerable<Card> cards = await _cardProvider.GetPlayerHand(playerId, sessionId);
+            IEnumerable<Card> cards = await _cardManager.GetPlayerHand(playerId, sessionId);
             return cards;
         }
 

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace ProjectBj.BusinessLogic.Providers.Interfaces
+namespace ProjectBj.BusinessLogic.Managers.Interfaces
 {
-    public interface IPlayerProvider
+    public interface IPlayerManager
     {
         Task<Player> GetDealer();
         Task<Player> GetPlayerByName(string name);

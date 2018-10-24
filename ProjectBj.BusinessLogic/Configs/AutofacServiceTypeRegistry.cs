@@ -13,7 +13,6 @@ namespace ProjectBj.BusinessLogic.Configs
             builder.RegisterType<SystemLogService>().As<ISystemLogService>();
 
             AutofacManagerTypeRegistry.RegisterTypes(builder);
-            AutofacProviderTypeRegistry.RegisterTypes(builder, connectionString);
 
             return builder;
         }

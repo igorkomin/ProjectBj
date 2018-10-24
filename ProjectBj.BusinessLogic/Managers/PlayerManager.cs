@@ -1,5 +1,4 @@
-﻿using ProjectBj.BusinessLogic.Helpers;
-using ProjectBj.BusinessLogic.Providers.Interfaces;
+﻿using ProjectBj.BusinessLogic.Managers.Interfaces;
 using ProjectBj.DataAccess.Repositories.Interfaces;
 using ProjectBj.Entities;
 using RandomNameGeneratorLibrary;
@@ -7,14 +6,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ProjectBj.BusinessLogic.Providers
+namespace ProjectBj.BusinessLogic.Managers
 {
-    public class PlayerProvider : IPlayerProvider
+    public class PlayerManager : IPlayerManager
     {
         private readonly IPlayerRepository _playerRepository;
         private readonly PersonNameGenerator _nameGenerator;
 
-        public PlayerProvider(IPlayerRepository playerRepository)
+        public PlayerManager(IPlayerRepository playerRepository)
         {
             _playerRepository = playerRepository;
             _nameGenerator = new PersonNameGenerator();

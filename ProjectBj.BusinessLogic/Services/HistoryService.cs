@@ -1,5 +1,5 @@
 ﻿using ProjectBj.BusinessLogic.Mappers;
-using ProjectBj.BusinessLogic.Providers.Interfaces;
+using ProjectBj.BusinessLogic.Managers.Interfaces;
 using ProjectBj.BusinessLogic.Services.Interfaces;
 using ProjectBj.Entities;
 using ProjectBj.ViewModels.History;
@@ -10,9 +10,9 @@ namespace ProjectBj.BusinessLogic.Services
 {
     public class HistoryService : IHistoryService
     {
-        private readonly IHistoryProvider _historyProvider;
+        private readonly IHistoryManager _historyProvider;
 
-        public HistoryService(IHistoryProvider historyProvider)
+        public HistoryService(IHistoryManager historyProvider)
         {
             _historyProvider = historyProvider;
         }

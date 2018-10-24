@@ -1,5 +1,4 @@
-﻿using ProjectBj.BusinessLogic.Helpers;
-using ProjectBj.BusinessLogic.Providers.Interfaces;
+﻿using ProjectBj.BusinessLogic.Managers.Interfaces;
 using ProjectBj.DataAccess.Repositories.Interfaces;
 using ProjectBj.Entities;
 using ProjectBj.Entities.Enums;
@@ -8,13 +7,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ProjectBj.BusinessLogic.Providers
+namespace ProjectBj.BusinessLogic.Managers
 {
-    public class CardProvider : ICardProvider
+    public class CardManager : ICardManager
     {
         private readonly ICardRepository _cardRepository;
         
-        public CardProvider(ICardRepository cardRepository)
+        public CardManager(ICardRepository cardRepository)
         {
             _cardRepository = cardRepository;
         }
