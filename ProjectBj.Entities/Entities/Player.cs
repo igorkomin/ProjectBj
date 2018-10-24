@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using ProjectBj.Entities.Enums;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProjectBj.Entities
 {
@@ -6,7 +7,6 @@ namespace ProjectBj.Entities
     public class Player : BaseEntity
     {
         public string Name { get; set; }
-        public bool IsHuman { get; set; }
-        public bool InGame { get; set; }
+        public PlayerType Type { get; set; }
     }
 }

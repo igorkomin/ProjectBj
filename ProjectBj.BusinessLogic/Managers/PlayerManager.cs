@@ -5,6 +5,7 @@ using RandomNameGeneratorLibrary;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ProjectBj.Entities.Enums;
 
 namespace ProjectBj.BusinessLogic.Managers
 {
@@ -83,8 +84,7 @@ namespace ProjectBj.BusinessLogic.Managers
             var player = new Player
             {
                 Name = name,
-                InGame = true,
-                IsHuman = true
+                Type = PlayerType.Player
             };
             player = await _playerRepository.Insert(player);
             return player;
@@ -95,8 +95,7 @@ namespace ProjectBj.BusinessLogic.Managers
             var bot = new Player
             {
                 Name = _nameGenerator.GenerateRandomFirstName(),
-                IsHuman = false,
-                InGame = true
+                Type = PlayerType.Bot
             };
             bot = await _playerRepository.Insert(bot);
             return bot;
@@ -107,8 +106,7 @@ namespace ProjectBj.BusinessLogic.Managers
             var dealer = new Player
             {
                 Name = Strings.DealerName,
-                InGame = false,
-                IsHuman = false
+                Type = PlayerType.Dealer
             };
             dealer = await _playerRepository.Insert(dealer);
             return dealer;
@@ -127,12 +125,12 @@ namespace ProjectBj.BusinessLogic.Managers
 
         private async Task<Player> GetExistingDealer()
         {
-            IEnumerable<Player> searchResults = await _playerRepository.Find(Strings.DealerName);
-            if (searchResults.Count() == 0)
+            IEnumerable<Player> players = await _playerRepository.GetByType(PlayerType.Dealer);
+            if (players.Count() == 0)
             {
                 return null;
             }
-            return searchResults.FirstOrDefault();
+            return players.FirstOrDefault();
         }
     }
 }

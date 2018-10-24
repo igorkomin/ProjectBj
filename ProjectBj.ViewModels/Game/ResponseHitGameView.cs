@@ -22,7 +22,6 @@ namespace ProjectBj.ViewModels.Game
     {
         public long Id { get; set; }
         public string Name { get; set; }
-        public bool IsHuman { get; set; }
         public HandResponseHitGameViewItem Hand { get; set; }
         public ResultResponseHitGameViewItem GameResult { get; set; }
 

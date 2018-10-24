@@ -2,5 +2,5 @@
     Spades = 1,
     Clubs = 2,
     Hearts = 3,
-    Diams = 4
+    Diamonds = 4
 }

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
+using ProjectBj.Entities.Enums;
 
 namespace ProjectBj.DataAccess.Repositories
 {
@@ -17,7 +18,17 @@ namespace ProjectBj.DataAccess.Repositories
         {
             _connectionString = connectionString;
         }
-        
+
+        public async Task<IEnumerable<Player>> GetByType(PlayerType playerType)
+        {
+            using (IDbConnection db = new SqlConnection(_connectionString))
+            {
+                string sqlQuery = "SELECT * FROM Players WHERE Type = @playerType";
+                IEnumerable<Player> players = await db.QueryAsync<Player>(sqlQuery, new {playerType});
+                return players;
+            }
+        }
+
         public async Task<IEnumerable<Player>> Find(string name)
         {
             using (IDbConnection db = new SqlConnection(_connectionString))
@@ -54,7 +65,7 @@ namespace ProjectBj.DataAccess.Repositories
                 string sqlQuery = @"SELECT DISTINCT p.* FROM PlayerHands ph
                                     JOIN Players p ON (ph.PlayerId = p.Id)
                                     WHERE ph.SessionId = @sessionId
-                                    AND p.IsHuman = 0 AND p.InGame = 1";
+                                    AND p.Type = 2";
                 IEnumerable<Player> bots = await db.QueryAsync<Player>(sqlQuery, new { sessionId });
                 return bots;
             }

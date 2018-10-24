@@ -50,8 +50,7 @@ namespace ProjectBj.BusinessLogic.Mappers
             var playerStartGameViewItem = new PlayerResponseStartGameViewItem
             {
                 Id = player.Id,
-                Name = player.Name,
-                IsHuman = player.IsHuman
+                Name = player.Name
             };
             return playerStartGameViewItem;
         }
