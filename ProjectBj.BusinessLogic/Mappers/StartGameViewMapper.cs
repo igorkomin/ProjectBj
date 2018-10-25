@@ -1,5 +1,4 @@
-﻿using ProjectBj.BusinessLogic.Helpers;
-using ProjectBj.Entities;
+﻿using ProjectBj.Entities;
 using ProjectBj.ViewModels.Game;
 using System.Collections.Generic;
 
