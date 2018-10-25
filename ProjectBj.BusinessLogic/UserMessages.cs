@@ -2,7 +2,6 @@
 {
     public static class UserMessages
     {
-        
         public const string ChoseToHitMessage = "chose to hit";
         public const string ChoseToStandMessage = "chose to stand";
         public const string ChoseToDoubleMessage = "chose to double";
