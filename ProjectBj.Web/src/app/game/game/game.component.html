@@ -12,9 +12,9 @@
                     <div class="playingCards simpleCards">
                         <ul class="hand">
                             <li *ngFor="let card of game?.dealer.hand.cards">
-                                <span class="card {{ cardSuit[card.suit] | lowercase }}">
+                                <span class="card {{ cardSuits[card.suit] | lowercase }}">
                                     <span *ngIf="!isFaceCard(card.rank)" class="rank">{{ card.rank }}</span>
-                                    <span *ngIf="isFaceCard(card.rank)" class="rank">{{ cardRank[card.rank] }}</span>
+                                    <span *ngIf="isFaceCard(card.rank)" class="rank">{{ cardRanks[card.rank] }}</span>
                                     <span class="suit"></span>
                                 </span>
                             </li>
@@ -65,9 +65,9 @@
                     <div class="playingCards simpleCards rotateHand">
                         <ul class="hand">
                             <li *ngFor="let card of game?.player.hand.cards">
-                                <span class="card {{ cardSuit[card.suit] | lowercase }}">
+                                <span class="card {{ cardSuits[card.suit] | lowercase }}">
                                     <span *ngIf="!isFaceCard(card.rank)" class="rank">{{ card.rank }}</span>
-                                    <span *ngIf="isFaceCard(card.rank)" class="rank">{{ cardRank[card.rank] }}</span>
+                                    <span *ngIf="isFaceCard(card.rank)" class="rank">{{ cardRanks[card.rank] }}</span>
                                     <span class="suit"></span>
                                 </span>
                             </li>
@@ -84,9 +84,9 @@
                     <div class="playingCards simpleCards rotateHand">
                         <ul class="hand">
                             <li *ngFor="let card of bot?.hand.cards">
-                                <span class="card {{ cardSuit[card.suit] | lowercase }}">
+                                <span class="card {{ cardSuits[card.suit] | lowercase }}">
                                     <span *ngIf="!isFaceCard(card.rank)" class="rank">{{ card.rank }}</span>
-                                    <span *ngIf="isFaceCard(card.rank)" class="rank">{{ cardRank[card.rank] }}</span>
+                                    <span *ngIf="isFaceCard(card.rank)" class="rank">{{ cardRanks[card.rank] }}</span>
                                     <span class="suit"></span>
                                 </span>
                             </li>

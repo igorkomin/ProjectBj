@@ -28,8 +28,8 @@ export class GameComponent implements OnInit {
         ResponseLoadGameView | ResponseStandGameView |
         ResponseStartGameView | ResponseSurrenderGameView;
     history: GetGameHistoryHistoryView;
-    cardRank = CardRank;
-    cardSuit = CardSuit;
+    cardRanks = CardRank;
+    cardSuits = CardSuit;
 
     constructor(
         private readonly gameService: GameService,
