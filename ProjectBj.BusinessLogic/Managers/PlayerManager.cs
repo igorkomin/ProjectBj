@@ -105,7 +105,7 @@ namespace ProjectBj.BusinessLogic.Managers
         {
             var dealer = new Player
             {
-                Name = Strings.DealerName,
+                Name = UserMessages.DealerName,
                 Type = PlayerType.Dealer
             };
             dealer = await _playerRepository.Insert(dealer);

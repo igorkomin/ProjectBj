@@ -73,7 +73,7 @@
     <Compile Include="Services\Interfaces\ISystemLogService.cs" />
     <Compile Include="Managers\CardManager.cs" />
     <Compile Include="Helpers\EnumHelper.cs" />
-    <Compile Include="Strings.cs" />
+    <Compile Include="UserMessages.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Services\Interfaces\IGameService.cs" />
     <Compile Include="Managers\Interfaces\IHistoryManager.cs" />

@@ -22,7 +22,7 @@ namespace ProjectBj.BusinessLogic.Managers
         {
             if (count == 0)
             {
-                throw new ArgumentException(Strings.RandomCardsExceptionMessage);
+                throw new ArgumentException(UserMessages.RandomCardsExceptionMessage);
             }
 
             IEnumerable<Card> cards = await _cardRepository.GetRandom(count);

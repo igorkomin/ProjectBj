@@ -31,7 +31,7 @@ namespace ProjectBj.BusinessLogic.Managers
             
             if (currentSession == null)
             {
-                throw new Exception(Strings.NoGameToLoadMessage);
+                throw new Exception(UserMessages.NoGameToLoadMessage);
             }
  
             return currentSession;

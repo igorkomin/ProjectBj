@@ -1,6 +1,6 @@
 ﻿namespace ProjectBj.BusinessLogic
 {
-    public static class Strings
+    public static class UserMessages
     {
         public const string DealerName = "Dealer";
         public const string ChoseToHitMessage = "chose to hit";
