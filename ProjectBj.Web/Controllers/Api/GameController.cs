@@ -5,7 +5,7 @@ using System;
 using System.Threading.Tasks;
 using System.Web.Http;
 
-namespace ProjectBj.Web.Controllers
+namespace ProjectBj.Web.Controllers.Api
 {
     public class GameController : ApiController
     {
