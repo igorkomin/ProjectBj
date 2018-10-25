@@ -34,7 +34,7 @@ namespace ProjectBj.BusinessLogic.Services
 
         public async Task<ResponseStartGameView> Start(string playerName, int botsNumber)
         {
-            if (playerName == UserMessages.DealerName)
+            if (playerName == Names.DealerName)
             {
                 throw new ArgumentException(UserMessages.NameReservedMessage);
             }
@@ -48,7 +48,7 @@ namespace ProjectBj.BusinessLogic.Services
 
         public async Task<ResponseLoadGameView> Load(string playerName)
         {
-            if (playerName == UserMessages.DealerName)
+            if (playerName == Names.DealerName)
             {
                 throw new ArgumentException(UserMessages.NameReservedMessage);
             }
