@@ -3,6 +3,7 @@ using ProjectBj.BusinessLogic.Managers.Interfaces;
 using ProjectBj.BusinessLogic.Mappers;
 using ProjectBj.BusinessLogic.Services.Interfaces;
 using ProjectBj.Entities;
+using ProjectBj.Entities.Enums;
 using ProjectBj.ViewModels.Game;
 using System;
 using System.Collections.Generic;
@@ -34,7 +35,7 @@ namespace ProjectBj.BusinessLogic.Services
 
         public async Task<ResponseStartGameView> Start(string playerName, int botsNumber)
         {
-            if (playerName == Names.DealerName)
+            if (playerName == PlayerType.Dealer.ToString())
             {
                 throw new ArgumentException(UserMessages.NameReservedMessage);
             }
@@ -48,7 +49,7 @@ namespace ProjectBj.BusinessLogic.Services
 
         public async Task<ResponseLoadGameView> Load(string playerName)
         {
-            if (playerName == Names.DealerName)
+            if (playerName == PlayerType.Dealer.ToString())
             {
                 throw new ArgumentException(UserMessages.NameReservedMessage);
             }
