@@ -172,8 +172,8 @@
     <Content Include="Content\images\loading.gif" />
     <Content Include="Content\images\player.png" />
     <Content Include="Content\images\robot.png" />
-    <Content Include="Scripts\blackjack\game\game.js" />
-    <Content Include="Scripts\blackjack\login\login.js" />
+    <Content Include="Scripts\game\game.js" />
+    <Content Include="Scripts\login\login.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-ui.js" />
