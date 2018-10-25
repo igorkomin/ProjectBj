@@ -6,8 +6,8 @@ namespace ProjectBj.Web.Controllers
     {
         public ActionResult Index()
         {
-            var filePathResult = new FilePathResult("~/dist/index.html", "text/html");
-            return filePathResult;
+            var angularPage = new FilePathResult("~/dist/index.html", "text/html");
+            return angularPage;
         }
     }
 }
