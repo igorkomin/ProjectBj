@@ -1,11 +1,11 @@
 ﻿using ProjectBj.BusinessLogic.Managers.Interfaces;
 using ProjectBj.DataAccess.Repositories.Interfaces;
 using ProjectBj.Entities;
+using ProjectBj.Entities.Enums;
 using RandomNameGeneratorLibrary;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ProjectBj.Entities.Enums;
 
 namespace ProjectBj.BusinessLogic.Managers
 {
