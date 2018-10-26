@@ -25,8 +25,7 @@ namespace ProjectBj.MVC
                         ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                        "~/Content/bootstrap.css",
-                        "~/Content/jquery-ui.css",
+                        "~/Content/style/bootstrap.css",
                         "~/Content/style/style.css",
                         "~/Content/style/cards.css"
                          ));
