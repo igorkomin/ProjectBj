@@ -140,10 +140,7 @@ namespace ProjectBj.BusinessLogic.Services
                 gameView.Player.Id,
                 gameView.Dealer.Id
             };
-            foreach (var bot in gameView.Bots)
-            {
-                playerIds.Add(bot.Id);
-            }
+            playerIds.AddRange(gameView.Bots.Select(bot => bot.Id));
             await GiveFirstTwoCards(playerIds, gameView.SessionId);
             gameView = await _gameViewManager.GetStartGameView(gameView.Player.Id, gameView.SessionId);
             return gameView;
