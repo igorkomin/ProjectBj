@@ -17,11 +17,11 @@ namespace ProjectBj.MVC
                         ));
             
             bundles.Add(new ScriptBundle("~/bundles/login").Include(
-                        "~/Scripts/blackjack/login.js"
+                        "~/Scripts/login/login.js"
                         ));
 
             bundles.Add(new ScriptBundle("~/bundles/game").Include(
-                        "~/Scripts/blackjack/game.js"
+                        "~/Scripts/login/game.js"
                         ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
