@@ -7,7 +7,7 @@
             <input #playerName required [(ngModel)]="name"
                    type="text" id="player-name" name="name" class="form-control" />
         </div>
-        <input #loginButton [routerLink]="['/game', {'name': playerName.value}]" id="play-button"
+        <input #loginButton (click)="login(playerName.value)" id="play-button"
                [disabled]="!loginForm.form.valid" type="submit" class="btn btn-primary" value="LOGIN" />
     </form>
 </div>

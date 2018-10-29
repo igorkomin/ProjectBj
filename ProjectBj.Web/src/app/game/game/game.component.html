@@ -95,17 +95,6 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-3">
-            <div *ngIf="history" id="log-view">
-                <ul class="list-group">
-                    <li class="list-group-item active">GAME LOG</li>
-                    <li class="list-group-item">
-                        <div *ngFor="let entry of history.entries">
-                            [{{ entry.time | date:'HH:mm:ss' }}] <b>{{ entry.playerName }}</b> {{ entry.event }}
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
+        <div class="col-lg-3"></div>
     </div>
 </div>

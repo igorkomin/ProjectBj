@@ -5,8 +5,8 @@ namespace ProjectBj.BusinessLogic.Services.Interfaces
 {
     public interface IGameService
     {
-        Task<ResponseStartGameView> Start(string playerName, int botsNumber);
-        Task<ResponseLoadGameView> Load(string playerName);
+        Task<ResponseStartGameView> Start(long playerId, int botsNumber);
+        Task<ResponseLoadGameView> Load(long playerId);
         Task<ResponseHitGameView> Hit(long playerId, long sessionId);
         Task<ResponseStandGameView> Stand(long playerId, long sessionId);
         Task<ResponseDoubleGameView> Double(long playerId, long sessionId);

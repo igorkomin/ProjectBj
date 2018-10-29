@@ -9,6 +9,7 @@ namespace ProjectBj.BusinessLogic.Configs
     {
         public static ContainerBuilder RegisterTypes(ContainerBuilder builder, string connectionString)
         {
+            builder.RegisterType<AuthorizationService>().As<IAuthorizationService>();
             builder.RegisterType<GameService>().As<IGameService>();
             builder.RegisterType<HistoryService>().As<IHistoryService>();
             builder.RegisterType<SystemLogService>().As<ISystemLogService>();

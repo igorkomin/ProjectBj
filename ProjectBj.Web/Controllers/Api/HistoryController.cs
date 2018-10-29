@@ -16,21 +16,6 @@ namespace ProjectBj.Web.Controllers.Api
             _service = service;
         }
 
-        [HttpPost]
-        public async Task<IHttpActionResult> GetGameHistory([FromBody] int sessionId)
-        {
-            try
-            {
-                GetGameHistoryHistoryView view = await _service.GetGameHistory(sessionId);
-                return Ok(view);
-            }
-            catch (Exception exception)
-            {
-                Log.Error(exception.ToString());
-                return InternalServerError(exception);
-            }
-        }
-
         [HttpGet]
         public async Task<IHttpActionResult> GetFullHistory()
         {

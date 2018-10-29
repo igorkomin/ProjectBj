@@ -39,14 +39,14 @@ namespace ProjectBj.DataAccess.Repositories
             }
         }
 
-        public async Task AddCardsToPlayerHand(Player player, IEnumerable<long> cardIds, long sessionId)
+        public async Task AddCardsToPlayerHand(long playerId, IEnumerable<long> cardIds, long sessionId)
         {
             List<PlayerHand> playerHands = new List<PlayerHand>();
             foreach (var id in cardIds)
             {
                 var playerHand = new PlayerHand
                 {
-                    PlayerId = player.Id,
+                    PlayerId = playerId,
                     CardId = id,
                     SessionId = sessionId
                 };

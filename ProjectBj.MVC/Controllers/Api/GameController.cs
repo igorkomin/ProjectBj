@@ -21,7 +21,7 @@ namespace ProjectBj.MVC.Controllers.Api
         {
             try
             {
-                ResponseStartGameView view = await _service.Start(request.PlayerName, request.BotsNumber);
+                ResponseStartGameView view = await _service.Start(request.PlayerId, request.BotsNumber);
                 return Ok(view);
             }
             catch (Exception exception)
@@ -36,7 +36,7 @@ namespace ProjectBj.MVC.Controllers.Api
         {
             try
             {
-                ResponseLoadGameView view = await _service.Load(request.PlayerName);
+                ResponseLoadGameView view = await _service.Load(request.PlayerId);
                 return Ok(view);
             }
             catch (Exception exception)

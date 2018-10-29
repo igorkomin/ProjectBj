@@ -16,24 +16,18 @@ namespace ProjectBj.BusinessLogic.Managers
             _historyRepository = historyRepository;
         }
 
-        public async Task Create(string playerName, string message, long sessionId)
+        public async Task Create(long playerId, string message, long sessionId)
         {
             var entry = new History
             {
-                PlayerName = playerName,
+                PlayerId = playerId,
                 SessionId = sessionId,
                 Event = message,
                 CreationDate = DateTime.Now
             };
             await _historyRepository.Insert(entry);
         }
-
-        public async Task<IEnumerable<History>> Get(long sessionId)
-        {
-            IEnumerable<History> sessionHistory = await _historyRepository.GetBySessionId(sessionId);
-            return sessionHistory;
-        }
-
+        
         public async Task<IEnumerable<History>> GetAll()
         {
             IEnumerable<History> fullHistory = await _historyRepository.GetAll();

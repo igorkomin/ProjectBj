@@ -2,6 +2,6 @@
 {
     public class RequestLoadGameView
     {
-        public string PlayerName { get; set; }
+        public long PlayerId { get; set; }
     }
 }

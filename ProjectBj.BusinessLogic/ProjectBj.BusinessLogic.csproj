@@ -69,6 +69,8 @@
     <Compile Include="Mappers\DoubleGameViewMapper.cs" />
     <Compile Include="Mappers\StartGameViewMapper.cs" />
     <Compile Include="Managers\Interfaces\ICardManager.cs" />
+    <Compile Include="Services\AuthorizationService.cs" />
+    <Compile Include="Services\Interfaces\IAuthorizationService.cs" />
     <Compile Include="Services\Interfaces\IHistoryService.cs" />
     <Compile Include="Services\Interfaces\ISystemLogService.cs" />
     <Compile Include="Managers\CardManager.cs" />

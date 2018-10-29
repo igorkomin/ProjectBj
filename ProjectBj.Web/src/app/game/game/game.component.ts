@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { GetGameHistoryHistoryView } from 'src/app/shared/models/get-game-history-history-view.model';
 import { RequestGameView } from 'src/app/shared/models/request-game-view.model';
 import { RequestNewGameView } from 'src/app/shared/models/request-new-game-view.model';
 import { ResponseDoubleGameView } from 'src/app/shared/models/response-double-game-view.model';
@@ -10,7 +9,6 @@ import { ResponseStandGameView } from 'src/app/shared/models/response-stand-game
 import { ResponseStartGameView } from 'src/app/shared/models/response-start-game-view.model';
 import { ResponseSurrenderGameView } from 'src/app/shared/models/response-surrender-game-view.model';
 import { GameService } from 'src/app/shared/services/game.service';
-import { HistoryService } from 'src/app/shared/services/history.service';
 import { CardRank } from 'src/app/shared/enums/card-rank.enum';
 import { CardSuit } from 'src/app/shared/enums/card-suit.enum'
 
@@ -22,18 +20,17 @@ import { CardSuit } from 'src/app/shared/enums/card-suit.enum'
     ]
 })
 export class GameComponent implements OnInit {
+    playerId: number;
     playerName: string;
     botsNumber: number = 0;
     game: ResponseDoubleGameView | ResponseHitGameView |
         ResponseLoadGameView | ResponseStandGameView |
         ResponseStartGameView | ResponseSurrenderGameView;
-    history: GetGameHistoryHistoryView;
     cardRanks = CardRank;
     cardSuits = CardSuit;
 
     constructor(
         private readonly gameService: GameService,
-        private readonly historyService: HistoryService,
         private readonly route: ActivatedRoute,
     ) { }
 
@@ -41,7 +38,7 @@ export class GameComponent implements OnInit {
         this.route
             .params
             .subscribe(params => {
-                this.playerName = params['name'];
+                this.playerId = params['id'];
             });
     }
 
@@ -62,23 +59,21 @@ export class GameComponent implements OnInit {
 
     newGame(): void {
         const request = new RequestNewGameView();
-        request.playerName = this.playerName;
+        request.playerId = this.playerId;
         request.botsNumber = this.botsNumber;
         this.gameService.newGame(request).subscribe(
             response => {
                 this.game = response;
-                this.getHistory();
             }
         );
     }
 
     loadGame(): void {
         const request = new RequestNewGameView();
-        request.playerName = this.playerName;
+        request.playerId = this.playerId;
         this.gameService.loadGame(request).subscribe(
             response => {
                 this.game = response;
-                this.getHistory();
             }
         );
     }
@@ -90,7 +85,6 @@ export class GameComponent implements OnInit {
         this.gameService.hit(request).subscribe(
             response => {
                 this.game = response;
-                this.getHistory();
             }
         );
     }
@@ -102,7 +96,6 @@ export class GameComponent implements OnInit {
         this.gameService.stand(request).subscribe(
             response => {
                 this.game = response;
-                this.getHistory();
             }
         );
     }
@@ -114,7 +107,6 @@ export class GameComponent implements OnInit {
         this.gameService.double(request).subscribe(
             response => {
                 this.game = response;
-                this.getHistory();
             }
         );
     }
@@ -126,15 +118,6 @@ export class GameComponent implements OnInit {
         this.gameService.surrender(request).subscribe(
             response => {
                 this.game = response;
-                this.getHistory();
-            }
-        );
-    }
-
-    getHistory(): void {
-        this.historyService.getHistory(this.game.sessionId).subscribe(
-            response => {
-                this.history = response;
             }
         );
     }

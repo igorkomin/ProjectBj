@@ -25,7 +25,7 @@ namespace ProjectBj.BusinessLogic.Managers
             IEnumerable<Player> bots = await GetExistingBots(botsNumber);
             int existingBotsNumber = bots.Count();
             
-            if (existingBotsNumber < Constants.MaximumBots)
+            if (existingBotsNumber < Constants.MaximumBots && botsNumber != 0)
             {
                 await CreateBots(Constants.MaximumBots - existingBotsNumber);
                 return await GetBots(botsNumber);
@@ -83,8 +83,7 @@ namespace ProjectBj.BusinessLogic.Managers
         
         public async Task GiveCardsToPlayer(long playerId, long sessionId, IEnumerable<long> cardIds)
         {
-            Player player = await _playerRepository.GetById(playerId);
-            await _playerRepository.AddCardsToPlayerHand(player, cardIds, sessionId);
+            await _playerRepository.AddCardsToPlayerHand(playerId, cardIds, sessionId);
         }
 
         private async Task<Player> GetNewPlayer(string name)

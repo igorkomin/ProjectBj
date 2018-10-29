@@ -1,4 +1,4 @@
 export class RequestNewGameView {
-    playerName: string;
+    playerId: number;
     botsNumber: number;
 }

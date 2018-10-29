@@ -6,7 +6,7 @@ namespace ProjectBj.Entities
     public class History : BaseEntity
     {
         public long SessionId { get; set; }
-        public string PlayerName { get; set; }
+        public long PlayerId { get; set; }
         public string Event { get; set; }
     }
 }
