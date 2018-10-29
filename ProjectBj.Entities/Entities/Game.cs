@@ -2,7 +2,7 @@
 
 namespace ProjectBj.Entities
 {
-    public class Game
+    public class Game : BaseEntity
     {
         public Player Dealer { get; set; }
         public Player Player { get; set; }
