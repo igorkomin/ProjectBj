@@ -44,7 +44,6 @@
   <ItemGroup>
     <Compile Include="BaseEntity.cs" />
     <Compile Include="Card.cs" />
-    <Compile Include="Game.cs" />
     <Compile Include="History.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="PlayerHand.cs" />

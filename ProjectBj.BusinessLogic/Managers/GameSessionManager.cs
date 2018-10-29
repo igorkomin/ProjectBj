@@ -17,10 +17,7 @@ namespace ProjectBj.BusinessLogic.Managers
 
         public async Task<GameSession> GetNew()
         {
-            var session = new GameSession
-            {
-                CreationDate = DateTime.Now
-            };
+            var session = new GameSession();
             session = await _sessionRepository.Insert(session);
             return session;
         }

@@ -16,21 +16,14 @@ namespace ProjectBj.BusinessLogic.Managers
             _playerManager = playerManager;
             _cardManager = cardManager;
         }
-
-        public async Task<Game> GetGame(long playerId, long sessionId)
+        
+        public async Task<(Player player, Player dealer, IEnumerable<Player> bots)> GetAllGamePlayers(long playerId, long sessionId)
         {
             Player player = await _playerManager.GetPlayerById(playerId);
             Player dealer = await _playerManager.GetDealer();
             IEnumerable<Player> bots = await _playerManager.GetSessionBots(sessionId);
 
-            var game = new Game
-            {
-                Player = player,
-                Dealer = dealer,
-                Bots = bots
-            };
-
-            return game;
+            return (player, dealer, bots);
         }
 
         public async Task<IEnumerable<Card>> GetCards(long playerId, long sessionId)
