@@ -1,4 +1,4 @@
-﻿using ProjectBj.Entities.Enums;
+﻿using ProjectBj.Enums;
 using System;
 using System.ComponentModel;
 using System.Reflection;

@@ -1,4 +1,4 @@
-﻿namespace ProjectBj.Entities.Enums
+﻿namespace ProjectBj.Enums
 {
     public enum CardSuit
     {

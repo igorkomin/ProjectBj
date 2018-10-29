@@ -84,6 +84,10 @@
       <Project>{fe68c0ab-c49b-4ad7-8675-493223b5f50c}</Project>
       <Name>ProjectBj.Entities</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ProjectBj.Enums\ProjectBj.Enums.csproj">
+      <Project>{a964eddd-f12f-46a7-983b-26e654fb2d92}</Project>
+      <Name>ProjectBj.Enums</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

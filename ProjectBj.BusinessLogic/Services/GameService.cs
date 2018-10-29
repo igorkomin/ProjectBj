@@ -3,7 +3,7 @@ using ProjectBj.BusinessLogic.Managers.Interfaces;
 using ProjectBj.BusinessLogic.Mappers;
 using ProjectBj.BusinessLogic.Services.Interfaces;
 using ProjectBj.Entities;
-using ProjectBj.Entities.Enums;
+using ProjectBj.Enums;
 using ProjectBj.ViewModels.Game;
 using System;
 using System.Collections.Generic;
