@@ -22,7 +22,15 @@ namespace ProjectBj.BusinessLogic.Managers
 
         public async Task<IEnumerable<Player>> GetBots(int botsNumber)
         {
-            IEnumerable<Player> bots = await GetNewBots(botsNumber);
+            IEnumerable<Player> bots = await GetExistingBots(botsNumber);
+            int existingBotsNumber = bots.Count();
+            
+            if (existingBotsNumber < Constants.MaximumBots)
+            {
+                await CreateBots(Constants.MaximumBots - existingBotsNumber);
+                return await GetBots(botsNumber);
+            }
+
             return bots;
         }
 
@@ -90,17 +98,6 @@ namespace ProjectBj.BusinessLogic.Managers
             return player;
         }
 
-        private async Task<Player> GetNewBot()
-        {
-            var bot = new Player
-            {
-                Name = _nameGenerator.GenerateRandomFirstName(),
-                Type = PlayerType.Bot
-            };
-            bot = await _playerRepository.Insert(bot);
-            return bot;
-        }
-
         private async Task<Player> GetNewDealer()
         {
             var dealer = new Player
@@ -111,15 +108,26 @@ namespace ProjectBj.BusinessLogic.Managers
             dealer = await _playerRepository.Insert(dealer);
             return dealer;
         }
-
-        private async Task<IEnumerable<Player>> GetNewBots(int number)
+        
+        private async Task CreateBots(int number)
         {
             var bots = new List<Player>();
-            for(int i = 0; i < number; i++)
+            for (var i = 0; i < number; i++)
             {
-                Player bot = await GetNewBot();
+                var bot = new Player
+                {
+                    Name = _nameGenerator.GenerateRandomFirstName(),
+                    Type = PlayerType.Bot
+                };
                 bots.Add(bot);
             }
+
+            await _playerRepository.Insert(bots);
+        }
+
+        private async Task<IEnumerable<Player>> GetExistingBots(int number)
+        {
+            IEnumerable<Player> bots = await _playerRepository.GetBots(number);
             return bots;
         }
 

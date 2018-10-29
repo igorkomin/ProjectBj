@@ -78,7 +78,7 @@ namespace ProjectBj.BusinessLogic.Services
             ResponseHitGameView gameView = await _gameViewManager.GetHitGameView(playerId, sessionId, isLastAction);
             if (isLastAction)
             {
-                await EndGameSession(sessionId);
+                await _sessionManager.Close(sessionId);
             }
             return gameView;
         }
@@ -91,7 +91,7 @@ namespace ProjectBj.BusinessLogic.Services
             await GiveCardsToBots(sessionId);
             await GiveCardsToDealer(sessionId);
             ResponseStandGameView gameView = await _gameViewManager.GetStandGameView(playerId, sessionId);
-            await EndGameSession(sessionId);
+            await _sessionManager.Close(sessionId);
             return gameView;
         }
 
@@ -104,7 +104,7 @@ namespace ProjectBj.BusinessLogic.Services
             await GiveCardsToBots(sessionId);
             await GiveCardsToDealer(sessionId);
             ResponseDoubleGameView gameView = await _gameViewManager.GetDoubleGameView(playerId, sessionId);
-            await EndGameSession(sessionId);
+            await _sessionManager.Close(sessionId);
             return gameView;
         }
 
@@ -117,7 +117,7 @@ namespace ProjectBj.BusinessLogic.Services
             await GiveCardsToBots(sessionId);
             await GiveCardsToDealer(sessionId);
             ResponseSurrenderGameView gameView = await _gameViewManager.GetSurrenderGameView(playerId, sessionId);
-            await EndGameSession(sessionId);
+            await _sessionManager.Close(sessionId);
             return gameView;
         }
 
@@ -184,12 +184,6 @@ namespace ProjectBj.BusinessLogic.Services
             {
                 await GiveCards(2, playerId, sessionId);
             }
-        }
-
-        private async Task EndGameSession(long sessionId)
-        {
-            await _sessionManager.Close(sessionId);
-            await _playerManager.DeleteSessionBots(sessionId);
         }
         
         private async Task GiveCards(int count, long playerId, long sessionId)

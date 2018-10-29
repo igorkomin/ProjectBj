@@ -58,6 +58,17 @@ namespace ProjectBj.DataAccess.Repositories
             }
         }
 
+        public async Task<IEnumerable<Player>> GetBots(int number)
+        {
+            using (IDbConnection db = new SqlConnection(_connectionString))
+            {
+                string sqlQuery = @"SELECT TOP(@number) * FROM Players WHERE Type = 2 
+                                    ORDER BY NEWID();";
+                IEnumerable<Player> bots = await db.QueryAsync<Player>(sqlQuery, new { number });
+                return bots;
+            }
+        }
+
         public async Task<IEnumerable<Player>> GetSessionBots(long sessionId)
         {
             using (IDbConnection db = new SqlConnection(_connectionString))
