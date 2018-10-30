@@ -134,7 +134,7 @@ CREATE TABLE [dbo].[History](
 	[SessionId] [bigint] NOT NULL,
 	[CreationDate] [datetime2](7) NOT NULL,
 	[Event] [nvarchar](max) NOT NULL,
-	[PlayerName] [nvarchar](max) NULL,
+	[PlayerId] [bigint] NOT NULL,
 PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
