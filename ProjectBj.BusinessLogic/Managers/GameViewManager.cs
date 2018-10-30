@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using ProjectBj.BusinessLogic.Managers.Interfaces;
+﻿using ProjectBj.BusinessLogic.Managers.Interfaces;
 using ProjectBj.BusinessLogic.Mappers;
 using ProjectBj.Entities;
 using ProjectBj.ViewModels.Game;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace ProjectBj.BusinessLogic.Managers
 {
