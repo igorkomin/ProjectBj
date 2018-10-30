@@ -8,6 +8,5 @@
         public const int FaceCardValue = 10;
         public const int MinimumDealerHandValue = 17;
         public const int MinimumBotHandValue = 18;
-        public const int MaximumBots = 5;
     }
 }
