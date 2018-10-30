@@ -75,11 +75,6 @@ namespace ProjectBj.BusinessLogic.Managers
             Player player = await _playerRepository.GetById(id);
             return player;
         }
-
-        public async Task DeleteSessionBots(long sessionId)
-        {
-            await _playerRepository.DeleteBotsFromSession(sessionId);
-        }
         
         public async Task GiveCardsToPlayer(long playerId, long sessionId, IEnumerable<long> cardIds)
         {
