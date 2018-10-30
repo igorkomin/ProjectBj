@@ -25,9 +25,9 @@ namespace ProjectBj.BusinessLogic.Managers
             IEnumerable<Player> bots = await GetExistingBots(botsNumber);
             int existingBotsNumber = bots.Count();
             
-            if (existingBotsNumber < Constants.MaximumBots && botsNumber != 0)
+            if (existingBotsNumber < botsNumber && botsNumber != 0)
             {
-                await CreateBots(Constants.MaximumBots - existingBotsNumber);
+                await CreateBots(botsNumber - existingBotsNumber);
                 return await GetBots(botsNumber);
             }
 
