@@ -1,4 +1,4 @@
-﻿using ProjectBj.Enums;
+﻿using ProjectBj.Entities.Enums;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProjectBj.Entities

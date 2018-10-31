@@ -1,7 +1,7 @@
 ﻿using ProjectBj.BusinessLogic.Managers.Interfaces;
 using ProjectBj.DataAccess.Repositories.Interfaces;
 using ProjectBj.Entities;
-using ProjectBj.Enums;
+using ProjectBj.Entities.Enums;
 using RandomNameGeneratorLibrary;
 using System.Collections.Generic;
 using System.Linq;

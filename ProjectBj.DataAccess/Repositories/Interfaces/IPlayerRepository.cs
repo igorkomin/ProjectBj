@@ -1,5 +1,5 @@
 ﻿using ProjectBj.Entities;
-using ProjectBj.Enums;
+using ProjectBj.Entities.Enums;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -12,6 +12,5 @@ namespace ProjectBj.DataAccess.Repositories.Interfaces
         Task<IEnumerable<Player>> GetBots(int number);
         Task<IEnumerable<Player>> GetSessionBots(long sessionId);
         Task AddCardsToPlayerHand(long playerId, IEnumerable<long> cardIds, long sessionId);
-        Task DeleteBotsFromSession(long sessionId);
     }
 }

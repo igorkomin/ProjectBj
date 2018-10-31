@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace ProjectBj.Enums
+namespace ProjectBj.Entities.Enums
 {
     public enum CardRank
     {

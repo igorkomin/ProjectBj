@@ -1,7 +1,7 @@
 ﻿using ProjectBj.BusinessLogic.Managers.Interfaces;
 using ProjectBj.DataAccess.Repositories.Interfaces;
 using ProjectBj.Entities;
-using ProjectBj.Enums;
+using ProjectBj.Entities.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -67,7 +67,7 @@ namespace ProjectBj.BusinessLogic.Managers
             {
                 if (rank != 0)
                 {
-                    var card = new Card { Rank = rank, Suit = suit };
+                    var card = new Card { Rank =  rank, Suit = suit };
                     deck.Add(card);
                 }
             }

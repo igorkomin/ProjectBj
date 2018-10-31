@@ -1,4 +1,4 @@
-﻿namespace ProjectBj.Enums
+﻿namespace ProjectBj.Entities.Enums
 {
     public enum PlayerType
     {

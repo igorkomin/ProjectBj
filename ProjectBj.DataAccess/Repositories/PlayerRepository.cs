@@ -2,7 +2,7 @@
 using Dapper.Contrib.Extensions;
 using ProjectBj.DataAccess.Repositories.Interfaces;
 using ProjectBj.Entities;
-using ProjectBj.Enums;
+using ProjectBj.Entities.Enums;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -79,15 +79,6 @@ namespace ProjectBj.DataAccess.Repositories
                                     AND p.Type = 2";
                 IEnumerable<Player> bots = await db.QueryAsync<Player>(sqlQuery, new { sessionId });
                 return bots;
-            }
-        }
-
-        public async Task DeleteBotsFromSession(long sessionId)
-        {
-            using (IDbConnection db = new SqlConnection(_connectionString))
-            {
-                IEnumerable<Player> sessionBots = await GetSessionBots(sessionId);
-                await db.DeleteAsync(sessionBots);
             }
         }
     }

@@ -1,6 +1,7 @@
 ﻿using ProjectBj.Entities;
 using ProjectBj.ViewModels.Game;
 using System.Collections.Generic;
+using ProjectBj.ViewModels.Game.Enums;
 
 namespace ProjectBj.BusinessLogic.Mappers
 {
@@ -36,8 +37,8 @@ namespace ProjectBj.BusinessLogic.Mappers
             {
                 var cardStartGameViewItem = new CardResponseStartGameViewItem
                 {
-                    Suit = card.Suit,
-                    Rank = card.Rank
+                    Suit = (CardSuit) card.Suit,
+                    Rank = (CardRank) card.Rank
                 };
                 cardStartGameViewItems.Add(cardStartGameViewItem);
             }
