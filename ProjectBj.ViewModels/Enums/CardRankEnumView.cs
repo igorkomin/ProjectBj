@@ -2,7 +2,7 @@
 
 namespace ProjectBj.ViewModels.Enums
 {
-    public enum CardRank
+    public enum CardRankEnumView
     {
         None = 0,
         [Description("A")]

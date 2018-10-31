@@ -1,6 +1,6 @@
 ﻿namespace ProjectBj.ViewModels.Enums
 {
-    public enum CardSuit
+    public enum CardSuitEnumView
     {
         None = 0,
         Spades = 1,

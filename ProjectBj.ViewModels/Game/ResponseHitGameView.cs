@@ -51,7 +51,7 @@ namespace ProjectBj.ViewModels.Game
 
     public class CardResponseHitGameViewItem
     {
-        public CardSuit Suit { get; set; }
-        public CardRank Rank { get; set; }
+        public CardSuitEnumView Suit { get; set; }
+        public CardRankEnumView Rank { get; set; }
     }
 }

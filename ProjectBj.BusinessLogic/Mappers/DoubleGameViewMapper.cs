@@ -37,8 +37,8 @@ namespace ProjectBj.BusinessLogic.Mappers
             {
                 var cardDoubleGameViewItem = new CardResponseDoubleGameViewItem
                 {
-                    Suit = (CardSuit)card.Suit,
-                    Rank = (CardRank)card.Rank
+                    Suit = (CardSuitEnumView)card.Suit,
+                    Rank = (CardRankEnumView)card.Rank
                 };
                 cardDoubleGameViewItems.Add(cardDoubleGameViewItem);
             }
