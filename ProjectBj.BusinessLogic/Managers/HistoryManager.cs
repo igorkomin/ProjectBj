@@ -23,7 +23,6 @@ namespace ProjectBj.BusinessLogic.Managers
                 PlayerId = playerId,
                 SessionId = sessionId,
                 Event = message,
-                CreationDate = DateTime.Now
             };
             await _historyRepository.Insert(entry);
         }
