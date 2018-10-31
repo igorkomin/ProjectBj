@@ -42,14 +42,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseEntity.cs" />
-    <Compile Include="Card.cs" />
-    <Compile Include="History.cs" />
-    <Compile Include="Player.cs" />
-    <Compile Include="PlayerHand.cs" />
+    <Compile Include="Entities\BaseEntity.cs" />
+    <Compile Include="Entities\Card.cs" />
+    <Compile Include="Enums\CardRank.cs" />
+    <Compile Include="Enums\CardSuit.cs" />
+    <Compile Include="Enums\GameResult.cs" />
+    <Compile Include="Enums\PlayerType.cs" />
+    <Compile Include="Entities\History.cs" />
+    <Compile Include="Entities\Player.cs" />
+    <Compile Include="Entities\PlayerHand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="GameSession.cs" />
-    <Compile Include="SystemLog.cs" />
+    <Compile Include="Entities\GameSession.cs" />
+    <Compile Include="Entities\SystemLog.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ProjectBj.Enums\ProjectBj.Enums.csproj">
