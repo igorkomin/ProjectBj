@@ -1,4 +1,4 @@
-﻿using ProjectBj.ViewModels.Game.Enums;
+﻿using ProjectBj.ViewModels.Enums;
 using System.Collections.Generic;
 
 namespace ProjectBj.ViewModels.Game

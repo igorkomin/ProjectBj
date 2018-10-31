@@ -1,4 +1,4 @@
-﻿namespace ProjectBj.ViewModels.Game.Enums
+﻿namespace ProjectBj.ViewModels.Enums
 {
     public enum CardSuit
     {

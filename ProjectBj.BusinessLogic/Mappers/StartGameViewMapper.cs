@@ -1,6 +1,6 @@
 ﻿using ProjectBj.Entities;
 using ProjectBj.ViewModels.Game;
-using ProjectBj.ViewModels.Game.Enums;
+using ProjectBj.ViewModels.Enums;
 using System.Collections.Generic;
 
 namespace ProjectBj.BusinessLogic.Mappers

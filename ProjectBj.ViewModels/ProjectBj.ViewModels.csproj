@@ -42,8 +42,8 @@
   <ItemGroup>
     <Compile Include="Authorization\RequestLoginAuthorizationView.cs" />
     <Compile Include="Authorization\ResponseLoginAuthorizationView.cs" />
-    <Compile Include="Game\Enums\CardRank.cs" />
-    <Compile Include="Game\Enums\CardSuit.cs" />
+    <Compile Include="Enums\CardRank.cs" />
+    <Compile Include="Enums\CardSuit.cs" />
     <Compile Include="Game\ResponseHitGameView.cs" />
     <Compile Include="Game\RequestDoubleGameView.cs" />
     <Compile Include="Game\RequestHitGameView.cs" />
