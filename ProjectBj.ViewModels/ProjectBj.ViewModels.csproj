@@ -60,11 +60,5 @@
     <Compile Include="Logs\GetFullLogView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ProjectBj.Enums\ProjectBj.Enums.csproj">
-      <Project>{a964eddd-f12f-46a7-983b-26e654fb2d92}</Project>
-      <Name>ProjectBj.Enums</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,5 +1,5 @@
 ﻿using ProjectBj.BusinessLogic.Managers.Interfaces;
-using ProjectBj.Enums;
+using ProjectBj.Entities.Enums;
 
 namespace ProjectBj.BusinessLogic.Managers
 {

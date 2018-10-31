@@ -1,7 +1,7 @@
 ﻿using ProjectBj.BusinessLogic.Managers.Interfaces;
 using ProjectBj.BusinessLogic.Services.Interfaces;
 using ProjectBj.Entities;
-using ProjectBj.Enums;
+using ProjectBj.Entities.Enums;
 using ProjectBj.ViewModels.Authorization;
 using System;
 using System.Threading.Tasks;

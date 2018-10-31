@@ -1,6 +1,6 @@
 ﻿using ProjectBj.BusinessLogic.Managers.Interfaces;
 using ProjectBj.Entities;
-using ProjectBj.Enums;
+using ProjectBj.Entities.Enums;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
