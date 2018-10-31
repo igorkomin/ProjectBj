@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using ProjectBj.Entities;
+using System.Collections.Generic;
 using System.Threading.Tasks;
-using ProjectBj.Entities;
 
 namespace ProjectBj.BusinessLogic.Managers.Interfaces
 {

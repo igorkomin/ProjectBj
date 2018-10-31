@@ -1,5 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using ProjectBj.Entities.Enums;
+﻿using ProjectBj.Entities.Enums;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProjectBj.Entities
 {

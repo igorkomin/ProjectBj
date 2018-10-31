@@ -1,7 +1,7 @@
-﻿using ProjectBj.ViewModels.Authorization;
+﻿using ProjectBj.BusinessLogic.Services.Interfaces;
+using ProjectBj.ViewModels.Authorization;
 using System.Threading.Tasks;
 using System.Web.Http;
-using ProjectBj.BusinessLogic.Services.Interfaces;
 
 namespace ProjectBj.Web.Controllers.Api
 {

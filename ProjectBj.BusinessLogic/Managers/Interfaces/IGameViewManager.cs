@@ -1,5 +1,5 @@
-﻿using System.Threading.Tasks;
-using ProjectBj.ViewModels.Game;
+﻿using ProjectBj.ViewModels.Game;
+using System.Threading.Tasks;
 
 namespace ProjectBj.BusinessLogic.Managers.Interfaces
 {

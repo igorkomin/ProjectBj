@@ -2,7 +2,6 @@
 using ProjectBj.ViewModels.Game;
 using ProjectBj.ViewModels.Game.Enums;
 using System.Collections.Generic;
-using AutoMapper;
 
 namespace ProjectBj.BusinessLogic.Mappers
 {
