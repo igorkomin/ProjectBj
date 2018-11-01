@@ -55,12 +55,12 @@ namespace ProjectBj.BusinessLogic.Services
             await _historyManager.Create(playerId,
                 UserMessages.ChoseToHitMessage, sessionId);
             await GiveCards(1, playerId, sessionId);
+            await GiveCardsToBots(sessionId);
 
             int playerScore = await _gameManager.GetHandScore(playerId, sessionId);
             if (playerScore >= Constants.BlackjackValue)
             {
                 isLastAction = true;
-                await GiveCardsToBots(sessionId);
                 await GiveCardsToDealer(sessionId);
             }
 
@@ -137,21 +137,14 @@ namespace ProjectBj.BusinessLogic.Services
             IEnumerable<Player> bots = await _playerManager.GetSessionBots(sessionId);
             foreach (var bot in bots)
             {
-                await GiveCardsToBot(bot.Id, sessionId);
+                int botScore = await _gameManager.GetHandScore(bot.Id, sessionId);
+                if (botScore < Constants.MinimumBotHandValue)
+                {
+                    await GiveCards(1, bot.Id, sessionId);
+                }
             }
         }
-
-        private async Task<bool> GiveCardsToBot(long botId, long sessionId)
-        {
-            int botScore = await _gameManager.GetHandScore(botId, sessionId);
-            if (botScore > Constants.MinimumBotHandValue)
-            {
-                return false;
-            }
-            await GiveCards(1, botId, sessionId);
-            return await GiveCardsToBot(botId, sessionId);
-        }
-
+        
         private async Task<bool> GiveCardsToDealer(long sessionId)
         {
             Player dealer = await _playerManager.GetDealer();
