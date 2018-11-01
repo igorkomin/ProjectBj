@@ -25,7 +25,12 @@ namespace ProjectBj.BusinessLogic.Managers
             };
             await _historyRepository.Insert(entry);
         }
-        
+
+        public async Task Create(List<History> historyEntries)
+        {
+            await _historyRepository.Insert(historyEntries);
+        }
+
         public async Task<IEnumerable<History>> GetAll()
         {
             IEnumerable<History> fullHistory = await _historyRepository.GetAll();

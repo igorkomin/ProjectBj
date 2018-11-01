@@ -6,7 +6,8 @@ namespace ProjectBj.BusinessLogic.Managers.Interfaces
 {
     public interface IHistoryManager
     {
-        Task Create(long player, string message, long sessionId);
+        Task Create(List<History> entry);
+        Task Create(long playerId, string message, long sessionId);
         Task<IEnumerable<History>> GetAll();
     }
 }

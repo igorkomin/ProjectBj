@@ -178,12 +178,20 @@ namespace ProjectBj.BusinessLogic.Services
             IEnumerable<long> cardIds = cards.Select(c => c.Id);
             await _playerManager.GiveCardsToPlayer(playerId, sessionId, cardIds);
 
+            var historyMessages = new List<History>();
             foreach (var card in cards)
             {
-                await _historyManager.Create(
-                    playerId, UserMessages.GetPlayerTakesCardMessage(
-                        EnumHelper.GetCardRankName(card.Rank), card.Suit.ToString()), sessionId);
+                var historyMessage = new History
+                {
+                    PlayerId = playerId,
+                    SessionId = sessionId,
+                    Event = UserMessages.GetPlayerTakesCardMessage(
+                        EnumHelper.GetCardRankName(card.Rank), card.Suit.ToString())
+                };
+                historyMessages.Add(historyMessage);
             }
+
+            await _historyManager.Create(historyMessages);
         }
     }
 }
